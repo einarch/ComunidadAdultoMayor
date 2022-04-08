@@ -1,0 +1,17 @@
+[
+    {
+        "nombre": "Gabriel Mercado",
+        "actividad": "Visita de Museos en Cochabamba",
+        "fecha": "22/04/2022 09:00 a.m",
+        "ubicacion": "Plazuela Cobija",
+        "descripcion": "En la plaza habra un bus para trasladarse, se reuega puntualidad"
+
+    },
+    {
+        "nombre": "Javier Fernandez",
+        "actividad": "Taller de Teatro",
+        "fecha": "30/04/2022 19:00 p.m",
+        "ubicacion": "Teatro Capitol, entre Ecuador y Venezelua",
+        "descripcion": "Es costo de entrada es gratuito, cupos limitados"
+    }
+]
