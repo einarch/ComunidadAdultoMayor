@@ -8,6 +8,6 @@ En VSCode ejecutar:
 Para conectar ejecutar:
   npm install axios
 Y para los de backend ejecutar:
-  npm install react-router-dom@5
+  npm install react-router-dom
   
 No subir codigo hasta tener una reunion previa.
