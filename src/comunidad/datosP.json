@@ -1,0 +1,17 @@
+[
+    {
+        "nombre": "Saul Meneses Borda",
+        "publicacion": "Sali de paseo",
+        "fecha": "07/01/2022 15:00 p.m",
+        "ubicacion": "Plazuela Cobija",
+        "descripcion": "Hoy fue un gran día, pude disfrutar del paisaje y la compañia de mi familia."
+
+    },
+    {
+        "nombre": "Ronald Alegre",
+        "publicacion": "Busco información",
+        "fecha": "05/01/2022 19:00 p.m",
+        "ubicacion": "Teatro Capitol, entre Ecuador y Venezelua",
+        "descripcion": "Quisiera saber si tomar mates ayudan a mi salud"
+    }
+]

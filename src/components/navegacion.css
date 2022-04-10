@@ -1,0 +1,7 @@
+.nav-item .nav-link {
+    color: darkgoldenrod;
+}
+
+.nav-item>a:hover {
+    color: darkgoldenrod;
+}

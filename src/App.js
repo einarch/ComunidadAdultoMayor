@@ -1,26 +1,30 @@
-import logo from './logo.svg';
-import React, { useState } from 'react';
-
-import Toast from 'react-bootstrap/Toast';
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-import Nav from 'react-bootstrap/Nav';
-import Actividades from '../src/actividades/Actividad';
-import './App.css';
-import ActivityList from '../src/actividades/ActivityList';
-
-
-const App = () => (
-  <Container className="p-3">
-
-  <Actividades>
-    
-  </Actividades>
-
-  </Container>
-);
+import React from 'react';
+import "./App.css";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+import PaginaInicio from './PaginaInicio';
+import Actividad from './actividades/Actividad';
+import Comunidad from './comunidad/publicacion';
+import Voluntarios from './apoyo/Apoyo';
+import Apoyo from './apoyo/Apoyo';
 
 
-
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route exact path="/" element={<PaginaInicio />} />
+          <Route exact path="/Comunidad" element={<Comunidad />} />
+          <Route exact path="/Actividades" element={<Actividad />} />
+          <Route exact path="/Voluntarios" element={<Apoyo />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
 
 export default App;
