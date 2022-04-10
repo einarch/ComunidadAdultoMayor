@@ -1,6 +1,6 @@
 .App {
   font-family: 'Oxygen', sans-serif;
-  height: 168vh;
+  height: 180vh;
   background: rgb(239, 220, 120);
   background: linear-gradient(90deg, rgba(239, 220, 120, 1) 0%, rgba(54, 95, 65, 1) 59%);
 }
