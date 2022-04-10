@@ -2,16 +2,15 @@
 import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 
-import './../actividades/Actividad.css';
-import ActivityList from './ActivityList';
-import Navegacion from '../components/NavegacionA';
+import './../apoyo/Apoyo.css';
+import ApoyoList from './ApoyoList';
+import NavegacionAp from '../components/NavegacionVol';
 
-
-const Actividad = ({ children }) => {
-    const naveg = <Navegacion />;
+const Apoyo = ({ children }) => {
+    const naveg = <NavegacionAp />;
 
     return (
-        <><div className='container' class="bg-ligth ">
+        <><div className='container' class="bg-ligth">
             <br />
             {naveg}
         </div><>
@@ -20,21 +19,17 @@ const Actividad = ({ children }) => {
                 <br />
                 <br />
                 <br />
-                <h1 className="header">Actividades y Eventos</h1 >
+                <h1 className="header"> Voluntarios de Apoyo</h1>
                 <Container className="p-5 mb-4 bg-light rounded-3" className='div2'>
                     <div class="row justify-content-center" className="div1">
-
-
-                        <table class="table table">
-                            <ActivityList>
-                            </ActivityList>
+                        <table class="table table-bordered" border="3">
+                            <ApoyoList>
+                            </ApoyoList>
                         </table>
-
-
                     </div>
                 </Container>
             </></>
     );
 }
 
-export default Actividad;
+export default Apoyo;

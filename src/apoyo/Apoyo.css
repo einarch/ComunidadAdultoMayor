@@ -1,22 +1,24 @@
 .header {
   text-align: center;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: bold;
+  color: #ffffff;
 }
 
 body {
   margin-top: 20px;
+  background: radial-gradient(closest-side, rgb(0, 139, 139) 0%, rgb(2, 216, 216) 100%);
 }
 
-.tr .div1 {
-  min-height: 500px;
+.row {
+  min-height: 400px;
 }
 
 .div1 {
-  height: 80px;
+  height: auto;
   margin: 20px;
   border: 2px solid;
-  background-color: yellow;
+  background-color: #9cc4ac;
 
 }
 
@@ -35,4 +37,5 @@ body {
   border-style: outset;
   font-size: large;
   font-weight: bold;
+
 }
