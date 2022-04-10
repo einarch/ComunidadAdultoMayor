@@ -1,0 +1,41 @@
+.header {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+body {
+  margin-top: 20px;
+  background: radial-gradient(closest-side, rgb(0, 139, 139) 0%, rgb(2, 216, 216) 100%);
+}
+
+.row {
+  min-height: 400px;
+}
+
+.div1 {
+  height: auto;
+  margin: 20px;
+  border: 2px solid;
+  background-color: #d2b544;
+
+}
+
+.div2 {
+  min-height: 800px;
+  max-width: 1400px;
+  left: 20%;
+  right: 20%;
+  margin: 5%;
+  border: 2px solid;
+  background-color: #FFFFFF;
+
+}
+
+.nav {
+  border-style: outset;
+  font-size: large;
+  font-weight: bold;
+
+}

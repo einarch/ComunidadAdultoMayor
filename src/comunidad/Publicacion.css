@@ -1,0 +1,62 @@
+.header {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+
+}
+
+body {
+  margin-top: 20px;
+
+}
+
+.div1 {
+  height: auto;
+  margin: 20px;
+  border: 2px solid;
+  background-color: #acfb03;
+
+}
+
+.div2 {
+  min-height: 640px;
+  max-width: 1400px;
+  left: 20%;
+  right: 20%;
+  margin: 5%;
+  border: 2px solid;
+  background-color: #62fb03;
+
+}
+
+.comment-wrapper .panel-body {
+  max-height: 650px;
+  overflow: auto;
+}
+
+.comment-wrapper .media-list .media img {
+  width: 64px;
+  height: 64px;
+  border: 2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+  border-bottom: 1px dashed #efefef;
+  margin-bottom: 25px;
+}
+
+.nav {
+  position: fixed;
+  left: 20%;
+  right: 20%;
+  max-width: 70%;
+  border-style: outset;
+  animation: mymove 5s infinite;
+  padding: 10px 12px;
+  font-size: large;
+  font-weight: bold;
+  border-color: green;
+  background-color: white;
+  border-radius: 10px;
+
+}

@@ -3,22 +3,21 @@ import { Navbar, Nav, Container, Form } from 'react-bootstrap';
 import './Cabezera.css';
 import logo from '../imagenes/logo-comunidad.PNG'
 
-
 function Cabezera() {
     return (
         <div className="container">
 
-            <Navbar bg="transparent" variant="dark"expand="lg">
+            <Navbar bg="transparent" variant="dark" expand="lg">
                 <Container fluid>
                     <Navbar.Brand href="#">
                         <div className="logo-empresa">
-                        <img 
-                            src={logo}
-                            width="130"
-                            height="100"
-                            className="d-inline-block align-top"
-                            alt="React Bootstrap logo"
-                        />
+                            <img
+                                src={logo}
+                                width="130"
+                                height="100"
+                                className="d-inline-block align-top"
+                                alt="React Bootstrap logo"
+                            />
                         </div>
                     </Navbar.Brand>
 

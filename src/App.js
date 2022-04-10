@@ -6,18 +6,25 @@ import {
   Route
 } from "react-router-dom";
 import PaginaInicio from './components/PaginaInicio';
+import Actividad from './actividades/Actividad';
+import Comunidad from './comunidad/publicacion';
+import Voluntarios from './apoyo/Apoyo';
+import Apoyo from './apoyo/Apoyo';
+
 
 function App() {
   return (
     <Router>
       <div className="App">
-      <Routes>
-      <Route exact path="/" element={<PaginaInicio/>}/>
-      </Routes>
+        <Routes>
+          <Route exact path="/" element={<PaginaInicio />} />
+          <Route exact path="/Comunidad" element={<Comunidad />} />
+          <Route exact path="/Actividades" element={<Actividad />} />
+          <Route exact path="/Voluntarios" element={<Apoyo />} />
+        </Routes>
       </div>
     </Router>
   );
 }
-
 
 export default App;

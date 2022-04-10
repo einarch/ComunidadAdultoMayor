@@ -1,0 +1,38 @@
+.header {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+body {
+  margin-top: 20px;
+}
+
+.tr .div1 {
+  min-height: 500px;
+}
+
+.div1 {
+  height: 80px;
+  margin: 20px;
+  border: 2px solid;
+  background-color: yellow;
+
+}
+
+.div2 {
+  min-height: 800px;
+  max-width: 1400px;
+  left: 20%;
+  right: 20%;
+  margin: 5%;
+  border: 2px solid;
+  background-color: #FFFFFF;
+
+}
+
+.nav {
+  border-style: outset;
+  font-size: large;
+  font-weight: bold;
+}
