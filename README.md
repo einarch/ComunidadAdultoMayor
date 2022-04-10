@@ -5,6 +5,8 @@ Para bajar el repositorio:
 Para ejcutar tener instalado Node.js v14.19.1
 En VSCode ejecutar:
   npm install react-bootstrap bootstrap
+Tambien ejecutar:
+  npm i prop-types
 Para conectar ejecutar:
   npm install axios
 Y para los de backend ejecutar:
