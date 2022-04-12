@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import './../actividades/Actividad.css';
-import Avatar from './../imagenes/avatar.jpg'
+import avatar from './../imagenes/avatar.jpg'
 //import ActivityList from './ActivityList';
 import Navegacion from '../components/NavegacionA';
 
@@ -50,7 +50,7 @@ const Actividad = ({ children }) => {
                                     <tr>
                                     <th scope="row">
                                         <div class="media d-flex ">
-                                        <img src={Avatar} alt="" class="rounded-circle" height="80" width="80"></img>
+                                        <img src={avatar} alt="" class="rounded-circle" height="80" width="80"></img>
                                         <div class="media-body flex-grow-1 ms-3">
                                             <h5 class="mt-0 mb-1"><b>{actividad.nombreusuario}</b></h5>
                                             <h6 class="media-heading"><b>Actividad:</b> {actividad.actividad}</h6>
