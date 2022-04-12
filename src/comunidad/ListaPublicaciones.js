@@ -1,6 +1,5 @@
 import React from 'react';
 
-import axios from 'axios';
 
 import datosP from './datosP';
 import avatar from '../imagenes/avatar.jpg';

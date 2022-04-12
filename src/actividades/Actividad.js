@@ -21,7 +21,7 @@ const Actividad = ({ children }) => {
                 <br />
                 <br />
                 <h1 className="header">Actividades y Eventos</h1 >
-                <Container className="p-5 mb-4 bg-light rounded-3" className='div2'>
+                <Container className="p-5 mb-4 bg-light rounded-3 div2">
                     <div class="row justify-content-center" className="div1">
 
 

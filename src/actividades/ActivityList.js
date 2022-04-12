@@ -1,7 +1,5 @@
 import React from 'react';
 
-import axios from 'axios';
-
 import Avatar from './../imagenes/avatar.jpg'
 import datos from './datos';
 import './../actividades/Actividad.css';

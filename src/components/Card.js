@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 
 import "./card.css";
 
-function Card({ imageSource, title, text, url }) {
+function Card({ imageSource, title, text }) {
   return (
     <div className="card text-center bg-dark ">
       <div className="overflow">
-        <img src={imageSource} alt="a wallpaper" width={200} height={200} className="card-img-top" />
+        <img src={imageSource} alt="a wallpaper" className="card-img-top" />
       </div>
       <div className="card-body text-light">
         <h4 className="card-title">{title}</h4>

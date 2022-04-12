@@ -6,12 +6,12 @@ function ImagenFondo() {
     return (
         <div className="title text-center font-weight-bold">
             <h1>
-                Comunidad Para Adultos Mayores 
+                COMUNIDAD PARA ADULTOS MAYORES 
             </h1>
-            <img className="imagenFondo" src={imagefondo} alt="" width={1100} height={400}/>
             <h2 className="texto-segundo">
-               Podra : 
-            </h2>        
+               PODRÁS : 
+            </h2>  
+            <img className="imagenFondo" src={imagefondo} alt="" />      
         </div>
 
     );
