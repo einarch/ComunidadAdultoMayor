@@ -1,14 +1,31 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
-
+import axios from 'axios';
 import './../actividades/Actividad.css';
-import ActivityList from './ActivityList';
+import avatar from './../imagenes/avatar.jpg'
+//import ActivityList from './ActivityList';
 import Navegacion from '../components/NavegacionA';
 
 
 const Actividad = ({ children }) => {
     const naveg = <Navegacion />;
+
+    const baseUrl="http://localhost:80/apiCam/act.php";
+    const [data, setData]=useState([]);
+
+    const peticionGet=async()=>{
+        await axios.get(baseUrl)
+        .then(response=>{
+          setData(response.data);
+        }).catch(error=>{
+          console.log(error);
+        })
+      }
+
+    useEffect(()=>{
+        peticionGet();
+    },[])
 
     return (
         <><div className='container' class="bg-ligth ">
@@ -26,8 +43,29 @@ const Actividad = ({ children }) => {
 
 
                         <table class="table table">
-                            <ActivityList>
-                            </ActivityList>
+
+                            <tbody>
+                                {data.map(actividad => {
+                                return (
+                                    <tr>
+                                    <th scope="row">
+                                        <div class="media d-flex ">
+                                        <img src={avatar} alt="" class="rounded-circle" height="80" width="80"></img>
+                                        <div class="media-body flex-grow-1 ms-3">
+                                            <h5 class="mt-0 mb-1"><b>{actividad.nombreusuario}</b></h5>
+                                            <h6 class="media-heading"><b>Actividad:</b> {actividad.actividad}</h6>
+                                            <h6 class="media-heading"><b>Fecha y Hora:</b> {actividad.fechahora}</h6>
+                                            <h6 class="media-heading"><b>Ubicación:</b> {actividad.ubicacion}</h6>
+                                            <h6 class="media-heading"><b>Descripción:</b> {actividad.descripcion}</h6>
+                                            <h6 class="media-heading"><b>{actividad.numusuarios}</b> personas asistirán a la actividad.</h6>
+                                        </div>
+                                        </div>
+                                    </th>
+                                    </tr>
+                                )
+                                }
+                                )}
+                            </tbody>
                         </table>
 
 
