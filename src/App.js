@@ -8,7 +8,6 @@ import {
 import PaginaInicio from './components/PaginaInicio';
 import Actividad from './actividades/Actividad';
 import Comunidad from './comunidad/publicacion';
-import Voluntarios from './apoyo/Apoyo';
 import Apoyo from './apoyo/Apoyo';
 
 

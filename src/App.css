@@ -1,6 +1,6 @@
 .App {
-  font-family: 'Roboto', sans-serif;
-  height: 140vh;
+  font-family: 'Roboto','Helvetica-Neue';
+  height: absolute;
   background: rgb(239, 220, 120);
   background: linear-gradient(90deg, rgba(239, 220, 120, 1) 0%, rgba(54, 95, 65, 1) 59%);
   background-position: bottom;

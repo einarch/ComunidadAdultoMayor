@@ -16,8 +16,7 @@ function Card({ imageSource, title, text }) {
             ? text
             : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam deserunt fuga accusantium excepturi quia"}
         </p>
-        
-      </div>
+      </div> 
     </div>
   );
 }

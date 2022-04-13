@@ -1,8 +1,8 @@
  .imagenFondo {
     background-position: 100px 100px;
     border-radius: 10px;
-    width: 1100px;
-    height: 300px;
+    width: 1000px;
+    height: 200px;
 }
 
 .imagenFondo img {
@@ -14,9 +14,9 @@
 
 .title h1 {
     font-family: Roboto;
-    font-size: 2em;
+    font-size: 2rem;
     font-weight: normal;
-    text-shadow: 4px 4px 4px rgb(19, 2, 2);
+    text-shadow: 4px 4px 4px rgba(246, 250, 31, 0.856);
     margin: 0;
     color: white;
     position: absolute;
@@ -28,7 +28,7 @@
 
 .title h2 {
     font-family: Roboto;
-    font-size: 24/14em;
+    font-size: 2rem;
     font-weight: normal;
     text-shadow: 4px 4px 4px rgba(8, 1, 1, 0.932);
     margin: 0;

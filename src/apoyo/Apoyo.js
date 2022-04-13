@@ -37,7 +37,7 @@ const Apoyo = ({ children }) => {
                 <br />
                 <br />
                 <h1 className="header"> Voluntarios de Apoyo</h1>
-                <Container className="p-5 mb-4 bg-light rounded-3" className='div2'>
+                <Container className="p-11 mb-4 bg-light rounded-3 div2">
                     <div class="row justify-content-center" className="div1">
                         <table class="table table-bordered" border="3">
                             <tbody>

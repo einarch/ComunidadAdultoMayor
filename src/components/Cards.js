@@ -8,21 +8,21 @@ import image3 from '../imagenes/image3.jpg'
 const cards = [
   {
     id: 1,
-    title: "Comunidad",
+    title: "COMUNIDAD",
     image: image1,
-    text:"Publica tus historias o eventos de tu vida diaria, reacciona a las publicaciones de los abuelonautas de la comunidad",
+    text:"REALIZAR CONSULTAS, CONTAR EXPERIENCIAS",
   },
   {
     id: 2,
-    title: "Actividades",
+    title: "ACTIVIDADES",
     image: image2,
-    text:"Participa en la actividades posteadas cerca de tu barrio o crea una pequeña actividad para divertirte y conocer a tus vecinos",
+    text:"ENCONTRAR INVITACIONES A ACTIVIDADES SOCIALES",
   },
   {
     id: 3,
-    title: "Apoyo",
+    title: "APOYO",
     image: image3,
-    text:"Contactate con los voluntarios solidarios para dar un paseo, acompañarte a una consulta o simplemente hablar con alguien",
+    text:"ENCONTRAR COMPAÑIA POR PARTE DE VOLUNTARIOS",
   },
 ];
 
