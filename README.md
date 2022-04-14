@@ -1,12 +1,14 @@
-App COMUNIDAD PARA ADULTOS MAYORES
+#App COMUNIDAD PARA ADULTOS MAYORES
 
 Para bajar el repositorio:
   git clone https://github.com/einarch/ComunidadAdultoMayor.git
 Para ejcutar tener instalado Node.js v14.19.1
 En VSCode ejecutar:
   npm install react-bootstrap bootstrap
-Tambien ejecutar:
+Ejecutar:
   npm i prop-types
+Ejecutar:
+  npm install dateformat
 Para conectar ejecutar:
   npm install axios
 Y para los de backend ejecutar:

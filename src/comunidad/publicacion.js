@@ -34,21 +34,20 @@ const Publicacion = ({ children }) => {
                 <br />
                 <br />
                 <br />
-                <br />
                 <h1 className="header">Publicaciones y Noticias</h1>
                 <br />
                 <br />
                 <Container id="containerSection" className="p-4 mb-4">
                     {data.map(publicacion => {
                         return (
-                            <div id="itemSectionCard" class="card shadow-0 border rounded-3 p-3 mb-2">
-                                <div class="card-body">
-                                    <div class="media d-flex">
-                                        <img src={avatar} alt="" class="rounded-circle" height="80" width="80"></img>
-                                        <div class="media-body flex-grow-1 ms-3">
-                                            <h5 class="mt-0 mb-1" className="publicacionUserName"><b>{publicacion.nombre}</b></h5>
-                                            <h6 class="media-heading"><b>Publicado:</b> {dateFormat(publicacion.fechahora, "dd/mm/yyyy h:MM TT")}</h6>
-                                            <h6 class="media-heading"> {publicacion.descripcion}</h6>
+                            <div id="itemSectionCard" className="card shadow-0 border rounded-3 p-3 mb-2">
+                                <div className="card-body">
+                                    <div className="media d-flex">
+                                        <img src={avatar} alt="" className="rounded-circle" height="80" width="80"></img>
+                                        <div className="media-body flex-grow-1 ms-3">
+                                            <h5 className="publicacionUserName mt-0 mb-1"><b>{publicacion.nombre}</b></h5>
+                                            <h6 className="media-heading"><b>Publicado:</b> {dateFormat(publicacion.fechahora, "dd/mm/yyyy h:MM TT")}</h6>
+                                            <h6 className="media-heading"> {publicacion.descripcion}</h6>
                                         </div>
                                     </div>
                                 </div>
