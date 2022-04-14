@@ -5,3 +5,11 @@
 .nav-item>a:hover {
     color: darkgoldenrod;
 }
+
+.nav-item {
+    border: 1px solid black;
+}
+
+.nav-item a.active {
+    border-radius: 0%;
+  }
