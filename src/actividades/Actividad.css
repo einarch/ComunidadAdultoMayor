@@ -8,28 +8,17 @@ body {
   margin-top: 20px;
 }
 
-.tr .div1 {
-  min-height: 500px;
+#containerSection {
+  min-height: auto;
+  max-width: auto;
+  top: 10px;
+  border: 2px solid;
+  background-color: rgb(145, 28, 28);
 }
 
-.div1 {
-  font-family: 'Roboto', sans-serif;
-  height: 80px;
-  margin: 20px;
-  border: 2px solid;
-  background-color: yellow;
-
-}
-
-.div2 {
-  min-height: 800px;
-  max-width: 1400px;
-  left: 20%;
-  right: 20%;
-  margin: 5%;
-  border: 2px solid;
-  background-color: #FFFFFF;
-
+#itemSectionCard {
+  background-color: #efdc78;
+  border-radius: 50%;
 }
 
 .nav {
