@@ -13,6 +13,7 @@ body {
 }
 
 .div1 {
+  font-family: 'Roboto', sans-serif;
   height: 80px;
   margin: 20px;
   border: 2px solid;
@@ -35,4 +36,12 @@ body {
   border-style: outset;
   font-size: large;
   font-weight: bold;
+}
+
+.activityUserName {
+  text-transform: uppercase;
+}
+
+.activityTitle {
+  text-transform: uppercase;
 }

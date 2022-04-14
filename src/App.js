@@ -21,6 +21,7 @@ function App() {
           <Route exact path="/Actividades" element={<Actividad />} />
           <Route exact path="/Voluntarios" element={<Apoyo />} />
         </Routes>
+       
       </div>
     </Router>
   );

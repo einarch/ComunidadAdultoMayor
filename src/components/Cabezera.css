@@ -11,36 +11,6 @@
     position: relative;
 }
 
-
-.title h1 {
-    font-family: Roboto;
-    font-size: 2rem;
-    font-weight: normal;
-    text-shadow: 4px 4px 4px rgba(246, 250, 31, 0.856);
-    margin: 0;
-    color: white;
-    position: absolute;
-    top: 25%;
-    left: 40%;
-    transform: translate(-50%, -50%);
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0, 8);
-}
-
-.title h2 {
-    font-family: Roboto;
-    font-size: 2rem;
-    font-weight: normal;
-    text-shadow: 4px 4px 4px rgba(8, 1, 1, 0.932);
-    margin: 0;
-    color: rgb(255, 255, 255);
-    position: absolute;
-    padding: 0.3rem 1rem;
-    top: 60%;
-    left: 20%;
-    transform: translate(-50%, -50%);
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0, 8);
-}
-
 .logo-empresa img {
     width: 90px;
     height: 80px;
