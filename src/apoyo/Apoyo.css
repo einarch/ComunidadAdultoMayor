@@ -10,32 +10,13 @@ body {
   background: linear-gradient(90deg, rgba(239, 220, 120, 1) 0%, rgba(54, 95, 65, 1) 59%);
 }
 
-.row {
-  min-height: 400px;
-}
-
-.div1 {
-  height: auto;
-  margin: 20px;
-  border: 2px solid;
-  background-color: #d2b544;
-
-}
-
-.div2 {
-  min-height: 800px;
-  max-width: 1400px;
-  left: 20%;
-  right: 20%;
-  margin: 5%;
-  border: 2px solid;
-  background-color: #FFFFFF;
-
-}
-
 .nav {
   border-style: outset;
   font-size: large;
   font-weight: bold;
 
+}
+
+.voluntarioUserName {
+  text-transform: uppercase;
 }

@@ -10,41 +10,6 @@ body {
 
 }
 
-.div1 {
-  height: auto;
-  margin: 20px;
-  border: 2px solid;
-  background-color: #acfb03;
-
-}
-
-.div2 {
-  min-height: 640px;
-  max-width: 1400px;
-  left: 20%;
-  right: 20%;
-  margin: 5%;
-  border: 2px solid;
-  background-color: #62fb03;
-
-}
-
-.comment-wrapper .panel-body {
-  max-height: 650px;
-  overflow: auto;
-}
-
-.comment-wrapper .media-list .media img {
-  width: 64px;
-  height: 64px;
-  border: 2px solid #e5e7e8;
-}
-
-.comment-wrapper .media-list .media {
-  border-bottom: 1px dashed #efefef;
-  margin-bottom: 25px;
-}
-
 .nav {
   position: fixed;
   left: 20%;
@@ -59,4 +24,8 @@ body {
   background-color: white;
   border-radius: 10px;
 
+}
+
+.publicacionUserName {
+  text-transform: uppercase;
 }

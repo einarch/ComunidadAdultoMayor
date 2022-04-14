@@ -12,7 +12,6 @@ function ImagenFondo() {
             <div className="text-center">
                 <h1 className="title" style={{
                     position: "absolute",
-                    fontFamily: "Roboto",
                     fontSize: "2rem",
                     fontWeight: "bold",
                     color: "black",
@@ -34,7 +33,6 @@ function ImagenFondo() {
            
             <div className="text-left">
                 <h2 style={{
-                    fontFamily: "Roboto",
                     color: "black" ,
                     fontWeight: "bold",
                     fontSize: "1.688rem"
