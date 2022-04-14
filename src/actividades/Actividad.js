@@ -38,7 +38,7 @@ const Actividad = ({ children }) => {
                 <h1 className="header">Actividades y Eventos</h1 >
                 <br />
                 <br />
-                <Container id="containerSection" className="bg-light p-4 mb-4">
+                <Container id="containerSection" className="p-4 mb-4">
                     {data.map(actividad => {
                         return (
                             <div id="itemSectionCard" class="card shadow-0 border rounded-3 p-3 mb-2">

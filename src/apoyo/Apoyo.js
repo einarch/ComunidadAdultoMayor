@@ -37,7 +37,7 @@ const Apoyo = ({ children }) => {
                 <h1 className="header"> Voluntarios de Apoyo</h1>
                 <br />
                 <br />
-                <Container id="containerSection" className="bg-light p-4 mb-4">
+                <Container id="containerSection" className="p-4 mb-4">
                     {data.map(apoyo => {
                         return (
                             <div id="itemSectionCard" class="card shadow-0 border rounded-3 p-3 mb-2">
