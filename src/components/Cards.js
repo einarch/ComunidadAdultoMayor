@@ -10,7 +10,7 @@ const cards = [
     id: 1,
     title: "COMUNIDAD",
     image: image1,
-    text:"REALIZAR CONSULTAS, CONTAR EXPERIENCIAS",
+    text:"REALIZAR CONSULTAS, CONTAR TUS EXPERIENCIAS",
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const cards = [
     id: 3,
     title: "APOYO",
     image: image3,
-    text:"ENCONTRAR COMPAÑIA POR PARTE DE VOLUNTARIOS",
+    text:"ENCONTRAR COMPAÑIA POR PARTE DE VOLUNTARIOS ",
   },
 ];
 
