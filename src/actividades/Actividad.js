@@ -27,7 +27,7 @@ const Actividad = ({ children }) => {
     }, [])
 
     return (
-        <><div>
+        <><div id="div1">
             <br />
             {naveg}
         </div><>
@@ -41,10 +41,10 @@ const Actividad = ({ children }) => {
                     {data.map(actividad => {
                         return (
                             <div id="itemSectionCard" className="card shadow-0 border rounded-3 p-3 mb-2">
-                                <div class="card-body">
-                                    <div class="media d-flex">
-                                        <img src={avatar} alt="" class="rounded-circle" height="80" width="80"></img>
-                                        <div class="media-body flex-grow-1 ms-3">
+                                <div className="card-body">
+                                    <div className="media d-flex">
+                                        <img src={avatar} alt="" className="rounded-circle" height="80" width="80"></img>
+                                        <div className="media-body flex-grow-1 ms-3">
                                             <h5 className='activityUserName mt-0 mb-1'><b>{actividad.nombreusuario}</b></h5>
                                             <h6 className="media-heading"><b>Actividad:</b> <span className='activityTitle'>{actividad.actividad}</span></h6>
                                             <h6 className="media-heading"><b>Fecha y hora:</b> {dateFormat(actividad.fechahora, "dd/mm/yyyy h:MM TT")}</h6>

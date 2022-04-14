@@ -43,7 +43,7 @@ const Publicacion = ({ children }) => {
                             <div id="itemSectionCard" className="card shadow-0 border rounded-3 p-3 mb-2">
                                 <div className="card-body">
                                     <div className="media d-flex">
-                                        <img src={avatar} alt="" class="rounded-circle" height="80" width="80"></img>
+                                        <img src={avatar} alt="" className="rounded-circle" height="80" width="80"></img>
                                         <div className="media-body flex-grow-1 ms-3">
                                             <h5 className="publicacionUserName mt-0 mb-1"><b>{publicacion.nombre}</b></h5>
                                             <h6 className="media-heading"><b>Publicado:</b> {dateFormat(publicacion.fechahora, "dd/mm/yyyy h:MM TT")}</h6>
