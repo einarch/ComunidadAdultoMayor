@@ -9,7 +9,7 @@ const NavegacionA = () => {
           <a class="nav-link btn-lg" aria-current="page" href="/Comunidad">COMUNIDAD</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active btn-lg bg-success" aria-current="page" href="/Actividades">ACTIVIDADES</a>
+          <a class="nav-link active btn-lg bg-secondary" aria-current="page" href="/Actividades">ACTIVIDADES</a>
         </li>
         <li class="nav-item">
           <a class="nav-link  btn-lg" aria-current="page" href="/Voluntarios">APOYO</a>
