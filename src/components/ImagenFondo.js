@@ -30,7 +30,7 @@ function ImagenFondo() {
                     }}
                 />
             </div>
-
+           
             <div className="text-left">
                 <h2 style={{
                     color: "black" ,
@@ -38,7 +38,8 @@ function ImagenFondo() {
                     fontSize: "1.688rem"
 
                 }}>
-                    PODRA :
+                 <p></p>
+                 PODRA :
                 </h2>
             </div>
 

@@ -4,6 +4,7 @@
   }
   .card{
     top: 0;
+    margin-bottom: 5px;
   }
   .card-body {
     padding: 2rem 0 !important;
