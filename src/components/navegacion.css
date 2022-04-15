@@ -1,9 +1,10 @@
 .nav-item .nav-link {
     color: black;
+    cursor: pointer;
 }
 
 .nav-item>a:hover {
-    color: black;
+    color: white;
 }
 
 .nav-item {
