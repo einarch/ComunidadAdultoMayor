@@ -1,4 +1,4 @@
-#App COMUNIDAD PARA ADULTOS MAYORES
+App COMUNIDAD PARA ADULTOS MAYORES
 
 Para bajar el repositorio:
   git clone https://github.com/einarch/ComunidadAdultoMayor.git
