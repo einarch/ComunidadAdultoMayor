@@ -34,7 +34,7 @@ const Actividad = ({ children }) => {
                 <br />
                 <br />
                 <br />
-                <h1 className="header">Actividades y Eventos</h1 >
+                <h2 className="header">Actividades y Eventos</h2>
                 <br />
                 <br />
                 <Container id="containerSection" className="p-4 mb-4">
@@ -45,12 +45,12 @@ const Actividad = ({ children }) => {
                                     <div className="media d-flex">
                                         <img src={avatar} alt="" className="rounded-circle" height="80" width="80"></img>
                                         <div className="media-body flex-grow-1 ms-3">
-                                            <h5 className='activityUserName mt-0 mb-1'><b>{actividad.nombreusuario}</b></h5>
-                                            <h6 className="media-heading"><b>Actividad:</b> <span className='activityTitle'>{actividad.actividad}</span></h6>
-                                            <h6 className="media-heading"><b>Fecha y hora:</b> {dateFormat(actividad.fechahora, "dd/mm/yyyy h:MM TT")}</h6>
-                                            <h6 className="media-heading"><b>Ubicación:</b> {actividad.ubicacion}</h6>
-                                            <h6 className="media-heading">{actividad.descripcion}</h6>
-                                            <h6 className="media-heading"><b>{actividad.numusuarios}</b> personas asistirán a la actividad.</h6>
+                                            <h3 className='activityUserName mt-0 mb-1'><b>{actividad.nombreusuario}</b></h3>
+                                            <h4 className="media-heading"><b>Actividad:</b> <span className='activityTitle'>{actividad.actividad}</span></h4>
+                                            <h4 className="media-heading"><b>Fecha y hora:</b> {dateFormat(actividad.fechahora, "dd/mm/yyyy h:MM TT")}</h4>
+                                            <h4 className="media-heading"><b>Ubicación:</b> {actividad.ubicacion}</h4>
+                                            <h4 className="media-heading">{actividad.descripcion}</h4>
+                                            <h4 className="media-heading"><b>{actividad.numusuarios}</b> personas asistirán a la actividad.</h4>
                                         </div>
                                     </div>
                                 </div>

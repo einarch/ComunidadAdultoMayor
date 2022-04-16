@@ -33,7 +33,7 @@ const Apoyo = ({ children }) => {
                 <br />
                 <br />
                 <br />
-                <h1 className="header"> Voluntarios de Apoyo</h1>
+                <h2 className="header"> Voluntarios de Apoyo</h2>
                 <br />
                 <br />
                 <Container id="containerSection" className="p-4 mb-4">
@@ -44,11 +44,11 @@ const Apoyo = ({ children }) => {
                                     <div className="media d-flex">
                                         <img src={avatar} alt="" className="rounded-circle" height="80" width="80"></img>
                                         <div className="media-body flex-grow-1 ms-3">
-                                            <h5 className='voluntarioUserName mt-0 mb-1'><b>{apoyo.nombre}</b></h5>
+                                            <h3 className='voluntarioUserName mt-0 mb-1'><b>{apoyo.nombre}</b></h3>
                                             <br></br>
-                                            <h6 className="media-heading">{apoyo.ciudad} &emsp; &ensp; <b>Teléfono:</b>{apoyo.telefono} </h6>
+                                            <h4 className="media-heading">{apoyo.ciudad} &emsp; &ensp; <b>Teléfono:</b>{apoyo.telefono} </h4>
                                             <br></br>
-                                            <h6 className="media-heading"><b>Días Disponibles:</b> {apoyo.diasdisp}</h6>
+                                            <h4 className="media-heading"><b>Días Disponibles:</b> {apoyo.diasdisp}</h4>
                                             <br></br>
                                         </div>
                                     </div>
