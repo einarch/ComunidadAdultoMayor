@@ -34,23 +34,23 @@ const Publicacion = ({ children }) => {
                 <br />
                 <br />
                 <br />
-                <h1 className="header">Publicaciones y Noticias</h1>
+                <h2 className="header">Publicaciones y Noticias</h2>
                 <br />
                 <br />
                 <Container id="containerSection" className="p-4 mb-4">
                     {data.map(publicacion => {
                         return (
-                            <div id="itemSectionCard" className="card shadow-0 border rounded-3 p-3 mb-2">
-                                <div className="card-body">
-                                    <div className="media d-flex">
-                                        <img src={avatar} alt="" className="rounded-circle" height="80" width="80"></img>
-                                        <div className="media-body flex-grow-1 ms-3">
-                                            <h5 className="publicacionUserName mt-0 mb-1"><b>{publicacion.nombre}</b></h5>
-                                            <h6 className="media-heading"><b>Publicado:</b> {dateFormat(publicacion.fechahora, "dd/mm/yyyy h:MM TT")}</h6>
-                                            <h6 className="media-heading"> {publicacion.descripcion}</h6>
+                            <div id="itemSectionCard" className="card shadow-0 border rounded-3 p-3">
+                                <Container className="card-body">
+                                    <Container id="divItem" className="media d-flex center">
+                                        <img src={avatar} alt="" className="rounded-circle" height="200" width="200"></img>
+                                        <div id="divBodyItem" className="media-body flex-grow-1">
+                                            <h3 className="publicacionUserName mt-0 mb-1"><b>{publicacion.nombre}</b></h3>
+                                            <h4 className="media-heading"><b>Publicado:</b> {dateFormat(publicacion.fechahora, "dd/mm/yyyy h:MM TT")}</h4>
+                                            <h4 className="media-heading"> {publicacion.descripcion}</h4>
                                         </div>
-                                    </div>
-                                </div>
+                                    </Container>
+                                </Container>
                             </div>
                         )
                     }

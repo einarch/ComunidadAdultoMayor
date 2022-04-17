@@ -25,8 +25,8 @@ function ImagenFondo() {
 
                 <Image className="imagenFondo"
                     src={imagefondo} fluid style={{
-                        width: 1200,
-                        height: 300
+                        width: 1400,
+                        height: 350
                     }}
                 />
             </div>
@@ -35,8 +35,7 @@ function ImagenFondo() {
                 <h2 style={{
                     color: "black" ,
                     fontWeight: "bold",
-                    fontSize: "1.688rem"
-
+                    fontSize: "1.688rem"   
                 }}>
                  <p></p>
                  PODRA :
