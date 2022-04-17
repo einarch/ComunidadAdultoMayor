@@ -9,6 +9,8 @@
 
 .nav-item {
     border: 1px solid black;
+    min-width: 33.3333333%;
+   max-width: 33.3333333%;
 }
 
 .nav-item a.active {

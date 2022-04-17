@@ -12,8 +12,9 @@ body {
 
 .nav {
   position: absolute;
-  left: 20%;
-  right: 20%;
+  left: 15%;
+  
+  min-width: 70%;
   max-width: 70%;
   border-style: outset;
   animation: mymove 5s infinite;
