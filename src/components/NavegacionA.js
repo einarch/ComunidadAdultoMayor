@@ -9,9 +9,7 @@ const NavegacionA = () => {
           <a className="nav-link btn-lg" aria-current="page" href="/Comunidad">COMUNIDAD</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link active btn-lg bg-secondary" style={{
-                    color: "black" 
-                }} aria-current="page" href="/Actividades">ACTIVIDADES</a>
+          <a className="nav-link active btn-lg bg-secondary" aria-current="page" href="/Actividades">ACTIVIDADES</a>
         </li>
         <li className="nav-item">
           <a className="nav-link  btn-lg" aria-current="page" href="/Voluntarios">APOYO</a>

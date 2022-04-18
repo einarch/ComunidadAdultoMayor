@@ -33,8 +33,7 @@ const Publicacion = ({ children }) => {
         </div><>
                 <br />
                 <br />
-                <br />
-                <h2 className="header">Publicaciones y Noticias</h2>
+                <h2 className="title">Publicaciones y Noticias</h2>
                 <br />
                 <br />
                 <Container id="containerSection" className="p-4 mb-4">
@@ -43,11 +42,11 @@ const Publicacion = ({ children }) => {
                             <div id="itemSectionCard" className="card shadow-0 border rounded-3 p-3">
                                 <Container className="card-body">
                                     <Container id="divItem" className="media d-flex center">
-                                        <img src={avatar} alt="" className="rounded-circle" height="200" width="200"></img>
+                                        <img src={avatar} alt="" className="rounded-circle" height="120" width="120"></img>
                                         <div id="divBodyItem" className="media-body flex-grow-1">
                                             <h3 className="publicacionUserName mt-0 mb-1"><b>{publicacion.nombre}</b></h3>
-                                            <h4 className="media-heading"><b>Publicado:</b> {dateFormat(publicacion.fechahora, "dd/mm/yyyy h:MM TT")}</h4>
-                                            <h4 className="media-heading"> {publicacion.descripcion}</h4>
+                                            <h4><b>Publicado:</b> {dateFormat(publicacion.fechahora, "dd/mm/yyyy h:MM TT")}</h4>
+                                            <h4> {publicacion.descripcion}</h4>
                                         </div>
                                     </Container>
                                 </Container>
