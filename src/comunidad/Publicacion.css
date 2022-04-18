@@ -27,21 +27,9 @@ body {
 
 }
 
-.center {
+.centerPub {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 170px;
-}
-
-#divItem {
-  margin: 20px;
-}
-
-#divBodyItem {
-  margin: 35px;
-}
-
-.publicacionUserName {
-  text-transform: uppercase;
+  height: 50px;
 }

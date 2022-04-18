@@ -10,13 +10,16 @@ body {
   background: linear-gradient(90deg, rgba(239, 220, 120, 1) 0%, rgba(54, 95, 65, 1) 59%);
 }
 
+.centerVol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+}
+
 .nav {
   border-style: outset;
   font-size: large;
   font-weight: bold;
 
-}
-
-.voluntarioUserName {
-  text-transform: uppercase;
 }

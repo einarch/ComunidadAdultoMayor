@@ -25,6 +25,23 @@ body {
 #itemSectionCard {
   background-color: #efdc78;
   border-radius: 50%;
+  max-width: auto;
+  min-width: auto;
+}
+
+.centerAct {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+}
+
+#divItem {
+  margin: 20px;
+}
+
+#divBodyItem {
+  margin: 35px;
 }
 
 .nav {
@@ -33,10 +50,17 @@ body {
   font-weight: bold;
 }
 
-.activityUserName {
+.cardItemUserName {
   text-transform: uppercase;
+  font-size: 18px;
+  color: black;
 }
 
-.activityTitle {
+.cardItemTitle {
+  font-size: 17px;
+  color: black;
+}
+
+.uppercaseText {
   text-transform: uppercase;
 }

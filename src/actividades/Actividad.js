@@ -27,7 +27,7 @@ const Actividad = ({ children }) => {
     }, [])
 
     return (
-        <><div id="div1">
+        <><div>
             <br />
             {naveg}
         </div><>
@@ -39,17 +39,17 @@ const Actividad = ({ children }) => {
                 <Container id="containerSection" className="p-4 mb-4">
                     {data.map(actividad => {
                         return (
-                            <div id="itemSectionCard" className="card shadow-0 border rounded-3 p-3">
+                            <div id="itemSectionCard" className="card shadow-0 border rounded-3">
                                 <Container className="card-body">
-                                    <Container id="divItem" className="media d-flex center">
+                                    <Container id="divItem" className="media d-flex centerAct">
                                         <img src={avatar} alt="" className="rounded-circle" height="120" width="120"></img>
                                         <div id="divBodyItem" className="media-body flex-grow-1">
-                                            <h3 className='activityUserName mt-0 mb-1'><b>{actividad.nombreusuario}</b></h3>
-                                            <h4><b>Actividad:</b> <span className='activityTitle'>{actividad.actividad}</span></h4>
-                                            <h4><b>Fecha y hora:</b> {dateFormat(actividad.fechahora, "dd/mm/yyyy h:MM TT")}</h4>
-                                            <h4><b>Ubicación:</b> {actividad.ubicacion}</h4>
-                                            <h4>{actividad.descripcion}</h4>
-                                            <h4><b>{actividad.numusuarios}</b> personas asistirán a la actividad.</h4>
+                                            <h3 className="cardItemUserName mt-0 mb-1"><b>{actividad.nombreusuario}</b></h3>
+                                            <h4 className="cardItemTitle"><b>Actividad:</b> <span className='uppercaseText'>{actividad.actividad}</span></h4>
+                                            <h4 className="cardItemTitle"><b>Fecha y hora:</b> {dateFormat(actividad.fechahora, "dd/mm/yyyy h:MM TT")}</h4>
+                                            <h4 className="cardItemTitle"><b>Ubicación:</b> {actividad.ubicacion}</h4>
+                                            <h4 className="cardItemTitle">{actividad.descripcion}</h4>
+                                            <h4 className="cardItemTitle"><b>{actividad.numusuarios}</b> personas asistirán a la actividad.</h4>
                                         </div>
                                     </Container>
                                 </Container>
