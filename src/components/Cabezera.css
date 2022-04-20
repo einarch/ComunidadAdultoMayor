@@ -17,3 +17,10 @@
     border-radius: 20px;
     box-shadow: 2px 4px 6px rgba(54,95,65,1);
 }
+
+.logo-user img {
+    width: 70px;
+    height: 70px;
+    border-radius: 40px;
+    box-shadow: 1px 2px 3px rgba(54,95,65,1);
+}

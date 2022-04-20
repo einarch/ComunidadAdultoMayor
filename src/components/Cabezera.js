@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav, Container, Form } from 'react-bootstrap';
+import { Navbar, Nav, Container, Form, Button } from 'react-bootstrap';
 import './Cabezera.css';
 import logo from '../imagenes/logo-comunidad.PNG'
 
@@ -31,7 +31,7 @@ function Cabezera() {
 
                         </Nav>
                         <Form className="d-flex">
-
+                        <Button variant="outline-success">Search</Button>
                         </Form>
                     </Navbar.Collapse>
                 </Container>
