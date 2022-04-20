@@ -31,7 +31,9 @@ function Cabezera() {
 
                         </Nav>
                         <Form className="d-flex">
-                        <Button variant="outline-success">Search</Button>
+
+                        <Button  >INICIAR SESION</Button>
+
                         </Form>
                     </Navbar.Collapse>
                 </Container>
