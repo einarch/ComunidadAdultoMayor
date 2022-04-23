@@ -3,7 +3,7 @@ import "./navegacion.css";
 import Container from 'react-bootstrap/Container';
 import { Navbar, Nav, NavLink, DropdownButton, Dropdown } from 'react-bootstrap';
 import logo from '../imagenes/logo-comunidad.PNG';
-import user from '../images/user.png';
+import user from '../imagenes/avatar.jpg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserLarge } from "@fortawesome/free-solid-svg-icons";
 
