@@ -32,7 +32,7 @@ function Cabezera() {
                         </Nav>
                         <Form className="d-flex">
 
-                            <Button style={{
+                            <Button variant="warning" style={{
                                 backgroundColor: "#9cc4ac",
                                 color: "black",
                                 fontWeight: "bold",
