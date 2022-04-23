@@ -12,9 +12,9 @@ function Cabezera() {
                 <Container fluid>
                     <Navbar.Brand href="/">
                         <div className="logo-empresa" >
-                            <img 
+                            <img
                                 src={logo}
-                                
+
                                 className="d-inline-block align-top"
                                 alt="logo de la aplicacion"
                             />
@@ -32,7 +32,14 @@ function Cabezera() {
                         </Nav>
                         <Form className="d-flex">
 
-                        <Button  >INICIAR SESION</Button>
+                            <Button style={{
+                                backgroundColor: "#9cc4ac",
+                                color: "black",
+                                fontWeight: "bold",
+                                fontSize: "1.125rem",
+                                border: "2px solid black"
+                            }}
+                            >INICIAR SESION</Button>
 
                         </Form>
                     </Navbar.Collapse>

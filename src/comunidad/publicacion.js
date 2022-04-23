@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
+import { Container, Button } from 'react-bootstrap';
 import axios from 'axios';
 import dateFormat, { masks } from "dateformat";
 import './../comunidad/Publicacion.css';
@@ -36,6 +36,17 @@ const Publicacion = ({ children }) => {
                 <br />
                 <br />
                 <h2 className="title">Publicaciones y Noticias</h2>
+                <br />
+                <div className='text-center'>
+                    <Button style={{
+                        backgroundColor: "#9cc4ac",
+                        color: "black",
+                        fontWeight: "bold",
+                        fontSize: "1.3rem",
+                        border: "2px solid black"
+                    }}
+                    >Publicar</Button>
+                </div>
                 <br />
                 <br />
                 <Container id="containerSection" className="p-4 mb-4">
