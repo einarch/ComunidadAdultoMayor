@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav, Container, Form } from 'react-bootstrap';
+import { Navbar, Nav, Container, Form, Button } from 'react-bootstrap';
 import './Cabezera.css';
 import logo from '../imagenes/logo-comunidad.PNG'
 
@@ -12,9 +12,9 @@ function Cabezera() {
                 <Container fluid>
                     <Navbar.Brand href="/">
                         <div className="logo-empresa" >
-                            <img 
+                            <img
                                 src={logo}
-                                
+
                                 className="d-inline-block align-top"
                                 alt="logo de la aplicacion"
                             />
@@ -31,6 +31,15 @@ function Cabezera() {
 
                         </Nav>
                         <Form className="d-flex">
+
+                            <Button variant="warning" style={{
+                                backgroundColor: "#9cc4ac",
+                                color: "black",
+                                fontWeight: "bold",
+                                fontSize: "1.125rem",
+                                border: "2px solid black"
+                            }}
+                            >INICIAR SESION</Button>
 
                         </Form>
                     </Navbar.Collapse>
