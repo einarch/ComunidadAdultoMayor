@@ -34,7 +34,7 @@ const NavegacionVol = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="mx-auto">
             <ul className="nav nav-pills  nav-fill justify-content-center bg-ligth" >
               <li className="nav-item">
                 <NavLink className="nav-link btn-lg" aria-current="page" href="/Comunidad" >COMUNIDAD</NavLink>
@@ -44,6 +44,7 @@ const NavegacionVol = () => {
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link btn-lg bg-secondary" aria-current="page" href="/Voluntarios" >APOYO</NavLink>
+                
               </li>
 
 

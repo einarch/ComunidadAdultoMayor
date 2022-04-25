@@ -4,7 +4,7 @@ import axios from 'axios';
 import dateFormat, { masks } from "dateformat";
 import './../comunidad/Publicacion.css';
 import avatar from '../imagenes/avatar.jpg';
-import Navegacion from '../components/Navegacion';
+import Navegacion from '../components/NavegacionA';
 import configData from "../config/config.json";
 
 const Publicacion = ({ children }) => {
@@ -28,7 +28,7 @@ const Publicacion = ({ children }) => {
 
     return (
         <><div>
-            {naveg}
+            <Navegacion />;
             <br />
             <br />
             <br />

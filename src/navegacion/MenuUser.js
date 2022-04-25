@@ -1,3 +1,51 @@
+/*import './App.css';
+import Listar from "./componentes/Listar";
+import Crear from "./componentes/Crear";
+import Editar from "./componentes/Editar";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+/*
+import { NavLink } from "react-router-dom";
+
+function MainUser() {
+  return (
+    <Router>
+      <nav className="navbar navbar-expand navbar-light bg-light">
+        <div className="nav navbar-nav">
+          
+              <NavLink className="linky nav-item nav-link" to={"/"} > Sistema </NavLink> 
+              <NavLink className="linky nav-item nav-link" 
+               style={({ isActive }) => {
+                return {
+                  display: "block",
+                  margin: "1rem 0",
+                  backgroundColor: isActive ? "red" : "",
+                };
+              }}
+              to={"/crear"} > About </NavLink> 
+              
+          
+        </div>
+      </nav>
+
+      <div className="container">
+        <Routes>
+          <Route exact path="/" component={Listar} />
+          <Route path="/crear" component={Crear} />
+          <Route path="/editar/:id" component={Editar} />
+        </Routes>
+
+      </div>
+
+    </Router>
+
+  );
+}
+
+export default MainUser;*/
 import React from "react";
 import "./navegacion.css";
 import Container from 'react-bootstrap/Container';
@@ -7,7 +55,7 @@ import user from '../imagenes/avatar.jpg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserLarge } from "@fortawesome/free-solid-svg-icons";
 
-const NavegacionA = () => {
+const MenuUser = () => {
   const tilde = <span style={{
     fontSize: 35,
     color: "black",
@@ -37,13 +85,15 @@ const NavegacionA = () => {
           <Nav className="me-auto">
             <ul className="nav nav-pills  nav-fill justify-content-center bg-ligth" >
               <li className="nav-item">
-                <NavLink className="nav-link btn-lg " exact={true} activeClassName="active" aria-current="page" href="/Comunidad" >COMUNIDAD</NavLink>
+                <NavLink className="nav-link btn-lg " 
+                
+               >COMUNIDAD</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link btn-lg " activeClassName="active" aria-current="page" href="/Actividades" >ACTIVIDADES</NavLink>
+                <NavLink className="nav-link btn-lg "   >ACTIVIDADES</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link btn-lg " activeClassName="active" aria-current="page" href="/Voluntarios" >APOYO</NavLink>
+                <NavLink className="nav-link btn-lg " >APOYO</NavLink>
               </li>
 
 
@@ -87,4 +137,4 @@ const NavegacionA = () => {
   )
 }
 
-export default NavegacionA;
+export default MenuUser;
