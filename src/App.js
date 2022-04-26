@@ -9,7 +9,7 @@ import PaginaInicio from './components/PaginaInicio';
 import Actividad from './actividades/Actividad';
 import Comunidad from './comunidad/publicacion';
 import Apoyo from './apoyo/Apoyo';
-import Menu from './navegacion/MenuUser';
+import Header from './Header';
 
 function App() {
   return (
@@ -17,11 +17,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route exact path="/" element={<PaginaInicio />} />
-          <Route exact path="/Comunidad" element={<Comunidad />} />
-          <Route exact path="/Actividades" element={<Actividad />} />
-          <Route exact path="/Voluntarios" element={<Apoyo />} />
-          
-          <Route exact path="/Menu" element={<Menu />} />
+          <Route exact path="/Header" element={<Header />} /> 
         </Routes>
        
       </div>

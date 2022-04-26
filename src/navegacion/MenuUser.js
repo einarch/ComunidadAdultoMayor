@@ -151,9 +151,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserLarge } from "@fortawesome/free-solid-svg-icons";
 
 const listOptions = [
-  { text: "COMUNIDAD", route: "/Comunidad" },
-  { text: "ACTIVIDADES", route: "/Actividades" },
-  { text: "VOLUNTARIOS", route: "/Voluntarios" }
+  { text: "COMUNIDAD", route: "#Comunidad" },
+  { text: "ACTIVIDADES", route: "#Actividades" },
+  { text: "VOLUNTARIOS", route: "#Voluntarios" }
 ];
 
 const tilde = <span style={{
