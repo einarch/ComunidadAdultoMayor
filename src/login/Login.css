@@ -1,0 +1,184 @@
+input,
+button {
+  outline: none;
+  font-size: 1rem;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 10px;
+  text-transform: uppercase;
+  font-size: 32px;
+}
+
+.loginPage .loginForm {
+  margin: 50 100;
+  padding: 25px 50px 25px;
+  max-width: 500px;
+  min-width: 300px;
+  background: linear-gradient(rgba(140, 223, 177, 0.55), rgba(140, 223, 177, 0.55));
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.loginPage {
+  background: url("./../imagenes/imagenFondo.jpg") no-repeat center center;
+  background-size: cover;
+  min-height: 655px;
+}
+
+.loginPage .loginForm form {
+  min-width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.loginForm form label {
+  display: flex;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.loginForm form input {
+  size: 100px;
+  max-width: 250px;
+  padding: 4px;
+  font-size: 16px;
+  border: 1px solid #bbbbbb;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.loginForm form input:hover {
+  border-color: #999999;
+}
+
+.loginForm form input:focus {
+  border-color: #a38924;
+}
+
+[type="submit"] {
+  background: #a38924;
+  color: white;
+  border: 1px solid rgba(0, 0, 0, 0.175);
+  border-radius: 3px;
+  padding: 8px;
+  cursor: pointer;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  margin-top: 5px;
+  width: 50%;
+}
+
+[type="submit"]:disabled {
+  background: #68a4fd;
+}
+
+[type="submit"]:disabled:hover {
+  box-shadow: none;
+}
+
+
+.success-msg,
+.err-msg {
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.success-msg {
+  color: #ffffff;
+  background-color: #20c997;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.bottom-link {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.home {
+  text-align: center;
+}
+
+.home .img {
+  font-size: 100px;
+}
+
+.home h1 span {
+  font-weight: normal;
+  font-size: 16px;
+}
+
+button.logout {
+  background: #dc3545;
+  border: 1px solid rgba(0, 0, 0, .3);
+  padding: 10px 15px;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+button.logout:hover,
+[type="submit"]:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+
+.logoApp {
+  display: flex;
+  justify-content: center;
+}
+
+
+.full-width-input {
+  display: block;
+  text-align: right;
+}
+
+.full-width-input input {
+  width: 12em;
+  padding: 4px 8px;
+  margin: 4px 8px;
+  border: 1px solid #aaaaaa;
+  border-radius: 0;
+}
+
+.flex-parent {
+  display: flex;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Floating column for labels: 25% width */
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+/* Floating column for inputs: 75% width */
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
