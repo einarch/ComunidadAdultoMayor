@@ -37,3 +37,7 @@
 #dropdown-menu-align-end {
     background-color: #efdc78;
 }
+
+.nav-item .active{
+    background-color: black;
+}

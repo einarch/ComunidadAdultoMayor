@@ -151,9 +151,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserLarge } from "@fortawesome/free-solid-svg-icons";
 
 const listOptions = [
-  { text: "COMUNIDAD", route: "#Comunidad" },
-  { text: "ACTIVIDADES", route: "#Actividades" },
-  { text: "VOLUNTARIOS", route: "#Voluntarios" }
+  { text: "COMUNIDAD", route: "/Comunidad" },
+  { text: "ACTIVIDADES", route: "/Actividades" },
+  { text: "VOLUNTARIOS", route: "/Voluntarios" }
 ];
 
 const tilde = <span style={{
@@ -174,7 +174,7 @@ const MenuUser = () => {
           key={index}
           onClick={() => setActiveLink(index)}
           id={1}
-          className={`nav-item ${activeLink === index ? "bg-secondary" : ""
+          className={`nav-item ${activeLink === index ? "active" : ""
             }`}
         >
           <NavLink href={option.route} className="nav-link btn-lg">
