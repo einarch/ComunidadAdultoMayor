@@ -30,14 +30,11 @@
     max-width: 33.3333333%;
 }
 
-.nav-item a.active {
+.nav-item .active {
     border-radius: 0%;
+    background-color: #efdc78;
 }
 
 #dropdown-menu-align-end {
     background-color: #efdc78;
-}
-
-.nav-item .active{
-    background-color: black;
 }
