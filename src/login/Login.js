@@ -1,82 +1,123 @@
 import { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import "./Login.css";
 import "./Login.css";
 import logo from './../imagenes/logo-comunidad.PNG'
-import Image from "react-bootstrap/Image";
 import { UserContext } from './context/UserContext';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
-const Login = () => {
-    const { loginUser, wait, loggedInCheck } = useContext(UserContext);
-    const [redirect, setRedirect] = useState(false);
-    const [errMsg, setErrMsg] = useState(false);
-    const [formData, setFormData] = useState({
-        email: '',
-        password: ''
-    });
+import { Formik } from "formik";
+import * as EmailValidator from "email-validator";
+import * as Yup from "yup";
 
-    const onChangeInput = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        })
-    }
+const Login = () => (
 
-    const submitForm = async (e) => {
-        e.preventDefault();
+    <Formik
+        initialValues={{ email: "", password: "" }}
+        onSubmit={(values, { setSubmitting }) => {
+            setTimeout(() => {
+                console.log("Logging in", values);
+                setSubmitting(false);
+            }, 500);
+        }}
 
-        if (!Object.values(formData).every(val => val.trim() !== '')) {
-            setErrMsg('Please Fill in all Required Fields!');
-            return;
-        }
+        validationSchema={Yup.object().shape({
+            email: Yup.string()
+                .email("Correo no válido")
+                .min(6, "Correo no válido")
+                .max(30, "Correo no válido")
+                .required("Introduzca su correo")
+                .matches(/^[a-z0-9.\s]+@[a-z0-9\s]+\.[a-z0-9.\s]/, "Caracteres no permitidos"),
+            password: Yup.string()
+                .required("Introduzca su contraseña")
+                .min(6, "Contraseña no válida")
+                .max(15, "Contraseña no válida")
+                .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]$/, "Caracteres no permitidos")
+        })}
 
-        const data = await loginUser(formData);
-        if (data.success) {
-            e.target.reset();
-            setRedirect('Redirecting...');
-            await loggedInCheck();
-            return;
-        }
-        setErrMsg(data.message);
-    }
+    >
+        {props => {
+            const {
+                values,
+                touched,
+                errors,
+                isSubmitting,
+                handleChange,
+                handleBlur,
+                handleSubmit
+            } = props;
 
-    return (
-        <div className='loginPage'>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <Container className="loginForm d-flex flex-column justify-content-center align-items-center">
-                <div className='mb-5'>
-                    <img src={logo} className="rounded-circle" height="120" width="120"></img>
-                </div>
-                <form onSubmit={submitForm} className="row g-3 ">
-                    <div className="mb-2 d-flex flex-row align-items-center">
-                        <label htmlFor="email" className="col-sm-2 col-form-label">Email:</label>
-                        <div class="col-sm-12 ">
-                            <input className="form-control center-block" type="email" name="email" onChange={onChangeInput} id="email" value={formData.email} required />
+            return (
+
+                <div className='loginPage'>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <Container className="loginForm d-flex flex-column justify-content-center align-items-center">
+                        <div className='mb-5'>
+                            <img src={logo} className="rounded-circle" height="120" width="120"></img>
                         </div>
-                    </div>
-                    <div className="mb-2 d-flex flex-row align-items-center">
-                        <label htmlFor="password" className="col-sm-2 col-form-label">Contraseña:</label>
-                        <div class="col-sm-12">
-                            <input className="form-control center-block" type="password" name="password" onChange={onChangeInput} id="password" value={formData.password} required />
-                        </div>
-                    </div>
-                    <i class='fas fa-sign-in-alt'></i>
-                    {errMsg && <div className="err-msg">{errMsg}</div>}
-                    <div className="d-flex flex-row align-items-center justify-content-center">
-                        {redirect ? redirect : <button type="submit" disabled={wait}><FontAwesomeIcon icon={faSignInAlt}/> Ingresar</button>}
-                    </div>
-                </form>
-            </Container >
-        </div >
-    );
-}
+                        <form onSubmit={handleSubmit} className="row g-3 ">
+                            <div className="mb-2 d-flex flex-row align-items-center">
+                                <label htmlFor="email" className="col-sm-2 col-form-label">Email:</label>
+                                <div class="col-sm-12">
+                                    <input
+                                        class="form-control center-block"
+                                        id="email"
+                                        type="email"
+                                        name="email"
+                                        placeholder="Ingresa tu correo"
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        value={values.email} required
+                                        className={errors.email && touched.email && "error"}
+                                    />
+                                    <div>
+                                        {errors.email && touched.email && (
+                                            <div className="input-feedback">{errors.email}</div>
+                                        )}
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div className="mb-2 d-flex flex-row align-items-center">
+                                <label htmlFor="password" className="col-sm-2 col-form-label">Contraseña:</label>
+                                <div class="col-sm-12">
+                                    <input
+                                        class="form-control center-block"
+                                        className={errors.password && touched.password && "error"}
+                                        id="password"
+                                        type="password"
+                                        name="password"
+                                        placeholder="Ingresa tu password"
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        value={values.password} required />
+                                    <div>
+                                        {errors.password && touched.password && (
+                                            <Container className="input-feedback">{errors.password}</Container>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                            <i class='fas fa-sign-in-alt'></i>
+                            <div className="d-flex flex-row align-items-center justify-content-center">
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}>
+                                    <FontAwesomeIcon icon={faSignInAlt} /> Ingresar
+                                </button>
+
+                            </div>
+                        </form>
+                    </Container >
+                </div >
+            );
+        }
+        }
+    </Formik>
+);
 
 export default Login;
