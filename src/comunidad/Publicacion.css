@@ -13,12 +13,11 @@ body {
 .nav {
   position: absolute;
   left: 15%;
-
   min-width: 70%;
   max-width: 70%;
   border-style: outset;
   animation: mymove 5s infinite;
-  padding: 0px 0px;
+  padding: 0px;
   font-size: large;
   font-weight: bold;
   border-color: black;
@@ -32,4 +31,12 @@ body {
   justify-content: center;
   align-items: center;
   height: 50px;
+}
+.text{
+  font-size: 24px;
+  background: rgb(240, 248, 240) ;
+}
+.color{
+
+background: rgb(239, 220, 120, 1);
 }
