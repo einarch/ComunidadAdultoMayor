@@ -21,6 +21,7 @@ const Navegacion = () => {
     <Navbar collapseOnSelect expand="lg"  variant="light" fixed="top"
     style={{
       backgroundColor: "#589674"
+      
     }}
     >
       <Container fluid>
