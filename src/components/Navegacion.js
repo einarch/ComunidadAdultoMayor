@@ -24,7 +24,7 @@ const Navegacion = () => {
     }}
     >
       <Container fluid>
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/Comunidad">
           <div className="logo-empresa" >
             <img
               src={logo}
