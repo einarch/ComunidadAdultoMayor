@@ -23,7 +23,7 @@ const NavegacionA = () => {
     }}
     >
       <Container fluid>
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/Actividades">
           <div className="logo-empresa" >
             <img
               src={logo}
