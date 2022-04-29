@@ -59,12 +59,12 @@ const Login = () => (
                         <div className='mb-5'>
                             <img src={logo} className="rounded-circle" height="120" width="120"></img>
                         </div>
-                        <form onSubmit={handleSubmit} className="row g-3 ">
+                        <form onSubmit={handleSubmit} className="row g-3">
                             <div className="mb-2 d-flex flex-row align-items-center">
-                                <label htmlFor="email" className="col-sm-2 col-form-label">Email:</label>
-                                <div class="col-sm-12">
+                                <label htmlFor="email" className="col-sm-3 col-form-label center-block">Email:</label>
+                                <div class="center-block">
                                     <input
-                                        class="form-control center-block"
+                                        className={errors.email && touched.email && "error"}
                                         id="email"
                                         type="email"
                                         name="email"
@@ -72,21 +72,17 @@ const Login = () => (
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         value={values.email} required
-                                        className={errors.email && touched.email && "error"}
-                                    />
-                                    <div>
-                                        {errors.email && touched.email && (
-                                            <div className="input-feedback">{errors.email}</div>
-                                        )}
-                                    </div>
 
+                                    />
+                                    {errors.email && touched.email && (
+                                        <div className="input-feedback">{errors.email}</div>
+                                    )}
                                 </div>
                             </div>
                             <div className="mb-2 d-flex flex-row align-items-center">
-                                <label htmlFor="password" className="col-sm-2 col-form-label">Contraseña:</label>
-                                <div class="col-sm-12">
+                                <label htmlFor="password" className="col-sm-3 col-form-label center-block">Contraseña:</label>
+                                <div className="center-block">
                                     <input
-                                        class="form-control center-block"
                                         className={errors.password && touched.password && "error"}
                                         id="password"
                                         type="password"
@@ -95,11 +91,10 @@ const Login = () => (
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         value={values.password} required />
-                                    <div>
-                                        {errors.password && touched.password && (
-                                            <Container className="input-feedback">{errors.password}</Container>
-                                        )}
-                                    </div>
+
+                                    {errors.password && touched.password && (
+                                        <div className="input-feedback">{errors.password}</div>
+                                    )}
                                 </div>
                             </div>
                             <i class='fas fa-sign-in-alt'></i>
@@ -109,7 +104,6 @@ const Login = () => (
                                     disabled={isSubmitting}>
                                     <FontAwesomeIcon icon={faSignInAlt} /> Ingresar
                                 </button>
-
                             </div>
                         </form>
                     </Container >

@@ -45,12 +45,18 @@ h2 {
 
 .loginForm form input {
   size: 100px;
+  min-width: 280px;
   max-width: 250px;
   padding: 4px;
   font-size: 16px;
   border: 1px solid #bbbbbb;
   border-radius: 5px;
   margin-bottom: 5px;
+}
+
+.input-feedback {
+  color: #dc3545;
+  font-weight: bold;
 }
 
 .loginForm form input:hover {
