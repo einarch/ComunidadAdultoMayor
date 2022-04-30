@@ -2,7 +2,7 @@ import React from 'react';
 import {
     BrowserRouter as Router,
     Routes,
-    Route
+    Route,Link, Outlet,NavLink
 } from "react-router-dom";
 
 import Actividad from './actividades/Actividad';
@@ -14,14 +14,24 @@ function Header() {
     return (
 
         <>
-            <Menu />
-            <div>
-                <Routes>
-                    <Route exact path="/Header/Comunidad" element={<Comunidad />} />
-                    <Route exact path="/Header/Actividades" element={<Actividad />} />
-                    <Route exact path="/Header/Voluntarios" element={<Apoyo />} />
-                </Routes>
+            <Menu/>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
 
+            <Link to={"/Header/Comunidad"}>Say comunidad</Link>
+            <div>
+            <ul>
+                <li>
+                    <NavLink to='/Header/Comunidad' className={( data ) => console.log(data)} >Comunidad</NavLink>
+                </li>
+            </ul>
+            </div>
+            <div>
+               <Outlet/>
             </div>
         </>
 

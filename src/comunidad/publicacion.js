@@ -28,7 +28,6 @@ const Publicacion = ({ children }) => {
 
     return (
         <><div>
-            <Navegacion />;
             <br />
             <br />
             <br />

@@ -7,7 +7,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-/*
+
 import { NavLink } from "react-router-dom";
 
 function MainUser() {
@@ -49,7 +49,8 @@ function MainUser() {
 }
 
 export default MainUser;*/
-/*
+
+
 import React from "react";
 import "./navegacion.css";
 import Container from 'react-bootstrap/Container';
@@ -89,12 +90,12 @@ const MenuUser = () => {
           <Nav className="me-auto">
             <ul className="nav nav-pills  nav-fill justify-content-center bg-ligth" >
               <li className="nav-item">
-                <NavLink className="nav-link btn-lg " 
-                
+                <NavLink 
+                className={( data ) => console.log(data)} to='/Header/Comunidad'
                >COMUNIDAD</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link btn-lg "   >ACTIVIDADES</NavLink>
+                <NavLink className="nav-link btn-lg ">ACTIVIDADES</NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link btn-lg " >APOYO</NavLink>
@@ -141,9 +142,9 @@ const MenuUser = () => {
   )
 }
 
-export default MenuUser;*/
+export default MenuUser;
 
-
+/*
 import React, { useState } from "react";
 import "./navegacion.css";
 import Container from 'react-bootstrap/Container';
@@ -181,11 +182,8 @@ const MenuUser = () => {
           className={`nav-item ${activeLink === index ? "bg-secondary" : ""
             }`}
         >
-          <NavLink exact="true"
-                  
-                 to={option.route} className="nav-link btn-lg" >
-
-            <span className="ml-4">{option.text}</span>
+          <NavLink exact="true"  
+                 to={option.route} className="nav-link btn-lg" >{option.text}
           </NavLink>
         </li>
       );
@@ -193,7 +191,6 @@ const MenuUser = () => {
   };
 
   return (
-    <>
     <Navbar collapseOnSelect expand="lg" variant="light" fixed="top"
       style={{
         backgroundColor: "#589674"
@@ -250,9 +247,8 @@ const MenuUser = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    <Outlet/>
-    </>
   );
 };
 
 export default MenuUser;
+*/
