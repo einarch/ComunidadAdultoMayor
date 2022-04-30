@@ -2,6 +2,8 @@ import React from "react";
 import { Navbar, Nav, Container, Form, Button } from 'react-bootstrap';
 import './Cabezera.css';
 import logo from '../imagenes/logo-comunidad.PNG'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserLarge } from "@fortawesome/free-solid-svg-icons";
 
 
 function Cabezera() {
@@ -14,7 +16,6 @@ function Cabezera() {
                         <div className="logo-empresa" >
                             <img
                                 src={logo}
-
                                 className="d-inline-block align-top"
                                 alt="logo de la aplicacion"
                             />
@@ -32,7 +33,7 @@ function Cabezera() {
                         </Nav>
                         <Form className="d-flex">
 
-                            <Button variant="warning" style={{
+                            <Button variant="warning"  href="/login" style={{
                                 backgroundColor: "#9cc4ac",
                                 color: "black",
                                 fontWeight: "bold",

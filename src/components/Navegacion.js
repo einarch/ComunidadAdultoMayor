@@ -21,10 +21,11 @@ const Navegacion = () => {
     <Navbar collapseOnSelect expand="lg"  variant="light" fixed="top"
     style={{
       backgroundColor: "#589674"
+      
     }}
     >
       <Container fluid>
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/Comunidad">
           <div className="logo-empresa" >
             <img
               src={logo}
