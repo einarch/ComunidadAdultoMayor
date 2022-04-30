@@ -22,11 +22,11 @@ function Header() {
             <br />
             <br />
 
-            <Link to={"/Header/Comunidad"}>Say comunidad</Link>
+            <Link to={"/Header/Voluntarios"}>Say comunidad</Link>
             <div>
             <ul>
                 <li>
-                    <NavLink to='/Header/Comunidad' className={( data ) => console.log(data)} >Comunidad</NavLink>
+                    <NavLink to='/Header/Voluntarios' className={( data ) => console.log(data)} >Comunidad</NavLink>
                 </li>
             </ul>
             </div>

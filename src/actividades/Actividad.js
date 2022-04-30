@@ -28,7 +28,6 @@ const Actividad = ({ children }) => {
 
     return (
         <><div>
-            {naveg}
             <br />
             <br />
             <br />

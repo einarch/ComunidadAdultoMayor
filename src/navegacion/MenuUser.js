@@ -1,60 +1,83 @@
-/*import './App.css';
-import Listar from "./componentes/Listar";
-import Crear from "./componentes/Crear";
-import Editar from "./componentes/Editar";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from "react-router-dom";
-
-import { NavLink } from "react-router-dom";
-
-function MainUser() {
-  return (
-    <Router>
-      <nav className="navbar navbar-expand navbar-light bg-light">
-        <div className="nav navbar-nav">
-          
-              <NavLink className="linky nav-item nav-link" to={"/"} > Sistema </NavLink> 
-              <NavLink className="linky nav-item nav-link" 
-
-              style={({ isActive }) => (isActive ? {backgroundColor:"red"} : {} )}
-
-               style={({ isActive }) => {
-                return {
-                  display: "block",
-                  margin: "1rem 0",
-                  backgroundColor: isActive ? "red" : "",
-                };
-              }}
-              to={"/crear"} > About </NavLink> 
-              
-          
-        </div>
-      </nav>
-
-      <div className="container">
-        <Routes>
-          <Route exact path="/" component={Listar} />
-          <Route path="/crear" component={Crear} />
-          <Route path="/editar/:id" component={Editar} />
-        </Routes>
-
-      </div>
-
-    </Router>
-
-  );
-}
-
-export default MainUser;*/
-
-
+/*
 import React from "react";
 import "./navegacion.css";
 import Container from 'react-bootstrap/Container';
 import { Navbar, Nav, NavLink, DropdownButton, Dropdown } from 'react-bootstrap';
+import logo from '../imagenes/logo-comunidad.PNG';
+import user from '../imagenes/avatar.jpg';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserLarge } from "@fortawesome/free-solid-svg-icons";
+
+function MenuUser() {
+  return (
+
+    <nav className="navbar ">
+      <div className="container-fluid">
+        <div className="navbar-header">
+          <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span className="sr-only">Toggle navigation</span>
+            <span className="icon-bar"></span>
+            <span className="icon-bar"></span>
+            <span className="icon-bar"></span>
+          </button>
+          <a className="navbar-brand" href="#">Brand</a>
+        </div>
+
+        <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul className="nav navbar-nav">
+            <li className="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Link</a></li>
+            <li className="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul className="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" className="divider"></li>
+                <li><a href="#">Separated link</a></li>
+                <li role="separator" className="divider"></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form className="navbar-form navbar-left">
+            <div className="form-group">
+
+            </div>
+            <button type="submit" className="btn btn-default">Submit</button>
+          </form>
+          <ul className="nav navbar-nav navbar-right">
+            <li><a href="#">Link</a></li>
+            <li className="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul className="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+  );
+}
+
+export default MenuUser;
+
+*/
+
+import React from "react";
+import "./navegacion.css";
+import Container from 'react-bootstrap/Container';
+import { Navbar, Nav, DropdownButton, Dropdown } from 'react-bootstrap';
+import {NavLink
+} from "react-router-dom";
 import logo from '../imagenes/logo-comunidad.PNG';
 import user from '../imagenes/avatar.jpg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -90,15 +113,16 @@ const MenuUser = () => {
           <Nav className="me-auto">
             <ul className="nav nav-pills  nav-fill justify-content-center bg-ligth" >
               <li className="nav-item">
-                <NavLink 
-                className={( data ) => console.log(data)} to='/Header/Comunidad'
-               >COMUNIDAD</NavLink>
+                <NavLink className="nav-link btn-lg " to='/Header/Comunidad'
+                >COMUNIDAD</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link btn-lg ">ACTIVIDADES</NavLink>
+                <NavLink className="nav-link btn-lg " to='/Header/Actividades'
+                >ACTIVIDADES</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link btn-lg " >APOYO</NavLink>
+                <NavLink className="nav-link btn-lg " to='/Header/Voluntarios'
+                >APOYO</NavLink>
               </li>
 
 
@@ -145,6 +169,7 @@ const MenuUser = () => {
 export default MenuUser;
 
 /*
+
 import React, { useState } from "react";
 import "./navegacion.css";
 import Container from 'react-bootstrap/Container';
@@ -251,4 +276,5 @@ const MenuUser = () => {
 };
 
 export default MenuUser;
+
 */

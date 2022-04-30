@@ -27,7 +27,6 @@ const Apoyo = ({ children }) => {
 
     return (
         <><div>
-            {naveg}
             <br />
             <br />
             <br />

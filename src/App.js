@@ -18,14 +18,10 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<PaginaInicio />} />
-          <Route path="/Header/*" element={<Header />} >
-            <Route path="actividades" element={<Actividad />} />
-            <Route path="voluntarios" element={<Apoyo />} />
-
-
-            <Route path="Comunidad" element={<Comunidad/>} />
-
-
+          <Route path="Header/*" element={<Header />} >
+            <Route path='Actividades' element={<Actividad />} />
+            <Route path='Comunidad' element={<Comunidad/>} />
+            <Route path='Voluntarios' element={<Apoyo />} />
           </Route>
         </Routes>
 
