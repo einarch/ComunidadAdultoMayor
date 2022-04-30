@@ -18,6 +18,9 @@ function MainUser() {
           
               <NavLink className="linky nav-item nav-link" to={"/"} > Sistema </NavLink> 
               <NavLink className="linky nav-item nav-link" 
+
+              style={({ isActive }) => (isActive ? {backgroundColor:"red"} : {} )}
+
                style={({ isActive }) => {
                 return {
                   display: "block",
@@ -151,9 +154,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserLarge } from "@fortawesome/free-solid-svg-icons";
 
 const listOptions = [
-  { text: "COMUNIDAD", route: "#Comunidad" },
-  { text: "ACTIVIDADES", route: "#Actividades" },
-  { text: "VOLUNTARIOS", route: "#Voluntarios" }
+  { text: "COMUNIDAD", route: "/Header/Comunidad" },
+  { text: "ACTIVIDADES", route: "/Header/Actividades" },
+  { text: "VOLUNTARIOS", route: "/Header/Voluntarios" }
 ];
 
 const tilde = <span style={{
@@ -175,10 +178,12 @@ const MenuUser = () => {
           key={index}
           onClick={() => setActiveLink(index)}
           id={1}
-          className={`nav-item ${activeLink === index ? "active" : ""
+          className={`nav-item ${activeLink === index ? "bg-secondary" : ""
             }`}
         >
-          <NavLink href={option.route} className="nav-link btn-lg" >
+          <NavLink exact="true"
+                  
+                 to={option.route} className="nav-link btn-lg" >
 
             <span className="ml-4">{option.text}</span>
           </NavLink>
@@ -188,6 +193,7 @@ const MenuUser = () => {
   };
 
   return (
+    <>
     <Navbar collapseOnSelect expand="lg" variant="light" fixed="top"
       style={{
         backgroundColor: "#589674"
@@ -205,11 +211,11 @@ const MenuUser = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
+          <nav className="me-auto">
             <ul className="nav nav-pills  nav-fill justify-content-center bg-ligth">
               {renderList()}
             </ul>
-          </Nav>
+          </nav>
           <Nav>
             <DropdownButton align="end" title={tilde} id="dropdown-menu-align-end" variant="warning"
 
@@ -244,6 +250,8 @@ const MenuUser = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    <Outlet/>
+    </>
   );
 };
 
