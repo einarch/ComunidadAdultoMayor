@@ -10,13 +10,6 @@ body {
 
 }
 
-.centerPub {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-}
-
 .text {
   font-size: 24px;
   background: rgb(240, 248, 240);
