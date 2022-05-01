@@ -54,15 +54,14 @@ const Login = () => (
                     <br />
                     <br />
                     <br />
-                    <br />
                     <Container className="loginForm d-flex flex-column justify-content-center align-items-center">
                         <div className='mb-5'>
                             <img src={logo} className="rounded-circle" height="120" width="120"></img>
                         </div>
-                        <form onSubmit={handleSubmit} className="row g-3">
-                            <div className="mb-2 d-flex flex-row align-items-center">
-                                <label htmlFor="email" className="col-sm-3 col-form-label center-block">Email:</label>
-                                <div class="center-block">
+                        <form onSubmit={handleSubmit}>
+                            <div className="row">
+                                <label htmlFor="email" className="col-sm-2 col-form-label d-flex flex-row justify-content-center">Email</label>
+                                <div class="col-sm-10 d-flex flex-row justify-content-center">
                                     <input
                                         className={errors.email && touched.email && "error"}
                                         id="email"
@@ -71,17 +70,18 @@ const Login = () => (
                                         placeholder="Ingresa tu correo"
                                         onChange={handleChange}
                                         onBlur={handleBlur}
-                                        value={values.email} required
-
+                                        value={values.email}
                                     />
-                                    {errors.email && touched.email && (
-                                        <div className="input-feedback">{errors.email}</div>
-                                    )}
                                 </div>
                             </div>
-                            <div className="mb-2 d-flex flex-row align-items-center">
-                                <label htmlFor="password" className="col-sm-3 col-form-label center-block">Contraseña:</label>
-                                <div className="center-block">
+                            <div className="errorMessg mb-3 d-flex flex-row">
+                                {errors.email && touched.email && (
+                                    <div className="input-feedback">{errors.email}</div>
+                                )}
+                            </div>
+                            <div className="row">
+                                <label htmlFor="password" className="col-sm-2 col-form-label d-flex flex-row justify-content-center">Contraseña</label>
+                                <div className="col-sm-10 d-flex flex-row justify-content-center">
                                     <input
                                         className={errors.password && touched.password && "error"}
                                         id="password"
@@ -90,14 +90,16 @@ const Login = () => (
                                         placeholder="Ingresa tu password"
                                         onChange={handleChange}
                                         onBlur={handleBlur}
-                                        value={values.password} required />
+                                        value={values.password}
+                                    />
 
-                                    {errors.password && touched.password && (
-                                        <div className="input-feedback">{errors.password}</div>
-                                    )}
                                 </div>
                             </div>
-                            <i class='fas fa-sign-in-alt'></i>
+                            <div className="errorMessg mb-3 d-flex flex-row">
+                                {errors.password && touched.password && (
+                                    <div className="input-feedback">{errors.password}</div>
+                                )}
+                            </div>
                             <div className="d-flex flex-row align-items-center justify-content-center">
                                 <button
                                     type="submit"
@@ -107,6 +109,13 @@ const Login = () => (
                             </div>
                         </form>
                     </Container >
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
                 </div >
             );
         }
