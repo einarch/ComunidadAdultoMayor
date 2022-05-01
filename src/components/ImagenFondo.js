@@ -2,6 +2,7 @@ import React from "react";
 import imagefondo from '../imagenes/imagenFondo.jpg'
 import './Cabezera.css';
 import "bootstrap/dist/css/bootstrap.css";
+import DescripcionApp from "./DescripcionApp";
 
 import { Container } from 'react-bootstrap';
 import Image from "react-bootstrap/Image";
@@ -30,18 +31,7 @@ function ImagenFondo() {
                     }}
                 />
             </div>
-           
-            <div className="text-left">
-                <h2 style={{
-                    color: "black" ,
-                    fontWeight: "bold",
-                    fontSize: "1.688rem"   
-                }}>
-                 <p></p>
-                 PODRA :
-                </h2>
-            </div>
-
+            <DescripcionApp></DescripcionApp>
         </Container >
 
     );

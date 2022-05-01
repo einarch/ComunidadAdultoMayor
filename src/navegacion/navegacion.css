@@ -28,9 +28,12 @@
     border: 1px solid black;
     min-width: 33.3333333%;
     max-width: 33.3333333%;
+
 }
 
-
+.nav-link {
+    margin: 0%;
+}
 
 #dropdown-menu-align-end {
     background-color: #efdc78;
