@@ -7,7 +7,6 @@ import Container from "react-bootstrap/Container";
 import "./Login.css";
 import "./Login.css";
 import logo from './../imagenes/logo-comunidad.PNG'
-import Image from "react-bootstrap/Image";
 import { UserContext } from './context/UserContext';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
@@ -46,24 +45,6 @@ function Login(props) {
             ...formData,
             [e.target.name]: e.target.value
         });
-    };
-
-    const submitForm = async (e) => {
-        e.preventDefault();
-
-        if (!Object.values(formData).every(val => val.trim() !== '')) {
-            setErrMsg('Please Fill in all Required Fields!');
-            return;
-        }
-
-        const data = await loginUser(formData);
-        if (data.success) {
-            e.target.reset();
-            setRedirect('Redirecting...');
-            await loggedInCheck();
-            return;
-        }
-        setErrMsg(data.message);
     };
 
     const refUsuario = useRef(null);

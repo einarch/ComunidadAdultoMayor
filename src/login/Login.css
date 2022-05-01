@@ -13,44 +13,46 @@ h2 {
 
 .loginPage .loginForm {
   margin: 50 100;
-  padding: 25px 50px 25px;
+  padding: 20px 50px 10px;
   max-width: 500px;
-  min-width: 300px;
+  min-width: 350px;
   background: linear-gradient(rgba(140, 223, 177, 0.55), rgba(140, 223, 177, 0.55));
   border-radius: 10px;
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
 }
 
-
 .loginPage {
-  background: url("./../imagenes/imagenFondo.jpg") no-repeat center center;
-  background-size: cover;
-  min-height: 655px;
+  background: url("./../imagenes/imagenFondo.jpg") center center;
+  background-size: auto;
+  min-height: 657px;
+  display: block;
 }
 
 .loginPage .loginForm form {
-  min-width: 400px;
-  display: flex;
+  display: block;
   flex-wrap: wrap;
   flex-direction: column;
 }
 
-.loginForm form label {
-  display: flex;
+.loginForm form label { 
   font-weight: bold;
   font-size: 16px;
 }
 
 .loginForm form input {
-  size: 100px;
-  max-width: 250px;
+  min-width: 330px;
   padding: 4px;
   font-size: 16px;
   border: 1px solid #bbbbbb;
   border-radius: 5px;
   margin-bottom: 5px;
+}
+
+.input-feedback {
+  color: #dc3545;
+  font-weight: bold;
 }
 
 .loginForm form input:hover {
@@ -128,12 +130,10 @@ button.logout:hover,
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
-
 .logoApp {
   display: flex;
   justify-content: center;
 }
-
 
 .full-width-input {
   display: block;
@@ -162,23 +162,7 @@ button.logout:hover,
   margin-left: auto;
 }
 
-/* Floating column for labels: 25% width */
-.col-25 {
-  float: left;
-  width: 25%;
-  margin-top: 6px;
-}
-
-/* Floating column for inputs: 75% width */
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
-}
-
-@media screen and (max-width: 600px) {
-  .col-25, .col-75, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
-  }
+.errorMessg {
+  display: block;
+  margin-left: 70px;
 }
