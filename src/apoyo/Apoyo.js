@@ -3,11 +3,9 @@ import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import './../apoyo/Apoyo.css';
 import avatar from '../imagenes/avatar.jpg';
-import NavegacionAp from '../components/NavegacionVol';
 import configData from "../config/config.json";
 
 const Apoyo = ({ children }) => {
-    const naveg = <NavegacionAp />;
 
     const baseUrl = configData.VOLUNTEERS_API_URL;
     const [data, setData] = useState([]);

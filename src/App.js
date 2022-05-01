@@ -19,8 +19,9 @@ function App() {
         <Routes>
           <Route path="/" element={<PaginaInicio />} />
           <Route path="Header/*" element={<Header />} >
+            <Route index element={<Comunidad />} />
+            <Route path='Comunidad' element={<Comunidad />} />
             <Route path='Actividades' element={<Actividad />} />
-            <Route path='Comunidad' element={<Comunidad/>} />
             <Route path='Voluntarios' element={<Apoyo />} />
           </Route>
         </Routes>

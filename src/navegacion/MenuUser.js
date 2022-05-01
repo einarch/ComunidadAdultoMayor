@@ -113,15 +113,15 @@ const MenuUser = () => {
           <Nav className="me-auto">
             <ul className="nav nav-pills  nav-fill justify-content-center bg-ligth" >
               <li className="nav-item">
-                <NavLink className="nav-link btn-lg " to='/Header/Comunidad'
+                <NavLink className={({ isActive }) => "nav-link btn-lg" + (isActive ? " bg-secondary" : "")} to='/Header/Comunidad'
                 >COMUNIDAD</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link btn-lg " to='/Header/Actividades'
+                <NavLink className={({ isActive }) => "nav-link btn-lg" + (isActive ? " bg-secondary" : "")} to='/Header/Actividades'
                 >ACTIVIDADES</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link btn-lg " to='/Header/Voluntarios'
+                <NavLink className={({ isActive }) => "nav-link btn-lg" + (isActive ? " bg-secondary" : "")} to='/Header/Voluntarios'
                 >APOYO</NavLink>
               </li>
 

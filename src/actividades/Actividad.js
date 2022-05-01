@@ -4,11 +4,9 @@ import axios from 'axios';
 import dateFormat, { masks } from "dateformat";
 import './../actividades/Actividad.css';
 import avatar from './../imagenes/avatar.jpg'
-import Navegacion from '../components/NavegacionA';
 import configData from "../config/config.json";
 
 const Actividad = ({ children }) => {
-    const naveg = <Navegacion />;
 
     const baseUrl = configData.ACTIVITIES_API_URL;
     const [data, setData] = useState([]);

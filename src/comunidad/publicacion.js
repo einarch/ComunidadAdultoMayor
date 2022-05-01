@@ -4,11 +4,9 @@ import axios from 'axios';
 import dateFormat, { masks } from "dateformat";
 import './../comunidad/Publicacion.css';
 import avatar from '../imagenes/avatar.jpg';
-import Navegacion from '../components/Navegacion';
 import configData from "../config/config.json";
 
 const Publicacion = ({ children }) => {
-    const naveg = <Navegacion />;
 
     const baseUrl = configData.PUBLICATIONS_API_URL;
     const [data, setData] = useState([]);
