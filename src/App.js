@@ -36,7 +36,7 @@ function App() {
           <Route path="*" element={<Navigate to={user ? '/' : '/login'} />} />
 
           <Route path="/" element={<PaginaInicio />} />
-          <Route path="Header/*" element={<Header />} >
+          <Route path="Home/*" element={<Header />} >
             <Route index element={<Comunidad />} />
             <Route path='Comunidad' element={<Comunidad />} />
             <Route path='Actividades' element={<Actividad />} />
