@@ -35,29 +35,29 @@ const Publicacion = ({ children }) => {
                 <h2 className="title">Publicaciones y Noticias</h2>
                 <br />
                 <div align="center" >
-        <button type="button" class=" btn btn-success m-2"  data-bs-toggle="modal" data-bs-target="#miModal"  >Publicar</button>
-        <div class="modal fade" id="miModal" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle" data-bs-backdrop="static"> 
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header" className='color'>
-              <h2 class="modal-title" id="modalTitle"><b>CREAR PUBLICACION</b></h2>
-              
-            </div>
-            <div class="modal-body" className='color'>
-              <p align="left"> &nbsp; Escribe la publicacion:</p>
-              
-              <textarea name="textarea" className='text' id="descri" rows="10" cols="35"></textarea>
-              
-            </div>
-            
-            <div class="model-footer" align="right" className='color'>
-             <button type="button" class="btn btn-secondary m-2 " data-bs-dismiss="modal" > Cancelar </button>
-             <button type="button" class="btn btn-success m-2 "  data-bs-dismiss="modal" > Publicar </button> 
-            </div>
-          </div>
-         </div>
-         </div>
-        </div> 
+                    <button type="button" class=" btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#miModal"  >Publicar</button>
+                    <div class="modal fade" id="miModal" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle" data-bs-backdrop="static">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header" className='color'>
+                                    <h2 class="modal-title" id="modalTitle"><b>CREAR PUBLICACION</b></h2>
+
+                                </div>
+                                <div class="modal-body" className='color'>
+                                    <p align="left"> &nbsp; Escribe la publicacion:</p>
+
+                                    <textarea name="textarea" className='text' id="descri" rows="10" cols="35"></textarea>
+
+                                </div>
+
+                                <div class="model-footer" align="right" className='color'>
+                                    <button type="button" class="btn btn-secondary m-2 " data-bs-dismiss="modal" > Cancelar </button>
+                                    <button type="button" class="btn btn-success m-2 " data-bs-dismiss="modal" > Publicar </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <br />
                 <br />
                 <Container id="containerSection" className="p-4 mb-4">
