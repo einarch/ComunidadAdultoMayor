@@ -1,39 +1,35 @@
 .nav {
     position: absolute;
-    left: 15%;
-
     min-width: 70%;
     max-width: 70%;
-    border-style: outset;
     animation: mymove 5s infinite;
     padding: 0px 0px;
     font-size: large;
     font-weight: bold;
-    border-color: black;
-    background: #9cc4ac;
+    border-style: hidden;
     border-radius: 0px;
 
 }
 
-.nav-item .nav-link {
-    color: black !important;
+.nav-link {
+    font-size: 24px;
+    font-weight: bold;
+    color: white !important;
     cursor: pointer;
+    text-align: center;
+    margin: 0%;
+    border-radius: 0px;
 }
 
-.nav-item>a:hover {
+.active {
+    border-bottom: 5px solid #efdc78;
+    border-radius: 5px;
+}
+
+.nav-link>a:hover {
     color: white !important;
 }
 
-.nav-item {
-    border: 1px solid black;
-    min-width: 33.3333333%;
-    max-width: 33.3333333%;
-
-}
-
-.nav-link {
-    margin: 0%;
-}
 
 #dropdown-menu-align-end {
     background-color: #efdc78;

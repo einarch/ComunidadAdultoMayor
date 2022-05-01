@@ -2,7 +2,8 @@ import React from "react";
 import "./navegacion.css";
 import Container from 'react-bootstrap/Container';
 import { Navbar, Nav, DropdownButton, Dropdown } from 'react-bootstrap';
-import {NavLink
+import {
+  NavLink
 } from "react-router-dom";
 import logo from '../imagenes/logo-comunidad.PNG';
 import user from '../imagenes/avatar.jpg';
@@ -36,24 +37,20 @@ const MenuUser = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <ul className="nav nav-pills  nav-fill justify-content-center bg-ligth" >
-              <li className="nav-item">
-                <NavLink className={({ isActive }) => "nav-link btn-lg" + (isActive ? " bg-secondary" : "")} to='/Header/Comunidad'
-                >COMUNIDAD</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className={({ isActive }) => "nav-link btn-lg" + (isActive ? " bg-secondary" : "")} to='/Header/Actividades'
-                >ACTIVIDADES</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className={({ isActive }) => "nav-link btn-lg" + (isActive ? " bg-secondary" : "")} to='/Header/Voluntarios'
-                >APOYO</NavLink>
-              </li>
+          <Nav className="me-auto center-block">
+
+            <NavLink className={({ isActive }) => "nav-link btn-md" + (isActive ? "bg active" : "")} to='/home/comunidad'
+            >COMUNIDAD</NavLink>
+
+            <NavLink className={({ isActive }) => "nav-link btn-md" + (isActive ? "bg active" : "")} to='/home/actividades'
+            >ACTIVIDADES</NavLink>
 
 
-            </ul>
+            <NavLink className={({ isActive }) => "nav-link btn-md" + (isActive ? "bg active" : "")} to='/home/voluntarios'
+            >APOYO</NavLink>
+
           </Nav>
+
           <Nav>
             <DropdownButton align="end" title={tilde} id="dropdown-menu-align-end" variant="warning"
 
