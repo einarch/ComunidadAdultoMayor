@@ -18,6 +18,7 @@
 .nav-item .nav-link {
     color: black !important;
     cursor: pointer;
+    border-radius: 0% !important;
 }
 
 .nav-item>a:hover {
@@ -29,10 +30,6 @@
     min-width: 33.3333333%;
     max-width: 33.3333333%;
 
-}
-
-.nav-link {
-    margin: 0%;
 }
 
 #dropdown-menu-align-end {
