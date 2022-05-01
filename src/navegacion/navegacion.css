@@ -1,0 +1,40 @@
+.nav {
+    position: absolute;
+    left: 15%;
+
+    min-width: 70%;
+    max-width: 70%;
+    border-style: outset;
+    animation: mymove 5s infinite;
+    padding: 0px 0px;
+    font-size: large;
+    font-weight: bold;
+    border-color: black;
+    background: #9cc4ac;
+    border-radius: 0px;
+
+}
+
+.nav-item .nav-link {
+    color: black !important;
+    cursor: pointer;
+}
+
+.nav-item>a:hover {
+    color: white !important;
+}
+
+.nav-item {
+    border: 1px solid black;
+    min-width: 33.3333333%;
+    max-width: 33.3333333%;
+
+}
+
+.nav-link {
+    margin: 0%;
+}
+
+#dropdown-menu-align-end {
+    background-color: #efdc78;
+}
