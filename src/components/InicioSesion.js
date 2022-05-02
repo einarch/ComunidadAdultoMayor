@@ -13,7 +13,10 @@ export const InicioSesion = () => {
     }
     return (
         <div>
-            
+            <label>
+                Username: <input type= 'text' onChange={(e)=>setUser(e.target.value)}/>
+            </label>
+            <button onClick={handleLogin}></button>
         </div>
     )
 }
