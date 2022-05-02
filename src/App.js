@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, {useState} from 'react';
 import {useContext} from 'react';
 import {UserContext} from './login/context/UserContext';
 import Login from './login/Login';
@@ -15,40 +16,38 @@ import AuthProvider from './components/auth';
 import Actividad from './actividades/Actividad';
 import Comunidad from './comunidad/publicacion';
 import Apoyo from './apoyo/Apoyo';
-import Header from './Header';
+import P404 from './Pagina404/P404';
+
 
 function App() {
 
   const {user} = useContext(UserContext); 
+  const [conectado, setConectado]= useState(true);
 
   return (
-    <AuthProvider >
     <Router>
       <div className="App">
         <Routes>
-          
-
-
-        {user && <Route exact path="/" element={<PaginaInicio />} />}
+          {user && <Route exact path="/" element={<PaginaInicio />} />}
           {!user && (
             <>
               <Route path="/login" element={<Login />} />
             </>
           )}
-          <Route path="*" element={<Navigate to={user ? '/' : '/login'} />} />
 
-          <Route path="/" element={<PaginaInicio />} />
-          <Route path="Home/*" element={<Header />} >
-            <Route index element={<Comunidad />} />
-            <Route path='Comunidad' element={<Comunidad />} />
-            <Route path='Actividades' element={<Actividad />} />
-            <Route path='Voluntarios' element={<Apoyo />} />
-          </Route>
+          <Route path="/P404" element={<Navigate to={user ? '/' : '/Login'} />} />
+
+          <Route exact path="/" element={<PaginaInicio />} />
+          <Route exact path="/Comunidad" element={<Comunidad />} />
+          <Route exact path="/Actividades" element={<Actividad />} />
+          <Route exact path="/Voluntarios" element={<Apoyo />} />
+          <Route  path="*" element={<P404/>}/>
+
         </Routes>
 
       </div>
     </Router>
-    </AuthProvider>
+   
   );
 }
 

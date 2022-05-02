@@ -14,40 +14,11 @@ body {
   color: white;
 }
 
-#containerSection {
-  min-height: auto;
-  max-width: auto;
-  top: 10px;
-  border: 2px solid;
-  background-color: #07362d;
-}
-
-#itemSectionCard {
-  background-color: #efdc78;
-  border-radius: 50%;
+#cardItem {
+  background-color: #a38924;
+  display: block;
   max-width: auto;
   min-width: auto;
-}
-
-.centerAct {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 120px;
-}
-
-#divItem {
-  margin: 20px;
-}
-
-#divBodyItem {
-  margin: 35px;
-}
-
-.nav {
-  border-style: outset;
-  font-size: large;
-  font-weight: bold;
 }
 
 .cardItemUserName {
