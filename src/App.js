@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 
 import PaginaInicio from './components/PaginaInicio';
+import AuthProvider from './components/auth';
 import Actividad from './actividades/Actividad';
 import Comunidad from './comunidad/publicacion';
 import Apoyo from './apoyo/Apoyo';
@@ -21,6 +22,7 @@ function App() {
   const {user} = useContext(UserContext); 
 
   return (
+    <AuthProvider >
     <Router>
       <div className="App">
         <Routes>
@@ -46,6 +48,7 @@ function App() {
 
       </div>
     </Router>
+    </AuthProvider>
   );
 }
 

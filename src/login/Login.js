@@ -62,7 +62,7 @@ const Login = () => (
                         <form onSubmit={handleSubmit} className="row g-3">
                             <div className="mb-2 d-flex flex-row align-items-center">
                                 <label htmlFor="email" className="col-sm-3 col-form-label center-block">Email:</label>
-                                <div class="center-block">
+                                <div className="center-block">
                                     <input
                                         className={errors.email && touched.email && "error"}
                                         id="email"
@@ -97,7 +97,7 @@ const Login = () => (
                                     )}
                                 </div>
                             </div>
-                            <i class='fas fa-sign-in-alt'></i>
+                            <i className='fas fa-sign-in-alt'></i>
                             <div className="d-flex flex-row align-items-center justify-content-center">
                                 <button
                                     type="submit"
