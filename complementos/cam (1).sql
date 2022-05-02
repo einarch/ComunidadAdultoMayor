@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2022 a las 02:29:16
+-- Tiempo de generación: 02-05-2022 a las 03:44:02
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.5
 
@@ -108,8 +108,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `usuario`, `clave`, `nombre`, `apellidos`, `idTipoUsuario`) VALUES
-(2, 'pedro@gmail.com', '$2y$10$FRcsor4X9UHLiUjQ3BqSZe0vnWF/lSH79tLM1kqHSfLcHr8CfY27i', 'Pedro', 'Rojas Alcocer', 2),
-(42, 'jime@correo.de', '$2y$10$FRcsor4X9UHLiUjQ3BqSZe0vnWF/lSH79tLM1kqHSfLcHr8CfY27i', 'Jimena', 'Mora Torres', 1);
+(2, 'pedro@gmail.com', '$2y$10$eONkKS9GTRF5qrTfHCrN0O.djRyo8gEeJeDCqeS3ZCTC6M7f/hDl.', 'Pedro', 'Rojas Alcocer', 2),
+(42, 'jime@correo.de', '$2y$10$Yas93XMTccL6iqY14uxBa.qA/S31QCJ4y9qy2Y0atX/erIsydbhRu', 'Jimena', 'Mora Torres', 1);
 
 -- --------------------------------------------------------
 
