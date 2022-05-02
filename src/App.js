@@ -1,7 +1,7 @@
-
-import React, {useState} from 'react';
-import {useContext} from 'react';
-import {UserContext} from './login/context/UserContext';
+import React from 'react';
+import {useState} from 'react';
+import { useContext } from 'react';
+import { UserContext } from './login/context/UserContext';
 import Login from './login/Login';
 import "./App.css";
 import {
@@ -15,12 +15,12 @@ import PaginaInicio from './components/PaginaInicio';
 import Actividad from './actividades/Actividad';
 import Comunidad from './comunidad/publicacion';
 import Apoyo from './apoyo/Apoyo';
+import Header from './Header';
 import P404 from './Pagina404/P404';
-
 
 function App() {
 
-  const {user} = useContext(UserContext); 
+  const { user } = useContext(UserContext);
   const [conectado, setConectado]= useState(true);
 
   return (
@@ -33,20 +33,20 @@ function App() {
               <Route path="/login" element={<Login />} />
             </>
           )}
+          <Route path="*" element={<Navigate to={user ? '/' : '/login'} />} />
 
-          <Route path="/P404" element={<Navigate to={user ? '/' : '/Login'} />} />
-
-          <Route exact path="/" element={<PaginaInicio />} />
-          <Route exact path="/Comunidad" element={<Comunidad />} />
-          <Route exact path="/Actividades" element={<Actividad />} />
-          <Route exact path="/Voluntarios" element={<Apoyo />} />
-          <Route  path="*" element={<P404/>}/>
-
+          <Route path="/" element={<PaginaInicio />} />
+          <Route path="home/*" element={<Header />} >
+            <Route index element={<Comunidad />} />
+            <Route path='comunidad' element={<Comunidad />} />
+            <Route path='actividades' element={<Actividad />} />
+            <Route path='voluntarios' element={<Apoyo />} />
+            <Route path="*" element={<P404 />} />
+          </Route>
         </Routes>
 
       </div>
     </Router>
-   
   );
 }
 
