@@ -1,6 +1,6 @@
 import { useState, useContext} from 'react';
 import React, {useRef} from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -68,7 +68,7 @@ function Login(props) {
 
     const refUsuario = useRef(null);
     const refContraseña = useRef(null);
-    
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
 
@@ -81,9 +81,9 @@ function Login(props) {
         const respuestaJson = await enviarDatos (URL_LOGIN, datos);
         console.log(respuestaJson.conectado);
         console.log(i);
-
+        
         if(respuestaJson.conectado == true){
-            window.location.href = '/Home';
+           navigate(`/home/comunidad/${respuestaJson.id}`)
         }else{
             i= i+1;
             console.log(i);
@@ -94,7 +94,7 @@ function Login(props) {
         }
         
     };
-
+    
     return (
         <div className='loginPage'>
             <br />
