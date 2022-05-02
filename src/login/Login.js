@@ -1,14 +1,11 @@
-import { useState, useContext } from 'react';
+
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
 import Container from "react-bootstrap/Container";
 import "./Login.css";
 import logo from './../imagenes/logo-comunidad.PNG'
-import { UserContext } from './context/UserContext';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { Formik } from "formik";
-import * as EmailValidator from "email-validator";
 import * as Yup from "yup";
 import configData from "../config/config.json";
 
@@ -30,81 +27,13 @@ const enviarDatos = async (url, datos) => {
     return rjson;
 }
 
+
 let i = 0;
 
 const Login = () => (
 
-
-    //Login with tokens 
-    /**
-        const {loginUser, wait, loggedInCheck} = useContext(UserContext);
-        const [redirect, setRedirect] = useState(false);
-        const [errMsg, setErrMsg] = useState(false);
-        const [formData, setFormData] = useState({
-            email: '',
-            password: ''
-        });
-    
-        const onChangeInput = (e) => {
-            setFormData({
-                ...formData,
-                [e.target.name]: e.target.value
-            });
-        };
-    
-        const submitForm = async (e) => {
-            e.preventDefault();
-    
-            if (!Object.values(formData).every(val => val.trim() !== '')) {
-                setErrMsg('Please Fill in all Required Fields!');
-                return;
-            }
-    
-            const data = await loginUser(formData);
-            if (data.success) {
-                e.target.reset();
-                setRedirect('Redirecting...');
-                await loggedInCheck();
-                return;
-            }
-            setErrMsg(data.message);
-        };
-    */
-
-    // Handle login using refs
-    /**
-     * 
-    const refUsuario = useRef(null);
-    const refContraseña = useRef(null);
-    
-
-    const handleLogin = async () => {
-
-        const datos = {
-            "usuario": refUsuario.current.value,
-            "clave": refContraseña.current.value
-        };
-
-        console.log(datos);
-        const respuestaJson = await enviarDatos (URL_LOGIN, datos);
-        console.log(respuestaJson.conectado);
-        console.log(i);
-
-        if(respuestaJson.conectado == true){
-            window.location.href = '/Comunidad';
-        }else{
-            i= i+1;
-            console.log(i);
-            if(i>3){
-                window.location.href = '*';
-                i=0
-            }
-        }
-        
-    };
-     */
-
 <Formik
+
     initialValues={{ email: "", password: "" }}
     onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -124,7 +53,7 @@ const Login = () => (
             .required("Introduzca su contraseña")
             .min(6, "Contraseña no válida")
             .max(15, "Contraseña no válida")
-            .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]$/, "Caracteres no permitidos")
+            .matches(/^(?=.*[A-Za-z0-9])(?=.*\d)[A-Za-z\d@$!%*#?&]$/, "Caracteres no permitidos")
     })}
 
 >
@@ -136,10 +65,33 @@ const Login = () => (
             isSubmitting,
             handleChange,
             handleBlur,
-            handleSubmit,
-            handleLogin
+            handleSubmit
         } = props;
 
+
+    const handleLogin = async () => {
+        const datos = {
+            "usuario": values.email,
+            "clave": values.password
+        };
+        console.log(datos);
+        console.log(values.email);
+        const respuestaJson = await enviarDatos (URL_LOGIN, datos);
+        console.log(respuestaJson.conectado);
+        console.log(i);
+        if(respuestaJson.conectado == true){
+            window.location.href =`/home/comunidad/${respuestaJson.id}`;
+        }else{
+            i= i+1;
+            console.log(i);
+            if(i>3){
+                window.location.href = '*';
+                i=0
+            }
+        }
+        
+    };
+    
         return (
 
             <div className='loginPage'>
@@ -217,4 +169,4 @@ const Login = () => (
 </Formik>
 );
 
-export default Login;
+export default Login
