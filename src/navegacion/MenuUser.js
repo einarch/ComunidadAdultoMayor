@@ -22,6 +22,7 @@ const MenuUser = () => {
   </span>
 
   const id = useParams();
+  let info= id.id;
   const [usuario, setUsuario] = useState([])
   /*const obtenerDatos = async () => {
     const data = await fetch(Apiurl +"obtenUser.php?id="+id.id)
@@ -34,7 +35,7 @@ const MenuUser = () => {
     obtenerDatos()
   }, [])*/
   useEffect(() => {
-    fetch(Apiurl+"obtenUser.php?id="+id.id)
+    fetch(Apiurl+"obtenUser.php?id="+info)
       .then((response) => {
         return response.json()
       })
@@ -74,13 +75,13 @@ const MenuUser = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto center-block">
             <NavLink className={({ isActive }) => "nav-link btn-md" + (isActive ? "bg active" : "")}
-              to={`/home/comunidad/${id}`}
+              to={`/home/comunidad/${info}`}
             >COMUNIDAD</NavLink>
             <NavLink className={({ isActive }) => "nav-link btn-md" + (isActive ? "bg active" : "")}
-              to={`/home/actividades/${id}`}
+              to={`/home/actividades/${info}`}
             >ACTIVIDADES</NavLink>
             <NavLink className={({ isActive }) => "nav-link btn-md" + (isActive ? "bg active" : "")}
-              to={`/home/voluntarios/${id}`}
+              to={`/home/voluntarios/${info}`}
             >APOYO</NavLink>
           </Nav>
           <Nav>
