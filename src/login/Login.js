@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import Container from "react-bootstrap/Container";
 import "./Login.css";
 import logo from './../imagenes/logo-comunidad.PNG'
@@ -34,7 +34,6 @@ const enviarDatos = async (url, datos) => {
 let i = 0;
 
 const Login = () => (
-    
 
 <Formik
 
@@ -73,7 +72,6 @@ const Login = () => (
         } = props;
 
 
-    
     const handleLogin = async () => {
         const datos = {
             "usuario": values.email,
@@ -85,7 +83,7 @@ const Login = () => (
         console.log(respuestaJson.conectado);
         console.log(i);
         if(respuestaJson.conectado == true){
-            window.location.href = '/home';
+            window.location.href =`/home/comunidad/${respuestaJson.id}`;
         }else{
             i= i+1;
             console.log(i);

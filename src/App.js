@@ -38,9 +38,9 @@ function App() {
           <Route path="/" element={<PaginaInicio />} />
           <Route path="home/*" element={<Header />} >
             <Route index element={<Comunidad />} />
-            <Route path='comunidad' element={<Comunidad />} />
-            <Route path='actividades' element={<Actividad />} />
-            <Route path='voluntarios' element={<Apoyo />} />
+            <Route path='comunidad/:id' element={<Comunidad />} />
+            <Route path='actividades/:id' element={<Actividad />} />
+            <Route path='voluntarios/:id' element={<Apoyo />} />
             <Route path="*" element={<P404 />} />
           </Route>
         </Routes>
