@@ -83,7 +83,7 @@ function Login(props) {
         console.log(i);
 
         if(respuestaJson.conectado == true){
-            window.location.href = '/Comunidad';
+            window.location.href = '/Home';
         }else{
             i= i+1;
             console.log(i);
