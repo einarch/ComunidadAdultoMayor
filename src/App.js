@@ -1,7 +1,7 @@
-
-import React, {useState} from 'react';
-import {useContext} from 'react';
-import {UserContext} from './login/context/UserContext';
+import React from 'react';
+import {useState} from 'react';
+import { useContext } from 'react';
+import { UserContext } from './login/context/UserContext';
 import Login from './login/Login';
 import "./App.css";
 import {
@@ -16,13 +16,14 @@ import {AuthProvider} from './login/auth';
 import Actividad from './actividades/Actividad';
 import Comunidad from './comunidad/publicacion';
 import Apoyo from './apoyo/Apoyo';
-import P404 from './Pagina404/P404';
 import Header from './Header';
 import { RequireAuth } from './login/RequireAuth'
+import P404 from './Pagina404/P404';
+
 
 function App() {
 
-  const {user} = useContext(UserContext); 
+  const { user } = useContext(UserContext);
   const [conectado, setConectado]= useState(true);
 
   return (
