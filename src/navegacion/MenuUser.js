@@ -5,6 +5,7 @@ import { Navbar, Nav, DropdownButton, Dropdown } from 'react-bootstrap';
 import {
   NavLink, useParams, useNavigate
 } from "react-router-dom";
+import { useAuth } from '../login/auth'
 import logo from '../imagenes/logo-comunidad.PNG';
 import user from '../imagenes/avatar.jpg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -42,15 +43,14 @@ const MenuUser = () => {
       .then((usuario) => {
         setUsuario(usuario)
       })
-  }, [])
+  });
 
 
   const navigate = useNavigate();
-
+  const {logout} = useAuth()
   const handleClick = () => {
-    navigate("/", {
-      // replace: true,
-    });
+    logout()
+    navigate('/')
   };
 
 
