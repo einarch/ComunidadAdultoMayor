@@ -12,12 +12,13 @@ import {
 } from "react-router-dom";
 
 import PaginaInicio from './components/PaginaInicio';
-import AuthProvider from './components/auth';
+import {AuthProvider} from './login/auth';
 import Actividad from './actividades/Actividad';
 import Comunidad from './comunidad/publicacion';
 import Apoyo from './apoyo/Apoyo';
 import P404 from './Pagina404/P404';
 import Header from './Header';
+import { RequireAuth } from './login/RequireAuth'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
   const [conectado, setConectado]= useState(true);
 
   return (
+    <AuthProvider>
     <Router>
       <div className="App">
         <Routes>
@@ -38,11 +40,15 @@ function App() {
           <Route path="/P404" element={<Navigate to={user ? '/' : '/Login'} />} />
 
           <Route exact path="/" element={<PaginaInicio />} />
-          <Route path="Home/*" element={<Header />} >
+          <Route path="Home/*" 
+            element={
+                 
+                 <Header />} 
+                 >
             <Route index element={<Comunidad />} />
             <Route path='comunidad/:id' element={<Comunidad />} />
-            <Route path='actividades/:id' element={<Actividad />} />
-            <Route path='voluntarios/:id' element={<Apoyo />} />
+            <Route path='actividades/:id' element={<RequireAuth><Actividad /></RequireAuth>} />
+            <Route path='voluntarios/:id' element={<RequireAuth><Apoyo /></RequireAuth>} />
           </Route>
           <Route  path="*" element={<P404/>}/>
 
@@ -50,7 +56,7 @@ function App() {
 
       </div>
     </Router>
-   
+    </AuthProvider>
   );
 }
 
