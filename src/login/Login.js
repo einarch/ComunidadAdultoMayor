@@ -56,7 +56,7 @@ const Login = () => (
             .required("Introduzca su contraseña")
             .min(6, "Contraseña no válida")
             .max(15, "Contraseña no válida")
-            .matches(/^(?=.*[A-Za-z0-9])(?=.*\d)[A-Za-z\d@$!%*#?&]$/, "Caracteres no permitidos")
+            .matches(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,15}$/, "Caracteres no permitidos")
     })}
 
 >
