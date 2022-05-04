@@ -47,9 +47,9 @@ const MenuUser = () => {
 
 
   const navigate = useNavigate();
-  const auth = useAuth()
+  const {logout} = useAuth()
   const handleClick = () => {
-    auth.logout()
+    logout()
     navigate('/')
   };
 

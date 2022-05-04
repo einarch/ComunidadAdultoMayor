@@ -40,13 +40,14 @@ function App() {
           <Route path="/P404" element={<Navigate to={user ? '/' : '/Login'} />} />
 
           <Route exact path="/" element={<PaginaInicio />} />
+          
           <Route path="Home/*" 
             element={
-                 
-                 <Header />} 
+              <RequireAuth>
+                 <Header /></RequireAuth>} 
                  >
             <Route index element={<Comunidad />} />
-            <Route path='comunidad/:id' element={<Comunidad />} />
+            <Route path='comunidad/:id' element={<RequireAuth><Comunidad /></RequireAuth>} />
             <Route path='actividades/:id' element={<RequireAuth><Actividad /></RequireAuth>} />
             <Route path='voluntarios/:id' element={<RequireAuth><Apoyo /></RequireAuth>} />
           </Route>

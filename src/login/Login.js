@@ -34,9 +34,9 @@ const enviarDatos = async (url, datos) => {
 let i = 0;
 
 export const Login = () => {
-    const [user, setUser] = useState('')
+
     const navigate = useNavigate()
-    const auth = useAuth()
+    const {login} = useAuth()
 
     const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
 
@@ -45,7 +45,6 @@ export const Login = () => {
             setTimeout(() => {
                 console.log("Logging in", values);
                 setSubmitting(false);
-                setUser(values.email)
             }, 500);
         },
 
@@ -77,9 +76,7 @@ export const Login = () => {
         console.log(i);
         
         if (respuestaJson.conectado == true) {  
-            
-            auth.login(user)
-            console.log(auth.user)
+            login()
             navigate(`/home/comunidad/${respuestaJson.id}`, { replace: true })
         } else {
             i = i + 1;
@@ -105,7 +102,7 @@ export const Login = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="row">
                         <label htmlFor="email" className="col-sm-2 col-form-label d-flex flex-row justify-content-center">Email</label>
-                        <div class="col-sm-10 d-flex flex-row justify-content-center">
+                        <div className="col-sm-10 d-flex flex-row justify-content-center">
                             <input
                                 className={errors.email && touched.email && "error"}
                                 id="email"
