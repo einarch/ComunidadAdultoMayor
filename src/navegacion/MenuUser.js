@@ -23,7 +23,7 @@ const MenuUser = () => {
   </span>
 
   const id = useParams();
-  let info= id.IDUSUARIO;
+  let info= id.id;
   const [usuario, setUsuario] = useState([])
   /*const obtenerDatos = async () => {
     const data = await fetch(Apiurl +"obtenUser.php?id="+id.id)

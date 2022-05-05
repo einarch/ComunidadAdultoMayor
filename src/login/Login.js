@@ -77,7 +77,7 @@ export const Login = () => {
         
         if (respuestaJson.conectado == true) {  
             login()
-            navigate(`/home/comunidad/${respuestaJson.id}`, { replace: true })
+            navigate(`/home/comunidad/${respuestaJson.IDUSUARIO}`, { replace: true })
         } else {
             i = i + 1;
             console.log(i);
