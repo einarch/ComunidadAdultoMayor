@@ -44,11 +44,11 @@ const Apoyo = ({ children }) => {
                                             <img src={avatar} className="rounded-circle" height="120" width="120"></img>
                                         </div>
                                         <div className="col-sm-10 d-flex flex-column align-items-left justify-content-center ">
-                                            <h3 className="cardItemUserName mt-0 mb-1"><b>{apoyo.nombre}</b></h3>
+                                            <h3 className="cardItemUserName mt-0 mb-1"><b>{apoyo.NOMBRE} {apoyo.APELLIDO}</b></h3>
                                             <br></br>
-                                            <h4 className="cardItemTitle">{apoyo.ciudad} &emsp; &ensp; <b>Teléfono:</b>{apoyo.telefono} </h4>
+                                            <h4 className="cardItemTitle">{apoyo.CIUDAD} &emsp; &ensp; <b>Teléfono:</b>{apoyo.TELEFONOV} </h4>
                                             <br></br>
-                                            <h4 className="cardItemTitle"><b>Días Disponibles:</b> {apoyo.diasdisp}</h4>
+                                            <h4 className="cardItemTitle"><b>Días Disponibles:</b> {apoyo.DIASDISPONIBLES}</h4>
                                         </div>
                                     </Card.Text>
                                 </Card.Body>
