@@ -36,7 +36,7 @@ const MenuUser = () => {
     obtenerDatos()
   }, [])*/
   useEffect(() => {
-    fetch(Apiurl+"obtenUser.php?id="+info)
+    fetch(Apiurl+"obtenUser.php?IDUSUARIO="+info)
       .then((response) => {
         return response.json()
       })
@@ -98,13 +98,13 @@ const MenuUser = () => {
                 style={{
                   fontSize: "1rem", color: "black"
                 }}
-              >{usuario.nombre} {usuario.apellidos}</Dropdown.Item>
+              >{usuario.NOMBRE} {usuario.APELLIDO}</Dropdown.Item>
 
               <Dropdown.Item eventKey="2" disabled className="text-center"
                 style={{
                   fontSize: "1rem", color: "black"
                 }}
-              >{usuario.usuario}</Dropdown.Item>
+              >{usuario.EMAIL}</Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item eventKey="3" className="text-center bg-secondary" style={{
                 fontWeight: "bold",

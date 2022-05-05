@@ -12,6 +12,8 @@ const Publicacion = ({ children }) => {
     const baseUrl = configData.PUBLICATIONS_API_URL;
     const [data, setData] = useState([]);
 
+    
+
     const peticionGet = async () => {
         await axios.get(baseUrl)
             .then(response => {
@@ -67,9 +69,9 @@ const Publicacion = ({ children }) => {
                                             <img src={avatar} className="rounded-circle" height="120" width="120"></img>
                                         </div>
                                         <div className="col-sm-10 d-flex flex-column align-items-left justify-content-center ">
-                                            <h3 className="cardItemUserName mt-0 mb-1"><b>{publicacion.nombre}</b></h3>
-                                            <h4 className="cardItemTitle"><b>Publicado:</b> {dateFormat(publicacion.fechahora, "dd/mm/yyyy h:MM TT")}</h4>
-                                            <h4 className="cardItemTitle"> {publicacion.descripcion}</h4>
+                                            <h3 className="cardItemUserName mt-0 mb-1"><b>{publicacion.NOMBRE} {publicacion.APELLIDO}</b></h3>
+                                            <h4 className="cardItemTitle"><b>Publicado:</b> {dateFormat(publicacion.FECHAHORAP, "dd/mm/yyyy h:MM TT")}</h4>
+                                            <h4 className="cardItemTitle"> {publicacion.DESCRIPCIONP}</h4>
                                         </div>
                                     </Card.Text>
                                 </Card.Body>

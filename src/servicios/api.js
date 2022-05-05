@@ -1,2 +1,2 @@
-const Apiurl="http://localhost:80/apiCam/";
+const Apiurl="https://back-cam.herokuapp.com/";
 export default Apiurl;
