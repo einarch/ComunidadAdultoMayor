@@ -4,6 +4,10 @@ button {
   font-size: 1rem;
 }
 
+.derecha{
+  float:right;
+}
+
 h2 {
   text-align: center;
   margin-top: 10px;

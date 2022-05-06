@@ -1,6 +1,8 @@
 
 import React from 'react';
 import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
+import swal from 'sweetalert';
 import "./Login.css";
 import logo from './../imagenes/logo-comunidad.PNG'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,6 +15,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from './auth'
 
 const URL_LOGIN = configData.LOGIN_API_URL;
+
 
 const enviarDatos = async (url, datos) => {
     const resp = await fetch(url, {
@@ -32,6 +35,7 @@ const enviarDatos = async (url, datos) => {
 
 
 let i = 0;
+let err="";
 
 export const Login = () => {
 
@@ -63,8 +67,17 @@ export const Login = () => {
         })
 
     })
-    
 
+    const mostrarAlerta=(e)=>{
+        swal({
+            title: "Datos Incorrectos",
+            text: e,
+            icon: "error",
+            button: "Aceptar"
+        });
+    }
+    
+    const [isValid, setIsValid] = useState(false);
     const handleLogin = async () => {
         const datos = {
             "usuario": values.email,
@@ -73,14 +86,18 @@ export const Login = () => {
         console.log(datos);
         const respuestaJson = await enviarDatos(URL_LOGIN, datos);
         console.log(respuestaJson.conectado);
-        console.log(i);
+        console.log(respuestaJson.error);
+        err=respuestaJson.error
         
         if (respuestaJson.conectado == true) {  
+            setIsValid(false)
             login()
             navigate(`/home/comunidad/${respuestaJson.IDUSUARIO}`, { replace: true })
         } else {
+            setIsValid(true)
             i = i + 1;
             console.log(i);
+            mostrarAlerta(err);
             if (i > 3) {
                 window.location.href = '*';
                 i = 0
@@ -93,6 +110,12 @@ export const Login = () => {
         <div className='loginPage'>
             <br />
             <br />
+      <Alert show={isValid} variant="danger" style={{ width: "35rem" }}>
+        <Alert.Heading>
+          {err}
+          <button type="button" class="btn-close derecha" data-bs-dismiss="alert" aria-label="Close"></button>
+        </Alert.Heading>
+      </Alert>
             <br />
             <br />
             <Container className="loginForm d-flex flex-column justify-content-center align-items-center">
