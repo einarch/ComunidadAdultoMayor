@@ -27,7 +27,6 @@ function App() {
   const [conectado, setConectado]= useState(true);
 
   return (
-    <AuthProvider>
     <Router>
       <div className="App">
         <Routes>
@@ -58,7 +57,6 @@ function App() {
 
       </div>
     </Router>
-    </AuthProvider>
   );
 }
 

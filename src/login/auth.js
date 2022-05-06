@@ -1,5 +1,15 @@
 import { useState, createContext, useContext } from 'react'
 
+export const useAuth = () => {
+
+  const user =localStorage.getItem('user')
+  if(user){
+    return true
+  }else{
+    return false
+  }
+}
+/*
 const AuthContext = createContext()
 export const useAuth = () => {
   const auth = useContext(AuthContext)
@@ -9,10 +19,12 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const login = () => {
-    setIsAuthenticated(true)
+    localStorage.setItem('user','test')
+    setIsAuthenticated(true)   
   }
 
   const logout = () => {
+    localStorage.removeItem('user')
     setIsAuthenticated(false)
   }
   return (
@@ -21,27 +33,4 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   )
 }
-/*
-const AuthContext = createContext(null)
-
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
-
-  const login = user => {
-    setUser(user)
-  }
-
-  const logout = () => {
-    setUser(null)
-  }
-
-  return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  )
-}
-
-export const useAuth = () => {
-  return useContext(AuthContext)
-}*/
+*/
