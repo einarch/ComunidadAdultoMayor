@@ -97,7 +97,7 @@ export const Login = () => {
             setIsValid(true)
             i = i + 1;
             console.log(i);
-            mostrarAlerta(err);
+            //mostrarAlerta(err);
             if (i > 3) {
                 window.location.href = '*';
                 i = 0
