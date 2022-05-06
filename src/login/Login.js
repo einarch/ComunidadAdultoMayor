@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
@@ -35,12 +34,15 @@ const enviarDatos = async (url, datos) => {
 
 
 let i = 0;
-let err="";
+let err = "";
 
 export const Login = () => {
 
     const navigate = useNavigate()
-    const {login} = useAuth()
+    // const {login} = useAuth()
+    const login = () => {
+        localStorage.setItem('user', 'test')
+    }
 
     const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
 
@@ -68,7 +70,7 @@ export const Login = () => {
 
     })
 
-    const mostrarAlerta=(e)=>{
+    const mostrarAlerta = (e) => {
         swal({
             title: "Datos Incorrectos",
             text: e,
@@ -76,7 +78,7 @@ export const Login = () => {
             button: "Aceptar"
         });
     }
-    
+
     const [isValid, setIsValid] = useState(false);
     const handleLogin = async () => {
         const datos = {
@@ -87,11 +89,11 @@ export const Login = () => {
         const respuestaJson = await enviarDatos(URL_LOGIN, datos);
         console.log(respuestaJson.conectado);
         console.log(respuestaJson.error);
-        err=respuestaJson.error
-        
-        if (respuestaJson.conectado == true) {  
+        err = respuestaJson.error
+
+        if (respuestaJson.conectado == true) {
             setIsValid(false)
-            login()
+            login()         
             navigate(`/home/comunidad/${respuestaJson.IDUSUARIO}`, { replace: true })
         } else {
             setIsValid(true)
@@ -110,12 +112,12 @@ export const Login = () => {
         <div className='loginPage'>
             <br />
             <br />
-      <Alert show={isValid} variant="danger" style={{ width: "35rem" }}>
-        <Alert.Heading>
-          {err}
-          <button type="button" class="btn-close derecha" data-bs-dismiss="alert" aria-label="Close"></button>
-        </Alert.Heading>
-      </Alert>
+            <Alert show={isValid} variant="danger" style={{ width: "35rem" }}>
+                <Alert.Heading>
+                    {err}
+                    <button type="button" class="btn-close derecha" data-bs-dismiss="alert" aria-label="Close"></button>
+                </Alert.Heading>
+            </Alert>
             <br />
             <br />
             <Container className="loginForm d-flex flex-column justify-content-center align-items-center">
@@ -168,7 +170,7 @@ export const Login = () => {
                         <button
                             onClick={handleLogin}
                             type="submit"
-                            >
+                        >
                             <FontAwesomeIcon icon={faSignInAlt} /> Ingresar
                         </button>
                     </div>

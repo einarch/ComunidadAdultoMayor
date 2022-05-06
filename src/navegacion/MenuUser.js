@@ -48,7 +48,11 @@ const MenuUser = () => {
 
 
   const navigate = useNavigate();
-  const {logout} = useAuth()
+  
+  //const {logout} = useAuth()
+  const logout = () => {
+    localStorage.removeItem('user')
+}
   const handleClick = () => {
     logout()
     navigate('/')
