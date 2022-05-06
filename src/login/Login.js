@@ -81,6 +81,7 @@ export const Login = () => {
 
     const [isValid, setIsValid] = useState(false);
     const handleLogin = async () => {
+        setIsValid(false)
         const datos = {
             "usuario": values.email,
             "clave": values.password
