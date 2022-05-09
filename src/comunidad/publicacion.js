@@ -1,18 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Button } from 'react-bootstrap';
+import React, { useState, useEffect} from 'react';
+import { Container} from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import dateFormat, { masks } from "dateformat";
 import './../comunidad/Publicacion.css';
 import avatar from '../imagenes/avatar.jpg';
 import configData from "../config/config.json";
+import {useParams} from "react-router-dom";
+
+
+const URL_PUBLICAR = configData.PUBLICAR_API_URL;
+
+
+const enviarDatos = async (url, datos) => {
+    const resp = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+
+    });
+    console.log(resp);
+    const rjson = await resp.json();
+    console.log('hola');
+    console.log(rjson);
+
+    return rjson;
+}
 
 const Publicacion = ({ children }) => {
 
     const baseUrl = configData.PUBLICATIONS_API_URL;
     const [data, setData] = useState([]);
-
-    
+    const [desc, setDesc] = useState("");
+    const hoy = new Date();
 
     const peticionGet = async () => {
         await axios.get(baseUrl)
@@ -21,6 +43,23 @@ const Publicacion = ({ children }) => {
             }).catch(error => {
                 console.log(error);
             })
+    }
+
+    const id = useParams();
+    let us= id.id;
+    const publicar = async() => {
+        const fH= hoy.getFullYear() + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getDate() + ' ' + hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
+        console.log(fH);
+        const datos = {
+            "idUs": us,
+            "descripcion": desc,
+            "fecha":fH
+        };
+        console.log(datos);
+        console.log(datos.idUs);
+        console.log(datos.descripcion);
+        const respuestaJson = await enviarDatos(URL_PUBLICAR, datos);
+        console.log(respuestaJson);
     }
 
     useEffect(() => {
@@ -46,13 +85,13 @@ const Publicacion = ({ children }) => {
               <h2 class="modal-title" id="modalTitle"><b>CREAR PUBLICACION</b></h2>
               
             </div>
-            <div class="modal-body" className='color tam p-3'>
+            <div class="modal-body" className='color tam p-3' id="Cpubli">
               <p align="left"> &nbsp; Escribe la publicacion:</p>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="14" cols="35"></textarea>
+              <textarea class="form-control" id="desc" rows="14" cols="35" onChange={event => setDesc(event.target.value)}></textarea>
             </div>
             <div class="model-footer" align="right" className='color'>
              <button type="button" class="btn btn-secondary m-2 " data-bs-dismiss="modal" > Cancelar </button>
-             <button type="button" class="btn btn-success m-2 "  data-bs-dismiss="modal" > Publicar </button> 
+             <button type="button" class="btn btn-success m-2 "  data-bs-dismiss="modal" onClick={publicar}> Publicar </button> 
             </div>
           </div>
          </div>
