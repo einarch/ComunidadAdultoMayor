@@ -24,7 +24,6 @@ const MenuUser = () => {
 
   const id = useParams();
   let info= id.id;
-  console.log(window.location.href);
   const [usuario, setUsuario] = useState([])
   /*const obtenerDatos = async () => {
     const data = await fetch(Apiurl +"obtenUser.php?id="+id.id)

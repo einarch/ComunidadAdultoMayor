@@ -2,5 +2,6 @@
     "PUBLICATIONS_API_URL": "https://back-cam.herokuapp.com/com.php",
     "ACTIVITIES_API_URL": "https://back-cam.herokuapp.com/act.php",
     "VOLUNTEERS_API_URL": "https://back-cam.herokuapp.com/apo.php",  
-    "LOGIN_API_URL": "https://back-cam.herokuapp.com/login.php"
+    "LOGIN_API_URL": "https://back-cam.herokuapp.com/login.php",
+    "PUBLICAR_API_URL": "http://localhost/apiCam/registrarPubli.php" 
 }
