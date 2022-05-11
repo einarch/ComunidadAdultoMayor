@@ -35,3 +35,25 @@ body {
 .uppercaseText {
   text-transform: uppercase;
 }
+
+.textLabelColor {
+  color: white;
+}
+
+.modalColor {
+  background: #589674;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #589674  !important;
+  border: white 2px solid !important;
+
+}
+
+.btn-secondary, .btn-secondary:hover, .btn-secondary:active, .btn-secondary:visited {
+  background-color: red !important;
+}
+
+.btn-success, .btn-success:hover, .btn-success:active, .btn-success:visited{
+  background-color: #365f41 !important;
+}
