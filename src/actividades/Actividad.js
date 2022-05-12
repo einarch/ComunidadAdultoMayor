@@ -45,27 +45,27 @@ const Actividad = ({ children }) => {
                         <div className="modal-dialog modal-dialog-centered">
                             <div className="modal-content">
                                 <div className="modalColor d-flex flex-row justify-content-center">
-                                    <h2 className="modal-title textLabelColor"><b>ACTIVIDAD</b></h2>
+                                    <h2 className="modal-title"><b>ACTIVIDAD</b></h2>
                                 </div>
                                 <div className="modal-body tam p-3 modalColor ">
                                     <form className="row g-3">
                                         <div className="col-md-12">
-                                            <Form.Label for="validationServer01" className="form-label textLabelColor d-flex flex-row align-items-left">Nombre</Form.Label>
+                                            <Form.Label for="validationServer01" className="form-label textModal d-flex flex-row align-items-left">Nombre</Form.Label>
                                             <Form.Control type="text" class="form-control" id="validationServer01" required />
                                         </div>
                                         <div className="col-md-12">
-                                            <Form.Label for="validationServer02" className="form-label textLabelColor d-flex flex-row align-items-left">Fecha y Hora</Form.Label>
+                                            <Form.Label for="validationServer02" className="form-label textModal d-flex flex-row align-items-left">Fecha y Hora</Form.Label>
                                             <Form.Control
                                                 type="datetime-local"
                                             />
                                         </div>
                                         <div className="col-md-12">
-                                            <Form.Label for="validationServer02" className="form-label textLabelColor d-flex flex-row align-items-left">Ubicación</Form.Label>
-                                            <Form.Control type="text" class="form-control" id="validationServer02" required />
+                                            <Form.Label for="validationServer02" className="form-label textModal d-flex flex-row align-items-left">Ubicación</Form.Label>
+                                            <textarea className="form-control" id="desc" rows="2" cols="35" required></textarea>
                                         </div>
                                         <div className="col-md-12">
-                                            <Form.Label for="validationServer02" className="form-label textLabelColor d-flex flex-row align-items-left">Descripción</Form.Label>
-                                            <textarea className="form-control" id="desc" rows="4" cols="35" required></textarea>
+                                            <Form.Label for="validationServer02" className="form-label textModal d-flex flex-row align-items-left">Descripción</Form.Label>
+                                            <textarea className="form-control" id="desc" rows="3" cols="35" required></textarea>
                                         </div>
                                     </form>
                                 </div>
