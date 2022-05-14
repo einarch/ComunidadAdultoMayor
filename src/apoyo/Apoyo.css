@@ -9,3 +9,72 @@ body {
   margin-top: 20px;
   background: linear-gradient(90deg, rgba(239, 220, 120, 1) 0%, rgba(54, 95, 65, 1) 59%);
 }
+.title {
+  font-size: 24px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+}
+
+#cardItem {
+  background-color: #a38924;
+  display: block;
+  max-width: auto;
+  min-width: auto;
+}
+
+.cardItemUserName {
+  text-transform: uppercase;
+  font-size: 18px;
+  color: black;
+}
+
+.cardItemTitle {
+  font-size: 17px;
+  color: black;
+}
+
+.uppercaseText {
+  text-transform: uppercase;
+}
+
+.textModal {
+  color: black;
+  font-size: 17px;
+}
+
+.modalColor {
+  background: #efdc78;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #589674 !important;
+  border: white 2px solid !important;
+
+}
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:visited {
+  background-color: red !important;
+}
+
+.btn-success,
+.btn-success:hover,
+.btn-success:active,
+.btn-success:visited {
+  background-color: #365f41 !important;
+}
+
+.modal-title {
+  font-size: 24px;
+  color: black;
+}
+
+.errorMessModal {
+  display: block;
+}
