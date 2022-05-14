@@ -6,7 +6,6 @@ import dateFormat, { masks } from "dateformat";
 import './../comunidad/Publicacion.css';
 import avatar from '../imagenes/avatar.jpg';
 import configData from "../config/config.json";
-import { useParams } from "react-router-dom";
 
 
 const URL_PUBLICAR = configData.PUBLICAR_API_URL;
@@ -79,7 +78,7 @@ const Publicacion = ({ children }) => {
                     <button type="button" className="btn m-2 btn-primary" data-bs-toggle="modal" data-bs-target="#miModal">Publicar</button>
                 </Container>
                 <div align="center">
-                    <div className="modal fade" id="miModal" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle" data-bs-backdrop="static">
+                    <div className="modal fade" id="miModal" tabIndex="-1" aria-hidden="true" aria-labelledby="modalTitle" data-bs-backdrop="static">
                         <div className="modal-dialog modal-dialog-centered">
                             <div className="modal-content">
                                 <div className="modalColor d-flex flex-row justify-content-center">

@@ -41,7 +41,7 @@ const Actividad = ({ children }) => {
                     <button type="button" className="btn m-2 btn-primary" data-bs-toggle="modal" data-bs-target="#createActivity">Crear</button>
                 </Container>
                 <div align="center">
-                    <div className="modal fade" id="createActivity" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle" data-bs-backdrop="static">
+                    <div className="modal fade" id="createActivity" tabIndex="-1" aria-hidden="true" aria-labelledby="modalTitle" data-bs-backdrop="static">
                         <div className="modal-dialog modal-dialog-centered">
                             <div className="modal-content">
                                 <div className="modalColor d-flex flex-row justify-content-center">
@@ -50,28 +50,28 @@ const Actividad = ({ children }) => {
                                 <div className="modal-body tam p-3 modalColor ">
                                     <form className="row g-3">
                                         <div className="col-md-12">
-                                            <Form.Label for="validationServer01" className="form-label textModal d-flex flex-row align-items-left">Nombre</Form.Label>
-                                            <Form.Control type="text" class="form-control" id="validationServer01" required />
+                                            <Form.Label htmlFor="validationServer01" className="form-label textModal d-flex flex-row align-items-left">Nombre</Form.Label>
+                                            <Form.Control type="text" className="form-control" id="validationServer01" required />
                                         </div>
                                         <div className="col-md-12">
-                                            <Form.Label for="validationServer02" className="form-label textModal d-flex flex-row align-items-left">Fecha y Hora</Form.Label>
+                                            <Form.Label htmlFor="validationServer02" className="form-label textModal d-flex flex-row align-items-left">Fecha y Hora</Form.Label>
                                             <Form.Control
                                                 type="datetime-local"
                                             />
                                         </div>
                                         <div className="col-md-12">
-                                            <Form.Label for="validationServer02" className="form-label textModal d-flex flex-row align-items-left">Ubicación</Form.Label>
+                                            <Form.Label htmlFor="validationServer02" className="form-label textModal d-flex flex-row align-items-left">Ubicación</Form.Label>
                                             <textarea className="form-control" id="desc" rows="2" cols="35" required></textarea>
                                         </div>
                                         <div className="col-md-12">
-                                            <Form.Label for="validationServer02" className="form-label textModal d-flex flex-row align-items-left">Descripción</Form.Label>
+                                            <Form.Label htmlFor="validationServer02" className="form-label textModal d-flex flex-row align-items-left">Descripción</Form.Label>
                                             <textarea className="form-control" id="desc" rows="3" cols="35" required></textarea>
                                         </div>
                                     </form>
                                 </div>
                                 <div className="model-footer col-12 modalColor" align="center">
-                                    <button type="button" class="btn btn-secondary col-3 m-2 " data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-success col-3 m-2 " data-bs-dismiss="modal">Crear</button>
+                                    <button type="button" className="btn btn-secondary col-3 m-2 " data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" className="btn btn-success col-3 m-2 " data-bs-dismiss="modal">Crear</button>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +80,7 @@ const Actividad = ({ children }) => {
                 <Container className="p-4 mb-4">
                     {data.map(actividad => {
                         return (
-                            <Card id="cardItem" className="text-left">
+                            <Card key={actividad.FECHAHORAA} id="cardItem" className="text-left">
                                 <Card.Body>
                                     <Card.Text className='d-flex flex-row'>
                                         <div className='col-sm-2 d-flex flex-column align-items-center justify-content-center '>
