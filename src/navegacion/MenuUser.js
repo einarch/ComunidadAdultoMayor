@@ -22,8 +22,8 @@ const MenuUser = () => {
     <FontAwesomeIcon icon={faUserLarge} />
   </span>
 
-  const id = useParams();
-  let info= id.id;
+  let info= localStorage.getItem("user");
+  
   const [usuario, setUsuario] = useState([])
   /*const obtenerDatos = async () => {
     const data = await fetch(Apiurl +"obtenUser.php?id="+id.id)
@@ -43,7 +43,7 @@ const MenuUser = () => {
       .then((usuario) => {
         setUsuario(usuario)
       })
-  });
+  }, []);
 
 
   const navigate = useNavigate();
@@ -79,13 +79,13 @@ const MenuUser = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto center-block">
             <NavLink className={({ isActive }) => "nav-link btn-md" + (isActive ? "bg active" : "")}
-              to={`/home/comunidad/${info}`}
+              to={'/home/comunidad'}
             >COMUNIDAD</NavLink>
             <NavLink className={({ isActive }) => "nav-link btn-md" + (isActive ? "bg active" : "")}
-              to={`/home/actividades/${info}`}
+              to={'/home/actividades'}
             >ACTIVIDADES</NavLink>
             <NavLink className={({ isActive }) => "nav-link btn-md" + (isActive ? "bg active" : "")}
-              to={`/home/voluntarios/${info}`}
+              to={'/home/voluntarios'}
             >APOYO</NavLink>
           </Nav>
           <Nav>
