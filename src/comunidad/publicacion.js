@@ -45,8 +45,7 @@ const Publicacion = ({ children }) => {
             })
     }
 
-    const id = useParams();
-    let us = id.id;
+    let us = localStorage.getItem("user");
     const publicar = async () => {
         const fH = hoy.getFullYear() + '-' + (hoy.getMonth() + 1) + '-' + hoy.getDate() + ' ' + hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
         console.log(fH);
