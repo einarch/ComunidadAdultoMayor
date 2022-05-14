@@ -118,7 +118,7 @@ const Actividad = ({ children }) => {
                     <button type="button" className="btn m-2 btn-primary" data-bs-toggle="modal" data-bs-target="#createActivity">Crear</button>
                 </Container>
                 <div align="center">
-                    <div className="modal fade" id="createActivity" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle" data-bs-backdrop="static">
+                    <div className="modal fade" id="createActivity" tabIndex="-1" aria-hidden="true" aria-labelledby="modalTitle" data-bs-backdrop="static">
                         <div className="modal-dialog modal-dialog-centered">
                             <div className="modal-content">
                                 <div className="modalColor d-flex flex-row justify-content-center">
@@ -220,7 +220,7 @@ const Actividad = ({ children }) => {
                 <Container className="p-4 mb-4">
                     {data.map(actividad => {
                         return (
-                            <Card id="cardItem" className="text-left">
+                            <Card key={actividad.FECHAHORAA} id="cardItem" className="text-left">
                                 <Card.Body>
                                     <Card.Text className='d-flex flex-row'>
                                         <div className='col-sm-2 d-flex flex-column align-items-center justify-content-center '>

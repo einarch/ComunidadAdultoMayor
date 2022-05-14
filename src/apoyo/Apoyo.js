@@ -37,7 +37,7 @@ const Apoyo = ({ children }) => {
                 <Container className="p-4 mb-4">
                     {data.map(apoyo => {
                         return (
-                            <Card id="cardItem" className="text-left">
+                            <Card id="cardItem" key={apoyo.TELEFONOV} className="text-left">
                                 <Card.Body>
                                     <Card.Text className='d-flex flex-row'>
                                         <div className='col-sm-2 d-flex flex-column align-items-center justify-content-center '>
