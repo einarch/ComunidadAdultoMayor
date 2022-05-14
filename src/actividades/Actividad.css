@@ -38,12 +38,12 @@ body {
 }
 
 .textModal {
-  color: white;
+  color: black;
   font-size: 17px;
 }
 
 .modalColor {
-  background: #589674;
+  background: #efdc78;
 }
 
 .btn-primary,
@@ -71,5 +71,9 @@ body {
 
 .modal-title {
   font-size: 24px;
-  color: white;
+  color: black;
+}
+
+.errorMessModal {
+  display: block;
 }
