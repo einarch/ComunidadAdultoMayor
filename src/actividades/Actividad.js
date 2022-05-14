@@ -32,7 +32,6 @@ const Actividad = ({ children }) => {
             }, 500);
 
             resetForm({ values: '' });
-            console.log("Values: " + values);
         },
 
         validationSchema: Yup.object().shape({
