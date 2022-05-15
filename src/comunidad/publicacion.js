@@ -56,6 +56,7 @@ const Publicacion = ({ children }) => {
         console.log(datos.descripcion);
         const respuestaJson = await enviarDatos(URL_PUBLICAR, datos);
         console.log(respuestaJson);
+        window.location.href=window.location.href;
     }
 
     useEffect(() => {
