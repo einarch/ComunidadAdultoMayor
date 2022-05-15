@@ -1,12 +1,11 @@
-import React, { useState, useEffect} from 'react';
-import { Container} from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import dateFormat, { masks } from "dateformat";
 import './../comunidad/Publicacion.css';
 import avatar from '../imagenes/avatar.jpg';
 import configData from "../config/config.json";
-import {useParams} from "react-router-dom";
 
 
 const URL_PUBLICAR = configData.PUBLICAR_API_URL;
@@ -43,15 +42,14 @@ const Publicacion = ({ children }) => {
             })
     }
 
-    const id = useParams();
-    let us= id.id;
-    const publicar = async() => {
-        const fH= hoy.getFullYear() + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getDate() + ' ' + hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
+    let us = localStorage.getItem("user");
+    const publicar = async () => {
+        const fH = hoy.getFullYear() + '-' + (hoy.getMonth() + 1) + '-' + hoy.getDate() + ' ' + hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
         console.log(fH);
         const datos = {
             "idUs": us,
             "descripcion": desc,
-            "fecha":fH
+            "fecha": fH
         };
         console.log(datos);
         console.log(datos.idUs);
@@ -74,28 +72,28 @@ const Publicacion = ({ children }) => {
                 <br />
                 <h2 className="title">Publicaciones y Noticias</h2>
                 <br />
-                <div align="center" >
-        <button type="button" class=" btn btn-success m-2"  data-bs-toggle="modal" data-bs-target="#miModal"  >Publicar</button>
-        <div class="modal fade" id="miModal" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle" data-bs-backdrop="static"> 
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-          <div class="modal-header" className='color'>
-              <h2 class="modal-title" id="modalTitle"><b>CREAR PUBLICACION</b></h2>
-              
-            </div>
-            <div class="modal-body" className='color tam p-3' id="Cpubli">
-              <p align="left"> &nbsp; Escribe la publicacion:</p>
-              <textarea class="form-control" id="desc" rows="14" cols="35" onChange={event => setDesc(event.target.value)}></textarea>
-            </div>
-            <div class="model-footer" align="right" className='color'>
-             <button type="button" class="btn btn-secondary m-2 " data-bs-dismiss="modal" > Cancelar </button>
-             <button type="button" class="btn btn-success m-2 "  data-bs-dismiss="modal" onClick={publicar}> Publicar </button> 
-            </div>
-          </div>
-         </div>
-         </div>
-        </div>
-                <br />
+                <Container className="d-flex flex-row justify-content-end">
+                    <button type="button" className="btn m-2 btn-primary" data-bs-toggle="modal" data-bs-target="#miModal">Publicar</button>
+                </Container>
+                <div align="center">
+                    <div className="modal fade" id="miModal" tabIndex="-1" aria-hidden="true" aria-labelledby="modalTitle" data-bs-backdrop="static">
+                        <div className="modal-dialog modal-dialog-centered">
+                            <div className="modal-content">
+                                <div className="modalColor d-flex flex-row justify-content-center">
+                                    <h2 className="modal-title"><b>PUBLICACIÓN</b></h2>
+                                </div>
+                                <div className="modal-body tam p-3 modalColor" id="Cpubli">
+                                    <p className="textModal" align="left">Escribe la publicación:</p>
+                                    <textarea className="form-control textModal" id="desc" rows="14" cols="35" onChange={event => setDesc(event.target.value)}></textarea>
+                                </div>
+                                <div className="model-footer col-12 modalColor" align="center">
+                                    <button type="button" className="btn btn-secondary col-3 m-2 " data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" className="btn btn-success col-3 m-2 " data-bs-dismiss="modal" onClick={publicar}>Publicar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <Container className="p-4 mb-4">
                     {data.map(publicacion => {
                         return (

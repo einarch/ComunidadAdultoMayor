@@ -40,8 +40,8 @@ export const Login = () => {
 
     const navigate = useNavigate()
     // const {login} = useAuth()
-    const login = () => {
-        localStorage.setItem('user', 'test')
+    const login = (e) => {
+        localStorage.setItem('user',e )
     }
 
     const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
@@ -94,8 +94,8 @@ export const Login = () => {
 
         if (respuestaJson.conectado == true) {
             setIsValid(false)
-            login()         
-            navigate(`/home/comunidad/${respuestaJson.IDUSUARIO}`, { replace: true })
+            login(respuestaJson.IDUSUARIO)         
+            navigate('/home/comunidad', { replace: true })
         } else {
             setIsValid(true)
             i = i + 1;
