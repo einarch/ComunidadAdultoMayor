@@ -42,7 +42,6 @@ const Apoyo = ({ children }) => {
     // Añadir un voluntario con los datos introducidos
     let userID = localStorage.getItem("user");
     const createNewVoluntario = async () => {
-        window.location=window.location.href;
         const datos = {
             "userID": userID,
             "telefono": values.telefono,
