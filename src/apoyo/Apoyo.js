@@ -12,6 +12,7 @@ import configData from "../config/config.json";
 const Apoyo = ({ children }) => {
 
     const baseUrl = configData.VOLUNTEERS_API_URL;
+    const postVoluntarioURL = configData.CREAR_VOLUNTARIO_API_URL;
     const [data, setData] = useState([]);
 
     const peticionGet = async () => {
@@ -21,6 +22,37 @@ const Apoyo = ({ children }) => {
             }).catch(error => {
                 console.log(error);
             })
+    }
+    const rol = (data.map(apoyo => {
+        return (apoyo.Nombre)})); 
+        console.log(rol);
+    // Hacer un POST al backend para crear una Actividad
+    const postVoluntario = async (url, datos) => {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(datos),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const res = await response.json();
+        return res;
+    }
+    
+    // Añadir un voluntario con los datos introducidos
+    let userID = localStorage.getItem("user");
+    const createNewVoluntario = async () => {
+
+        const datos = {
+            "userID": userID,
+            "telefono": values.telefono,
+            "dias": values.dias,
+            "tipo": values.tipo,
+            "descripcion": values.description
+        };
+        console.log("Voluntario: " + JSON.stringify(datos));
+        const respuestaJson = await postVoluntario(postVoluntarioURL, datos);
+        console.log("Response: " + respuestaJson);
     }
     const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
 
@@ -39,11 +71,11 @@ const Apoyo = ({ children }) => {
             .typeError("Solo se admiten numeros")
                 .required("Este campo es requerido")
                 .min(4000000, `minimo 7 digitos porfavor`)
-                .positive( `minimo positivos`),
+                .positive( `Solo numeros positivos`),
             dias: Yup.string()
             .required("Este campo es requerido")
             .min(4, "Dias de la semana porfavor")
-            .max(80, "Dias de la semana porfavor"),
+            .max(50, "No puede asignar mas dias de la semana"),
             tipo: Yup.string()
                 .required("Este campo es requerido")
                 .min(4, "El tipo de ayuda debe tener minimo 4 caracteres")
@@ -68,11 +100,12 @@ const Apoyo = ({ children }) => {
                 <br />
                 <h2 className="title"> Voluntarios de Apoyo</h2>
                 <br />
+                                
                 <Container className="d-flex flex-row justify-content-end">
-                    <button type="button" className="btn m-2 btn-primary" data-bs-toggle="modal" data-bs-target="#createActivity">Ser voluntario</button>
+                    <button type="button" className="btn m-2 btn-primary" data-bs-toggle="modal" data-bs-target="#createVolunta">Ser voluntario</button>
                 </Container>
                 <div align="center">
-                    <div className="modal fade" id="createActivity" tabIndex="-1" aria-hidden="true" aria-labelledby="modalTitle" data-bs-backdrop="static">
+                    <div className="modal fade" id="createVolunta" tabIndex="-1" aria-hidden="true" aria-labelledby="modalTitle" data-bs-backdrop="static">
                         <div className="modal-dialog modal-dialog-centered">
                             <div className="modal-content">
                                 <div className="modalColor d-flex flex-row justify-content-center">
@@ -88,7 +121,7 @@ const Apoyo = ({ children }) => {
                                                 name="telefono"
                                                 className={errors.telefono && touched.telefono && "error"}
                                                 class="form-control"
-                                                placeholder="Ingrese el nombre de la actividad"
+                                                placeholder="Ingrese el numero al que se comunicaran"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                                 value={values.telefono}
@@ -107,7 +140,7 @@ const Apoyo = ({ children }) => {
                                                 name="dias"
                                                 className={errors.dias && touched.dias && "error"}
                                                 class="form-control"
-                                                placeholder="Ingrese el nombre de la actividad"
+                                                placeholder="Dias de la semana"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                                 value={values.dias}
@@ -126,7 +159,7 @@ const Apoyo = ({ children }) => {
                                                 name="tipo"
                                                 className={errors.tipo && touched.tipo && "error"}
                                                 class="form-control"
-                                                placeholder="Ingrese el nombre de la actividad"
+                                                placeholder="En que puede ayudar"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                                 value={values.tipo}
@@ -146,7 +179,7 @@ const Apoyo = ({ children }) => {
                                                 class="form-control"
                                                 id="description"
                                                 name="description"
-                                                placeholder="Ingrese una descripción"
+                                                placeholder="¿Porque lo hace?"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                                 value={values.description}>
@@ -161,7 +194,7 @@ const Apoyo = ({ children }) => {
                                 </div>
                                 <div className="model-footer col-12 modalColor" align="center">
                                     <button type="button" class="btn btn-secondary col-3 m-2" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-success col-3 m-2" data-bs-dismiss="modal" >Crear</button>
+                                    <button type="submit" class="btn btn-success col-3 m-2" data-bs-dismiss="modal" onClick={createNewVoluntario}>Crear</button>
                                 </div>
                             </div>
                         </div>
