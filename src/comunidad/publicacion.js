@@ -24,8 +24,6 @@ const enviarDatos = async (url, datos) => {
     console.log(resp);
     const rjson = await resp.json();
     console.log('hola');
-    console.log(rjson);
-
     return rjson;
 }
 
