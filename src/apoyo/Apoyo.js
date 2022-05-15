@@ -42,7 +42,7 @@ const Apoyo = ({ children }) => {
     // Añadir un voluntario con los datos introducidos
     let userID = localStorage.getItem("user");
     const createNewVoluntario = async () => {
-
+        window.location=window.location.href;
         const datos = {
             "userID": userID,
             "telefono": values.telefono,
@@ -53,6 +53,7 @@ const Apoyo = ({ children }) => {
         console.log("Voluntario: " + JSON.stringify(datos));
         const respuestaJson = await postVoluntario(postVoluntarioURL, datos);
         console.log("Response: " + respuestaJson);
+        window.location=window.location.href;
     }
     const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
 
