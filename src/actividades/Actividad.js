@@ -93,6 +93,7 @@ const Actividad = ({ children }) => {
         console.log("Actividad: " + JSON.stringify(datos));
         const respuestaJson = await postActivity(postActivityURL, datos);
         console.log("Response: " + respuestaJson);
+        window.location=window.location.href;
     }
     const configDateLimits = async () => {
         var tzoffset = (new Date()).getTimezoneOffset() * 60000;

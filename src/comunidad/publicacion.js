@@ -23,8 +23,6 @@ const enviarDatos = async (url, datos) => {
     console.log(resp);
     const rjson = await resp.json();
     console.log('hola');
-    console.log(rjson);
-
     return rjson;
 }
 
@@ -58,6 +56,7 @@ const Publicacion = ({ children }) => {
         console.log(datos.descripcion);
         const respuestaJson = await enviarDatos(URL_PUBLICAR, datos);
         console.log(respuestaJson);
+        window.location=window.location.href;
     }
 
     useEffect(() => {
