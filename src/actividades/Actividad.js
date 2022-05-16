@@ -9,6 +9,7 @@ import dateFormat, { masks } from "dateformat";
 import './../actividades/Actividad.css';
 import avatar from './../imagenes/avatar.jpg'
 import configData from "../config/config.json";
+import { Button } from 'bootstrap';
 
 const Actividad = ({ children }) => {
 
@@ -22,16 +23,18 @@ const Actividad = ({ children }) => {
     var minValidDate = (new Date(Date.now() - tzoffset)).toISOString().slice(0, 16);
 
     // Manejando validaciones de todos los campos del formulario de Actividad
-    const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
-
+    const { handleSubmit, resetForm, handleChange, values, touched, errors, handleBlur, isValid, isSubmitting } = useFormik({
         initialValues: { name: "", dateTimeActivity: "", location: "", description: "" },
-        onSubmit: (values, { setSubmitting }, { resetForm }) => {
+        onSubmit: (values, { setSubmitting, resetForm }) => {
+            createNewActivity();
+            // When button submits form and form is in the process of submitting, submit button is disabled
+            setSubmitting(true);
+
+            // Simulate submitting to database, shows us values submitted, resets form
             setTimeout(() => {
-                console.log("Logging in", values);
+                resetForm();
                 setSubmitting(false);
             }, 500);
-
-            resetForm({ values: '' });
         },
 
         validationSchema: Yup.object().shape({
@@ -125,20 +128,22 @@ const Actividad = ({ children }) => {
                                     <h2 className="modal-title"><b>ACTIVIDAD</b></h2>
                                 </div>
                                 <div className="modal-body tam p-3 modalColor ">
-                                    <Form id="createActivityForm" className="row g-3" onSubmit={handleSubmit}>
+                                    <Form id="createActivityForm" className="row g-3" noValidate onSubmit={handleSubmit}>
                                         <Form.Group className="col-md-12">
                                             <Form.Label className="form-label textModal d-flex flex-row align-items-left">Nombre</Form.Label>
                                             <Form.Control
                                                 type="text"
                                                 id="name"
                                                 name="name"
+                                                isInvalid={!!errors.name}
                                                 className={errors.name && touched.name && "error"}
                                                 class="form-control"
                                                 placeholder="Ingrese el nombre de la actividad"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                                 value={values.name}
-                                            />
+                                                required>
+                                            </Form.Control>
                                             <Form.Text className="errorMessModal d-flex flex-row" muted>
                                                 {errors.name && touched.name && (
                                                     <div className="input-feedback">{errors.name}</div>
@@ -154,6 +159,7 @@ const Actividad = ({ children }) => {
                                                 class="form-control"
                                                 id="dateTimeActivity"
                                                 name="dateTimeActivity"
+                                                isInvalid={!!errors.dateTimeActivity}
                                                 placeholder="Ingrese una fecha y hora"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
@@ -175,6 +181,7 @@ const Actividad = ({ children }) => {
                                                 class="form-control"
                                                 id="location"
                                                 name="location"
+                                                isInvalid={!!errors.location}
                                                 placeholder="Ingrese una ubicación"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
@@ -196,6 +203,7 @@ const Actividad = ({ children }) => {
                                                 class="form-control"
                                                 id="description"
                                                 name="description"
+                                                isInvalid={!!errors.description}
                                                 placeholder="Ingrese una descripción"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
@@ -210,8 +218,21 @@ const Actividad = ({ children }) => {
                                     </Form>
                                 </div>
                                 <div className="model-footer col-12 modalColor" align="center">
-                                    <button type="button" class="btn btn-secondary col-3 m-2" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-success col-3 m-2" data-bs-dismiss="modal" onClick={createNewActivity}>Crear</button>
+                                    <button
+                                        as="Input"
+                                        class="btn btn-secondary col-3 m-2"
+                                        data-bs-dismiss="modal"
+                                        onClick={resetForm}
+                                    >Cancelar
+                                    </button>
+                                    <button
+                                        as="Input"
+                                        disabled={!isValid || isSubmitting}
+                                        class="btn btn-success col-3 m-2"
+                                        data-bs-dismiss="modal"
+                                        onClick={handleSubmit}
+                                    >Crear
+                                    </button>
                                 </div>
                             </div>
                         </div>
