@@ -12,7 +12,6 @@ import {
 } from "react-router-dom";
 
 import PaginaInicio from './components/PaginaInicio';
-import {AuthProvider} from './login/auth';
 import Actividad from './actividades/Actividad';
 import Comunidad from './comunidad/publicacion';
 import Apoyo from './apoyo/Apoyo';
@@ -47,9 +46,10 @@ function App() {
                  <Header /></RequireAuth>} 
                  >
             <Route index element={<Comunidad />} />
-            <Route path='comunidad/:id' element={<RequireAuth><Comunidad /></RequireAuth>} />
-            <Route path='actividades/:id' element={<RequireAuth><Actividad /></RequireAuth>} />
-            <Route path='voluntarios/:id' element={<RequireAuth><Apoyo /></RequireAuth>} />
+            <Route path='comunidad' element={<RequireAuth><Comunidad /></RequireAuth>} />
+            <Route path='actividades' element={<RequireAuth><Actividad /></RequireAuth>} />
+            <Route path='voluntarios' element={<RequireAuth><Apoyo /></RequireAuth>} />
+            <Route  path="*" element={<P404/>}/>
           </Route>
           <Route  path="*" element={<P404/>}/>
 
