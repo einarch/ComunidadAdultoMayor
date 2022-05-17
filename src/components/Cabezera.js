@@ -43,6 +43,18 @@ function Cabezera() {
                             >INICIAR SESION</Button>
 
                         </Form>
+                        <Form className="d-flex">
+
+                            <Button variant="warning"  href="/registro" style={{
+                                backgroundColor: "#9cc4ac",
+                                color: "black",
+                                fontWeight: "bold",
+                                fontSize: "1.125rem",
+                                border: "2px solid black"
+                            }}
+                            >REGISTRARSE</Button>
+
+                        </Form>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

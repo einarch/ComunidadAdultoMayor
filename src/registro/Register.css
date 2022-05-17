@@ -1,0 +1,181 @@
+input
+button {
+  outline: none;
+  font-size: 1rem;
+  border: "2px solid black"
+}
+
+.derecha{
+  float:right;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 10px;
+  text-transform: uppercase;
+  font-size: 32px;
+}
+
+.RegisterPage .RegisterForm {
+  margin: 50 100;
+  padding: 20px 50px 10px;
+  max-width: 550px;
+  min-width: 400px;
+  background: linear-gradient(rgba(140, 223, 177, 0.55), rgba(140, 223, 177, 0.55));
+  border-radius: 10px;
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+
+.RegisterPage {
+  background: url("./../imagenes/imagenFondo.jpg") center center;
+  background-size: auto;
+  min-height: 657px;
+  display: block;
+}
+
+.RegisterPage .RegisterForm form {
+  display: block;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.RegisterForm form label { 
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.RegisterForm form input {
+  min-width: 250px;
+  padding: 4px;
+  font-size: 16px;
+  border: 1px solid #bbbbbb;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+.RegisterForm form input {
+  min-width: 300px;
+  padding: 4px;
+  font-size: 16px;
+  border: 1px solid #bbbbbb;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.input-feedback {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+
+.RegisterForm form input:hover {
+  border-color: #999999;
+}
+
+.RegisterForm form input:focus {
+  border-color: #a38924;
+}
+
+[type="submit"] {
+  background: #a38924;
+  color: white;
+  border: 1px solid rgba(0, 0, 0, 0.175);
+  border-radius: 3px;
+  padding: 8px;
+  cursor: pointer;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  margin-top: 5px;
+  width: 50%;
+}
+
+[type="submit"]:disabled {
+  background: #68a4fd;
+}
+
+[type="submit"]:disabled:hover {
+  box-shadow: none;
+}
+
+
+.success-msg,
+.err-msg {
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.success-msg {
+  color: #ffffff;
+  background-color: #20c997;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.bottom-link {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.home {
+  text-align: center;
+}
+
+.home .img {
+  font-size: 100px;
+}
+
+.home h1 span {
+  font-weight: normal;
+  font-size: 16px;
+}
+
+
+
+
+
+.logoApp {
+  display: flex;
+  justify-content: center;
+}
+
+.full-width-input {
+  display: block;
+  text-align: right;
+}
+
+.full-width-input input {
+  width: 12em;
+  padding: 4px 8px;
+  margin: 4px 8px;
+  border: 1px solid #aaaaaa;
+  border-radius: 0;
+}
+
+.flex-parent {
+  display: flex;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.errorMessg {
+  display: block;
+  margin-left: 70px;
+}
+.RegisterPage .btn{
+padding: 0.6rem;
+font-size: 1.5rem;
+outline:none;
+margin-left: -3rem;
+
+
+
+}

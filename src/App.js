@@ -3,6 +3,7 @@ import {useState} from 'react';
 import { useContext } from 'react';
 import { UserContext } from './login/context/UserContext';
 import Login from './login/Login';
+import Register from './registro/Register';
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -33,6 +34,11 @@ function App() {
           {!user && (
             <>
               <Route path="/login" element={<Login />} />
+            </>
+          )}
+          {!user && (
+            <>
+              <Route path="/registro" element={<Register/>} />
             </>
           )}
 
