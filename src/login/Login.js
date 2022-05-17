@@ -43,7 +43,9 @@ export const Login = () => {
     const login = (e) => {
         localStorage.setItem('user',e )
     }
-
+    const rol = (e) => {
+       localStorage.setItem('id',e )
+    }
     const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
 
         initialValues: { email: "", password: "" },
@@ -94,7 +96,9 @@ export const Login = () => {
 
         if (respuestaJson.conectado == true) {
             setIsValid(false)
-            login(respuestaJson.IDUSUARIO)         
+            login(respuestaJson.IDUSUARIO)
+            rol(respuestaJson.IDROL)
+            console.log(respuestaJson.IDROL)         
             navigate('/home/comunidad', { replace: true })
         } else {
             setIsValid(true)
