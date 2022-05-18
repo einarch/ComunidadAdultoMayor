@@ -9,7 +9,7 @@ import dateFormat, { masks } from "dateformat";
 import './../actividades/Actividad.css';
 import avatar from './../imagenes/avatar.jpg'
 import configData from "../config/config.json";
-import { Button } from 'bootstrap';
+import { Button } from 'react-bootstrap';
 
 const Actividad = ({ children }) => {
 
@@ -43,7 +43,7 @@ const Actividad = ({ children }) => {
                 .min(4, "Nombre debe tener minimo 4 caracteres")
                 .max(80, "Nombre debe tener maximo 80 caracteres"),
             dateTimeActivity: Yup.date()
-                .min(minValidDate, "No se acepta fecha y horas pasadas")
+                .min(minValidDate, "La hora debe ser posterior a la actual")
                 .required("Introduzca una fecha y hora"),
             location: Yup.string()
                 .required("Introduzca una ubicación")
@@ -93,7 +93,7 @@ const Actividad = ({ children }) => {
         console.log("Actividad: " + JSON.stringify(datos));
         const respuestaJson = await postActivity(postActivityURL, datos);
         console.log("Response: " + respuestaJson);
-        window.location=window.location.href;
+        window.location = window.location.href;
     }
     const configDateLimits = async () => {
         var tzoffset = (new Date()).getTimezoneOffset() * 60000;
@@ -131,12 +131,11 @@ const Actividad = ({ children }) => {
                                 <div className="modal-body tam p-3 modalColor ">
                                     <Form id="createActivityForm" className="row g-3" noValidate onSubmit={handleSubmit}>
                                         <Form.Group className="col-md-12">
-                                            <Form.Label className="form-label textModal d-flex flex-row align-items-left">Nombre</Form.Label>
+                                            <Form.Label className="form-label textModal d-flex flex-row align-items-left">Nombre *</Form.Label>
                                             <Form.Control
                                                 type="text"
                                                 id="name"
                                                 name="name"
-                                                isInvalid={!!errors.name}
                                                 className={errors.name && touched.name && "error"}
                                                 class="form-control"
                                                 placeholder="Ingrese el nombre de la actividad"
@@ -152,7 +151,7 @@ const Actividad = ({ children }) => {
                                             </Form.Text>
                                         </Form.Group>
                                         <Form.Group className="col-md-12">
-                                            <Form.Label className="form-label textModal d-flex flex-row align-items-left">Fecha y Hora</Form.Label>
+                                            <Form.Label className="form-label textModal d-flex flex-row align-items-left">Fecha y Hora *</Form.Label>
                                             <Form.Control
                                                 type="datetime-local"
                                                 min="2022-05-14T02:10"
@@ -160,7 +159,6 @@ const Actividad = ({ children }) => {
                                                 class="form-control"
                                                 id="dateTimeActivity"
                                                 name="dateTimeActivity"
-                                                isInvalid={!!errors.dateTimeActivity}
                                                 placeholder="Ingrese una fecha y hora"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
@@ -174,7 +172,7 @@ const Actividad = ({ children }) => {
                                             </Form.Text>
                                         </Form.Group>
                                         <Form.Group className="col-md-12">
-                                            <Form.Label className="form-label textModal d-flex flex-row align-items-left">Ubicación</Form.Label>
+                                            <Form.Label className="form-label textModal d-flex flex-row align-items-left">Ubicación(*)</Form.Label>
                                             <Form.Control
                                                 as="textarea"
                                                 rows={3}
@@ -182,7 +180,6 @@ const Actividad = ({ children }) => {
                                                 class="form-control"
                                                 id="location"
                                                 name="location"
-                                                isInvalid={!!errors.location}
                                                 placeholder="Ingrese una ubicación"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
@@ -204,7 +201,6 @@ const Actividad = ({ children }) => {
                                                 class="form-control"
                                                 id="description"
                                                 name="description"
-                                                isInvalid={!!errors.description}
                                                 placeholder="Ingrese una descripción"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
@@ -218,7 +214,15 @@ const Actividad = ({ children }) => {
                                         </Form.Group>
                                     </Form>
                                 </div>
-                                <div className="model-footer col-12 modalColor" align="center">
+                                <div className="model-footer col-12 modalColor">
+                                    <Form.Text className="d-flex flex-column align-items-center" muted>
+                                        {!isValid
+                                            && !values.name
+                                            && !values.dateTimeActivity
+                                            && !values.location
+                                            && !values.description ?
+                                            <div className="input-feedback">{"Por favor rellene el formulario correctamente"} </div> : null}
+                                    </Form.Text>
                                     <button
                                         as="Input"
                                         class="btn btn-secondary col-3 m-2"
@@ -227,10 +231,13 @@ const Actividad = ({ children }) => {
                                     >Cancelar
                                     </button>
                                     <button
+                                        type="submit"
                                         as="Input"
-                                        disabled={!isValid || isSubmitting}
                                         class="btn btn-success col-3 m-2"
-                                        data-bs-dismiss="modal"
+                                        data-bs-dismiss={touched.name && !errors.name
+                                            && touched.dateTimeActivity && !errors.dateTimeActivity
+                                            && touched.location && !errors.location
+                                            && touched.description && !errors.description ? "modal" : null}
                                         onClick={handleSubmit}
                                     >Crear
                                     </button>
@@ -254,7 +261,6 @@ const Actividad = ({ children }) => {
                                             <h4 className="cardItemTitle"><b>Fecha y hora:</b> {dateFormat(actividad.FECHAHORAA, "dd/mm/yyyy h:MM TT")}</h4>
                                             <h4 className="cardItemTitle"><b>Ubicación:</b> {actividad.UBICACIONA}</h4>
                                             <h4 className="cardItemTitle">{actividad.DESCRIPCIONA}</h4>
-                                            <h4 className="cardItemTitle"><b>{actividad.numusuarios}</b> personas asistirán a la actividad.</h4>
                                         </div>
                                     </Card.Text>
                                 </Card.Body>
