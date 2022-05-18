@@ -4,5 +4,5 @@
     "VOLUNTEERS_API_URL": "https://back-cam.herokuapp.com/apo.php",  
     "LOGIN_API_URL": "https://back-cam.herokuapp.com/login.php",
     "PUBLICAR_API_URL": "https://back-cam.herokuapp.com/registrarPubli.php",
-    "CREAR_ACTIVIDAD_API_URL": "http://localhost/apiCam/crearActividad.php" 
+    "CREAR_ACTIVIDAD_API_URL": "https://back-cam.herokuapp.com/crearActividad.php" 
 }
