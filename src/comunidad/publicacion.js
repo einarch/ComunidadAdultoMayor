@@ -28,13 +28,12 @@ const enviarDatos = async (url, datos) => {
     console.log('hola');
     return rjson;
 }
-//la parte de validacion
 
 const Publicacion = ({ children }) => {
 
     const baseUrl = configData.PUBLICATIONS_API_URL;
     const [data, setData] = useState([]);
-    const [desc, setDesc] = useState("");
+    //const [desc, setDesc] = useState("");
     const hoy = new Date();
 
     const peticionGet = async () => {
@@ -45,14 +44,37 @@ const Publicacion = ({ children }) => {
                 console.log(error);
             })
     }
+//la parte de validacion
+const { handleSubmit, resetForm, handleChange, values, touched, errors, handleBlur, isValid, isSubmitting } = useFormik({
+    initialValues: { descri: "" },
+    onSubmit: (values, { setSubmitting, resetForm, handleChange }) => {
+        // When button submits form and form is in the process of submitting, submit button is disabled
+        publicar();
+        setSubmitting(true);
+       ;    
+        // Simulate submitting to database, shows us values submitted, resets form
+        setTimeout(() => {
+            resetForm();
+            setSubmitting(false);
+        }, 500);
+    },
 
+    validationSchema: Yup.object().shape({
+        descri: Yup.string()
+            .required("Este campo es requerido")
+            .min(4, "La descripcion debe tener minimo 4 caracteres")
+            .max(1000, "La descripcion debe tener maximo 1000 caracteres")
+            
+    })
+})
+    
     let us = localStorage.getItem("user");
     const publicar = async () => {
         const fH = hoy.getFullYear() + '-' + (hoy.getMonth() + 1) + '-' + hoy.getDate() + ' ' + hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
         console.log(fH);
         const datos = {
             "idUs": us,
-            "descripcion": desc,
+            "descripcion": values.descri,
             "fecha": fH
         };
         console.log(datos);
@@ -62,7 +84,9 @@ const Publicacion = ({ children }) => {
         console.log(respuestaJson);
         window.location=window.location.href;
     }
-
+    function cambiar(){
+     // event  =>  setDesc ( event .target.value);
+    }
     useEffect(() => {
         peticionGet();
     }, [])
@@ -88,17 +112,44 @@ const Publicacion = ({ children }) => {
                                     <h2 className="modal-title"><b>PUBLICACIÓN</b></h2>
                                 </div>
                                 <div className="modal-body tam p-3 modalColor" id="Cpubli">
-                                    <p className="textModal" align="left">Escribe la publicación:</p>
-                                    <textarea className="form-control textModal" id="desc" rows="14" cols="35" onChange={event => setDesc(event.target.value)}></textarea>
+                                    <Form.Group className="col-md-12">
+                                            <Form.Label className="form-label textModal d-flex flex-row align-items-left">Escribe la publicacion *</Form.Label>
+                                            <Form.Control
+                                                as="textarea"
+                                                rows={14}
+                                                className={errors.descri && touched.descri && "error"}
+                                                class="form-control"
+                                                id="descri"
+                                                name="descri"
+                                                placeholder="Escriba lo que quiere publicar"
+                                                onChange={handleChange}
+                                                
+                                                onBlur={handleBlur}
+                                                value={values.descri}
+                                                required>
+                                            </Form.Control>
+                                            <Form.Text className="errorMessModal d-flex flex-row" muted>
+                                                {errors.descri && touched.descri && (
+                                                    <div className="input-feedback">{errors.descri}</div>
+                                                )}
+                                            </Form.Text>
+                                        </Form.Group>
                                 </div>
                                 <div className="model-footer col-12 modalColor" align="center">
                                     <button 
                                      as="Input"
                                      class="btn btn-secondary col-3 m-2"
                                      data-bs-dismiss="modal"
-                                     //onClick={resetForm}
+                                     onClick={resetForm}
                                      >Cancelar</button>
-                                    <button type="button" className="btn btn-success col-3 m-2 " data-bs-dismiss="modal" onClick={publicar}>Publicar</button>
+                                    <button 
+                                    type="submit"
+                                    as="Input"
+                                    class="btn btn-success col-3 m-2"
+                                    data-bs-dismiss={
+                                        touched.descri && !errors.descri ? "modal" : null}
+                                    onClick={handleSubmit}
+                                    >Publicar</button>
                                 </div>
                             </div>
                         </div>
