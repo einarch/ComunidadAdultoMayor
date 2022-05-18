@@ -6,8 +6,8 @@
 }
 
 body {
-  margin-top: 20px;
-  background: linear-gradient(90deg, rgba(239, 220, 120, 1) 0%, rgba(54, 95, 65, 1) 59%);
+  margin-top: 0px;
+  background: linear-gradient(90deg, rgba(36, 89, 119, 1) 59%, rgba(36, 89, 119, 1) 59%);
 }
 .title {
   font-size: 24px;
@@ -17,7 +17,7 @@ body {
 }
 
 #cardItem {
-  background-color: #a38924;
+  background-color: #7ce494;
   display: block;
   max-width: auto;
   min-width: auto;

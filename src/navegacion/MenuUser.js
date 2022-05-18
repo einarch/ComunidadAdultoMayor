@@ -62,7 +62,7 @@ const MenuUser = () => {
   return (
     <Navbar collapseOnSelect expand="lg" variant="light" fixed="top"
       style={{
-        backgroundColor: "#589674"
+        backgroundColor: "#128C7E"
       }}
     >
       <Container fluid>
