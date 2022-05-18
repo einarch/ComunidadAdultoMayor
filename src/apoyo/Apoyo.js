@@ -272,10 +272,10 @@ const Apoyo = ({ children }) => {
                                             </div>
                                             <div className="col-sm-10 d-flex flex-column align-items-left justify-content-center ">
                                                 <h3 className="cardItemUserName mt-0 mb-1"><b>{apoyo.NOMBRE} {apoyo.APELLIDO}</b></h3>
-                                                <br></br>
                                                 <h4 className="cardItemTitle">{apoyo.CIUDAD} &emsp; &ensp; <b>Teléfono:</b>{apoyo.TELEFONOV} </h4>
-                                                <br></br>
                                                 <h4 className="cardItemTitle"><b>Días Disponibles:</b> {apoyo.DIASDISPONIBLES}</h4>
+                                                <h4 className="cardItemTitle"><b>Tipo de Apoyo:</b> {apoyo.TIPOAPOYO}</h4>
+                                                <h4 className="cardItemTitle"><b>Motivacion:</b> {apoyo.DESCRIPCIONV}</h4>
                                             </div>
                                         </Card.Text>
                                     </Card.Body>
@@ -310,10 +310,10 @@ const Apoyo = ({ children }) => {
                                             </div>
                                             <div className="col-sm-10 d-flex flex-column align-items-left justify-content-center ">
                                                 <h3 className="cardItemUserName mt-0 mb-1"><b>{apoyo.NOMBRE} {apoyo.APELLIDO}</b></h3>
-                                                <br></br>
                                                 <h4 className="cardItemTitle">{apoyo.CIUDAD} &emsp; &ensp; <b>Teléfono:</b>{apoyo.TELEFONOV} </h4>
-                                                <br></br>
                                                 <h4 className="cardItemTitle"><b>Días Disponibles:</b> {apoyo.DIASDISPONIBLES}</h4>
+                                                <h4 className="cardItemTitle"><b>Tipo de Apoyo:</b> {apoyo.TIPOAPOYO}</h4>
+                                                <h4 className="cardItemTitle"><b>Motivacion:</b> {apoyo.DESCRIPCIONV}</h4>
                                             </div>
                                         </Card.Text>
                                     </Card.Body>
