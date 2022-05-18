@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import './../apoyo/Apoyo.css';
 import avatar from '../imagenes/avatar.jpg';
 import configData from "../config/config.json";
+import { Button } from 'bootstrap';
 
 const Apoyo = ({ children }) => {
 
@@ -51,19 +52,44 @@ const Apoyo = ({ children }) => {
     // Añadir un voluntario con los datos introducidos
     let userID = localStorage.getItem("user");
     const createNewVoluntario = async () => {
-        const datos = {
-            "userID": userID,
-            "telefono": values.telefono,
-            "dias": values.dias,
-            "tipo": values.tipo,
-            "descripcion": values.description
-        };
-        console.log("Voluntario: " + JSON.stringify(datos));
-        const respuestaJson = await postVoluntario(postVoluntarioURL, datos);
-        console.log("Response: " + respuestaJson);
-        window.location=window.location.href;
+        if(values.telefono=="" && values.dias=="" && values.tipo=="" && values.description==""){
+            console.log("Llene todos los campos");
+            document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
+        }else{
+            if(values.telefono==""){
+                console.log("Llene el campo de telefono");
+            }else{
+                if(values.dias==""){
+                    console.log("Llene el campo de dias disponibles");
+                }else{
+                    if(values.tipo==""){
+                        console.log("Llene el campo de tipo de ayuda");
+                    }else{
+                        if(values.description==""){
+                            console.log("Llene el campo de su motivacion");
+                        }else{
+                            document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
+
+                            const datos = {
+                                "userID": userID,
+                                "telefono": values.telefono,
+                                "dias": values.dias,
+                                "tipo": values.tipo,
+                                "descripcion": values.description
+                            };
+                            console.log("Voluntario: " + JSON.stringify(datos));
+                            const respuestaJson = await postVoluntario(postVoluntarioURL, datos);
+                            console.log("Response: " + respuestaJson);
+                            window.location=window.location.href;  
+                            
+                        }
+                    }
+                }   
+            }
+        }
+        
     }
-    const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
+    const { handleSubmit, resetForm, handleChange, values, touched, isValid, errors, handleBlur } = useFormik({
 
         initialValues: { telefono: "", dias: "", tipo: "", description: "" },
         onSubmit: (values, { setSubmitting }, { resetForm }) => {
@@ -79,7 +105,7 @@ const Apoyo = ({ children }) => {
             telefono: Yup.number()
             .typeError("Solo se admiten numeros")
                 .required("Este campo es requerido")
-                .min(4000000, `minimo 7 digitos porfavor`)
+                .min(10, "minimo 7 digitos porfavor")
                 .positive( `Solo numeros positivos`),
             dias: Yup.string()
             .required("Este campo es requerido")
@@ -95,6 +121,9 @@ const Apoyo = ({ children }) => {
 
         })
     })
+    function borrar () {
+       return resetForm();
+    } 
     useEffect(() => {
         peticionGet();
     }, [])
@@ -122,9 +151,9 @@ const Apoyo = ({ children }) => {
                                         <h2 className="modal-title"><b>VOLUNTARIOS DE CORAZON</b></h2>
                                     </div>
                                     <div className="modal-body tam p-3 modalColor ">
-                                        <Form id="createActivityForm" className="row g-3" onSubmit={handleSubmit}>
+                                        <Form id="formulario" className="row g-3" onSubmit={handleSubmit}>
                                             <Form.Group className="col-md-12">
-                                                <Form.Label className="form-label textModal d-flex flex-row align-items-left">Telefono</Form.Label>
+                                                <Form.Label className="form-label textModal d-flex flex-row align-items-left">Telefono *</Form.Label>
                                                 <Form.Control
                                                     type="text"
                                                     id="telefono"
@@ -143,7 +172,7 @@ const Apoyo = ({ children }) => {
                                                 </Form.Text>
                                             </Form.Group>
                                             <Form.Group className="col-md-12">
-                                                <Form.Label className="form-label textModal d-flex flex-row align-items-left">Dias disponibles</Form.Label>
+                                                <Form.Label className="form-label textModal d-flex flex-row align-items-left">Dias disponibles *</Form.Label>
                                                 <Form.Control
                                                     type="text"
                                                     id="dias"
@@ -162,7 +191,7 @@ const Apoyo = ({ children }) => {
                                                 </Form.Text>
                                             </Form.Group>
                                             <Form.Group className="col-md-12">
-                                                <Form.Label className="form-label textModal d-flex flex-row align-items-left">Tipo de apoyo</Form.Label>
+                                                <Form.Label className="form-label textModal d-flex flex-row align-items-left">Tipo de apoyo *</Form.Label>
                                                 <Form.Control
                                                     type="text"
                                                     id="tipo"
@@ -181,7 +210,7 @@ const Apoyo = ({ children }) => {
                                                 </Form.Text>
                                             </Form.Group>
                                             <Form.Group className="col-md-12">
-                                                <Form.Label className="form-label textModal d-flex flex-row align-items-left">Motivacion</Form.Label>
+                                                <Form.Label className="form-label textModal d-flex flex-row align-items-left">Motivacion </Form.Label>
                                                 <Form.Control
                                                     as="textarea"
                                                     rows={3}
@@ -203,8 +232,30 @@ const Apoyo = ({ children }) => {
                                         </Form>
                                     </div>
                                     <div className="model-footer col-12 modalColor" align="center">
-                                        <button type="button" class="btn btn-secondary col-3 m-2" data-bs-dismiss="modal">Cancelar</button>
-                                        <button type="submit" class="btn btn-success col-3 m-2" data-bs-dismiss="modal" onClick={createNewVoluntario}>Crear</button>
+                                    <Form.Text className="d-flex flex-column align-items-center" muted>
+                                        {!isValid
+                                            && !values.telefono
+                                            && !values.dias
+                                            && !values.tipo
+                                            && !values.description ?
+                                            <div className="input-feedback">{"Por favor rellene el formulario correctamente"} </div> : null}
+                                    </Form.Text>
+                                    <button
+                                        as="Input"
+                                        class="btn btn-secondary col-3 m-2"
+                                        data-bs-dismiss="modal"
+                                        onClick={borrar}
+                                    >Cancelar
+                                    </button>
+                                        <button  type="submit"
+                                        as="Input"
+                                        class="btn btn-success col-3 m-2"
+                                        data-bs-dismiss={touched.telefono && !errors.telefono
+                                            && touched.dias && !errors.dias
+                                            && touched.tipo && !errors.tipo
+                                            && touched.description && !errors.description ? "modal" : null}
+                                        onClick={handleSubmit}
+                                        >Crear</button>
                                     </div>
                                 </div>
                             </div>

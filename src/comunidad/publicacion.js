@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
+import { Form } from 'react-bootstrap';
+import { useFormik, useField, useFormikContext } from "formik";
+import * as Yup from "yup";
 import dateFormat, { masks } from "dateformat";
 import './../comunidad/Publicacion.css';
 import avatar from '../imagenes/avatar.jpg';
@@ -25,6 +28,7 @@ const enviarDatos = async (url, datos) => {
     console.log('hola');
     return rjson;
 }
+//la parte de validacion
 
 const Publicacion = ({ children }) => {
 
@@ -88,7 +92,12 @@ const Publicacion = ({ children }) => {
                                     <textarea className="form-control textModal" id="desc" rows="14" cols="35" onChange={event => setDesc(event.target.value)}></textarea>
                                 </div>
                                 <div className="model-footer col-12 modalColor" align="center">
-                                    <button type="button" className="btn btn-secondary col-3 m-2 " data-bs-dismiss="modal">Cancelar</button>
+                                    <button 
+                                     as="Input"
+                                     class="btn btn-secondary col-3 m-2"
+                                     data-bs-dismiss="modal"
+                                     //onClick={resetForm}
+                                     >Cancelar</button>
                                     <button type="button" className="btn btn-success col-3 m-2 " data-bs-dismiss="modal" onClick={publicar}>Publicar</button>
                                 </div>
                             </div>

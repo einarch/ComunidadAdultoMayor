@@ -131,7 +131,7 @@ const Actividad = ({ children }) => {
                                 <div className="modal-body tam p-3 modalColor ">
                                     <Form id="createActivityForm" className="row g-3" noValidate onSubmit={handleSubmit}>
                                         <Form.Group className="col-md-12">
-                                            <Form.Label className="form-label textModal d-flex flex-row align-items-left">Nombre(*)</Form.Label>
+                                            <Form.Label className="form-label textModal d-flex flex-row align-items-left">Nombre *</Form.Label>
                                             <Form.Control
                                                 type="text"
                                                 id="name"
@@ -151,7 +151,7 @@ const Actividad = ({ children }) => {
                                             </Form.Text>
                                         </Form.Group>
                                         <Form.Group className="col-md-12">
-                                            <Form.Label className="form-label textModal d-flex flex-row align-items-left">Fecha y Hora(*)</Form.Label>
+                                            <Form.Label className="form-label textModal d-flex flex-row align-items-left">Fecha y Hora *</Form.Label>
                                             <Form.Control
                                                 type="datetime-local"
                                                 min="2022-05-14T02:10"
