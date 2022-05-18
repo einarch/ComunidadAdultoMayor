@@ -88,12 +88,14 @@ const Register = ({ children }) => {
         setstate(prevState => !prevState);
     }
 
-    const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
+    const { handleSubmit,resetForm, handleChange, values, touched, errors, handleBlur } = useFormik({
 
-        initialValues: { email: "", password: "", password2: "" },
-        onSubmit: (values, { setSubmitting }) => {
+        initialValues: { nombre:"",apellido:"",email: "", password: "", password2: "",ciudad:"",fechaNacimiento:"" },
+        onSubmit: (values, { setSubmitting, resetForm }) => {
+            Registrarse();
+            setSubmitting(true);
             setTimeout(() => {
-                console.log("Logging in", values);
+                resetForm();
                 setSubmitting(false);
             }, 500);
         },
@@ -127,8 +129,9 @@ const Register = ({ children }) => {
                 .max(15, "Contraseña no válida")
                 .matches(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,15}$/, "Caracteres no permitidos")
 
-                .oneOf([Yup.ref('password')], 'Las contraseñas deben coincidir')
-
+                .oneOf([Yup.ref('password')], 'Las contraseñas deben coincidir'),
+                fechaNacimiento: Yup.string()
+                .required("Introduzca Fecha")  
         })
 
     })
@@ -300,27 +303,7 @@ const Register = ({ children }) => {
                             <div className="input-feedback">{errors.password2}</div>
                         )}
                     </Form.Text>
-                    <Row className="col-md-12 mb-3">
-                        <Form.Group as={Col} md="5" >
-                            <Form.Label className="form-label d-flex flex-row justify-content-left">Ciudad</Form.Label>
-                            <Form.Select
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                id="ciudad"
-                                name="ciudad"
-                                type="text"
-                                value={values.ciudad} >
-                                <option value="c">Cochabamba</option>
-                                <option value="l">La Paz</option>
-                                <option value="s">Santa Cruz</option>
-                                <option value="p">Pando</option>
-                                <option value="b">Beni</option>
-                                <option value="o">Oruro</option>
-                                <option value="p">Potosi</option>
-                                <option value="s">Sucre</option>
-                                <option value="t">Tarija</option>
-                            </Form.Select>
-                        </Form.Group>
+                    <Row className="col-md-13 mb-3">
                         <Form.Group as={Col} md="7">
                             <Form.Label htmlFor="password" id="ciudad" className="form-label d-flex flex-row justify-content-left" >Fecha de Nacimiento</Form.Label>
                             <Form.Control type="date"
@@ -330,6 +313,32 @@ const Register = ({ children }) => {
                                 onBlur={handleBlur} id="fechaNacimiento"
                                 name="fechaNacimiento"
                                 value={values.fechaNacimiento} />
+                                <Form.Text className="errorMessModal d-flex flex-row col-11 justify-content-center" muted>
+                        {errors.fechaNacimiento && touched.fechaNacimiento && (
+                            <div className="input-feedback">{errors.fechaNacimiento}</div>
+                        )}
+                    </Form.Text>
+                        </Form.Group>
+                        
+                    <Form.Group as={Col} md="5" >
+                            <Form.Label className="form-label d-flex flex-row justify-content-left">Ciudad</Form.Label>
+                            <Form.Select
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                id="ciudad"
+                                name="ciudad"
+                                type="text"
+                                value={values.ciudad} >
+                                <option value="Cochabamba">Cochabamba</option>
+                                <option value="La Paz">La Paz</option>
+                                <option value="Santa Cruz">Santa Cruz</option>
+                                <option value="Pando">Pando</option>
+                                <option value="Beni">Beni</option>
+                                <option value="Oruro">Oruro</option>
+                                <option value="Potosi">Potosi</option>
+                                <option value="Sucre">Sucre</option>
+                                <option value="Tarija">Tarija</option>
+                            </Form.Select>
                         </Form.Group>
                     </Row>
                     <div className="d-flex flex-row align-items-center justify-content-center">
@@ -337,7 +346,7 @@ const Register = ({ children }) => {
                             className="btn btn-success col-4 m-1"
                             type="submit"
                             as="Input"
-                            onClick={Registrarse} >
+                            onClick={handleSubmit} >
                             Registrarse
                         </button>
                         <button
