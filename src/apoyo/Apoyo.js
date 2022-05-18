@@ -52,23 +52,9 @@ const Apoyo = ({ children }) => {
     // Añadir un voluntario con los datos introducidos
     let userID = localStorage.getItem("user");
     const createNewVoluntario = async () => {
-        if (values.telefono == "" && values.dias == "" && values.tipo == "" && values.description == "") {
-            console.log("Llene todos los campos");
-            document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
-        } else {
-            if (values.telefono == "") {
-                console.log("Llene el campo de telefono");
-            } else {
-                if (values.dias == "") {
-                    console.log("Llene el campo de dias disponibles");
-                } else {
-                    if (values.tipo == "") {
-                        console.log("Llene el campo de tipo de ayuda");
-                    } else {
-                        if (values.description == "") {
-                            console.log("Llene el campo de su motivacion");
-                        } else {
-                            document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
+      if(values.description==""){
+          values.description= "Ser solidario";
+      }
 
                             const datos = {
                                 "userID": userID,
@@ -82,17 +68,13 @@ const Apoyo = ({ children }) => {
                             console.log("Response: " + respuestaJson);
                             window.location = window.location.href;
 
-                        }
-                    }
-                }
-            }
-        }
-
     }
     const { handleSubmit, resetForm, handleChange, values, touched, isValid, errors, handleBlur } = useFormik({
 
         initialValues: { telefono: "", dias: "", tipo: "", description: "" },
-        onSubmit: (values, { setSubmitting }, { resetForm }) => {
+        onSubmit: (values, { setSubmitting , resetForm }) => {
+            createNewVoluntario();
+            setSubmitting(true);
             setTimeout(() => {
                 console.log("Logging in", values);
                 setSubmitting(false);
