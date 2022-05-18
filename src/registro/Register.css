@@ -1,12 +1,11 @@
-input
-button {
+input button {
   outline: none;
   font-size: 1rem;
   border: "2px solid black"
 }
 
-.derecha{
-  float:right;
+.derecha {
+  float: right;
 }
 
 h2 {
@@ -41,26 +40,20 @@ h2 {
   flex-direction: column;
 }
 
-.RegisterForm form label { 
+.RegisterForm form label {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .RegisterForm form input {
   min-width: 250px;
+  min-height: 35px;
+  max-height: 35px;
   padding: 4px;
-  font-size: 16px;
+  font-size: 17px;
   border: 1px solid #bbbbbb;
   border-radius: 5px;
-  margin-bottom: 5px;
-}
-.RegisterForm form input {
-  min-width: 300px;
-  padding: 4px;
-  font-size: 16px;
-  border: 1px solid #bbbbbb;
-  border-radius: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .input-feedback {
@@ -131,9 +124,6 @@ h2 {
 }
 
 
-
-
-
 .logoApp {
   display: flex;
   justify-content: center;
@@ -169,13 +159,4 @@ h2 {
 .errorMessg {
   display: block;
   margin-left: 70px;
-}
-.RegisterPage .btn{
-padding: 0.6rem;
-font-size: 1.5rem;
-outline:none;
-margin-left: -3rem;
-
-
-
 }
