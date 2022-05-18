@@ -14,11 +14,73 @@ import "./Register.css";
 import * as Yup from "yup";
 import {AiOutlineEyeInvisible,AiOutlineEye} from 'react-icons/ai';
 
-const Register = () => {
+const URL_REGISTRAR = configData.REGISTRAR_API_URL;
+const URL_BUSCAR = configData.BUSCAR_API_URL;
+
+const enviarDatos = async (url, datos) => {
+    const resp = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    console.log(resp);
+    const rjson = await resp.json();
+    console.log('hola');
+    console.log(rjson);
+
+    return rjson;
+}
+
+
+
+let mensaje=" ";
+
+const Register = ({children}) => {
+    
+    const [isValid, setIsValid] = useState(false);
+    const Registrarse = async (e) => {
+        setIsValid(false)
+        const datos = {
+            "nombre": values.nombre,
+            "apellido": values.apellido,
+            "usuario": values.email,
+            "clave": values.password,
+            "idRol": generarIdRol(),
+            "edad": calcularEdad(),
+            "ciudad": values.ciudad,
+            "fechaNacimiento": values.fechaNacimiento
+        };
+        console.log(datos);
+        console.log(datos.usuario);
+        console.log(datos.clave);
+        console.log(datos.nombre); 
+        console.log(datos.apellido);
+        console.log(generarIdRol()); 
+        console.log(datos.fechaNacimiento);
+        console.log(calcularEdad());               
+        console.log(datos.ciudad);  
+        const respuestaJson = await enviarDatos(URL_BUSCAR, datos);
+        console.log(respuestaJson);
+        if(respuestaJson.Existe===true){   
+            mensaje = respuestaJson.Mensaje;
+            setIsValid(true)
+            console.log(respuestaJson.Mensaje);
+        }else{
+            const respuesta1Json = await enviarDatos(URL_REGISTRAR, datos);
+            console.log(respuesta1Json);
+            setIsValid(false)
+        }
+        
+    }
     const [state,setstate]=useState(false);
     
     const paginaI=()=>{
         window.location.href = '/';
+      }
+      const login=()=>{
+        window.location.href = "/login";
       }
     const toggleBtn=()=>{
         setstate(prevState=> !prevState);
@@ -33,6 +95,7 @@ const Register = () => {
                 setSubmitting(false);
             }, 500);
         },
+       
 
         validationSchema: Yup.object().shape({
             nombre: Yup.string()
@@ -44,7 +107,7 @@ const Register = () => {
                 .min(3, "Apellido no válido")
                 .max(30, "Apellido no válido")
                 .required("Introduzca su Apellido")
-                .matches(/^[a-zA-Z]+$/, "Caracteres no permitidos"),
+                .matches(/^[a-zA-Z ]+$/, "Caracteres no permitidos"),
             email: Yup.string()
                 .email("Correo no válido")
                 .min(6, "Correo no válido")
@@ -66,15 +129,58 @@ const Register = () => {
    
             })
 
-    })
-
-
+    })                                                                                                                                         
+    const calcularEdad = () => {
+        let fechaNacimiento = document.getElementById("fechaNacimiento").value; 
+        const fechaActual = new Date();
+        const anoActual = parseInt(fechaActual.getFullYear());
+        const mesActual = parseInt(fechaActual.getMonth()) + 1;
+        const diaActual = parseInt(fechaActual.getDate());
+    
+        // 2016-07-11
+        const anoNacimiento = parseInt(String(fechaNacimiento).substring(0, 4));
+        const mesNacimiento = parseInt(String(fechaNacimiento).substring(5, 7));
+        const diaNacimiento = parseInt(String(fechaNacimiento).substring(8, 10));
+    
+        let edad = anoActual - anoNacimiento;
+        if (mesActual < mesNacimiento) {
+            edad--;
+        } else if (mesActual === mesNacimiento) {
+            if (diaActual < diaNacimiento) {
+                edad--;
+            }
+        }
+        return edad;
+        
+    };
+    
+    const generarID = () => {
+        var y = 1;
+        y++;
+        
+        return y;
+        
+    };
+    const generarIdRol = () => {
+        if(calcularEdad()<40){
+        var x = 2;
+       }else
+        var x=1;
+        return x;
+        
+    };
+    
 
     return (
         <div className='RegisterPage' >
             <br />
-            
-        
+            <Alert show={isValid} variant="danger" style={{ width: "35rem" }}>
+                <Alert.Heading>
+                    {mensaje}
+                    <button type="button" class="btn-close derecha" data-bs-dismiss="alert" aria-label="Close"></button>
+                </Alert.Heading>
+            </Alert>
+            <br /><br />
            
             <Container className="RegisterForm d-flex flex-column justify-content-center align-items-center">
             <h3 class="form-title"><i class="fa fa-user"></i> Registrarse</h3>
@@ -82,7 +188,7 @@ const Register = () => {
                 <form onSubmit={handleSubmit}>                
 
                 <div className="form-group">
-                        <label htmlFor="text" className="col-sm-2 col-form-label d-flex flex-row justify-content-center">Nombre</label>
+                        <label htmlFor="text" className="col-sm-2 col-form-label d-flex flex-row justify-content-center"  >Nombre</label>
                         <div className="col-sm-8 d-flex flex-row justify-content-center">
                         <input  className={errors.nombre && touched.nombre && "error"}
                         id="nombre"
@@ -91,7 +197,7 @@ const Register = () => {
                         placeholder="Ingresa su nombre"
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        value={values.nombre}
+                        
                          />
                         </div>
                     </div>
@@ -200,39 +306,48 @@ const Register = () => {
                     
                     <div className="row">
                     <div className="col-sm">
-                        <label htmlFor="text" className="col-sm-3 col-form-label d-flex flex-row justify-content-center" id="ciudad"  >Ciudad</label>
-                        
-                        <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-                        <select name="color" id="color">
-                            <option value="p">Pando</option>
-                            <option value="l">La paz</option>
-                            <option value="b">Beni</option>
-                            <option value="c">Cochabamba</option>
-                            <option value="s">Santa Cruz</option>
-                            <option value="o">Oruro</option>
-                            <option value="p">Potosi</option>
-                            <option value="s">Sucre</option>
-                            <option value="t">Tarija</option>
+                        <label htmlFor="text" className="col-sm-3 col-form-label d-flex flex-row justify-content-center"  >Ciudad</label>
+                                
+                           <div class="input-group-addon"  ><span class="glyphicon glyphicon-lock"  ></span></div>
+                           <select  onChange={handleChange}
+                                onBlur={handleBlur} id="ciudad"
+                                type="text"
+                                name="ciudad" value={values.ciudad} >
+                            <option value=" " >Seleccione una Ciudad</option>
+                            <option value="Pando" >Pando</option>
+                            <option value="La Paz">La paz</option>
+                            <option value="Beni">Beni</option>
+                            <option value="Cochabamba">Cochabamba</option>
+                            <option value="Santa Cruz">Santa Cruz</option>
+                            <option value="Oruro">Oruro</option>
+                            <option value="Potosi">Potosi</option>
+                            <option value="Sucre">Sucre</option>
+                            <option value="Tarija">Tarija</option>
                           </select>
+                        
                     </div>  
 
                     <div class="col-sm">
-                <label htmlFor="text" className="col-sm-6 col-form-label d-flex flex-row " id="fechadenacimiento" >FechaDeNacimiento</label>
+                     <label  className="col-sm-6 col-form-label d-flex flex-row "  >FechaDeNacimiento</label>
                 
-                <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-                <input type="date" id="fechaNacimiento" min="1950-01-01" max= "2004-12-31" />
-                </div>
-                </div>
+                       <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                      <input type="date" min="1950-01-01" max= "2004-12-31" onChange={handleChange}
+                                onBlur={handleBlur} id="fechaNacimiento"
+                                name="fechaNacimiento" value={values.fechaNacimiento}  />
+                     </div>
+                     </div>
                 
                 <div className="row">
                     <div  class="col-sm-7 col text-center">
-                <button  
+                <button 
+                data-bs-dismiss="modal" type="button" onClick={Registrarse} 
                 style={{
                     
                     backgroundColor: "#597a48",
                     color: "black",
                     width:"100px",
                     height:"40px",
+                   
                     
                     
                     
@@ -264,6 +379,7 @@ const Register = () => {
             <br/>
             
         </div >
+        
     )
 }
 
