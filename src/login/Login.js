@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
+import { Form, InputGroup, Button } from 'react-bootstrap';
 import swal from 'sweetalert';
 import "./Login.css";
 import logo from './../imagenes/logo-comunidad.PNG'
@@ -11,6 +12,7 @@ import * as Yup from "yup";
 import configData from "../config/config.json";
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { useAuth } from './auth'
 
 const URL_LOGIN = configData.LOGIN_API_URL;
@@ -37,15 +39,21 @@ let i = 0;
 let err = "";
 
 export const Login = () => {
+    const [state, setstate] = useState(false);
 
     const navigate = useNavigate()
     // const {login} = useAuth()
     const login = (e) => {
-        localStorage.setItem('user',e )
+        localStorage.setItem('user', e)
     }
     const rol = (e) => {
-       localStorage.setItem('id',e )
+        localStorage.setItem('id', e)
     }
+
+    const toggleBtn = () => {
+        setstate(prevState => !prevState);
+    }
+
     const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
 
         initialValues: { email: "", password: "" },
@@ -98,7 +106,7 @@ export const Login = () => {
             setIsValid(false)
             login(respuestaJson.IDUSUARIO)
             rol(respuestaJson.IDROL)
-            console.log(respuestaJson.IDROL)         
+            console.log(respuestaJson.IDROL)
             navigate('/home/comunidad', { replace: true })
         } else {
             setIsValid(true)
@@ -129,57 +137,67 @@ export const Login = () => {
                 <div className='mb-5'>
                     <img src={logo} className="rounded-circle" height="120" width="120"></img>
                 </div>
-                <form onSubmit={handleSubmit}>
-                    <div className="row">
-                        <label htmlFor="email" className="col-sm-2 col-form-label d-flex flex-row justify-content-center">Email</label>
-                        <div className="col-sm-10 d-flex flex-row justify-content-center">
-                            <input
-                                className={errors.email && touched.email && "error"}
-                                id="email"
-                                type="email"
-                                name="email"
-                                placeholder="Ingresa tu correo"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.email}
-                            />
-                        </div>
-                    </div>
-                    <div className="errorMessg mb-3 d-flex flex-row">
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="col-md-12">
+                        <Form.Label htmlFor="email" className="form-label textLabel d-flex flex-row align-items-left">Email</Form.Label>
+                        <Form.Control
+                            style={{ fontSize: "17px", color: "black" }}
+                            className={errors.email && touched.email && "error"}
+                            id="email"
+                            type="email"
+                            name="email"
+                            placeholder="Ingresa tu correo"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.email}>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Text className="errorMessModal d-flex flex-row justify-content-center" muted>
                         {errors.email && touched.email && (
                             <div className="input-feedback">{errors.email}</div>
                         )}
-                    </div>
-                    <div className="row">
-                        <label htmlFor="password" className="col-sm-2 col-form-label d-flex flex-row justify-content-center">Contraseña</label>
-                        <div className="col-sm-10 d-flex flex-row justify-content-center">
-                            <input
+                    </Form.Text>
+                    <Form.Group className="col-md-12">
+                        <Form.Label htmlFor="password" className="form-label textLabel d-flex flex-row align-items-left">Contraseña</Form.Label>
+                        <InputGroup>
+                            <Form.Control
+                                style={{ fontSize: "17px", color: "black" }}
                                 className={errors.password && touched.password && "error"}
                                 id="password"
-                                type="password"
+                                type={state ? "text" : "password"}
                                 name="password"
                                 placeholder="Ingresa tu password"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.password}
-                            />
-
-                        </div>
-                    </div>
-                    <div className="errorMessg mb-3 d-flex flex-row">
+                            >
+                            </Form.Control>
+                            <Button
+                                className='button-block'
+                                variant="light"
+                                onClick={toggleBtn}
+                            >
+                                {state ?
+                                    <AiOutlineEye align="center" /> : <AiOutlineEyeInvisible align="center" />
+                                }
+                            </Button>
+                        </InputGroup>
+                    </Form.Group>
+                    <Form.Text className="errorMessModal d-flex flex-row justify-content-center" muted>
                         {errors.password && touched.password && (
                             <div className="input-feedback">{errors.password}</div>
                         )}
-                    </div>
+                    </Form.Text>
                     <div className="d-flex flex-row align-items-center justify-content-center">
                         <button
+                            className="textButton"
                             onClick={handleLogin}
                             type="submit"
                         >
                             <FontAwesomeIcon icon={faSignInAlt} /> Ingresar
                         </button>
                     </div>
-                </form>
+                </Form>
             </Container >
             <br></br>
             <br></br>

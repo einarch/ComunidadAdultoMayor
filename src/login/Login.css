@@ -4,8 +4,8 @@ button {
   font-size: 1rem;
 }
 
-.derecha{
-  float:right;
+.derecha {
+  float: right;
 }
 
 h2 {
@@ -40,7 +40,7 @@ h2 {
   flex-direction: column;
 }
 
-.loginForm form label { 
+.loginForm form label {
   font-weight: bold;
   font-size: 16px;
 }
@@ -169,4 +169,19 @@ button.logout:hover,
 .errorMessg {
   display: block;
   margin-left: 70px;
+}
+
+.textField {
+  font-size: 17px;
+}
+
+.textButton {
+  color: black;
+  font-size: 17px;
+}
+
+.button-block {
+  min-height: 0px;
+  max-height: 35px;
+  border-color: #b8b7b6 !important;
 }
