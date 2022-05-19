@@ -20,15 +20,16 @@ import Header from './Header';
 import { RequireAuth } from './login/RequireAuth'
 import P404 from './Pagina404/P404';
 
-
 function App() {
 
   const { user } = useContext(UserContext);
   const [conectado, setConectado]= useState(true);
+  
 
   return (
     <Router>
-      <div className="App">
+      <div className="App" >
+        
         <Routes>
           {user && <Route exact path="/" element={<PaginaInicio />} />}
           {!user && (
