@@ -3,13 +3,12 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
-import { useFormik, useField, useFormikContext } from "formik";
+import { useFormik} from "formik";
 import * as Yup from "yup";
-import dateFormat, { masks } from "dateformat";
+import dateFormat from "dateformat";
 import './../actividades/Actividad.css';
 import avatar from './../imagenes/avatar.jpg'
 import configData from "../config/config.json";
-import { Button } from 'react-bootstrap';
 
 const Actividad = ({ children }) => {
 

@@ -1,8 +1,6 @@
 import React from 'react';
 import {
-    BrowserRouter as Router,
-    Routes,
-    Route,Link, Outlet,NavLink
+    BrowserRouter as Router, Outlet
 } from "react-router-dom";
 
 import Menu from './navegacion/MenuUser';

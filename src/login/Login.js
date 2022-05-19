@@ -13,7 +13,6 @@ import configData from "../config/config.json";
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
-import { useAuth } from './auth'
 
 const URL_LOGIN = configData.LOGIN_API_URL;
 
@@ -128,7 +127,6 @@ export const Login = () => {
             <Alert show={isValid} variant="danger" style={{ width: "35rem" }}>
                 <Alert.Heading>
                     {err}
-                    <button type="button" class="btn-close derecha" data-bs-dismiss="alert" aria-label="Close"></button>
                 </Alert.Heading>
             </Alert>
             <br />
@@ -188,6 +186,7 @@ export const Login = () => {
                             <div className="input-feedback">{errors.password}</div>
                         )}
                     </Form.Text>
+                    <br/>
                     <div className="d-flex flex-row align-items-center justify-content-center">
                         <button
                             className="textButton"
@@ -198,6 +197,10 @@ export const Login = () => {
                         </button>
                     </div>
                 </Form>
+                <br/><br/>
+                <div>
+                <a href="/restablecer">¿Olvidaste tu contraseña?</a>
+                </div>
             </Container >
             <br></br>
             <br></br>

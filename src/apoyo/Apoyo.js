@@ -3,12 +3,11 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
-import { useFormik, useField, useFormikContext } from "formik";
+import { useFormik} from "formik";
 import * as Yup from "yup";
 import './../apoyo/Apoyo.css';
 import avatar from '../imagenes/avatar.jpg';
 import configData from "../config/config.json";
-import { Button } from 'bootstrap';
 
 const Apoyo = ({ children }) => {
 

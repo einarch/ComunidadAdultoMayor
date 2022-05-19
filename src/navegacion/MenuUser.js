@@ -2,10 +2,7 @@ import React from "react";
 import "./navegacion.css";
 import Container from 'react-bootstrap/Container';
 import { Navbar, Nav, DropdownButton, Dropdown } from 'react-bootstrap';
-import {
-  NavLink, useParams, useNavigate
-} from "react-router-dom";
-import { useAuth } from '../login/auth'
+import {NavLink, useNavigate} from "react-router-dom";
 import logo from '../imagenes/logo-comunidad.PNG';
 import user from '../imagenes/avatar.jpg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

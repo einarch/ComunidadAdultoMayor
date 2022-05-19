@@ -1,16 +1,10 @@
-import { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
-import swal from 'sweetalert';
+import React  from 'react';
+import {useState } from 'react';
 import { useFormik } from "formik";
-import { Form, InputGroup, Button, FormGroup, Row, Col } from 'react-bootstrap';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
-import logo from './../imagenes/logo-comunidad.PNG'
+import { Form, InputGroup, Button, Row, Col } from 'react-bootstrap';
 import Container from "react-bootstrap/Container";
 import configData from "../config/config.json";
-import { useNavigate } from 'react-router-dom'
 import Alert from "react-bootstrap/Alert";
-import { UserContext } from '../login/context/UserContext';
 import "./Register.css";
 import * as Yup from "yup";
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
@@ -181,7 +175,6 @@ const Register = ({ children }) => {
             <Alert show={isValid} variant="danger" style={{ width: "35rem" }}>
                 <Alert.Heading>
                     {mensaje}
-                    <button type="button" class="btn-close derecha" data-bs-dismiss="alert" aria-label="Close"></button>
                 </Alert.Heading>
             </Alert>
             <Container className="RegisterForm d-flex flex-column justify-content-center align-items-center">

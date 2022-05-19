@@ -1,5 +1,4 @@
 import React from 'react';
-import {useState} from 'react';
 import { useContext } from 'react';
 import { UserContext } from './login/context/UserContext';
 import Login from './login/Login';
@@ -19,12 +18,12 @@ import Apoyo from './apoyo/Apoyo';
 import Header from './Header';
 import { RequireAuth } from './login/RequireAuth'
 import P404 from './Pagina404/P404';
+import OlvContrasena from './login/olvContrasena.js';
 
 
 function App() {
 
   const { user } = useContext(UserContext);
-  const [conectado, setConectado]= useState(true);
 
   return (
     <Router>
@@ -39,10 +38,12 @@ function App() {
           {!user && (
             <>
               <Route path="/registro" element={<Register/>} />
+              
             </>
           )}
 
           <Route path="/P404" element={<Navigate to={user ? '/' : '/Login'} />} />
+          <Route exact path="/restablecer" element={<OlvContrasena/>} />
 
           <Route exact path="/" element={<PaginaInicio />} />
           
