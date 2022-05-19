@@ -1,8 +1,10 @@
 .App {
   font-family: 'Roboto', sans-serif;
   height: auto;
-  background: #354b29;
-  background-position: bottom;
+  background: url(./imagenes/imageAlter4.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  /*background-position: bottom;*/
 }
 
 
