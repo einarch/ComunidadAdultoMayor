@@ -32,6 +32,7 @@ const enviarDatos = async (url, datos) => {
 
 let mensaje=" ";
 let idUs=0;
+let i=0;
 const OlvContrasena = ({children}) => {
     
     const [isValid, setIsValid] = useState(false);
@@ -75,10 +76,26 @@ const OlvContrasena = ({children}) => {
             console.log(idUs, "aqui llegue");
             const respuesta1Json = await enviarDatos(URL_ACTUALIZAR, CrearDatos());
             setIsValid(false)
+            window.location.href = '/Login';
         }else{
-            mensaje=respuestaJson.Mensaje;
-            console.log(respuestaJson);
-            setIsValid(true)
+            if(respuestaJson.Existe===false){
+                mensaje=respuestaJson.Mensaje;
+                console.log(respuestaJson);
+                setIsValid(true)
+                i = i + 1;
+                console.log(i);
+                idUs=0;
+            }else{
+                mensaje="Los datos introducidos no pertenecen a una cuenta";
+                setIsValid(true)
+                i = i + 1;
+                console.log(i);
+            }
+            //mostrarAlerta(err);
+            if (i > 3) {
+                window.location.href = '*';
+                i = 0
+            }
         }
         
     }

@@ -113,7 +113,7 @@ export const Login = () => {
             console.log(i);
             //mostrarAlerta(err);
             if (i > 3) {
-                window.location.href = '*';
+                window.location.href = '/Restablecer';
                 i = 0
             }
         }

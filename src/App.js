@@ -43,7 +43,7 @@ function App() {
           )}
 
           <Route path="/P404" element={<Navigate to={user ? '/' : '/Login'} />} />
-          <Route exact path="/restablecer" element={<OlvContrasena/>} />
+          <Route exact path="/Restablecer" element={<OlvContrasena/>} />
 
           <Route exact path="/" element={<PaginaInicio />} />
           
