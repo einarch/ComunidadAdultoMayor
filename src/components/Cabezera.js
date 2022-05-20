@@ -34,12 +34,12 @@ function Cabezera() {
                         <Form className="d-flex">
 
                             <Button className="btnInicioSesion" variant="transparent"  href="/login" style={{
-                                background:"linear-gradient(to left, rgb(12, 76, 140) 50%, transparent 50%) no-repeat left / 200%",
+                                background:"linear-gradient(to left, rgb(12, 76, 140) 50%, rgb(0, 6, 20) 50%) no-repeat left / 200%",
                                 transition: "background-position 0s ease",  
                                 color: "#4fbec9",
                                 fontWeight: "bold",
                                 fontSize: "1.125rem",
-                                border: "2px solid #0c4c8c",
+                                border: "2px solid white",
                                 padding: "0.4rem 1rem",
                                 margin: "0.3rem",
                             }}
@@ -50,13 +50,13 @@ function Cabezera() {
                         <Form className="d-flex">
 
                             <Button className="btnRegistro" variant="transparent"  href="/registro" style={{
-                                textShadow:"0px 0.5px 1px rgba(0, 0, 0, 0.856)",
-                                background:"linear-gradient(to left, rgb(12, 76, 140) 50%, transparent 50%) no-repeat left / 200%",
+                                
+                                background:"linear-gradient(to left, rgb(12, 76, 140) 50%, rgb(0, 6, 20) 50%) no-repeat left / 200%",
                                 transition: "background-position 0s ease",  
                                 color: "#4fbec9",
                                 fontWeight: "bold",
                                 fontSize: "1.125rem",
-                                border: "2px solid #0c4c8c",
+                                border: "2px solid white",
                                 padding: "0.4rem 1rem",
                                 margin: "0rem",
                                 
