@@ -1,11 +1,14 @@
-.App {
+.Applicacion {
   font-family: 'Roboto', sans-serif;
   height: auto;
 background: url(./imagenes/imageAlter4.jpg);
   background-size: cover;
   background-attachment: fixed;
   background-position: bottom;
-  /*  background: #000;*/
+  /*  */
+}
+.App{
+  background: #000614;
 }
 
 

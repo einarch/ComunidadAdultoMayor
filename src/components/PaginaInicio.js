@@ -9,7 +9,7 @@ import ParticleBackground from "../ParticleBackground";
 
 function PaginaInicio() {
   return (
-    <div className="App">
+    <div className="Applicacion">
       <ParticleBackground />
       <Cabezera/>
       <ImagenFondo/>

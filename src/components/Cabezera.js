@@ -43,7 +43,7 @@ function Cabezera() {
                                 padding: "0.4rem 1rem",
                                 margin: "0.3rem",
                             }}
-                            >INICIAR SESION</Button>
+                            >Iniciar Sesion</Button>
 
                         </Form>
                      
@@ -61,7 +61,7 @@ function Cabezera() {
                                 margin: "0rem",
                                 
                             }}
-                            >REGISTRARSE</Button>
+                            >Registrarse</Button>
 
                         </Form>
                     </Navbar.Collapse>
