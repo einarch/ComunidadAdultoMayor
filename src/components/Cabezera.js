@@ -31,26 +31,35 @@ function Cabezera() {
                         </Nav>
                         <Form className="d-flex">
 
-                            <Button variant="warning"  href="/login" style={{
-                                backgroundColor: "#9cc4ac",
-                                color: "black",
+                            <Button className="btnInicioSesion" variant="transparent"  href="/login" style={{
+                                background:"linear-gradient(to left, rgb(12, 76, 140) 50%, rgb(0, 6, 20) 50%) no-repeat left / 200%",
+                                transition: "background-position 0s ease",  
+                                color: "#4fbec9",
                                 fontWeight: "bold",
                                 fontSize: "1.125rem",
-                                border: "2px solid black"
+                                border: "2px solid white",
+                                padding: "0.4rem 1rem",
+                                margin: "0.3rem",
                             }}
-                            >INICIAR SESION</Button>
+                            >Iniciar Sesion</Button>
 
                         </Form>
+                     
                         <Form className="d-flex">
 
-                            <Button variant="warning"  href="/registro" style={{
-                                backgroundColor: "#9cc4ac",
-                                color: "black",
+                            <Button className="btnRegistro" variant="transparent"  href="/registro" style={{
+                                
+                                background:"linear-gradient(to left, rgb(12, 76, 140) 50%, rgb(0, 6, 20) 50%) no-repeat left / 200%",
+                                transition: "background-position 0s ease",  
+                                color: "#4fbec9",
                                 fontWeight: "bold",
                                 fontSize: "1.125rem",
-                                border: "2px solid black"
+                                border: "2px solid white",
+                                padding: "0.4rem 1rem",
+                                margin: "0rem",
+                                
                             }}
-                            >REGISTRARSE</Button>
+                            >Registrarse</Button>
 
                         </Form>
                     </Navbar.Collapse>

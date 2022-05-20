@@ -4,11 +4,13 @@ import Cards from "./Cards.js";
 import Cabezera from "./Cabezera.js";
 import ImagenFondo from "./ImagenFondo.js";
 
+import ParticleBackground from "../ParticleBackground";
 
 
 function PaginaInicio() {
   return (
-    <div className="App">
+    <div className="Applicacion">
+      <ParticleBackground />
       <Cabezera/>
       <ImagenFondo/>
       <Cards />

@@ -13,14 +13,14 @@
 .nav-link {
     font-size: 24px;
     font-weight: bold;
-    color: white !important;
+    color: #014636 !important;
     cursor: pointer;
     text-align: center;
     border-radius: 0px;
 }
 
 .active {
-    border-bottom: 5px solid #efdc78 ;
+    border-bottom: 5px solid #014636 ;
     border-radius: 5px ;
 }
 
@@ -29,5 +29,5 @@
 }
 
 #dropdown-menu-align-end {
-    background-color: #efdc78;
+    background-color: #014636;
 }

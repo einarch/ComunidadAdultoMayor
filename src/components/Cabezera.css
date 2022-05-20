@@ -24,3 +24,12 @@
     border-radius: 40px;
     box-shadow: 1px 2px 3px rgba(54,95,65,1);
 }
+
+.btnRegistro:hover {
+    background-position: right !important;
+    color: white !important;
+}
+.btnInicioSesion:hover {
+    background-position: right !important;
+    color: white !important;
+}

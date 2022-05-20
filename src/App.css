@@ -1,10 +1,17 @@
-.App {
+.Applicacion {
   font-family: 'Roboto', sans-serif;
-  height: absolute;
-  background: rgb(239, 220, 120);
-  background: linear-gradient(90deg, rgba(239, 220, 120, 1) 0%, rgba(54, 95, 65, 1) 59%);
+  height: auto;
+background: url(./imagenes/imageAlter4.jpg);
+  background-size: cover;
+  background-attachment: fixed;
   background-position: bottom;
+  /*  */
 }
+.App{
+  background: #000614;
+}
+
+
 
 
 

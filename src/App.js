@@ -20,14 +20,14 @@ import { RequireAuth } from './login/RequireAuth'
 import P404 from './Pagina404/P404';
 import OlvContrasena from './login/olvContrasena.js';
 
-
 function App() {
 
   const { user } = useContext(UserContext);
 
   return (
     <Router>
-      <div className="App">
+      <div className="App" >
+        
         <Routes>
           {user && <Route exact path="/" element={<PaginaInicio />} />}
           {!user && (

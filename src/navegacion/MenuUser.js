@@ -13,7 +13,7 @@ import { useState, useEffect } from 'react';
 const MenuUser = () => {
   const tilde = <span style={{
     fontSize: 35,
-    color: "black",
+    color: "#49c1a5",
     borderRadius: "16"
   }}>
     <FontAwesomeIcon icon={faUserLarge} />
@@ -59,7 +59,7 @@ const MenuUser = () => {
   return (
     <Navbar collapseOnSelect expand="lg" variant="light" fixed="top"
       style={{
-        backgroundColor: "#589674"
+        backgroundColor: "#49c1a5"
       }}
     >
       <Container fluid>
@@ -86,7 +86,7 @@ const MenuUser = () => {
             >APOYO</NavLink>
           </Nav>
           <Nav>
-            <DropdownButton align="end" title={tilde} id="dropdown-menu-align-end" variant="warning"
+            <DropdownButton align="end" title={tilde} id="dropdown-menu-align-end" variant="success"
             >
               <span>
                 <div className="logo-user text-center" >
