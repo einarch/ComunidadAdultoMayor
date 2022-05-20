@@ -1,3 +1,4 @@
+import React from 'react';
 import '../Pagina404/P404.css'
 
 const paginaI=()=>{

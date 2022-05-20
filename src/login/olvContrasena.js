@@ -1,16 +1,15 @@
 import React  from 'react';
 import {useState } from 'react';
 import { useFormik } from "formik";
-import { Form, InputGroup, Button, Row, Col } from 'react-bootstrap';
+import { Form, InputGroup, Button } from 'react-bootstrap';
 import Container from "react-bootstrap/Container";
 import configData from "../config/config.json";
 import Alert from "react-bootstrap/Alert";
-import "./Register.css";
+import "./olvContrasena.css";
 import * as Yup from "yup";
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 
-
-const URL_REGISTRAR = configData.REGISTRAR_API_URL;
+const URL_ACTUALIZAR = configData.ACTUALIZAR_API_URL;
 const URL_BUSCAR = configData.BUSCAR_API_URL;
 
 const enviarDatos = async (url, datos) => {
@@ -31,65 +30,93 @@ const enviarDatos = async (url, datos) => {
 
 
 
-let mensaje = " ";
-
-const Register = ({ children }) => {
-
+let mensaje=" ";
+let idUs=0;
+let i=0;
+const OlvContrasena = ({children}) => {
+    
     const [isValid, setIsValid] = useState(false);
-    const Registrarse = async (e) => {
+    const CrearDatos = () => {
         setIsValid(false)
         const datos = {
             "nombre": values.nombre,
             "apellido": values.apellido,
             "usuario": values.email,
+            "idUsuario": idUs,
             "clave": values.password,
-            "idRol": generarIdRol(),
-            "edad": calcularEdad(),
-            "ciudad": values.ciudad,
             "fechaNacimiento": values.fechaNacimiento
         };
         console.log(datos);
         console.log(datos.usuario);
         console.log(datos.clave);
-        console.log(datos.nombre);
+        console.log(datos.nombre); 
         console.log(datos.apellido);
-        console.log(generarIdRol());
         console.log(datos.fechaNacimiento);
-        console.log(calcularEdad());
-        console.log(datos.ciudad);
-        const respuestaJson = await enviarDatos(URL_BUSCAR, datos);
+        console.log(datos.idUsuario);
+        return datos;
+    }
+
+    const Actualizar = async () =>{
+        const respuestaJson = await enviarDatos(URL_BUSCAR, CrearDatos());
         console.log(respuestaJson);
-        if (respuestaJson.Existe === true) {
-            mensaje = respuestaJson.Mensaje;
-            setIsValid(true)
-            console.log(respuestaJson.Mensaje);
-        } else {
-            const respuesta1Json = await enviarDatos(URL_REGISTRAR, datos);
-            console.log(respuesta1Json);
+        idUs=respuestaJson.IDUSUARIO;
+        console.log(values.nombre);
+        console.log(respuestaJson.NOMBRE);
+        console.log(values.apellido);
+        console.log(respuestaJson.APELLIDOS);
+        console.log(values.fechaNacimiento);
+        console.log(respuestaJson.FECHANACIMIENTO);
+        if(respuestaJson.Existe===true && values.nombre===respuestaJson.NOMBRE && values.apellido===respuestaJson.APELLIDOS && values.fechaNacimiento===respuestaJson.FECHANACIMIENTO){   
+            console.log(values.nombre);
+            console.log(respuestaJson.NOMBRE);
+            console.log(values.apellido);
+            console.log(respuestaJson.APELLIDOS);
+            console.log(values.fechaNacimiento);
+            console.log(respuestaJson.FECHANACIMIENTO);
+            console.log(idUs, "aqui llegue");
+            const respuesta1Json = await enviarDatos(URL_ACTUALIZAR, CrearDatos());
             setIsValid(false)
+            window.location.href = '/Login';
+        }else{
+            if(respuestaJson.Existe===false){
+                mensaje=respuestaJson.Mensaje;
+                console.log(respuestaJson);
+                setIsValid(true)
+                i = i + 1;
+                console.log(i);
+                idUs=0;
+            }else{
+                mensaje="Los datos introducidos no pertenecen a una cuenta";
+                setIsValid(true)
+                i = i + 1;
+                console.log(i);
+            }
+            //mostrarAlerta(err);
+            if (i > 3) {
+                window.location.href = '*';
+                i = 0
+            }
         }
-
+        
     }
-    const [state, setstate] = useState(false);
-
-    const paginaI = () => {
+    const [state,setstate]=useState(false);
+    
+    const paginaI=()=>{
         window.location.href = '/';
-    }
-    const login = () => {
+      }
+      const login=()=>{
         window.location.href = "/login";
+      }
+    const toggleBtn=()=>{
+        setstate(prevState=> !prevState);
     }
-    const toggleBtn = () => {
-        setstate(prevState => !prevState);
-    }
+   
+    const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
 
-    const { handleSubmit,resetForm, handleChange, values, touched, errors, handleBlur } = useFormik({
-
-        initialValues: { nombre:"",apellido:"",email: "", password: "", password2: "",ciudad:"",fechaNacimiento:"" },
-        onSubmit: (values, { setSubmitting, resetForm }) => {
-            Registrarse();
-            setSubmitting(true);
+        initialValues: { nombre:"",apellido:"",email: "", password: "", password2: "",fechaNacimiento:"" },
+        onSubmit: (values, { setSubmitting }) => {
             setTimeout(() => {
-                resetForm();
+                console.log("Logging in", values);
                 setSubmitting(false);
             }, 500);
         },
@@ -104,13 +131,13 @@ const Register = ({ children }) => {
             apellido: Yup.string()
                 .min(3, "Apellido no válido")
                 .max(30, "Apellido no válido")
-                .required("Introduzca su Apellido")
+                .required("Introduzca sus Apellidos")
                 .matches(/^[a-zA-Z ]+$/, "Caracteres no permitidos"),
             email: Yup.string()
                 .email("Correo no válido")
                 .min(6, "Correo no válido")
                 .max(30, "Correo no válido")
-                .required("Introduzca su correo")
+                .required("Introduzca su Correo")
                 .matches(/^[a-z0-9.\s]+@[a-z0-9\s]+\.[a-z0-9.\s]/, "Caracteres no permitidos"),
             password: Yup.string()
                 .required("Introduzca su contraseña")
@@ -125,69 +152,52 @@ const Register = ({ children }) => {
 
                 .oneOf([Yup.ref('password')], 'Las contraseñas deben coincidir'),
                 fechaNacimiento: Yup.string()
-                .required("Introduzca Fecha")  
+                .required("Introduzca su Fecha de Nacimiento")  
         })
 
-    })
-    const calcularEdad = () => {
-        let fechaNacimiento = document.getElementById("fechaNacimiento").value;
-        const fechaActual = new Date();
-        const anoActual = parseInt(fechaActual.getFullYear());
-        const mesActual = parseInt(fechaActual.getMonth()) + 1;
-        const diaActual = parseInt(fechaActual.getDate());
-
-        // 2016-07-11
-        const anoNacimiento = parseInt(String(fechaNacimiento).substring(0, 4));
-        const mesNacimiento = parseInt(String(fechaNacimiento).substring(5, 7));
-        const diaNacimiento = parseInt(String(fechaNacimiento).substring(8, 10));
-
-        let edad = anoActual - anoNacimiento;
-        if (mesActual < mesNacimiento) {
-            edad--;
-        } else if (mesActual === mesNacimiento) {
-            if (diaActual < diaNacimiento) {
-                edad--;
-            }
-        }
-        return edad;
-
-    };
-
-    const generarID = () => {
-        var y = 1;
-        y++;
-
-        return y;
-
-    };
-    const generarIdRol = () => {
-        if (calcularEdad() < 40) {
-            var x = 2;
-        } else
-            var x = 1;
-        return x;
-
-    };
+    })                                                                                                                                         
+    
 
     return (
-        <div className='RegisterPage' >
+        <div className='OlvPage' >
             <br />
             <Alert show={isValid} variant="danger" style={{ width: "35rem" }}>
                 <Alert.Heading>
                     {mensaje}
                 </Alert.Heading>
             </Alert>
-            <Container className="RegisterForm d-flex flex-column justify-content-center align-items-center">
-                <h3 class="form-title"><i class="fa fa-user"></i> Registrarse</h3>
-
+            <br /><br />
+           
+            <Container className="OlvForm d-flex flex-column justify-content-center align-items-center">
+                <h3 class="form-title"><i class="fa fa-user"></i> Restablecer Contraseña </h3>
+                <br />
                 <Form noValidate onSubmit={handleSubmit}>
+
+                <Form.Group>
+                        <Form.Label htmlFor="email" className="form-label d-flex flex-row justify-content-left"  >Email</Form.Label>
+                        <Form.Control
+                            className={errors.email && touched.email && "error"}
+                            id="email"
+                            type="email"
+                            name="email"
+                            placeholder="Ingrese su correo"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.email}
+                        />
+                    </Form.Group>
+                    <Form.Text className="errorMessModal d-flex flex-row justify-content-center" muted>
+                        {errors.email && touched.email && (
+                            <div className="input-feedback">{errors.email}</div>
+                        )}
+                    </Form.Text>
                     <Form.Group>
                         <Form.Label htmlFor="text" className="form-label d-flex flex-row justify-content-left">Nombre</Form.Label>
                         <Form.Control className={errors.nombre && touched.nombre && "error"}
                             id="nombre"
                             type="text"
                             name="nombre"
-                            placeholder="Ingresa su nombre"
+                            placeholder="Ingrese su nombre"
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.nombre}
@@ -205,7 +215,7 @@ const Register = ({ children }) => {
                             id="apellido"
                             type="text"
                             name="apellido"
-                            placeholder="Ingresa tus apellidos"
+                            placeholder="Ingrese sus apellidos"
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.apellido}
@@ -217,24 +227,23 @@ const Register = ({ children }) => {
                             <div className="input-feedback">{errors.apellido}</div>
                         )}
                     </Form.Text>
+                    
                     <Form.Group>
-                        <Form.Label htmlFor="email" className="form-label d-flex flex-row justify-content-left"  >Email</Form.Label>
-                        <Form.Control
-                            className={errors.email && touched.email && "error"}
-                            id="email"
-                            type="email"
-                            name="email"
-                            placeholder="Ingresa tu correo"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.email}
-                        />
-                    </Form.Group>
-                    <Form.Text className="errorMessModal d-flex flex-row justify-content-center" muted>
-                        {errors.email && touched.email && (
-                            <div className="input-feedback">{errors.email}</div>
-                        )}
-                    </Form.Text>
+                            <Form.Label htmlFor="password" id="ciudad" className="form-label d-flex flex-row justify-content-left" >Fecha de Nacimiento</Form.Label>
+                            <Form.Control type="date"
+                                min="1950-01-01"
+                                max="2004-12-31"
+                                onChange={handleChange}
+                                onBlur={handleBlur} id="fechaNacimiento"
+                                name="fechaNacimiento"
+                                value={values.fechaNacimiento} />
+                                <Form.Text className="errorMessModal d-flex flex-row col-11 justify-content-center" muted>
+                                        {errors.fechaNacimiento && touched.fechaNacimiento && (
+                                        <div className="input-feedback">{errors.fechaNacimiento}</div>
+                                        )}
+                                </Form.Text>
+                        </Form.Group>
+
                     <Form.Group>
                         <Form.Label htmlFor="password" className="form-label d-flex flex-row justify-content-left" >Contraseña</Form.Label>
                         <InputGroup>
@@ -243,7 +252,7 @@ const Register = ({ children }) => {
                                 id="password"
                                 type={state ? "text" : "password"}
                                 name="password"
-                                placeholder="Ingresa su contraseña"
+                                placeholder="Ingrese una contraseña"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.password}
@@ -274,7 +283,7 @@ const Register = ({ children }) => {
                                 id="password2"
                                 type={state ? "text" : "password"}
                                 name="password2"
-                                placeholder="Ingresa su contraseña"
+                                placeholder="Vuelva a ingresar la contraseña"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.password2}
@@ -296,51 +305,16 @@ const Register = ({ children }) => {
                             <div className="input-feedback">{errors.password2}</div>
                         )}
                     </Form.Text>
-                    <Row className="col-md-13 mb-3">
-                        <Form.Group as={Col} md="7">
-                            <Form.Label htmlFor="password" id="ciudad" className="form-label d-flex flex-row justify-content-left" >Fecha de Nacimiento</Form.Label>
-                            <Form.Control type="date"
-                                min="1950-01-01"
-                                max="2004-12-31"
-                                onChange={handleChange}
-                                onBlur={handleBlur} id="fechaNacimiento"
-                                name="fechaNacimiento"
-                                value={values.fechaNacimiento} />
-                                <Form.Text className="errorMessModal d-flex flex-row col-11 justify-content-center" muted>
-                        {errors.fechaNacimiento && touched.fechaNacimiento && (
-                            <div className="input-feedback">{errors.fechaNacimiento}</div>
-                        )}
-                    </Form.Text>
-                        </Form.Group>
-                        
-                    <Form.Group as={Col} md="5" >
-                            <Form.Label className="form-label d-flex flex-row justify-content-left">Ciudad</Form.Label>
-                            <Form.Select
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                id="ciudad"
-                                name="ciudad"
-                                type="text"
-                                value={values.ciudad} >
-                                <option value="Cochabamba">Cochabamba</option>
-                                <option value="La Paz">La Paz</option>
-                                <option value="Santa Cruz">Santa Cruz</option>
-                                <option value="Pando">Pando</option>
-                                <option value="Beni">Beni</option>
-                                <option value="Oruro">Oruro</option>
-                                <option value="Potosi">Potosi</option>
-                                <option value="Sucre">Sucre</option>
-                                <option value="Tarija">Tarija</option>
-                            </Form.Select>
-                        </Form.Group>
-                    </Row>
+
+                    <br />
+
                     <div className="d-flex flex-row align-items-center justify-content-center">
                         <button
                             className="btn btn-success col-4 m-1"
                             type="submit"
                             as="Input"
-                            onClick={handleSubmit} >
-                            Registrarse
+                            onClick={Actualizar} >
+                            Aceptar
                         </button>
                         <button
                             className="btn btn-secondary col-4 m-1"
@@ -354,6 +328,7 @@ const Register = ({ children }) => {
             <br />
         </div >
     )
+
 }
 
-export default Register;
+export default OlvContrasena;

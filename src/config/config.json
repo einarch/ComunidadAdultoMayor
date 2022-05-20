@@ -4,7 +4,9 @@
     "VOLUNTEERS_API_URL": "https://back-cam.herokuapp.com/apo.php",  
     "LOGIN_API_URL": "https://back-cam.herokuapp.com/login.php",
     "PUBLICAR_API_URL": "http://back-cam.herokuapp.com/registrarPubli.php",
-    "CREAR_ACTIVIDAD_API_URL": "http://localhost/apiCam/crearActividad.php",
-    "REGISTRAR_API_URL" : "http://localhost/apiCam/registrarUs.php",
-    "BUSCAR_API_URL" : "http://localhost/apiCam/buscarUs.php"
+    "CREAR_ACTIVIDAD_API_URL": "https://back-cam.herokuapp.com/crearActividad.php",
+    "CREAR_VOLUNTARIO_API_URL": "https://back-cam.herokuapp.com/serVoluntario.php",
+    "REGISTRAR_API_URL" : "https://back-cam.herokuapp.com/registrarUs.php",
+    "BUSCAR_API_URL" : "http://localhost/apiCam/buscarUs.php",
+    "ACTUALIZAR_API_URL" : "http://localhost/apiCam/actualizarCont.php"
 }

@@ -37,7 +37,7 @@ body {
   text-transform: uppercase;
 }
 
-.textModal {
+.textLabel {
   color: black;
   font-size: 17px;
 }
@@ -60,6 +60,7 @@ body {
 .btn-secondary:active,
 .btn-secondary:visited {
   background-color: red !important;
+  font-size: 17px !important;
 }
 
 .btn-success,
@@ -67,6 +68,7 @@ body {
 .btn-success:active,
 .btn-success:visited {
   background-color: #365f41 !important;
+  font-size: 17px !important;
 }
 
 .modal-title {

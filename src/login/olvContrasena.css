@@ -1,7 +1,7 @@
-input,
-button {
+input button {
   outline: none;
   font-size: 1rem;
+  border: "2px solid black"
 }
 
 .derecha {
@@ -15,11 +15,11 @@ h2 {
   font-size: 32px;
 }
 
-.loginPage .loginForm {
+.OlvPage .OlvForm {
   margin: 50 100;
   padding: 20px 50px 10px;
-  max-width: 500px;
-  min-width: 350px;
+  max-width: 550px;
+  min-width: 400px;
   background: linear-gradient(rgba(140, 223, 177, 0.55), rgba(140, 223, 177, 0.55));
   border-radius: 10px;
   display: block;
@@ -27,31 +27,33 @@ h2 {
   align-items: center;
 }
 
-.loginPage {
+.OlvPage {
   background: url("./../imagenes/imagenFondo.jpg") center center;
   background-size: auto;
   min-height: 657px;
   display: block;
 }
 
-.loginPage .loginForm form {
+.OlvPage .OlvForm form {
   display: block;
   flex-wrap: wrap;
   flex-direction: column;
 }
 
-.loginForm form label {
+.OlvForm form label {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 17px;
 }
 
-.loginForm form input {
-  min-width: 330px;
-  padding: 4px;
-  font-size: 16px;
+.OlvForm form input {
+  min-width: 450px;
+  min-height: 35px;
+  max-height: 35px;
+  padding: 10px;
+  font-size: 17px;
   border: 1px solid #bbbbbb;
   border-radius: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .input-feedback {
@@ -59,11 +61,12 @@ h2 {
   font-weight: bold;
 }
 
-.loginForm form input:hover {
+
+.OlvForm form input:hover {
   border-color: #999999;
 }
 
-.loginForm form input:focus {
+.OlvForm form input:focus {
   border-color: #a38924;
 }
 
@@ -120,19 +123,6 @@ h2 {
   font-size: 16px;
 }
 
-button.logout {
-  background: #dc3545;
-  border: 1px solid rgba(0, 0, 0, .3);
-  padding: 10px 15px;
-  color: white;
-  cursor: pointer;
-  border-radius: 3px;
-}
-
-button.logout:hover,
-[type="submit"]:hover {
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
 
 .logoApp {
   display: flex;
@@ -169,19 +159,4 @@ button.logout:hover,
 .errorMessg {
   display: block;
   margin-left: 70px;
-}
-
-.textField {
-  font-size: 17px;
-}
-
-.textButton {
-  color: black;
-  font-size: 17px;
-}
-
-.button-block {
-  min-height: 0px;
-  max-height: 35px;
-  border-color: #b8b7b6 !important;
 }

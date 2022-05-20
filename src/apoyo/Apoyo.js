@@ -3,12 +3,11 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
-import { useFormik, useField, useFormikContext } from "formik";
+import { useFormik} from "formik";
 import * as Yup from "yup";
 import './../apoyo/Apoyo.css';
 import avatar from '../imagenes/avatar.jpg';
 import configData from "../config/config.json";
-import { Button } from 'bootstrap';
 
 const Apoyo = ({ children }) => {
 
@@ -24,9 +23,9 @@ const Apoyo = ({ children }) => {
                 console.log(error);
             })
     }
-/*    const rol = (data.map(apoyo => {
-        return (apoyo.Nombre)})); 
-        console.log(rol);*/
+    /*    const rol = (data.map(apoyo => {
+            return (apoyo.Nombre)})); 
+            console.log(rol);*/
     // Hacer un POST al backend para crear una Actividad
     const postVoluntario = async (url, datos) => {
         const response = await fetch(url, {
@@ -40,35 +39,21 @@ const Apoyo = ({ children }) => {
         return res;
     }
     //tenemos el rol
-    let userROL=localStorage.getItem("id");
+    let userROL = localStorage.getItem("id");
     console.log("tipo de voluntario");
     console.log(userROL);
-    if(userROL==1){
+    if (userROL == 1) {
         console.log("Es audulto mayor");
-    }else{
+    } else {
         console.log("Es publico general");
     }
-    const IDROL= userROL;
+    const IDROL = userROL;
     // Añadir un voluntario con los datos introducidos
     let userID = localStorage.getItem("user");
     const createNewVoluntario = async () => {
-        if(values.telefono=="" && values.dias=="" && values.tipo=="" && values.description==""){
-            console.log("Llene todos los campos");
-            document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
-        }else{
-            if(values.telefono==""){
-                console.log("Llene el campo de telefono");
-            }else{
-                if(values.dias==""){
-                    console.log("Llene el campo de dias disponibles");
-                }else{
-                    if(values.tipo==""){
-                        console.log("Llene el campo de tipo de ayuda");
-                    }else{
-                        if(values.description==""){
-                            console.log("Llene el campo de su motivacion");
-                        }else{
-                            document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
+      if(values.description==""){
+          values.description= "Ser solidario";
+      }
 
                             const datos = {
                                 "userID": userID,
@@ -80,19 +65,15 @@ const Apoyo = ({ children }) => {
                             console.log("Voluntario: " + JSON.stringify(datos));
                             const respuestaJson = await postVoluntario(postVoluntarioURL, datos);
                             console.log("Response: " + respuestaJson);
-                            window.location=window.location.href;  
-                            
-                        }
-                    }
-                }   
-            }
-        }
-        
+                            window.location = window.location.href;
+
     }
     const { handleSubmit, resetForm, handleChange, values, touched, isValid, errors, handleBlur } = useFormik({
 
         initialValues: { telefono: "", dias: "", tipo: "", description: "" },
-        onSubmit: (values, { setSubmitting }, { resetForm }) => {
+        onSubmit: (values, { setSubmitting , resetForm }) => {
+            createNewVoluntario();
+            setSubmitting(true);
             setTimeout(() => {
                 console.log("Logging in", values);
                 setSubmitting(false);
@@ -103,14 +84,14 @@ const Apoyo = ({ children }) => {
 
         validationSchema: Yup.object().shape({
             telefono: Yup.number()
-            .typeError("Solo se admiten numeros")
+                .typeError("Solo se admiten numeros")
                 .required("Este campo es requerido")
                 .min(10, "minimo 7 digitos porfavor")
-                .positive( `Solo numeros positivos`),
+                .positive(`Solo numeros positivos`),
             dias: Yup.string()
-            .required("Este campo es requerido")
-            .min(4, "Dias de la semana porfavor")
-            .max(50, "No puede asignar mas dias de la semana"),
+                .required("Este campo es requerido")
+                .min(4, "Dias de la semana porfavor")
+                .max(50, "No puede asignar mas dias de la semana"),
             tipo: Yup.string()
                 .required("Este campo es requerido")
                 .min(4, "El tipo de ayuda debe tener minimo 4 caracteres")
@@ -121,14 +102,14 @@ const Apoyo = ({ children }) => {
 
         })
     })
-    function borrar () {
-       return resetForm();
-    } 
+    function borrar() {
+        return resetForm();
+    }
     useEffect(() => {
         peticionGet();
     }, [])
 
-    if(IDROL==2){
+    if (IDROL == 2) {
         return (
             <div className='body'>
                 <br />
@@ -139,7 +120,7 @@ const Apoyo = ({ children }) => {
                     <br />
                     <h2 className="title"> Voluntarios de Apoyo</h2>
                     <br />
-                                    
+
                     <Container className="d-flex flex-row justify-content-end">
                         <button type="button" className="btn m-2 btn-primary" data-bs-toggle="modal" data-bs-target="#createVolunta">Ser voluntario</button>
                     </Container>
@@ -153,7 +134,7 @@ const Apoyo = ({ children }) => {
                                     <div className="modal-body tam p-3 modalColor ">
                                         <Form id="formulario" className="row g-3" onSubmit={handleSubmit}>
                                             <Form.Group className="col-md-12">
-                                                <Form.Label className="form-label textModal d-flex flex-row align-items-left">Telefono *</Form.Label>
+                                                <Form.Label className="form-label textLabel d-flex flex-row align-items-left">Telefono *</Form.Label>
                                                 <Form.Control
                                                     type="text"
                                                     id="telefono"
@@ -172,7 +153,7 @@ const Apoyo = ({ children }) => {
                                                 </Form.Text>
                                             </Form.Group>
                                             <Form.Group className="col-md-12">
-                                                <Form.Label className="form-label textModal d-flex flex-row align-items-left">Dias disponibles *</Form.Label>
+                                                <Form.Label className="form-label textLabel d-flex flex-row align-items-left">Dias disponibles *</Form.Label>
                                                 <Form.Control
                                                     type="text"
                                                     id="dias"
@@ -191,7 +172,7 @@ const Apoyo = ({ children }) => {
                                                 </Form.Text>
                                             </Form.Group>
                                             <Form.Group className="col-md-12">
-                                                <Form.Label className="form-label textModal d-flex flex-row align-items-left">Tipo de apoyo *</Form.Label>
+                                                <Form.Label className="form-label textLabel d-flex flex-row align-items-left">Tipo de apoyo *</Form.Label>
                                                 <Form.Control
                                                     type="text"
                                                     id="tipo"
@@ -210,7 +191,7 @@ const Apoyo = ({ children }) => {
                                                 </Form.Text>
                                             </Form.Group>
                                             <Form.Group className="col-md-12">
-                                                <Form.Label className="form-label textModal d-flex flex-row align-items-left">Motivacion </Form.Label>
+                                                <Form.Label className="form-label textLabel d-flex flex-row align-items-left">Motivacion </Form.Label>
                                                 <Form.Control
                                                     as="textarea"
                                                     rows={3}
@@ -232,29 +213,29 @@ const Apoyo = ({ children }) => {
                                         </Form>
                                     </div>
                                     <div className="model-footer col-12 modalColor" align="center">
-                                    <Form.Text className="d-flex flex-column align-items-center" muted>
-                                        {!isValid
-                                            && !values.telefono
-                                            && !values.dias
-                                            && !values.tipo
-                                            && !values.description ?
-                                            <div className="input-feedback">{"Por favor rellene el formulario correctamente"} </div> : null}
-                                    </Form.Text>
-                                    <button
-                                        as="Input"
-                                        class="btn btn-secondary col-3 m-2"
-                                        data-bs-dismiss="modal"
-                                        onClick={borrar}
-                                    >Cancelar
-                                    </button>
-                                        <button  type="submit"
-                                        as="Input"
-                                        class="btn btn-success col-3 m-2"
-                                        data-bs-dismiss={touched.telefono && !errors.telefono
-                                            && touched.dias && !errors.dias
-                                            && touched.tipo && !errors.tipo
-                                            && touched.description && !errors.description ? "modal" : null}
-                                        onClick={handleSubmit}
+                                        <Form.Text className="d-flex flex-column align-items-center" muted>
+                                            {!isValid
+                                                && !values.telefono
+                                                && !values.dias
+                                                && !values.tipo
+                                                && !values.description ?
+                                                <div className="input-feedback">{"Por favor rellene el formulario correctamente"} </div> : null}
+                                        </Form.Text>
+                                        <button
+                                            as="Input"
+                                            class="btn btn-secondary col-3 m-2"
+                                            data-bs-dismiss="modal"
+                                            onClick={borrar}
+                                        >Cancelar
+                                        </button>
+                                        <button type="submit"
+                                            as="Input"
+                                            class="btn btn-success col-3 m-2"
+                                            data-bs-dismiss={touched.telefono && !errors.telefono
+                                                && touched.dias && !errors.dias
+                                                && touched.tipo && !errors.tipo
+                                                && touched.description && !errors.description ? "modal" : null}
+                                            onClick={handleSubmit}
                                         >Crear</button>
                                     </div>
                                 </div>
@@ -272,10 +253,10 @@ const Apoyo = ({ children }) => {
                                             </div>
                                             <div className="col-sm-10 d-flex flex-column align-items-left justify-content-center ">
                                                 <h3 className="cardItemUserName mt-0 mb-1"><b>{apoyo.NOMBRE} {apoyo.APELLIDO}</b></h3>
-                                                <br></br>
                                                 <h4 className="cardItemTitle">{apoyo.CIUDAD} &emsp; &ensp; <b>Teléfono:</b>{apoyo.TELEFONOV} </h4>
-                                                <br></br>
                                                 <h4 className="cardItemTitle"><b>Días Disponibles:</b> {apoyo.DIASDISPONIBLES}</h4>
+                                                <h4 className="cardItemTitle"><b>Tipo de Apoyo:</b> {apoyo.TIPOAPOYO}</h4>
+                                                <h4 className="cardItemTitle"><b>Motivacion:</b> {apoyo.DESCRIPCIONV}</h4>
                                             </div>
                                         </Card.Text>
                                     </Card.Body>
@@ -286,7 +267,7 @@ const Apoyo = ({ children }) => {
                     </Container>
             </div>
         );
-    }else{
+    } else {
         return (
             <div>
                 <br />
@@ -297,8 +278,8 @@ const Apoyo = ({ children }) => {
                     <br />
                     <h2 className="title"> Voluntarios de Apoyo</h2>
                     <br />
-                                    
-                   
+
+
                     <Container className="p-4 mb-4">
                         {data.map(apoyo => {
                             return (
@@ -310,10 +291,10 @@ const Apoyo = ({ children }) => {
                                             </div>
                                             <div className="col-sm-10 d-flex flex-column align-items-left justify-content-center ">
                                                 <h3 className="cardItemUserName mt-0 mb-1"><b>{apoyo.NOMBRE} {apoyo.APELLIDO}</b></h3>
-                                                <br></br>
                                                 <h4 className="cardItemTitle">{apoyo.CIUDAD} &emsp; &ensp; <b>Teléfono:</b>{apoyo.TELEFONOV} </h4>
-                                                <br></br>
                                                 <h4 className="cardItemTitle"><b>Días Disponibles:</b> {apoyo.DIASDISPONIBLES}</h4>
+                                                <h4 className="cardItemTitle"><b>Tipo de Apoyo:</b> {apoyo.TIPOAPOYO}</h4>
+                                                <h4 className="cardItemTitle"><b>Motivacion:</b> {apoyo.DESCRIPCIONV}</h4>
                                             </div>
                                         </Card.Text>
                                     </Card.Body>
