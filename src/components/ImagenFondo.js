@@ -12,13 +12,11 @@ function ImagenFondo() {
         <Container >
             <div className="text-center">
                 <h1 className="title" style={{
-                    position: "absolute",
                     fontSize: "2rem",
                     fontWeight: "bold",
-                    color: "black",
+                    color: "white",
                     left: 0, right: 0, alignItems: "center",
-                    display: "inline-block",
-                    textShadow: "1px 2px 3px rgba(246, 250, 31, 0.856)"
+                    display: "inline-block"
 
                 }}>
                     COMUNIDAD PARA ADULTOS MAYORES
