@@ -7,7 +7,10 @@
 
 body {
   margin-top: 0px;
-  background: linear-gradient(90deg, rgba(36, 89, 119, 1) 59%, rgba(36, 89, 119, 1) 59%);
+  background: linear-gradient(90deg, rgba(1, 70, 54, 1) 59%, rgba(1, 70, 54, 1) 59%);
+}
+.body-fondo{
+  background: linear-gradient(90deg, rgba(1, 70, 54, 1) 59%, rgba(1, 70, 54, 1) 59%) important!;
 }
 .title {
   font-size: 24px;
@@ -17,7 +20,7 @@ body {
 }
 
 #cardItem {
-  background-color: #bad641;
+  background-color: #dbeaed;
   display: block;
   max-width: auto;
   min-width: auto;
@@ -51,8 +54,10 @@ body {
 .btn-primary:hover,
 .btn-primary:active,
 .btn-primary:visited {
-  background-color: #589674 !important;
-  border: white 2px solid !important;
+  background-color: #49c1a5 !important;
+  border: #dbeaed 2px solid !important;
+  font-weight: bold !important;
+  color:#014636 !important;
 
 }
 

@@ -130,11 +130,11 @@ const Apoyo = ({ children }) => {
 
     if(IDROL==2){
         return (
-            <><div>
+            <div className='body'>
                 <br />
                 <br />
                 <br />
-            </div><>
+            
                     <br />
                     <br />
                     <h2 className="title"> Voluntarios de Apoyo</h2>
@@ -284,15 +284,15 @@ const Apoyo = ({ children }) => {
                         }
                         )}
                     </Container>
-                </></>
+            </div>
         );
     }else{
         return (
-            <><div>
+            <div>
                 <br />
                 <br />
                 <br />
-            </div><>
+            
                     <br />
                     <br />
                     <h2 className="title"> Voluntarios de Apoyo</h2>
@@ -322,7 +322,7 @@ const Apoyo = ({ children }) => {
                         }
                         )}
                     </Container>
-                </></>
+            </div>
         );
     }
 }
