@@ -56,7 +56,7 @@ function Cabezera() {
                                 fontSize: "1.125rem",
                                 border: "2px solid white",
                                 padding: "0.4rem 1rem",
-                                margin: "0rem",
+                                margin: "0.3rem",
                                 
                             }}
                             >Registrarse</Button>

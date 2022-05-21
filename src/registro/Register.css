@@ -20,7 +20,7 @@ h2 {
   padding: 20px 50px 10px;
   max-width: 550px;
   min-width: 400px;
-  background: linear-gradient(rgba(140, 223, 177, 0.55), rgba(140, 223, 177, 0.55));
+  background: linear-gradient(rgb(101 126 150 / 65%),#657e9691);
   border-radius: 10px;
   display: block;
   justify-content: center;
@@ -71,9 +71,9 @@ h2 {
 }
 
 [type="submit"] {
-  background: #a38924;
+  background: #0c242c;
   color: white;
-  border: 1px solid rgba(0, 0, 0, 0.175);
+  border: 1px solid #ffff;
   border-radius: 3px;
   padding: 8px;
   cursor: pointer;

@@ -38,7 +38,12 @@ body {
 }
 
 .textLabel {
-  color: black;
+  color: #0c242c;;
+  font-size: 17px;
+}
+
+.textLabel-2 {
+  color: #fff;;
   font-size: 17px;
 }
 

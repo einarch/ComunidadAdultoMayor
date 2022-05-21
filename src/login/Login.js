@@ -189,7 +189,7 @@ export const Login = () => {
                     <br/>
                     <div className="d-flex flex-row align-items-center justify-content-center">
                         <button
-                            className="textButton"
+                            className="textButton btn btn-success"
                             onClick={handleLogin}
                             type="submit"
                         >
@@ -198,7 +198,7 @@ export const Login = () => {
                     </div>
                 </Form>
                 <br/><br/>
-                <div>
+                <div className='color-de-olvide-contraseña'>
                 <a href="/restablecer">¿Olvidaste tu contraseña?</a>
                 </div>
             </Container >

@@ -134,7 +134,7 @@ const Apoyo = ({ children }) => {
                                     <div className="modal-body tam p-3 modalColor ">
                                         <Form id="formulario" className="row g-3" onSubmit={handleSubmit}>
                                             <Form.Group className="col-md-12">
-                                                <Form.Label className="form-label textLabel d-flex flex-row align-items-left">Telefono *</Form.Label>
+                                                <Form.Label className="form-label textLabel-2 d-flex flex-row align-items-left">Telefono *</Form.Label>
                                                 <Form.Control
                                                     type="text"
                                                     id="telefono"
@@ -153,7 +153,7 @@ const Apoyo = ({ children }) => {
                                                 </Form.Text>
                                             </Form.Group>
                                             <Form.Group className="col-md-12">
-                                                <Form.Label className="form-label textLabel d-flex flex-row align-items-left">Dias disponibles *</Form.Label>
+                                                <Form.Label className="form-label textLabel-2 d-flex flex-row align-items-left">Dias disponibles *</Form.Label>
                                                 <Form.Control
                                                     type="text"
                                                     id="dias"
@@ -172,7 +172,7 @@ const Apoyo = ({ children }) => {
                                                 </Form.Text>
                                             </Form.Group>
                                             <Form.Group className="col-md-12">
-                                                <Form.Label className="form-label textLabel d-flex flex-row align-items-left">Tipo de apoyo *</Form.Label>
+                                                <Form.Label className="form-label textLabel-2 d-flex flex-row align-items-left">Tipo de apoyo *</Form.Label>
                                                 <Form.Control
                                                     type="text"
                                                     id="tipo"
@@ -191,7 +191,7 @@ const Apoyo = ({ children }) => {
                                                 </Form.Text>
                                             </Form.Group>
                                             <Form.Group className="col-md-12">
-                                                <Form.Label className="form-label textLabel d-flex flex-row align-items-left">Motivacion </Form.Label>
+                                                <Form.Label className="form-label textLabel-2 d-flex flex-row align-items-left">Motivacion </Form.Label>
                                                 <Form.Control
                                                     as="textarea"
                                                     rows={3}
