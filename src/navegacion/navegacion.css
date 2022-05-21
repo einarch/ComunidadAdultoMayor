@@ -13,21 +13,22 @@
 .nav-link {
     font-size: 24px;
     font-weight: bold;
-    color: #014636 !important;
+    color: #0c4c8c !important;
     cursor: pointer;
     text-align: center;
     border-radius: 0px;
 }
 
 .active {
-    border-bottom: 5px solid #014636 ;
+    border-bottom: 5px solid #0c242c ;
     border-radius: 5px ;
 }
 
 .nav-link>a:hover {
-    color: white !important;
+    color: #0c242c !important;
 }
 
 #dropdown-menu-align-end {
-    background-color: #014636;
+    background-color: #0c242c !important;
+    color: #dbeaed !important;
 }

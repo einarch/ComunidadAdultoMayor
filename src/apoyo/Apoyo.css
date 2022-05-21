@@ -7,11 +7,9 @@
 
 body {
   margin-top: 0px;
-  background: linear-gradient(90deg, rgba(1, 70, 54, 1) 59%, rgba(1, 70, 54, 1) 59%);
+  background: linear-gradient(90deg,#4fbec9,#0c242c 59%);
 }
-.body-fondo{
-  background: linear-gradient(90deg, rgba(1, 70, 54, 1) 59%, rgba(1, 70, 54, 1) 59%) important!;
-}
+
 .title {
   font-size: 24px;
   text-align: center;
@@ -42,42 +40,57 @@ body {
 }
 
 .textModal {
-  color: black;
+  color: #fff;
   font-size: 17px;
 }
 
 .modalColor {
-  background: #efdc78;
+  background: #364c5c;
 }
 
-.btn-primary,
+.btn-primary{
+  background-color: #0c242c !important;
+  border: #dbeaed 2px solid !important;
+  font-weight: bold !important;
+  color: #dbeaed !important;
+}
 .btn-primary:hover,
 .btn-primary:active,
 .btn-primary:visited {
-  background-color: #49c1a5 !important;
+  background-color: #0c4c8c !important;
   border: #dbeaed 2px solid !important;
   font-weight: bold !important;
-  color:#014636 !important;
+  color: #dbeaed !important;
 
 }
 
-.btn-secondary,
+.btn-secondary {
+  background-color: #d93025 !important;
+  border-color: #fff !important;
+  color: #fff;
+}
+
 .btn-secondary:hover,
 .btn-secondary:active,
 .btn-secondary:visited {
   background-color: red !important;
 }
 
-.btn-success,
+.btn-success {
+  background-color: #0c242c !important;
+  border-color: #fff !important;
+  color: #f8f9fa;
+}
+
 .btn-success:hover,
 .btn-success:active,
 .btn-success:visited {
-  background-color: #365f41 !important;
+  background-color: #0c4c8c !important;
 }
 
 .modal-title {
   font-size: 24px;
-  color: black;
+  color: #fff;
 }
 
 .errorMessModal {

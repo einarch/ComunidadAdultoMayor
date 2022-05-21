@@ -8,7 +8,7 @@ background: url(./imagenes/imageAlter4.jpg);
   /*  */
 }
 .App{
-  background: #000614;
+  background: linear-gradient(90deg,#4fbec9,#0c242c 59%);
 }
 
 

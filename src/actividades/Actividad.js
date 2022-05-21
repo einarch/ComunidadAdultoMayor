@@ -130,7 +130,7 @@ const Actividad = ({ children }) => {
                                 <div className="modal-body tam p-3 modalColor ">
                                     <Form id="createActivityForm" className="row g-3" noValidate onSubmit={handleSubmit}>
                                         <Form.Group className="col-md-12">
-                                            <Form.Label className="form-label textLabel d-flex flex-row align-items-left">Nombre *</Form.Label>
+                                            <Form.Label className="form-label textLabel-2 d-flex flex-row align-items-left">Nombre *</Form.Label>
                                             <Form.Control
                                                 type="text"
                                                 id="name"
@@ -150,7 +150,7 @@ const Actividad = ({ children }) => {
                                             </Form.Text>
                                         </Form.Group>
                                         <Form.Group className="col-md-12">
-                                            <Form.Label className="form-label textLabel d-flex flex-row align-items-left">Fecha y Hora *</Form.Label>
+                                            <Form.Label className="form-label textLabel-2 d-flex flex-row align-items-left">Fecha y Hora *</Form.Label>
                                             <Form.Control
                                                 type="datetime-local"
                                                 min="2022-05-14T02:10"
@@ -171,7 +171,7 @@ const Actividad = ({ children }) => {
                                             </Form.Text>
                                         </Form.Group>
                                         <Form.Group className="col-md-12">
-                                            <Form.Label className="form-label textLabel d-flex flex-row align-items-left">Ubicación(*)</Form.Label>
+                                            <Form.Label className="form-label textLabel-2 d-flex flex-row align-items-left">Ubicación(*)</Form.Label>
                                             <Form.Control
                                                 as="textarea"
                                                 rows={3}
@@ -192,7 +192,7 @@ const Actividad = ({ children }) => {
                                             </Form.Text>
                                         </Form.Group>
                                         <Form.Group className="col-md-12">
-                                            <Form.Label className="form-label textLabel d-flex flex-row align-items-left">Descripción</Form.Label>
+                                            <Form.Label className="form-label textLabel-2 d-flex flex-row align-items-left">Descripción</Form.Label>
                                             <Form.Control
                                                 as="textarea"
                                                 rows={3}
