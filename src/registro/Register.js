@@ -1,5 +1,5 @@
-import React  from 'react';
-import {useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import { useFormik } from "formik";
 import { Form, InputGroup, Button, Row, Col } from 'react-bootstrap';
 import Container from "react-bootstrap/Container";
@@ -82,9 +82,9 @@ const Register = ({ children }) => {
         setstate(prevState => !prevState);
     }
 
-    const { handleSubmit,resetForm, handleChange, values, touched, errors, handleBlur } = useFormik({
+    const { handleSubmit, resetForm, handleChange, values, touched, errors, handleBlur } = useFormik({
 
-        initialValues: { nombre:"",apellido:"",email: "", password: "", password2: "",ciudad:"",fechaNacimiento:"" },
+        initialValues: { nombre: "", apellido: "", email: "", password: "", password2: "", ciudad: "", fechaNacimiento: "" },
         onSubmit: (values, { setSubmitting, resetForm }) => {
             Registrarse();
             setSubmitting(true);
@@ -124,8 +124,8 @@ const Register = ({ children }) => {
                 .matches(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,15}$/, "Caracteres no permitidos")
 
                 .oneOf([Yup.ref('password')], 'Las contraseñas deben coincidir'),
-                fechaNacimiento: Yup.string()
-                .required("Introduzca Fecha")  
+            fechaNacimiento: Yup.string()
+                .required("Introduzca Fecha")
         })
 
     })
@@ -178,11 +178,11 @@ const Register = ({ children }) => {
                 </Alert.Heading>
             </Alert>
             <Container className="RegisterForm d-flex flex-column justify-content-center align-items-center">
-                <h3 class="form-title"><i class="fa fa-user"></i> Registrarse</h3>
+                <h3 class="textTitleForm"><i class="fa fa-user"></i> Registrarse</h3>
 
                 <Form noValidate onSubmit={handleSubmit}>
                     <Form.Group>
-                        <Form.Label htmlFor="text" className="form-label d-flex flex-row justify-content-left">Nombre</Form.Label>
+                        <Form.Label htmlFor="text" className="form-label textLabel d-flex flex-row justify-content-left">Nombre</Form.Label>
                         <Form.Control className={errors.nombre && touched.nombre && "error"}
                             id="nombre"
                             type="text"
@@ -199,7 +199,7 @@ const Register = ({ children }) => {
                         )}
                     </Form.Text>
                     <Form.Group>
-                        <Form.Label htmlFor="text" className="form-label d-flex flex-row justify-content-left"  >Apellidos</Form.Label>
+                        <Form.Label htmlFor="text" className="form-label textLabel d-flex flex-row justify-content-left"  >Apellidos</Form.Label>
                         <Form.Control
                             className={errors.apellido && touched.apellido && "error"}
                             id="apellido"
@@ -218,7 +218,7 @@ const Register = ({ children }) => {
                         )}
                     </Form.Text>
                     <Form.Group>
-                        <Form.Label htmlFor="email" className="form-label d-flex flex-row justify-content-left"  >Email</Form.Label>
+                        <Form.Label htmlFor="email" className="form-label textLabel d-flex flex-row justify-content-left"  >Email</Form.Label>
                         <Form.Control
                             className={errors.email && touched.email && "error"}
                             id="email"
@@ -236,7 +236,7 @@ const Register = ({ children }) => {
                         )}
                     </Form.Text>
                     <Form.Group>
-                        <Form.Label htmlFor="password" className="form-label d-flex flex-row justify-content-left" >Contraseña</Form.Label>
+                        <Form.Label htmlFor="password" className="form-label textLabel d-flex flex-row justify-content-left" >Contraseña</Form.Label>
                         <InputGroup>
                             <Form.Control
                                 className={errors.password && touched.password && "error"}
@@ -267,7 +267,7 @@ const Register = ({ children }) => {
                         )}
                     </Form.Text>
                     <Form.Group className="col-md-12">
-                        <Form.Label htmlFor="password" className="form-label d-flex flex-row justify-content-left">Confirmar Contraseña</Form.Label>
+                        <Form.Label htmlFor="password" className="form-label textLabel d-flex flex-row justify-content-left">Confirmar Contraseña</Form.Label>
                         <InputGroup>
                             <Form.Control
                                 className={errors.password2 && touched.password2 && "error"}
@@ -298,7 +298,7 @@ const Register = ({ children }) => {
                     </Form.Text>
                     <Row className="col-md-13 mb-3">
                         <Form.Group as={Col} md="7">
-                            <Form.Label htmlFor="password" id="ciudad" className="form-label d-flex flex-row justify-content-left" >Fecha de Nacimiento</Form.Label>
+                            <Form.Label htmlFor="password" id="ciudad" className="form-label textLabel d-flex flex-row justify-content-left" >Fecha de Nacimiento</Form.Label>
                             <Form.Control type="date"
                                 min="1950-01-01"
                                 max="2004-12-31"
@@ -306,15 +306,15 @@ const Register = ({ children }) => {
                                 onBlur={handleBlur} id="fechaNacimiento"
                                 name="fechaNacimiento"
                                 value={values.fechaNacimiento} />
-                                <Form.Text className="errorMessModal d-flex flex-row col-11 justify-content-center" muted>
-                        {errors.fechaNacimiento && touched.fechaNacimiento && (
-                            <div className="input-feedback">{errors.fechaNacimiento}</div>
-                        )}
-                    </Form.Text>
+                            <Form.Text className="errorMessModal d-flex flex-row col-11 justify-content-center" muted>
+                                {errors.fechaNacimiento && touched.fechaNacimiento && (
+                                    <div className="input-feedback">{errors.fechaNacimiento}</div>
+                                )}
+                            </Form.Text>
                         </Form.Group>
-                        
-                    <Form.Group as={Col} md="5" >
-                            <Form.Label className="form-label d-flex flex-row justify-content-left">Ciudad</Form.Label>
+
+                        <Form.Group as={Col} md="5" >
+                            <Form.Label className="form-label textLabel d-flex flex-row justify-content-left">Ciudad</Form.Label>
                             <Form.Select
                                 onChange={handleChange}
                                 onBlur={handleBlur}

@@ -39,60 +39,6 @@ body {
   text-transform: uppercase;
 }
 
-.textModal {
-  color: #fff;
-  font-size: 17px;
-}
-
-.modalColor {
-  background: #364c5c;
-}
-
-.btn-primary{
-  background-color: #0c242c !important;
-  border: #dbeaed 2px solid !important;
-  font-weight: bold !important;
-  color: #dbeaed !important;
-}
-.btn-primary:hover,
-.btn-primary:active,
-.btn-primary:visited {
-  background-color: #0c4c8c !important;
-  border: #dbeaed 2px solid !important;
-  font-weight: bold !important;
-  color: #dbeaed !important;
-
-}
-
-.btn-secondary {
-  background-color: #d93025 !important;
-  border-color: #fff !important;
-  color: #fff;
-}
-
-.btn-secondary:hover,
-.btn-secondary:active,
-.btn-secondary:visited {
-  background-color: red !important;
-}
-
-.btn-success {
-  background-color: #0c242c !important;
-  border-color: #fff !important;
-  color: #f8f9fa;
-}
-
-.btn-success:hover,
-.btn-success:active,
-.btn-success:visited {
-  background-color: #0c4c8c !important;
-}
-
-.modal-title {
-  font-size: 24px;
-  color: #fff;
-}
-
 .errorMessModal {
   display: block;
 }

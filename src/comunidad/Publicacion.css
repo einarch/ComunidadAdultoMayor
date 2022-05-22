@@ -10,21 +10,12 @@ body {
 
 }
 
-
 .text {
   font-size: 24px;
   background: rgb(240, 248, 240);
 }
 
-.color {
-  background: #589674;
-}
-
 .tam {
   padding: auto;
 
-}
-
-.modalTitle {
-  color: white;
 }

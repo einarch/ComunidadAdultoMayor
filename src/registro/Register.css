@@ -20,7 +20,7 @@ h2 {
   padding: 20px 50px 10px;
   max-width: 550px;
   min-width: 400px;
-  background: linear-gradient(rgb(101 126 150 / 65%),#657e9691);
+  background: linear-gradient(rgb(251 251 251 / 80%), rgb(251 251 251 / 80%));
   border-radius: 10px;
   display: block;
   justify-content: center;
@@ -28,8 +28,8 @@ h2 {
 }
 
 .RegisterPage {
-  background: url("./../imagenes/imagenFondo.jpg") center center;
-  background-size: auto;
+  background: url("./../imagenes/imagenFondoRegister.jpg") center center;
+  background-size:cover;
   min-height: 657px;
   display: block;
 }

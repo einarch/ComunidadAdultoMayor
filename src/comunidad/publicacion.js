@@ -2,24 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
-import { Form } from 'react-bootstrap';
-import { useFormik} from "formik";
+import { Form, Row, Col, Modal, Image } from 'react-bootstrap';
+import { useFormik, useField, useFormikContext } from "formik";
 import * as Yup from "yup";
-import dateFormat from "dateformat";
+import dateFormat, { masks } from "dateformat";
+import TextTruncate from 'react-text-truncate';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './../comunidad/Publicacion.css';
 import avatar from '../imagenes/avatar.jpg';
+import publicacionDef from '../imagenes/publicacionDef.jpg'
 import configData from "../config/config.json";
-
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 
 const URL_PUBLICAR = configData.PUBLICAR_API_URL;
-
 
 const enviarDatos = async (url, datos) => {
     const resp = await fetch(url, {
         method: 'POST',
         body: JSON.stringify(datos),
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         }
 
     });
@@ -30,6 +32,14 @@ const enviarDatos = async (url, datos) => {
 }
 
 const Publicacion = ({ children }) => {
+    const [selectedFile, setSelectedFile] = useState();
+    const [isSelected, setIsSelected] = useState();
+    const [isFilePicked, setIsFilePicked] = useState(false);
+    
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const baseUrl = configData.PUBLICATIONS_API_URL;
     const [data, setData] = useState([]);
@@ -44,30 +54,30 @@ const Publicacion = ({ children }) => {
                 console.log(error);
             })
     }
-//la parte de validacion
-const { handleSubmit, resetForm, handleChange, values, touched, errors, handleBlur, isValid, isSubmitting } = useFormik({
-    initialValues: { descri: "" },
-    onSubmit: (values, { setSubmitting, resetForm, handleChange }) => {
-        // When button submits form and form is in the process of submitting, submit button is disabled
-        publicar();
-        setSubmitting(true);
-       ;    
-        // Simulate submitting to database, shows us values submitted, resets form
-        setTimeout(() => {
-            resetForm();
-            setSubmitting(false);
-        }, 500);
-    },
+    //la parte de validacion
+    const { handleSubmit, resetForm, handleChange, values, touched, errors, handleBlur, isValid, isSubmitting } = useFormik({
+        initialValues: { descri: "" },
+        onSubmit: (values, { setSubmitting, resetForm, handleChange }) => {
+            // When button submits form and form is in the process of submitting, submit button is disabled
+            publicar();
+            setSubmitting(true);
+            ;
+            // Simulate submitting to database, shows us values submitted, resets form
+            setTimeout(() => {
+                resetForm();
+                setSubmitting(false);
+            }, 500);
+        },
 
-    validationSchema: Yup.object().shape({
-        descri: Yup.string()
-            .required("Este campo es requerido")
-            .min(4, "La descripcion debe tener minimo 4 caracteres")
-            .max(1000, "La descripcion debe tener maximo 1000 caracteres")
-            
+        validationSchema: Yup.object().shape({
+            descri: Yup.string()
+                .required("Este campo es requerido")
+                .min(4, "La descripcion debe tener minimo 4 caracteres")
+                .max(1000, "La descripcion debe tener maximo 1000 caracteres")
+
+        })
     })
-})
-    
+
     let us = localStorage.getItem("user");
     const publicar = async () => {
         const fH = hoy.getFullYear() + '-' + (hoy.getMonth() + 1) + '-' + hoy.getDate() + ' ' + hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
@@ -82,11 +92,49 @@ const { handleSubmit, resetForm, handleChange, values, touched, errors, handleBl
         console.log(datos.descripcion);
         const respuestaJson = await enviarDatos(URL_PUBLICAR, datos);
         console.log(respuestaJson);
-        window.location=window.location.href;
+        window.location = window.location.href;
     }
-    function cambiar(){
-     // event  =>  setDesc ( event .target.value);
+    function cambiar() {
+        // event  =>  setDesc ( event .target.value);
     }
+
+    const changeHandler = (event) => {
+        setSelectedFile(event.target.files[0]);
+        setIsSelected(true);
+    };
+
+    // Calcular Fecjas par Date Icon
+    const getMonth = (dateIn) => {
+        var date = new Date(dateIn);
+        var monthName = date.toLocaleString('es-es', { month: 'long' });
+        monthName = monthName.charAt(0).toUpperCase() + monthName.slice(1);
+        return monthName;
+    };
+
+    const getDayNumber = (dateIn) => {
+        var date = new Date(dateIn);
+        var dayNumber = date.toLocaleString('es-es', { day: 'numeric' });
+        dayNumber = dayNumber.charAt(0).toUpperCase() + dayNumber.slice(1);
+        return dayNumber;
+    };
+
+    const getDayName = (dateIn) => {
+        var date = new Date(dateIn);
+        var dayName = date.toLocaleString('es-es', { weekday: 'long' });
+        dayName = dayName.charAt(0).toUpperCase() + dayName.slice(1);
+        return dayName;
+    };
+
+    const getTimePub = (dateIn) => {
+        var date = new Date(dateIn);
+        var timePub = date.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+        return timePub;
+    };
+
+    const getActivityByName = () => {
+
+    };
+
     useEffect(() => {
         peticionGet();
     }, [])
@@ -99,56 +147,64 @@ const { handleSubmit, resetForm, handleChange, values, touched, errors, handleBl
         </div><>
                 <br />
                 <br />
-                <h2 className="title">Publicaciones y Noticias</h2>
+                <h2 className="sectionTitle">Publicaciones y Noticias</h2>
                 <br />
                 <Container className="d-flex flex-row justify-content-end">
-                    <button type="button" className="btn m-2 btn-primary" data-bs-toggle="modal" data-bs-target="#miModal">Publicar</button>
+                    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#miModal">Publicar</button>
                 </Container>
                 <div align="center">
                     <div className="modal fade" id="miModal" tabIndex="-1" aria-hidden="true" aria-labelledby="modalTitle" data-bs-backdrop="static">
                         <div className="modal-dialog modal-dialog-centered">
                             <div className="modal-content">
                                 <div className="modalColor d-flex flex-row justify-content-center">
-                                    <h2 className="modal-title"><b>PUBLICACIÓN</b></h2>
+                                    <h3 className="textTitleForm">Crear Publicación</h3>
                                 </div>
                                 <div className="modal-body tam p-3 modalColor" id="Cpubli">
                                     <Form.Group className="col-md-12">
-                                            <Form.Label className="form-label textModal d-flex flex-row align-items-left">Escribe la publicacion *</Form.Label>
-                                            <Form.Control
-                                                as="textarea"
-                                                rows={14}
-                                                className={errors.descri && touched.descri && "error"}
-                                                class="form-control"
-                                                id="descri"
-                                                name="descri"
-                                                placeholder="Escriba lo que quiere publicar"
-                                                onChange={handleChange}
-                                                
-                                                onBlur={handleBlur}
-                                                value={values.descri}
-                                                required>
-                                            </Form.Control>
-                                            <Form.Text className="errorMessModal d-flex flex-row" muted>
-                                                {errors.descri && touched.descri && (
-                                                    <div className="input-feedback">{errors.descri}</div>
-                                                )}
-                                            </Form.Text>
-                                        </Form.Group>
+                                        <Form.Control
+                                            as="textarea"
+                                            rows={14}
+                                            className={errors.descri && touched.descri && "error"}
+                                            class="form-control"
+                                            id="descri"
+                                            name="descri"
+                                            placeholder="¿Que estas pensando?"
+                                            onChange={handleChange}
+
+                                            onBlur={handleBlur}
+                                            value={values.descri}
+                                            required>
+                                        </Form.Control>
+                                        <Form.Text className="errorMessModal d-flex flex-row" muted>
+                                            {errors.descri && touched.descri && (
+                                                <div className="input-feedback">{errors.descri}</div>
+                                            )}
+                                        </Form.Text>
+                                    </Form.Group>
+                                    <Form.Group className="col-md-12">
+                                        <Form.Label className="form-label textLabel d-flex flex-row align-items-left">Imagen</Form.Label>
+                                        <Form.Control
+                                            type="file"
+                                            name="imageFile"
+                                            id="imageFile"
+                                            onChange={changeHandler}
+                                        />
+                                    </Form.Group>
                                 </div>
                                 <div className="model-footer col-12 modalColor" align="center">
-                                    <button 
-                                     as="Input"
-                                     class="btn btn-secondary col-3 m-2"
-                                     data-bs-dismiss="modal"
-                                     onClick={resetForm}
-                                     >Cancelar</button>
-                                    <button 
-                                    type="submit"
-                                    as="Input"
-                                    class="btn btn-success col-3 m-2"
-                                    data-bs-dismiss={
-                                        touched.descri && !errors.descri ? "modal" : null}
-                                    onClick={handleSubmit}
+                                    <button
+                                        as="Input"
+                                        class="btn btn-secondary col-3 m-2"
+                                        data-bs-dismiss="modal"
+                                        onClick={resetForm}
+                                    >Cancelar</button>
+                                    <button
+                                        type="submit"
+                                        as="Input"
+                                        class="btn btn-success col-3 m-2"
+                                        data-bs-dismiss={
+                                            touched.descri && !errors.descri ? "modal" : null}
+                                        onClick={handleSubmit}
                                     >Publicar</button>
                                 </div>
                             </div>
@@ -156,25 +212,93 @@ const { handleSubmit, resetForm, handleChange, values, touched, errors, handleBl
                     </div>
                 </div>
                 <Container className="p-4 mb-4">
-                    {data.map(publicacion => {
-                        return (
-                            <Card id="cardItem" className="text-left">
-                                <Card.Body>
-                                    <Card.Text className='d-flex flex-row'>
-                                        <div className='col-sm-2 d-flex flex-column align-items-center justify-content-center '>
-                                            <img src={avatar} className="rounded-circle" height="120" width="120"></img>
+                    <Row xs={1} md={3} className="g-4">
+                        {Array.from(data).map(publicacion => (
+                            <Col>
+                                <Card className="cardSec text-center">
+                                    <div className='cardImageSize'>
+                                        <Card.Img className="cardItemImage" src={publicacion.IMAGEN ? publicacion.IMAGEN : publicacionDef} />
+                                    </div>
+                                    <Card.Body className="col-sm-12 d-flex flex-column align-items-center justify-content-center">
+                                        <Card.Text>
+                                            <div className="col-sm-12">
+                                                <div className="h-100 d-flex justify-content-center align-items-center" >
+                                                    <div className="col-sm-3">
+                                                        <img src={avatar} className="rounded-circle" height="60" width="60"></img>
+                                                    </div>
+                                                    <div className="col-sm-6" >
+                                                        <h4 className="cardItmUserName"><b>{publicacion.NOMBRE} {publicacion.APELLIDO}</b></h4>
+                                                    </div>
+                                                    <div className="col-sm-4 cartItmDate mb-2" >
+                                                        <time class="icon mb-3">
+                                                            <em>{getDayName(publicacion.FECHAHORAP)}</em>
+                                                            <strong>{getMonth(publicacion.FECHAHORAP)}</strong>
+                                                            <span>{getDayNumber(publicacion.FECHAHORAP)}</span>
+                                                        </time>
+                                                        <FontAwesomeIcon icon={faClock} style={{ color: "#1464b4" }} />
+                                                        <span className="cardItmText"><b> {getTimePub(publicacion.FECHAHORAP)}</b></span>
+                                                    </div>
+                                                </div>
+                                                <div className="col-sm-12 cardItmDes mb-4" >
+                                                    <TextTruncate
+                                                        className="cardItmText"
+                                                        line={3}
+                                                        element="h6"
+                                                        truncateText="…"
+                                                        text={publicacion.DESCRIPCIONP}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </Card.Text>
+                                        <div >
+                                            <button
+                                                className="btn btn-success "
+                                                onClick={handleShow}>
+                                                Ver detalle
+                                            </button>
                                         </div>
-                                        <div className="col-sm-10 d-flex flex-column align-items-left justify-content-center ">
-                                            <h3 className="cardItemUserName mt-0 mb-1"><b>{publicacion.NOMBRE} {publicacion.APELLIDO}</b></h3>
-                                            <h4 className="cardItemTitle"><b>Publicado:</b> {dateFormat(publicacion.FECHAHORAP, "dd/mm/yyyy h:MM TT")}</h4>
-                                            <h4 className="cardItemTitle"> {publicacion.DESCRIPCIONP}</h4>
-                                        </div>
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        )
-                    }
-                    )}
+
+                                        <Modal
+                                            className='mb-1'
+                                            show={show}
+                                            onHide={handleClose}
+                                            size="lg"
+                                            aria-labelledby="contained-modal-title-vcenter"
+                                            centered >
+                                            <Modal.Header className="d-flex flex-row justify-content-center">
+                                                <Modal.Title className="textTitleForm">Detalle de Publicación</Modal.Title>
+                                            </Modal.Header>
+                                            <Modal.Body>
+                                                <Row>
+                                                    <Col xs={6} md={5}>
+                                                        <div className='h-100 d-flex justify-content-center align-items-center'>
+                                                            <Image
+                                                                src={publicacion.IMAGEN ? publicacion.IMAGEN : publicacionDef}
+                                                                className='img-fluid rounded'
+                                                            />
+                                                        </div>
+                                                    </Col>
+                                                    <Col xs={12} md={7}>
+                                                        <h6 className="textLabel label">Nombre</h6>
+                                                        <span className="textInfoModal"> {publicacion.NOMBRE} {publicacion.APELLIDO}</span>
+                                                        <h6 className="textLabel">Fecha y hora</h6>
+                                                        <span className="textInfoModal">{dateFormat(publicacion.FECHAHORAP, "dd/mm/yyyy h:MM TT")}</span>
+                                                        <h6 className="textLabel">Descripción</h6>
+                                                        <span className="textInfoModal">{publicacion.DESCRIPCIONP}</span>
+                                                    </Col>
+                                                </Row>
+                                            </Modal.Body>
+                                            <Modal.Footer>
+                                                <button className="btn btn-primary" onClick={handleClose}>
+                                                    Cerrar
+                                                </button>
+                                            </Modal.Footer>
+                                        </Modal>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        ))}
+                    </Row>
                 </Container>
             </></>
     );

@@ -11,11 +11,153 @@ background: url(./imagenes/imageAlter4.jpg);
   background: linear-gradient(90deg,#4fbec9,#0c242c 59%);
 }
 
+/*Titulo principal de cada seccion, con h2*/
+.sectionTitle {
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+}
 
+/*Titulos de Formularios con h3 */
+.textTitleForm {
+  color: #0c242c;
+  font-size: 28px;
+  font-weight: bold;
+}
 
+/*Text de los labels de formulario */
+.textLabel {
+  color: #0c242c;
+  font-size: 17px;
+  font-weight: bold;
+}
 
+/*Color de fondo del modal */
+.modalColor {
+  background: white;
+}
 
+/*Texto de los modals de ver detalle */
+.textInfoModal {
+  font-size: 17px;
+  color: black;
+}
 
+/*Boton de Crear, Publicar en la pagina de secciones*/
+.btn-primary {
+  background-color: #0c242c !important;
+  border: #dbeaed 2px solid !important;
+  font-weight: bold !important;
+  color: #dbeaed !important;
+}
 
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #0c4c8c !important;
+  border: #dbeaed 2px solid !important;
+  font-weight: bold !important;
+  color: #dbeaed !important;
 
+}
 
+/*Boton de Cancelar de los formularios*/
+.btn-secondary {
+  background-color: #d93025 !important;
+  border-color: #fff !important;
+  color: #fff;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:visited {
+  background-color: red !important;
+}
+
+/*Boton de Crear de los formularios*/
+.btn-success {
+  background-color: #0c242c !important;
+  border-color: #fff !important;
+  color: #f8f9fa;
+}
+
+.btn-success:hover,
+.btn-success:active,
+.btn-success:visited {
+  background-color: #0c4c8c !important;
+}
+
+/*Texto de nombre usuario del card*/
+.cardItmUserName {
+  font-size: 17px;
+  color: black;
+  text-align: left;
+}
+
+/*Texto de titulo del card*/
+.cardItmTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #0c4c8c;
+}
+
+.errorMessModal {
+  display: block;
+}
+
+.cardSec {
+  min-height: 545px;
+  max-height: 550px;
+}
+
+.cardItmText {
+  font-size: 17px;
+  color: black;
+}
+
+.cardItemImage {
+  transform: scale(1);
+  transition: all 0.2s ease-in-out;
+  width: 200px;
+  height: 200px;
+}
+
+.cardImageSize {
+  width: auto;
+  height: 130px;
+}
+
+.cardItmHeader {
+  width: auto;
+  height: 70px;
+}
+
+.cartItmDate {
+  width: auto;
+  height: 160px;
+}
+
+.cardItmDes {
+  width: auto;
+  height: 50px;
+}
+
+.cardTitleSec {
+  width: auto;
+  height: 45px;
+}
+
+.cardItmLocation {
+  width: auto;
+  height: 30px;
+}
+
+.cardItemIconLocation {
+  width: 30px;
+  height: 5px;
+}
+
+.cardItmHeaderAct {
+  width: auto;
+  height: 150px;
+}
