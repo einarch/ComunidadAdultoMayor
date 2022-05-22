@@ -20,7 +20,7 @@ h2 {
   padding: 20px 50px 10px;
   max-width: 500px;
   min-width: 350px;
-  background: linear-gradient(rgba(140, 223, 177, 0.55), rgba(140, 223, 177, 0.55));
+  background: linear-gradient(rgb(251 251 251 / 80%), rgb(251 251 251 / 80%));
   border-radius: 10px;
   display: block;
   justify-content: center;
@@ -28,8 +28,8 @@ h2 {
 }
 
 .loginPage {
-  background: url("./../imagenes/imagenFondo.jpg") center center;
-  background-size: auto;
+  background: url("./../imagenes/imagenFondoLogin.jpg") center center;
+  background-size: cover;
   min-height: 657px;
   display: block;
 }
@@ -86,7 +86,6 @@ h2 {
 [type="submit"]:disabled:hover {
   box-shadow: none;
 }
-
 
 .success-msg,
 .err-msg {

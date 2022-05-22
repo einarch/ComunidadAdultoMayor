@@ -1,16 +1,10 @@
-import { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
-import swal from 'sweetalert';
+import React from 'react';
+import { useState } from 'react';
 import { useFormik } from "formik";
-import { Form, InputGroup, Button, FormGroup, Row, Col } from 'react-bootstrap';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
-import logo from './../imagenes/logo-comunidad.PNG'
+import { Form, InputGroup, Button, Row, Col } from 'react-bootstrap';
 import Container from "react-bootstrap/Container";
 import configData from "../config/config.json";
-import { useNavigate } from 'react-router-dom'
 import Alert from "react-bootstrap/Alert";
-import { UserContext } from '../login/context/UserContext';
 import "./Register.css";
 import * as Yup from "yup";
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
@@ -88,12 +82,14 @@ const Register = ({ children }) => {
         setstate(prevState => !prevState);
     }
 
-    const { handleSubmit, handleChange, values, touched, errors, handleBlur } = useFormik({
+    const { handleSubmit, resetForm, handleChange, values, touched, errors, handleBlur } = useFormik({
 
-        initialValues: { email: "", password: "", password2: "" },
-        onSubmit: (values, { setSubmitting }) => {
+        initialValues: { nombre: "", apellido: "", email: "", password: "", password2: "", ciudad: "", fechaNacimiento: "" },
+        onSubmit: (values, { setSubmitting, resetForm }) => {
+            Registrarse();
+            setSubmitting(true);
             setTimeout(() => {
-                console.log("Logging in", values);
+                resetForm();
                 setSubmitting(false);
             }, 500);
         },
@@ -127,8 +123,9 @@ const Register = ({ children }) => {
                 .max(15, "Contraseña no válida")
                 .matches(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,15}$/, "Caracteres no permitidos")
 
-                .oneOf([Yup.ref('password')], 'Las contraseñas deben coincidir')
-
+                .oneOf([Yup.ref('password')], 'Las contraseñas deben coincidir'),
+            fechaNacimiento: Yup.string()
+                .required("Introduzca Fecha")
         })
 
     })
@@ -178,15 +175,14 @@ const Register = ({ children }) => {
             <Alert show={isValid} variant="danger" style={{ width: "35rem" }}>
                 <Alert.Heading>
                     {mensaje}
-                    <button type="button" class="btn-close derecha" data-bs-dismiss="alert" aria-label="Close"></button>
                 </Alert.Heading>
             </Alert>
             <Container className="RegisterForm d-flex flex-column justify-content-center align-items-center">
-                <h3 class="form-title"><i class="fa fa-user"></i> Registrarse</h3>
+                <h3 class="textTitleForm"><i class="fa fa-user"></i> Registrarse</h3>
 
                 <Form noValidate onSubmit={handleSubmit}>
                     <Form.Group>
-                        <Form.Label htmlFor="text" className="form-label d-flex flex-row justify-content-left">Nombre</Form.Label>
+                        <Form.Label htmlFor="text" className="form-label textLabel d-flex flex-row justify-content-left">Nombre</Form.Label>
                         <Form.Control className={errors.nombre && touched.nombre && "error"}
                             id="nombre"
                             type="text"
@@ -203,7 +199,7 @@ const Register = ({ children }) => {
                         )}
                     </Form.Text>
                     <Form.Group>
-                        <Form.Label htmlFor="text" className="form-label d-flex flex-row justify-content-left"  >Apellidos</Form.Label>
+                        <Form.Label htmlFor="text" className="form-label textLabel d-flex flex-row justify-content-left"  >Apellidos</Form.Label>
                         <Form.Control
                             className={errors.apellido && touched.apellido && "error"}
                             id="apellido"
@@ -222,7 +218,7 @@ const Register = ({ children }) => {
                         )}
                     </Form.Text>
                     <Form.Group>
-                        <Form.Label htmlFor="email" className="form-label d-flex flex-row justify-content-left"  >Email</Form.Label>
+                        <Form.Label htmlFor="email" className="form-label textLabel d-flex flex-row justify-content-left"  >Email</Form.Label>
                         <Form.Control
                             className={errors.email && touched.email && "error"}
                             id="email"
@@ -240,7 +236,7 @@ const Register = ({ children }) => {
                         )}
                     </Form.Text>
                     <Form.Group>
-                        <Form.Label htmlFor="password" className="form-label d-flex flex-row justify-content-left" >Contraseña</Form.Label>
+                        <Form.Label htmlFor="password" className="form-label textLabel d-flex flex-row justify-content-left" >Contraseña</Form.Label>
                         <InputGroup>
                             <Form.Control
                                 className={errors.password && touched.password && "error"}
@@ -271,7 +267,7 @@ const Register = ({ children }) => {
                         )}
                     </Form.Text>
                     <Form.Group className="col-md-12">
-                        <Form.Label htmlFor="password" className="form-label d-flex flex-row justify-content-left">Confirmar Contraseña</Form.Label>
+                        <Form.Label htmlFor="password" className="form-label textLabel d-flex flex-row justify-content-left">Confirmar Contraseña</Form.Label>
                         <InputGroup>
                             <Form.Control
                                 className={errors.password2 && touched.password2 && "error"}
@@ -300,29 +296,9 @@ const Register = ({ children }) => {
                             <div className="input-feedback">{errors.password2}</div>
                         )}
                     </Form.Text>
-                    <Row className="col-md-12 mb-3">
-                        <Form.Group as={Col} md="5" >
-                            <Form.Label className="form-label d-flex flex-row justify-content-left">Ciudad</Form.Label>
-                            <Form.Select
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                id="ciudad"
-                                name="ciudad"
-                                type="text"
-                                value={values.ciudad} >
-                                <option value="c">Cochabamba</option>
-                                <option value="l">La Paz</option>
-                                <option value="s">Santa Cruz</option>
-                                <option value="p">Pando</option>
-                                <option value="b">Beni</option>
-                                <option value="o">Oruro</option>
-                                <option value="p">Potosi</option>
-                                <option value="s">Sucre</option>
-                                <option value="t">Tarija</option>
-                            </Form.Select>
-                        </Form.Group>
+                    <Row className="col-md-13 mb-3">
                         <Form.Group as={Col} md="7">
-                            <Form.Label htmlFor="password" id="ciudad" className="form-label d-flex flex-row justify-content-left" >Fecha de Nacimiento</Form.Label>
+                            <Form.Label htmlFor="password" id="ciudad" className="form-label textLabel d-flex flex-row justify-content-left" >Fecha de Nacimiento</Form.Label>
                             <Form.Control type="date"
                                 min="1950-01-01"
                                 max="2004-12-31"
@@ -330,6 +306,32 @@ const Register = ({ children }) => {
                                 onBlur={handleBlur} id="fechaNacimiento"
                                 name="fechaNacimiento"
                                 value={values.fechaNacimiento} />
+                            <Form.Text className="errorMessModal d-flex flex-row col-11 justify-content-center" muted>
+                                {errors.fechaNacimiento && touched.fechaNacimiento && (
+                                    <div className="input-feedback">{errors.fechaNacimiento}</div>
+                                )}
+                            </Form.Text>
+                        </Form.Group>
+
+                        <Form.Group as={Col} md="5" >
+                            <Form.Label className="form-label textLabel d-flex flex-row justify-content-left">Ciudad</Form.Label>
+                            <Form.Select
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                id="ciudad"
+                                name="ciudad"
+                                type="text"
+                                value={values.ciudad} >
+                                <option value="Cochabamba">Cochabamba</option>
+                                <option value="La Paz">La Paz</option>
+                                <option value="Santa Cruz">Santa Cruz</option>
+                                <option value="Pando">Pando</option>
+                                <option value="Beni">Beni</option>
+                                <option value="Oruro">Oruro</option>
+                                <option value="Potosi">Potosi</option>
+                                <option value="Sucre">Sucre</option>
+                                <option value="Tarija">Tarija</option>
+                            </Form.Select>
                         </Form.Group>
                     </Row>
                     <div className="d-flex flex-row align-items-center justify-content-center">
@@ -337,7 +339,7 @@ const Register = ({ children }) => {
                             className="btn btn-success col-4 m-1"
                             type="submit"
                             as="Input"
-                            onClick={Registrarse} >
+                            onClick={handleSubmit} >
                             Registrarse
                         </button>
                         <button

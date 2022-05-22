@@ -38,43 +38,6 @@ body {
   text-transform: uppercase;
 }
 
-.textModal {
-  color: black;
-  font-size: 17px;
-}
-
-.modalColor {
-  background: #efdc78;
-}
-
-.btn-primary,
-.btn-primary:hover,
-.btn-primary:active,
-.btn-primary:visited {
-  background-color: #589674 !important;
-  border: white 2px solid !important;
-
-}
-
-.btn-secondary,
-.btn-secondary:hover,
-.btn-secondary:active,
-.btn-secondary:visited {
-  background-color: red !important;
-}
-
-.btn-success,
-.btn-success:hover,
-.btn-success:active,
-.btn-success:visited {
-  background-color: #365f41 !important;
-}
-
-.modal-title {
-  font-size: 24px;
-  color: black;
-}
-
 .errorMessModal {
   display: block;
 }

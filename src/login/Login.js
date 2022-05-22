@@ -132,9 +132,9 @@ export const Login = () => {
                 </Alert.Heading>
             </Alert>
             <br />
-            <br />
+
             <Container className="loginForm d-flex flex-column justify-content-center align-items-center">
-                <div className='mb-5'>
+                <div className='mb-4'>
                     <img src={logo} className="rounded-circle" height="120" width="120"></img>
                 </div>
                 <Form onSubmit={handleSubmit}>
@@ -183,18 +183,18 @@ export const Login = () => {
                             </Button>
                         </InputGroup>
                     </Form.Group>
-                    <Form.Text className="errorMessModal d-flex flex-row justify-content-center" muted>
+                    <Form.Text className="errorMessModal d-flex flex-row justify-content-center mb-3" muted>
                         {errors.password && touched.password && (
                             <div className="input-feedback">{errors.password}</div>
                         )}
                     </Form.Text>
                     <div className="d-flex flex-row align-items-center justify-content-center">
                         <button
-                            className="textButton"
+                            className="btn btn-success col-4 m-1"
                             onClick={handleLogin}
                             type="submit"
                         >
-                            <FontAwesomeIcon icon={faSignInAlt} /> Ingresar
+                            Ingresar
                         </button>
                     </div>
                 </Form>
