@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Nav, Container, Form, Button } from 'react-bootstrap';
 import './Cabezera.css';
-import logo from '../imagenes/logo-comunidad.PNG'
+import logo from '../imagenes/logo-comunidad1.jpg'
 
 
 function Cabezera() {

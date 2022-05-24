@@ -4,7 +4,7 @@ import Alert from "react-bootstrap/Alert";
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import swal from 'sweetalert';
 import "./Login.css";
-import logo from './../imagenes/logo-comunidad.PNG'
+import logo from './../imagenes/logo-comunidad1.jpg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { useFormik } from "formik";
