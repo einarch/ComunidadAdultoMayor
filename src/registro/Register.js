@@ -86,6 +86,7 @@ const Register = ({ children }) => {
 
         initialValues: { nombre: "", apellido: "", email: "", password: "", password2: "", ciudad: "", fechaNacimiento: "" },
         onSubmit: (values, { setSubmitting, resetForm }) => {
+            selecciona();
             Registrarse();
             setSubmitting(true);
             setTimeout(() => {
@@ -125,7 +126,9 @@ const Register = ({ children }) => {
 
                 .oneOf([Yup.ref('password')], 'Las contraseñas deben coincidir'),
             fechaNacimiento: Yup.string()
-                .required("Introduzca Fecha")
+                .required("Introduzca Fecha"),
+             ciudad: Yup.string()
+                .required("selecciona una ciudad")
         })
 
     })
@@ -150,6 +153,15 @@ const Register = ({ children }) => {
             }
         }
         return edad;
+
+    };
+    const selecciona = ()=>{
+        var seleciona =document.getElementById("ciudad");
+        if(seleciona.value==0 || seleciona.value==""){
+
+            alert("selecciona una ciudad");
+            seleciona.focus();
+        }
 
     };
 
@@ -322,7 +334,7 @@ const Register = ({ children }) => {
                                 name="ciudad"
                                 type="text"
                                 value={values.ciudad} >
-                                <option value="">Seleccione una ciudad</option>
+                                <option value="0">Seleccione una ciudad</option>
                                 <option value="Cochabamba">Cochabamba</option>
                                 <option value="La Paz">La Paz</option>
                                 <option value="Santa Cruz">Santa Cruz</option>
@@ -333,6 +345,11 @@ const Register = ({ children }) => {
                                 <option value="Sucre">Sucre</option>
                                 <option value="Tarija">Tarija</option>
                             </Form.Select>
+                            <Form.Text className="errorMessModal d-flex flex-row col-11 justify-content-center" muted>
+                                {errors.ciudad && touched.ciudad && (
+                                    <div className="input-feedback">{errors.ciudad}</div>
+                                )}
+                            </Form.Text>
                         </Form.Group>
                     </Row>
                     <div className="d-flex flex-row align-items-center justify-content-center">
