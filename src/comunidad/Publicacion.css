@@ -44,10 +44,10 @@ body {
  align-items: center;
  justify-content: center;
  border: 0;
- padding: 10px 8px;
- background: linear-gradient(#00435f, #5dc6ff);
+ padding: 7px 5px;
+ background: #0c4c8c;
  color: #fff;
- border-radius: 8px;
+ border-radius: 3px;
  box-shadow: 0 0 12px rgba(0, 0, 0, .2);
  position: relative;
  cursor: pointer;
@@ -190,7 +190,7 @@ to {
  justify-content: center;
  border: 0;
  padding: 10px 8px;
- background: linear-gradient(#00435f, #5dc6ff);
+ background: #0c4c8c;
  color: #fff;
  border-radius: 8px;
  box-shadow: 0 0 12px rgba(0, 0, 0, .2);
