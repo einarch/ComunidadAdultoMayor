@@ -49,14 +49,6 @@ const Register = ({ children }) => {
             "fechaNacimiento": values.fechaNacimiento
         };
         console.log(datos);
-        console.log(datos.usuario);
-        console.log(datos.clave);
-        console.log(datos.nombre);
-        console.log(datos.apellido);
-        console.log(generarIdRol());
-        console.log(datos.fechaNacimiento);
-        console.log(calcularEdad());
-        console.log(datos.ciudad);
         const respuestaJson = await enviarDatos(URL_BUSCAR, datos);
         console.log(respuestaJson);
         if (respuestaJson.Existe === true) {
@@ -95,40 +87,38 @@ const Register = ({ children }) => {
             }, 500);
         },
 
-
         validationSchema: Yup.object().shape({
             nombre: Yup.string()
-                .min(3, "Nombre no válido")
-                .max(30, "Nombre no válido")
-                .required("Introduzca su Nombre")
+                .min(3, "El Nombre debe contener al menos 3 caracteres")
+                .max(30, "El Nombre debe contener máximo 30 caracteres")
+                .required("El Nombre es requerido")
                 .matches(/^[a-zA-Z]+$/, "Caracteres no permitidos"),
             apellido: Yup.string()
-                .min(3, "Apellido no válido")
-                .max(30, "Apellido no válido")
-                .required("Introduzca su Apellido")
+                .min(3, "Apellidos debe contener al menos 3 caracteres")
+                .max(30, "Apellidos debe contener máximo 30 caracteres")
+                .required("Apellidos son requeridos")
                 .matches(/^[a-zA-Z ]+$/, "Caracteres no permitidos"),
             email: Yup.string()
                 .email("Correo no válido")
-                .min(6, "Correo no válido")
-                .max(30, "Correo no válido")
-                .required("Introduzca su correo")
+                .min(6, "El Correo debe contener al menos 6 caracteres")
+                .max(30, "El Correo debe contener máximo 30 caracteres")
+                .required("El Correo es requerido")
                 .matches(/^[a-z0-9.\s]+@[a-z0-9\s]+\.[a-z0-9.\s]/, "Caracteres no permitidos"),
             password: Yup.string()
-                .required("Introduzca su contraseña")
-                .min(6, "Contraseña no válida")
-                .max(15, "Contraseña no válida")
+                .required("La Contraseña es requerido")
+                .min(6, "La Contraseña debe contener al menos 6 caracteres")
+                .max(15, "La Contraseña debe contener máximo 15 caracteres")
                 .matches(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,15}$/, "Caracteres no permitidos"),
             password2: Yup.string()
-                .required("Introduzca su contraseña")
-                .min(6, "Contraseña no válida")
-                .max(15, "Contraseña no válida")
+                .required("Confirmar Contraseña es requerido")
+                .min(6, "Confirmar Contraseña debe contener al menos 6 caracteres")
+                .max(15, "Confirmar Contraseña debe contener máximo 15 caracteres")
                 .matches(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,15}$/, "Caracteres no permitidos")
-
                 .oneOf([Yup.ref('password')], 'Las contraseñas deben coincidir'),
             fechaNacimiento: Yup.string()
-                .required("Introduzca Fecha"),
-             ciudad: Yup.string()
-                .required("selecciona una ciudad")
+                .required("La Fecha de Nacimiento es requerido"),
+            ciudad: Yup.string()
+                .required("La Ciudad es requerido")
         })
 
     })
@@ -155,9 +145,9 @@ const Register = ({ children }) => {
         return edad;
 
     };
-    const selecciona = ()=>{
-        var seleciona =document.getElementById("ciudad");
-        if(seleciona.value==0 || seleciona.value==""){
+    const selecciona = () => {
+        var seleciona = document.getElementById("ciudad");
+        if (seleciona.value == 0 || seleciona.value == "") {
 
             alert("selecciona una ciudad");
             seleciona.focus();
@@ -189,17 +179,19 @@ const Register = ({ children }) => {
                     {mensaje}
                 </Alert.Heading>
             </Alert>
-            <Container className="RegisterForm d-flex flex-column justify-content-center align-items-center">
-                <h3 class="textTitleForm"><i class="fa fa-user"></i> Registrarse</h3>
-
+            <Container className="RegisterForm">
+                <h3 class="textTitleForm d-flex flex-column align-items-center"><i class="fa fa-user"></i> Registrarse</h3>
+                <div className=" d-flex flex-row justify-content-left textForm mb-1">
+                    <span >Los campos marcados * son obligatorios</span>
+                </div>
                 <Form noValidate onSubmit={handleSubmit}>
                     <Form.Group>
-                        <Form.Label htmlFor="text" className="form-label textLabel d-flex flex-row justify-content-left">Nombre</Form.Label>
+                        <Form.Label htmlFor="text" className="form-label textLabel d-flex flex-row justify-content-left">Nombre*</Form.Label>
                         <Form.Control className={errors.nombre && touched.nombre && "error"}
                             id="nombre"
                             type="text"
                             name="nombre"
-                            placeholder="Ingresa su nombre"
+                            placeholder="Ingrese su nombre"
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.nombre}
@@ -211,13 +203,13 @@ const Register = ({ children }) => {
                         )}
                     </Form.Text>
                     <Form.Group>
-                        <Form.Label htmlFor="text" className="form-label textLabel d-flex flex-row justify-content-left"  >Apellidos</Form.Label>
+                        <Form.Label htmlFor="text" className="form-label textLabel d-flex flex-row justify-content-left"  >Apellidos*</Form.Label>
                         <Form.Control
                             className={errors.apellido && touched.apellido && "error"}
                             id="apellido"
                             type="text"
                             name="apellido"
-                            placeholder="Ingresa tus apellidos"
+                            placeholder="Ingrese sus apellidos"
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.apellido}
@@ -230,13 +222,13 @@ const Register = ({ children }) => {
                         )}
                     </Form.Text>
                     <Form.Group>
-                        <Form.Label htmlFor="email" className="form-label textLabel d-flex flex-row justify-content-left"  >Email</Form.Label>
+                        <Form.Label htmlFor="email" className="form-label textLabel d-flex flex-row justify-content-left"  >Correo*</Form.Label>
                         <Form.Control
                             className={errors.email && touched.email && "error"}
                             id="email"
                             type="email"
                             name="email"
-                            placeholder="Ingresa tu correo"
+                            placeholder="Ingrese su correo"
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.email}
@@ -248,14 +240,14 @@ const Register = ({ children }) => {
                         )}
                     </Form.Text>
                     <Form.Group>
-                        <Form.Label htmlFor="password" className="form-label textLabel d-flex flex-row justify-content-left" >Contraseña</Form.Label>
+                        <Form.Label htmlFor="password" className="form-label textLabel d-flex flex-row justify-content-left" >Contraseña*</Form.Label>
                         <InputGroup>
                             <Form.Control
                                 className={errors.password && touched.password && "error"}
                                 id="password"
                                 type={state ? "text" : "password"}
                                 name="password"
-                                placeholder="Ingresa su contraseña"
+                                placeholder="Ingrese la contraseña"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.password}
@@ -279,14 +271,14 @@ const Register = ({ children }) => {
                         )}
                     </Form.Text>
                     <Form.Group className="col-md-12">
-                        <Form.Label htmlFor="password" className="form-label textLabel d-flex flex-row justify-content-left">Confirmar Contraseña</Form.Label>
+                        <Form.Label htmlFor="password" className="form-label textLabel d-flex flex-row justify-content-left">Confirmar Contraseña*</Form.Label>
                         <InputGroup>
                             <Form.Control
                                 className={errors.password2 && touched.password2 && "error"}
                                 id="password2"
                                 type={state ? "text" : "password"}
                                 name="password2"
-                                placeholder="Ingresa su contraseña"
+                                placeholder="Ingrese la contraseña"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.password2}
@@ -310,7 +302,7 @@ const Register = ({ children }) => {
                     </Form.Text>
                     <Row className="col-md-13 mb-3">
                         <Form.Group as={Col} md="7">
-                            <Form.Label htmlFor="password" id="ciudad" className="form-label textLabel d-flex flex-row justify-content-left" >Fecha de Nacimiento</Form.Label>
+                            <Form.Label htmlFor="password" id="ciudad" className="form-label textLabel d-flex flex-row justify-content-left" >Fecha de Nacimiento*</Form.Label>
                             <Form.Control type="date"
                                 min="1950-01-01"
                                 max="2004-12-31"
@@ -326,7 +318,7 @@ const Register = ({ children }) => {
                         </Form.Group>
 
                         <Form.Group as={Col} md="5" >
-                            <Form.Label className="form-label textLabel d-flex flex-row justify-content-left">Ciudad</Form.Label>
+                            <Form.Label className="form-label textLabel d-flex flex-row justify-content-left">Ciudad*</Form.Label>
                             <Form.Select
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -354,17 +346,17 @@ const Register = ({ children }) => {
                     </Row>
                     <div className="d-flex flex-row align-items-center justify-content-center">
                         <button
+                            className="btn btn-secondary col-4 m-1"
+                            onClick={paginaI}
+                            href="../components/PaginaInicio"
+                        >Cancelar
+                        </button>
+                        <button
                             className="btn btn-success col-4 m-1"
                             type="submit"
                             as="Input"
                             onClick={handleSubmit} >
                             Registrarse
-                        </button>
-                        <button
-                            className="btn btn-secondary col-4 m-1"
-                            onClick={paginaI}
-                            href="../components/PaginaInicio"
-                        >Cancelar
                         </button>
                     </div>
                 </Form>

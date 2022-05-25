@@ -18,8 +18,6 @@ const URL_PUBLICAR = configData.PUBLICAR_API_URL;
 
 const Publicacion = ({ children }) => {
     const [selectedFile, setSelectedFile] = useState();
-    const [isSelected, setIsSelected] = useState();
-    const [isFilePicked, setIsFilePicked] = useState(false);
 
     const [show, setShow] = useState(false);
 
@@ -58,17 +56,17 @@ const Publicacion = ({ children }) => {
 
         validationSchema: Yup.object().shape({
             descri: Yup.string()
-                .required("Este campo es requerido")
-                .min(4, "La descripcion debe tener minimo 4 caracteres")
-                .max(1000, "La descripcion debe tener maximo 1000 caracteres"),
+                .required("La Descripción es requerido")
+                .min(4, "La Descripción debe contener al menos 4 caracteres")
+                .max(1000, "La Descripción debe contener máximo 1000 caracteres"),
             file: Yup.mixed()
+                .nullable()
+                .notRequired()
                 .test(
                     "fileType",
-                    "El tipo de imagen no permitido",
-                    (file) =>
-                        file && SUPPORTED_FORMATS.includes(file.type)
+                    "El tipo de archivo no es permitido",
+                    value => !value || (value && SUPPORTED_FORMATS.includes(value.type))
                 )
-
         })
     })
 
@@ -122,7 +120,10 @@ const Publicacion = ({ children }) => {
     //Construir publicacion
     let us = localStorage.getItem("user");
     const publicar = async () => {
-        var imageURL = await postImage();
+        var imageURL = "";
+        if (selectedFile && values.file) {
+            var imageURL = await postImage();
+        }
         const fH = hoy.getFullYear() + '-' + (hoy.getMonth() + 1) + '-' + hoy.getDate() + ' ' + hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
         console.log(fH);
         const datos = {
@@ -135,11 +136,6 @@ const Publicacion = ({ children }) => {
         console.log("Publicacion Enviada: " + respuestaJson);
         window.location = window.location.href;
     }
-
-    const changeHandler = (event) => {
-        setSelectedFile(event.target.files[0]);
-        setIsSelected(true);
-    };
 
     // Calcular Fechas par Date Icon
     const getMonth = (dateIn) => {
@@ -169,6 +165,11 @@ const Publicacion = ({ children }) => {
         return timePub;
     };
 
+    function borrar() {
+        document.getElementById("file").value = "";
+        return resetForm();
+    }
+
     useEffect(() => {
         peticionGet();
     }, [])
@@ -194,6 +195,9 @@ const Publicacion = ({ children }) => {
                                     <h3 className="textTitleForm">Crear Publicación</h3>
                                 </div>
                                 <div className="modal-body tam p-3 modalColor" id="Cpubli">
+                                    <div className="d-flex flex-row textForm mb-1">
+                                        <span >Los campos marcados * son obligatorios</span>
+                                    </div>
                                     <Form.Group className="col-md-12">
                                         <Form.Control
                                             as="textarea"
@@ -249,7 +253,7 @@ const Publicacion = ({ children }) => {
                                         as="Input"
                                         class="btn btn-secondary col-3 m-2"
                                         data-bs-dismiss="modal"
-                                        onClick={resetForm}
+                                        onClick={borrar}
                                     >Cancelar</button>
                                     <button
                                         type="submit"
@@ -296,7 +300,7 @@ const Publicacion = ({ children }) => {
                                                     <TextTruncate
                                                         className="cardItmText"
                                                         line={3}
-                                                        element="h6"
+                                                        element="span"
                                                         truncateText="…"
                                                         text={publicacion.DESCRIPCIONP}
                                                     />
@@ -366,7 +370,7 @@ const Publicacion = ({ children }) => {
                                                     <Col xs={6} md={5}>
                                                         <div className='h-100 d-flex justify-content-center align-items-center'>
                                                             <Image
-                                                                src={publicacion.IMAGEN ? publicacion.IMAGEN : publicacionDef}
+                                                                src={publicacion.IMAGENP ? publicacion.IMAGENP : publicacionDef}
                                                                 className='img-fluid rounded'
                                                             />
                                                         </div>
