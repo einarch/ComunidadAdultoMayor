@@ -28,6 +28,8 @@ const Actividad = ({ children }) => {
         setData(data);
     }
 
+    const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
+
     const [selectedFile, setSelectedFile] = useState();
     const [isSelected, setIsSelected] = useState();
     const [isFilePicked, setIsFilePicked] = useState(false);
@@ -43,8 +45,8 @@ const Actividad = ({ children }) => {
     var minValidDate = (new Date(Date.now() - tzoffset)).toISOString().slice(0, 16);
 
     // Manejando validaciones de todos los campos del formulario de Actividad
-    const { handleSubmit, resetForm, handleChange, values, touched, errors, handleBlur, isValid, isSubmitting } = useFormik({
-        initialValues: { name: "", dateTimeActivity: "", location: "", description: "" },
+    const { handleSubmit, resetForm, handleChange, values, touched, errors, handleBlur, isValid, isSubmitting, setFieldValue } = useFormik({
+        initialValues: { name: "", dateTimeActivity: "", location: "", description: "", file: undefined },
         onSubmit: (values, { setSubmitting, resetForm }) => {
             createNewActivity();
             // When button submits form and form is in the process of submitting, submit button is disabled
@@ -72,6 +74,13 @@ const Actividad = ({ children }) => {
             description: Yup.string()
                 .min(4, "Descripción debe tener minimo 4 caracteres")
                 .max(255, "Descripción debe tener máximo 255 caracteres"),
+            file: Yup.mixed()
+                .test(
+                    "fileType",
+                    "El tipo de imagen no permitido",
+                    (file) =>
+                        file && SUPPORTED_FORMATS.includes(file.type)
+                )
 
         })
     })
@@ -81,39 +90,36 @@ const Actividad = ({ children }) => {
         setIsSelected(true);
     };
 
-    //  Guardar una imagen en un server de imagenes
+    const toBase64 = file => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+
+    //Guardar una imagen en un server externo
     const postImage = async () => {
-        const formData = new FormData();
 
-        formData.append('file', selectedFile);
+        var imageData = await toBase64(selectedFile);
+        var imageToSend = imageData.replace(/^data:image\/[a-z]+;base64,/, "");
 
-        console.log("Selected File: ", selectedFile);
-        console.log("File: ", formData);
+        var formdata = new FormData();
+        formdata.append("image", imageToSend);
 
-        var contentLength = JSON.stringify(formData).length;
+        var imagePosted =
+            await fetch("https://api.imgur.com/3/image/", {
+                method: "post",
+                headers: {
+                    Authorization: "Client-ID b690f8f677e6fa3"
+                },
+                body: formdata
+            }).then(res => {
+                return res.json();
+            }).catch(error => console.error(error))
 
-        const response = await fetch(
-            'https://freeimage.host/api/1/upload?key=6d207e02198a847aa98d0a2a901485a5', {
-            method: 'POST',
-            body: JSON.stringify(formData),
-            mode: 'no-cors',
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json',
-            }
-                .then((response) => response.json())
-                .then((result) => {
-                    console.log('Success:', result);
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                })
-
-        });
-        const res = await response.json();
-        console.log("Imagen Posteada: " + res);
-        var imageURL = res.image.url;
-        return res;
+        var responseImage = imagePosted.data.link;
+        console.log("Image Enviada: " + responseImage);
+        return responseImage;
     };
 
     // Obtener todas las actividades registradas desde backend
@@ -142,18 +148,18 @@ const Actividad = ({ children }) => {
     // Construir una actividad con los datos introducidos
     let userID = localStorage.getItem("user");
     const createNewActivity = async () => {
-        var imageURL = postImage();
+        var imageURL = await postImage();
         const datos = {
             "userID": userID,
             "nombre": values.name,
             "fechaHora": values.dateTimeActivity,
             "ubicacion": values.location,
             "descripcion": values.description,
-            "image": imageURL,
+            "imagen": imageURL,
         };
         console.log("Actividad: " + JSON.stringify(datos));
         const respuestaJson = await postActivity(postActivityURL, datos);
-        console.log("Response: " + respuestaJson);
+        console.log("Actividad Response: " + respuestaJson);
         window.location = window.location.href;
     }
 
@@ -305,10 +311,30 @@ const Actividad = ({ children }) => {
                                             <Form.Label className="form-label textLabel d-flex flex-row align-items-left">Imagen</Form.Label>
                                             <Form.Control
                                                 type="file"
-                                                name="imageFile"
-                                                id="imageFile"
-                                                onChange={changeHandler}
-                                            />
+                                                accept=".png,.jpg,.jpeg"
+                                                name="file"
+                                                id="file"
+                                                className={errors.file && touched.file && "error"}
+                                                onBlur={handleBlur}
+                                                onChange={({ currentTarget }) => {
+                                                    const file = currentTarget.files[0];
+                                                    const reader = new FileReader();
+                                                    if (file) {
+                                                        reader.onloadend = () => {
+                                                            setSelectedFile(file)
+                                                        };
+                                                        reader.readAsDataURL(file);
+                                                        setFieldValue("file", file);
+                                                    }
+                                                }}
+
+                                            >
+                                            </Form.Control>
+                                            <Form.Text className="errorMessModal d-flex flex-row" muted>
+                                                {errors.file && touched.file && (
+                                                    <div className="input-feedback">{errors.file}</div>
+                                                )}
+                                            </Form.Text>
                                         </Form.Group>
                                     </Form>
                                 </div>
@@ -350,7 +376,7 @@ const Actividad = ({ children }) => {
                             <Col>
                                 <Card key={actividad.FECHAHORAA} className="cardSec text-center">
                                     <div className='cardImageSize mb-3'>
-                                        <Card.Img className="cardItemImage" src={actividad.IMAGEN ? actividad.IMAGEN : actividadDef} />
+                                        <Card.Img className="cardItemImage" src={actividad.IMAGENA ? actividad.IMAGENA : actividadDef} />
                                     </div>
                                     <Card.Body className="col-sm-12 d-flex flex-column align-items-center justify-content-center">
                                         <Card.Text>
@@ -385,12 +411,12 @@ const Actividad = ({ children }) => {
                                                     <FontAwesomeIcon icon={faLocationDot} style={{ color: "#1464b4" }} />
                                                 </div>
                                                 <TextTruncate
-                                                        className="cardItmText"
-                                                        line={2}
-                                                        element="span"
-                                                        truncateText="…"
-                                                        text={actividad.UBICACIONA}
-                                                    />
+                                                    className="cardItmText"
+                                                    line={2}
+                                                    element="span"
+                                                    truncateText="…"
+                                                    text={actividad.UBICACIONA}
+                                                />
                                             </div>
                                         </Card.Text>
                                         <button
