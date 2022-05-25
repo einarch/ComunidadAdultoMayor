@@ -66,27 +66,18 @@ export const Login = () => {
         validationSchema: Yup.object().shape({
             email: Yup.string()
                 .email("Correo no válido")
-                .min(6, "Correo no válido")
-                .max(30, "Correo no válido")
-                .required("Introduzca su correo")
+                .min(6, "El Correo debe contener al menos 6 caracteres")
+                .max(30, "El Correo debe contener máximo 30 caracteres")
+                .required("El Correo es requerido")
                 .matches(/^[a-z0-9.\s]+@[a-z0-9\s]+\.[a-z0-9.\s]/, "Caracteres no permitidos"),
             password: Yup.string()
-                .required("Introduzca su contraseña")
-                .min(6, "Contraseña no válida")
-                .max(15, "Contraseña no válida")
+                .required("La Contraseña es requerido")
+                .min(6, "La Contraseña debe contener al menos 6 caracteres")
+                .max(15, "La Contraseña debe contener máximo 15 caracteres")
                 .matches(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,15}$/, "Caracteres no permitidos")
         })
 
     })
-
-    const mostrarAlerta = (e) => {
-        swal({
-            title: "Datos Incorrectos",
-            text: e,
-            icon: "error",
-            button: "Aceptar"
-        });
-    }
 
     const [isValid, setIsValid] = useState(false);
     const handleLogin = async () => {
@@ -95,23 +86,17 @@ export const Login = () => {
             "usuario": values.email,
             "clave": values.password
         };
-        console.log(datos);
         const respuestaJson = await enviarDatos(URL_LOGIN, datos);
-        console.log(respuestaJson.conectado);
-        console.log(respuestaJson.error);
         err = respuestaJson.error
 
         if (respuestaJson.conectado == true) {
             setIsValid(false)
             login(respuestaJson.IDUSUARIO)
             rol(respuestaJson.IDROL)
-            console.log(respuestaJson.IDROL)
             navigate('/home/comunidad', { replace: true })
         } else {
             setIsValid(true)
             i = i + 1;
-            console.log(i);
-            //mostrarAlerta(err);
             if (i > 3) {
                 window.location.href = '/Restablecer';
                 i = 0
@@ -137,7 +122,7 @@ export const Login = () => {
                 </div>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="col-md-12">
-                        <Form.Label htmlFor="email" className="form-label textLabel d-flex flex-row align-items-left">Email</Form.Label>
+                        <Form.Label htmlFor="email" className="form-label textLabel d-flex flex-row align-items-left">Correo</Form.Label>
                         <Form.Control
                             style={{ fontSize: "17px", color: "black" }}
                             className={errors.email && touched.email && "error"}
@@ -164,7 +149,7 @@ export const Login = () => {
                                 id="password"
                                 type={state ? "text" : "password"}
                                 name="password"
-                                placeholder="Ingresa tu password"
+                                placeholder="Ingresa tu contraseña"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.password}

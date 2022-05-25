@@ -29,10 +29,7 @@ const Actividad = ({ children }) => {
     }
 
     const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
-
     const [selectedFile, setSelectedFile] = useState();
-    const [isSelected, setIsSelected] = useState();
-    const [isFilePicked, setIsFilePicked] = useState(false);
 
     const getActivitiesURL = configData.ACTIVITIES_API_URL;
     const postActivityURL = configData.CREAR_ACTIVIDAD_API_URL;
@@ -61,34 +58,29 @@ const Actividad = ({ children }) => {
 
         validationSchema: Yup.object().shape({
             name: Yup.string()
-                .required("Este campo es requerido")
-                .min(4, "Nombre debe tener minimo 4 caracteres")
-                .max(80, "Nombre debe tener maximo 80 caracteres"),
+                .required("El Nombre es requerido")
+                .min(4, "El Nombre debe contener al menos 3 caracteres")
+                .max(80, "El Nombre debe contener máximo 80 caracteres"),
             dateTimeActivity: Yup.date()
-                .min(minValidDate, "La hora debe ser posterior a la actual")
-                .required("Introduzca una fecha y hora"),
+                .min(minValidDate, "La hora y minutos debe ser igual o posterior a la actual")
+                .required("La Fecha y hora es requerido"),
             location: Yup.string()
-                .required("Introduzca una ubicación")
-                .min(4, "Ubicación debe tener minimo 4 caracteres")
-                .max(255, "Ubicación debe tener máximo 255 caracteres"),
+                .required("La Ubicación es requerido")
+                .min(4, "La Ubicación debe contener al menos 4 caracteres")
+                .max(255, "La Ubicación debe contener máximo 255 caracteres"),
             description: Yup.string()
-                .min(4, "Descripción debe tener minimo 4 caracteres")
-                .max(255, "Descripción debe tener máximo 255 caracteres"),
+                .min(4, "La Descripción debe contener al menos 4 caracteres")
+                .max(255, "La Descripción debe contener máximo 255 caracteres"),
             file: Yup.mixed()
+                .nullable()
+                .notRequired()
                 .test(
                     "fileType",
-                    "El tipo de imagen no permitido",
-                    (file) =>
-                        file && SUPPORTED_FORMATS.includes(file.type)
+                    "El tipo de archivo no es permitido",
+                    value => !value || (value && SUPPORTED_FORMATS.includes(value.type))
                 )
-
         })
     })
-
-    const changeHandler = (event) => {
-        setSelectedFile(event.target.files[0]);
-        setIsSelected(true);
-    };
 
     const toBase64 = file => new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -148,7 +140,11 @@ const Actividad = ({ children }) => {
     // Construir una actividad con los datos introducidos
     let userID = localStorage.getItem("user");
     const createNewActivity = async () => {
-        var imageURL = await postImage();
+        var imageURL = "";
+        if (selectedFile && values.file) {
+            var imageURL = await postImage();
+        }
+
         const datos = {
             "userID": userID,
             "nombre": values.name,
@@ -198,6 +194,11 @@ const Actividad = ({ children }) => {
         return timeAct;
     };
 
+    function borrar() {
+        document.getElementById("file").value = "";
+        return resetForm();
+    }
+
     useEffect(() => {
         configDateLimits();
         getAllActivities();
@@ -224,6 +225,9 @@ const Actividad = ({ children }) => {
                                     <h3 className="textTitleForm">Crear Actividad</h3>
                                 </div>
                                 <div className="modal-body tam p-3 modalColor">
+                                <div className="d-flex flex-row textForm mb-1">
+                                    <span >Los campos marcados * son obligatorios</span>
+                                </div>
                                     <Form id="createActivityForm" className="row g-3" noValidate onSubmit={handleSubmit}>
                                         <Form.Group className="col-md-12">
                                             <Form.Label className="form-label textLabel d-flex flex-row align-items-left">Nombre*</Form.Label>
@@ -275,7 +279,7 @@ const Actividad = ({ children }) => {
                                                 class="form-control"
                                                 id="location"
                                                 name="location"
-                                                placeholder="Ingrese una ubicación"
+                                                placeholder="Ingrese la ubicación"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                                 value={values.location}
@@ -288,7 +292,7 @@ const Actividad = ({ children }) => {
                                             </Form.Text>
                                         </Form.Group>
                                         <Form.Group className="col-md-12">
-                                            <Form.Label className="form-label textLabel-2 d-flex flex-row align-items-left">Descripción</Form.Label>
+                                            <Form.Label className="form-label textLabel d-flex flex-row align-items-left">Descripción</Form.Label>
                                             <Form.Control
                                                 as="textarea"
                                                 rows={2}
@@ -351,7 +355,7 @@ const Actividad = ({ children }) => {
                                         as="Input"
                                         class="btn btn-secondary col-3 m-2"
                                         data-bs-dismiss="modal"
-                                        onClick={resetForm}
+                                        onClick={borrar}
                                     >Cancelar
                                     </button>
                                     <button
@@ -438,7 +442,7 @@ const Actividad = ({ children }) => {
                                                     <Col xs={6} md={5}>
                                                         <div className='h-100 d-flex justify-content-center align-items-center'>
                                                             <Image
-                                                                src={actividad.IMAGEN ? actividad.IMAGEN : actividadDef}
+                                                                src={actividad.IMAGENA ? actividad.IMAGENA : actividadDef}
                                                                 className='img-fluid rounded'
                                                             />
                                                         </div>

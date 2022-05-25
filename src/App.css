@@ -1,14 +1,14 @@
 .Applicacion {
   font-family: 'Roboto', sans-serif;
   height: auto;
-background: url(./imagenes/imageAlter4.jpg);
+  background: url(./imagenes/imageAlter4.jpg);
   background-size: cover;
   background-attachment: fixed;
   background-position: bottom;
-  /*  */
 }
-.App{
-  background: linear-gradient(90deg,#4fbec9,#0c242c 59%);
+
+.App {
+  background: linear-gradient(90deg, #4fbec9, #0c242c 59%);
 }
 
 /*Titulo principal de cada seccion, con h2*/
@@ -90,7 +90,7 @@ background: url(./imagenes/imageAlter4.jpg);
 /*Texto de nombre usuario del card*/
 .cardItmUserName {
   font-size: 17px;
-  color: black;
+  color: #0c242c;
   text-align: left;
 }
 
@@ -112,7 +112,7 @@ background: url(./imagenes/imageAlter4.jpg);
 
 .cardItmText {
   font-size: 17px;
-  color: black;
+  color: #0c242c;
 }
 
 .cardItemImage {
@@ -160,4 +160,13 @@ background: url(./imagenes/imageAlter4.jpg);
 .cardItmHeaderAct {
   width: auto;
   height: 150px;
+}
+
+.textForm {
+  font-size: 17px;
+  color: black;
+}
+
+.input-feedback {
+  font-family: 'Roboto', sans-serif;
 }
