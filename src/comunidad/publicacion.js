@@ -16,31 +16,17 @@ import { faClock } from '@fortawesome/free-solid-svg-icons';
 
 const URL_PUBLICAR = configData.PUBLICAR_API_URL;
 
-const enviarDatos = async (url, datos) => {
-    const resp = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(datos),
-        headers: {
-            'Content-Type': 'application/json',
-        }
-
-    });
-    console.log(resp);
-    const rjson = await resp.json();
-    console.log('hola');
-    return rjson;
-}
-
 const Publicacion = ({ children }) => {
     const [selectedFile, setSelectedFile] = useState();
     const [isSelected, setIsSelected] = useState();
     const [isFilePicked, setIsFilePicked] = useState(false);
-    
+
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
     const baseUrl = configData.PUBLICATIONS_API_URL;
     const [data, setData] = useState([]);
     //const [desc, setDesc] = useState("");
@@ -54,9 +40,10 @@ const Publicacion = ({ children }) => {
                 console.log(error);
             })
     }
+
     //la parte de validacion
-    const { handleSubmit, resetForm, handleChange, values, touched, errors, handleBlur, isValid, isSubmitting } = useFormik({
-        initialValues: { descri: "" },
+    const { handleSubmit, resetForm, handleChange, values, touched, errors, handleBlur, isValid, isSubmitting, setFieldValue } = useFormik({
+        initialValues: { descri: "", file: undefined },
         onSubmit: (values, { setSubmitting, resetForm, handleChange }) => {
             // When button submits form and form is in the process of submitting, submit button is disabled
             publicar();
@@ -73,29 +60,80 @@ const Publicacion = ({ children }) => {
             descri: Yup.string()
                 .required("Este campo es requerido")
                 .min(4, "La descripcion debe tener minimo 4 caracteres")
-                .max(1000, "La descripcion debe tener maximo 1000 caracteres")
+                .max(1000, "La descripcion debe tener maximo 1000 caracteres"),
+            file: Yup.mixed()
+                .test(
+                    "fileType",
+                    "El tipo de imagen no permitido",
+                    (file) =>
+                        file && SUPPORTED_FORMATS.includes(file.type)
+                )
 
         })
     })
 
+    //POST publicacion
+    const enviarDatos = async (url, datos) => {
+        const resp = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(datos),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+
+        });
+        console.log(resp);
+        const rjson = await resp.json();
+        return rjson;
+    }
+
+    //Convertir imagen a base 64
+    const toBase64 = file => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+
+    //Guardar una imagen en un server externo
+    const postImage = async () => {
+        var imageData = await toBase64(selectedFile);
+        var imageToSend = imageData.replace(/^data:image\/[a-z]+;base64,/, "");
+
+        var formdata = new FormData();
+        formdata.append("image", imageToSend);
+
+        var imagePosted =
+            await fetch("https://api.imgur.com/3/image/", {
+                method: "post",
+                headers: {
+                    Authorization: "Client-ID b690f8f677e6fa3"
+                },
+                body: formdata
+            }).then(res => {
+                return res.json();
+            }).catch(error => console.error(error))
+
+        var responseImage = imagePosted.data.link;
+        console.log("Image Enviada: " + responseImage);
+        return responseImage;
+    };
+
+    //Construir publicacion
     let us = localStorage.getItem("user");
     const publicar = async () => {
+        var imageURL = await postImage();
         const fH = hoy.getFullYear() + '-' + (hoy.getMonth() + 1) + '-' + hoy.getDate() + ' ' + hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
         console.log(fH);
         const datos = {
             "idUs": us,
             "descripcion": values.descri,
-            "fecha": fH
+            "fecha": fH,
+            "imagen": imageURL
         };
-        console.log(datos);
-        console.log(datos.idUs);
-        console.log(datos.descripcion);
         const respuestaJson = await enviarDatos(URL_PUBLICAR, datos);
-        console.log(respuestaJson);
+        console.log("Publicacion Enviada: " + respuestaJson);
         window.location = window.location.href;
-    }
-    function cambiar() {
-        // event  =>  setDesc ( event .target.value);
     }
 
     const changeHandler = (event) => {
@@ -103,7 +141,7 @@ const Publicacion = ({ children }) => {
         setIsSelected(true);
     };
 
-    // Calcular Fecjas par Date Icon
+    // Calcular Fechas par Date Icon
     const getMonth = (dateIn) => {
         var date = new Date(dateIn);
         var monthName = date.toLocaleString('es-es', { month: 'long' });
@@ -129,10 +167,6 @@ const Publicacion = ({ children }) => {
         var date = new Date(dateIn);
         var timePub = date.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
         return timePub;
-    };
-
-    const getActivityByName = () => {
-
     };
 
     useEffect(() => {
@@ -185,10 +219,29 @@ const Publicacion = ({ children }) => {
                                         <Form.Label className="form-label textLabel d-flex flex-row align-items-left">Imagen</Form.Label>
                                         <Form.Control
                                             type="file"
-                                            name="imageFile"
-                                            id="imageFile"
-                                            onChange={changeHandler}
-                                        />
+                                            accept=".png,.jpg,.jpeg"
+                                            name="file"
+                                            id="file"
+                                            className={errors.file && touched.file && "error"}
+                                            onBlur={handleBlur}
+                                            onChange={({ currentTarget }) => {
+                                                const file = currentTarget.files[0];
+                                                const reader = new FileReader();
+                                                if (file) {
+                                                    reader.onloadend = () => {
+                                                        setSelectedFile(file)
+                                                    };
+                                                    reader.readAsDataURL(file);
+                                                    setFieldValue("file", file);
+                                                }
+                                            }}
+                                        >
+                                        </Form.Control>
+                                        <Form.Text className="errorMessModal d-flex flex-row" muted>
+                                            {errors.file && touched.file && (
+                                                <div className="input-feedback">{errors.file}</div>
+                                            )}
+                                        </Form.Text>
                                     </Form.Group>
                                 </div>
                                 <div className="model-footer col-12 modalColor" align="center">
@@ -217,7 +270,7 @@ const Publicacion = ({ children }) => {
                             <Col>
                                 <Card className="cardSec text-center">
                                     <div className='cardImageSize'>
-                                        <Card.Img className="cardItemImage" src={publicacion.IMAGEN ? publicacion.IMAGEN : publicacionDef} />
+                                        <Card.Img className="cardItemImage" src={publicacion.IMAGENP ? publicacion.IMAGENP : publicacionDef} />
                                     </div>
                                     <Card.Body className="col-sm-12 d-flex flex-column align-items-center justify-content-center">
                                         <Card.Text>
