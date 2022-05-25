@@ -303,12 +303,52 @@ const Publicacion = ({ children }) => {
                                                 </div>
                                             </div>
                                         </Card.Text>
-                                        <div >
-                                            <button
+                                        <div id="content">
+                                       <div id="left">
+                                       <button type="button" class="boton-reacciones" >
+    <span class="texto-boton">Reaccionar</span>
+    <div class="reacciones">
+        <div class="reaccion">
+            <i class="fas fa-thumbs-up"></i>
+            <span class="nombre-reccion" id='MeGusta'>
+                 
+            </span>
+        </div>
+        <div class="reaccion">
+            <i class="fas fa-heart"></i>
+            <span class="nombre-reccion" id='MeEncanta'>
+            
+            </span>
+        </div>
+        <div class="reaccion">
+            <i class="far fa-sad-tear"></i>
+            <span class="nombre-reccion" id='MeEntristece'>
+                
+            </span>
+        </div>
+        <div class="reaccion">
+            <i class="far fa-grin-squint-tears"></i>
+            <span class="nombre-reccion" id='MeDivierte'>
+                
+            </span>
+        </div>
+        <div class="reaccion">
+            <i class="far fa-angry"></i>
+            <span class="nombre-reccion" id='MeEnoja'>
+                
+            </span>
+        </div>
+    </div>
+</button> 
+                                       </div>
+                                       <div id="right">
+                                           <button
                                                 className="btn btn-success "
+                                                //style="width: 104px;"
                                                 onClick={handleShow}>
                                                 Ver detalle
                                             </button>
+                                           </div>
                                         </div>
 
                                         <Modal
@@ -342,6 +382,41 @@ const Publicacion = ({ children }) => {
                                                 </Row>
                                             </Modal.Body>
                                             <Modal.Footer>
+                                            <button type="button" class="boton-reaccionesM" >
+    <span class="texto-boton">Reaccionar</span>
+    <div class="reacciones">
+        <div class="reaccion">
+            <i class="fas fa-thumbs-up"></i>
+            <span class="nombre-reccion">
+                Me gusta
+            </span>
+        </div>
+        <div class="reaccion">
+            <i class="fas fa-heart"></i>
+            <span class="nombre-reccion">
+                Me encanta
+            </span>
+        </div>
+        <div class="reaccion">
+            <i class="far fa-sad-tear"></i>
+            <span class="nombre-reccion">
+                Me entristece
+            </span>
+        </div>
+        <div class="reaccion">
+            <i class="far fa-grin-squint-tears"></i>
+            <span class="nombre-reccion">
+                Me divierte
+            </span>
+        </div>
+        <div class="reaccion">
+            <i class="far fa-angry"></i>
+            <span class="nombre-reccion">
+                Me enoja
+            </span>
+        </div>
+    </div>
+</button> 
                                                 <button className="btn btn-primary" onClick={handleClose}>
                                                     Cerrar
                                                 </button>
