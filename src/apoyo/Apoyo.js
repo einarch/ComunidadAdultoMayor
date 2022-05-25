@@ -8,7 +8,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import './../apoyo/Apoyo.css';
 import avatar from '../imagenes/avatar.jpg';
-import voluntarioDef from './../imagenes/voluntarioDef.jpg'
+import voluntarioDef from './../imagenes/voluntarioDef.webp'
 import configData from "../config/config.json";
 import { Row, Col, Modal, Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

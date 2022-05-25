@@ -10,7 +10,7 @@ import TextTruncate from 'react-text-truncate';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './../comunidad/Publicacion.css';
 import avatar from '../imagenes/avatar.jpg';
-import publicacionDef from '../imagenes/publicacionDef.jpg'
+import publicacionDef from '../imagenes/publicacionDef.webp'
 import configData from "../config/config.json";
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 

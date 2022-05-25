@@ -322,6 +322,7 @@ const Register = ({ children }) => {
                                 name="ciudad"
                                 type="text"
                                 value={values.ciudad} >
+                                <option value="">Seleccione una ciudad</option>
                                 <option value="Cochabamba">Cochabamba</option>
                                 <option value="La Paz">La Paz</option>
                                 <option value="Santa Cruz">Santa Cruz</option>
