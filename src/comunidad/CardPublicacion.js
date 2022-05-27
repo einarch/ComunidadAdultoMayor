@@ -37,6 +37,32 @@ const getTimePub = (dateIn) => {
     return timePub;
 };
 
+let clicked = false;
+function like(){
+    const likeBtn = document.querySelector(".like__btn");
+    let likeIcon = document.querySelector("#icon"),
+      count = document.querySelector("#count");
+    if(likeBtn==null){
+   
+    }else{
+        
+    
+    
+    
+      if (clicked==false) {
+        clicked = true;
+        likeIcon.innerHTML = `<i class="fas fa-thumbs-up"></i>`;
+        
+        count = count.textContent ++;
+        console.log(count.textContent);
+      } else {
+        clicked = false;
+        likeIcon.innerHTML = `<i class="far fa-thumbs-up"></i>`;
+        count=count.textContent--;
+      }
+    
+    }
+}
 
 function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, idPub }) {
 
@@ -84,41 +110,10 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, idP
 
                 <div id="content">
                     <div id="left">
-                        <button type="button" class="boton-reacciones" >
-                            <span class="texto-boton">Reaccionar</span>
-                            <div class="reacciones">
-                                <div class="reaccion">
-                                    <i class="fas fa-thumbs-up"></i>
-                                    <span class="nombre-reccion" id='MeGusta'>
-
-                                    </span>
-                                </div>
-                                <div class="reaccion">
-                                    <i class="fas fa-heart"></i>
-                                    <span class="nombre-reccion" id='MeEncanta'>
-
-                                    </span>
-                                </div>
-                                <div class="reaccion">
-                                    <i class="far fa-sad-tear"></i>
-                                    <span class="nombre-reccion" id='MeEntristece'>
-
-                                    </span>
-                                </div>
-                                <div class="reaccion">
-                                    <i class="far fa-grin-squint-tears"></i>
-                                    <span class="nombre-reccion" id='MeDivierte'>
-
-                                    </span>
-                                </div>
-                                <div class="reaccion">
-                                    <i class="far fa-angry"></i>
-                                    <span class="nombre-reccion" id='MeEnoja'>
-
-                                    </span>
-                                </div>
-                            </div>
-                        </button>
+                    <button class="like__btn" onClick={like()}>
+   <span id="icon"><i class="far fa-thumbs-up"></i></span>
+   <span id="count">0</span> Like
+</button>
                     </div>
                     <div id="right">
                         <button
@@ -162,41 +157,7 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, idP
                         </Row>
                     </Modal.Body>
                     <Modal.Footer>
-                        <button type="button" class="boton-reaccionesM" >
-                            <span class="texto-boton">Reaccionar</span>
-                            <div class="reacciones">
-                                <div class="reaccion">
-                                    <i class="fas fa-thumbs-up"></i>
-                                    <span class="nombre-reccion">
-                                        Me gusta
-                                    </span>
-                                </div>
-                                <div class="reaccion">
-                                    <i class="fas fa-heart"></i>
-                                    <span class="nombre-reccion">
-                                        Me encanta
-                                    </span>
-                                </div>
-                                <div class="reaccion">
-                                    <i class="far fa-sad-tear"></i>
-                                    <span class="nombre-reccion">
-                                        Me entristece
-                                    </span>
-                                </div>
-                                <div class="reaccion">
-                                    <i class="far fa-grin-squint-tears"></i>
-                                    <span class="nombre-reccion">
-                                        Me divierte
-                                    </span>
-                                </div>
-                                <div class="reaccion">
-                                    <i class="far fa-angry"></i>
-                                    <span class="nombre-reccion">
-                                        Me enoja
-                                    </span>
-                                </div>
-                            </div>
-                        </button>
+                       
                         <button className="btn btn-primary" onClick={handleClose}>
                             Cerrar
                         </button>
@@ -207,6 +168,7 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, idP
 
     );
 }
+
 
 CardPublicacion.propTypes = {
     nombre: PropTypes.string.isRequired,
