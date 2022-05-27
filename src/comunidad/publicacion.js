@@ -1,30 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Container } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
 import axios from 'axios';
-import { Form, Row, Col, Modal, Image } from 'react-bootstrap';
+import { Container, Form, Row, Col } from 'react-bootstrap';
 import { useFormik, useField, useFormikContext } from "formik";
 import * as Yup from "yup";
-import dateFormat, { masks } from "dateformat";
-import TextTruncate from 'react-text-truncate';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './../comunidad/Publicacion.css';
-import avatar from '../imagenes/avatar.jpg';
-import publicacionDef from '../imagenes/publicacionDef.webp'
 import configData from "../config/config.json";
-import { faClock } from '@fortawesome/free-solid-svg-icons';
+import CardPublicacion from './CardPublicacion';
 
 const URL_PUBLICAR = configData.PUBLICAR_API_URL;
 
 const Publicacion = ({ children }) => {
-    const [selectedFile, setSelectedFile] = useState();
-
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
+    const [selectedFile, setSelectedFile] = useState();
+
     const baseUrl = configData.PUBLICATIONS_API_URL;
     const [data, setData] = useState([]);
     //const [desc, setDesc] = useState("");
@@ -270,164 +259,9 @@ const Publicacion = ({ children }) => {
                 </div>
                 <Container className="p-4 mb-4">
                     <Row xs={1} md={3} className="g-4">
-                        {Array.from(data).map(publicacion => (
+                        {Array.from(data).map(({ NOMBRE, APELLIDO, FECHAHORAP, DESCRIPCIONP, IMAGENP, IDPUB }) => (
                             <Col>
-                                <Card className="cardSec text-center">
-                                    <div className='cardImageSize'>
-                                        <Card.Img className="cardItemImage" src={publicacion.IMAGENP ? publicacion.IMAGENP : publicacionDef} />
-                                    </div>
-                                    <Card.Body className="col-sm-12 d-flex flex-column align-items-center justify-content-center">
-                                        <Card.Text>
-                                            <div className="col-sm-12">
-                                                <div className="h-100 d-flex justify-content-center align-items-center" >
-                                                    <div className="col-sm-3">
-                                                        <img src={avatar} className="rounded-circle" height="60" width="60"></img>
-                                                    </div>
-                                                    <div className="col-sm-6" >
-                                                        <h4 className="cardItmUserName"><b>{publicacion.NOMBRE} {publicacion.APELLIDO}</b></h4>
-                                                    </div>
-                                                    <div className="col-sm-4 cartItmDate mb-2" >
-                                                        <time class="icon mb-3">
-                                                            <em>{getDayName(publicacion.FECHAHORAP)}</em>
-                                                            <strong>{getMonth(publicacion.FECHAHORAP)}</strong>
-                                                            <span>{getDayNumber(publicacion.FECHAHORAP)}</span>
-                                                        </time>
-                                                        <FontAwesomeIcon icon={faClock} style={{ color: "#1464b4" }} />
-                                                        <span className="cardItmText"><b> {getTimePub(publicacion.FECHAHORAP)}</b></span>
-                                                    </div>
-                                                </div>
-                                                <div className="col-sm-12 cardItmDes mb-4" >
-                                                    <TextTruncate
-                                                        className="cardItmText"
-                                                        line={3}
-                                                        element="span"
-                                                        truncateText="…"
-                                                        text={publicacion.DESCRIPCIONP}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </Card.Text>
-                                        <div id="content">
-                                            <div id="left">
-                                                <button type="button" class="boton-reacciones" >
-                                                    <span class="texto-boton">Reaccionar</span>
-                                                    <div class="reacciones">
-                                                        <div class="reaccion">
-                                                            <i class="fas fa-thumbs-up"></i>
-                                                            <span class="nombre-reccion" id='MeGusta'>
-
-                                                            </span>
-                                                        </div>
-                                                        <div class="reaccion">
-                                                            <i class="fas fa-heart"></i>
-                                                            <span class="nombre-reccion" id='MeEncanta'>
-
-                                                            </span>
-                                                        </div>
-                                                        <div class="reaccion">
-                                                            <i class="far fa-sad-tear"></i>
-                                                            <span class="nombre-reccion" id='MeEntristece'>
-
-                                                            </span>
-                                                        </div>
-                                                        <div class="reaccion">
-                                                            <i class="far fa-grin-squint-tears"></i>
-                                                            <span class="nombre-reccion" id='MeDivierte'>
-
-                                                            </span>
-                                                        </div>
-                                                        <div class="reaccion">
-                                                            <i class="far fa-angry"></i>
-                                                            <span class="nombre-reccion" id='MeEnoja'>
-
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </button>
-                                            </div>
-                                            <div id="right">
-                                                <button
-                                                    className="btn btn-success "
-                                                    //style="width: 104px;"
-                                                    onClick={handleShow}>
-                                                    Ver detalle
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <Modal
-                                            className='mb-1'
-                                            show={show}
-                                            onHide={handleClose}
-                                            size="lg"
-                                            aria-labelledby="contained-modal-title-vcenter"
-                                            centered >
-                                            <Modal.Header className="d-flex flex-row justify-content-center">
-                                                <Modal.Title className="textTitleForm">Detalle de Publicación</Modal.Title>
-                                            </Modal.Header>
-                                            <Modal.Body>
-                                                <Row>
-                                                    <Col xs={6} md={5}>
-                                                        <div className='h-100 d-flex justify-content-center align-items-center'>
-                                                            <Image
-                                                                src={publicacion.IMAGENP ? publicacion.IMAGENP : publicacionDef}
-                                                                className='img-fluid rounded'
-                                                            />
-                                                        </div>
-                                                    </Col>
-                                                    <Col xs={12} md={7}>
-                                                        <h6 className="textLabel label">Nombre</h6>
-                                                        <span className="textInfoModal"> {publicacion.NOMBRE} {publicacion.APELLIDO}</span>
-                                                        <h6 className="textLabel">Fecha y hora</h6>
-                                                        <span className="textInfoModal">{dateFormat(publicacion.FECHAHORAP, "dd/mm/yyyy h:MM TT")}</span>
-                                                        <h6 className="textLabel">Descripción</h6>
-                                                        <span className="textInfoModal">{publicacion.DESCRIPCIONP}</span>
-                                                    </Col>
-                                                </Row>
-                                            </Modal.Body>
-                                            <Modal.Footer>
-                                                <button type="button" class="boton-reaccionesM" >
-                                                    <span class="texto-boton">Reaccionar</span>
-                                                    <div class="reacciones">
-                                                        <div class="reaccion">
-                                                            <i class="fas fa-thumbs-up"></i>
-                                                            <span class="nombre-reccion">
-                                                                Me gusta
-                                                            </span>
-                                                        </div>
-                                                        <div class="reaccion">
-                                                            <i class="fas fa-heart"></i>
-                                                            <span class="nombre-reccion">
-                                                                Me encanta
-                                                            </span>
-                                                        </div>
-                                                        <div class="reaccion">
-                                                            <i class="far fa-sad-tear"></i>
-                                                            <span class="nombre-reccion">
-                                                                Me entristece
-                                                            </span>
-                                                        </div>
-                                                        <div class="reaccion">
-                                                            <i class="far fa-grin-squint-tears"></i>
-                                                            <span class="nombre-reccion">
-                                                                Me divierte
-                                                            </span>
-                                                        </div>
-                                                        <div class="reaccion">
-                                                            <i class="far fa-angry"></i>
-                                                            <span class="nombre-reccion">
-                                                                Me enoja
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </button>
-                                                <button className="btn btn-primary" onClick={handleClose}>
-                                                    Cerrar
-                                                </button>
-                                            </Modal.Footer>
-                                        </Modal>
-                                    </Card.Body>
-                                </Card>
+                                <CardPublicacion nombre={NOMBRE} apellido={APELLIDO} fechaHora={FECHAHORAP} descripcion={DESCRIPCIONP} imagen={IMAGENP} idPub={IDPUB} />
                             </Col>
                         ))}
                     </Row>
