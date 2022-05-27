@@ -36,33 +36,52 @@ const getTimePub = (dateIn) => {
     var timePub = date.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
     return timePub;
 };
-
+// desde aqui comenten 
 let clicked = false;
-function like(){
-    const likeBtn = document.querySelector(".like__btn");
+const likeBtn = document.querySelector(".like__btn");
     let likeIcon = document.querySelector("#icon"),
       count = document.querySelector("#count");
+function like(){
+    
     if(likeBtn==null){
    
     }else{
-        
-    
-    
-    
-      if (clicked==false) {
+
+      if (!clicked) {
         clicked = true;
         likeIcon.innerHTML = `<i class="fas fa-thumbs-up"></i>`;
         
-        count = count.textContent ++;
+       count.textContent= count.textContent++;
         console.log(count.textContent);
       } else {
         clicked = false;
         likeIcon.innerHTML = `<i class="far fa-thumbs-up"></i>`;
-        count=count.textContent--;
+        count.textContent--;
       }
     
     }
 }
+// este comando funciona cuando ya estemos dentro de la seccion, asi si funciona
+/* 
+const likeBtn = document.querySelector(".like__btn");
+let likeIcon = document.querySelector("#icon"),
+  count = document.querySelector("#count");
+
+let clicked = false;
+
+
+likeBtn.addEventListener("click", () => {
+  if (!clicked) {
+    clicked = true;
+    likeIcon.innerHTML = `<i class="fas fa-thumbs-up"></i>`;
+    count.textContent++;
+  } else {
+    clicked = false;
+    likeIcon.innerHTML = `<i class="far fa-thumbs-up"></i>`;
+    count.textContent--;
+  }
+}); 
+*/
 
 function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, idPub }) {
 
@@ -110,7 +129,7 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, idP
 
                 <div id="content">
                     <div id="left">
-                    <button class="like__btn" onClick={like()}>
+                    <button class="like__btn" onClick={like(this)}>
    <span id="icon"><i class="far fa-thumbs-up"></i></span>
    <span id="count">0</span> Like
 </button>
