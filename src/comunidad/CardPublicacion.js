@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Card, Form, Row, Col, Modal, Image } from 'react-bootstrap';
+import { Container, Card, Form, Row, Col, Modal, Image } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import dateFormat, { masks } from "dateformat";
 import TextTruncate from 'react-text-truncate';
@@ -8,6 +8,7 @@ import './../comunidad/Publicacion.css';
 import avatar from '../imagenes/avatar.jpg';
 import publicacionDef from '../imagenes/publicacionDef.webp'
 import { faClock } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 // Calcular Fechas par Date Icon
 const getMonth = (dateIn) => {
@@ -39,26 +40,26 @@ const getTimePub = (dateIn) => {
 // desde aqui comenten 
 let clicked = false;
 const likeBtn = document.querySelector(".like__btn");
-    let likeIcon = document.querySelector("#icon"),
-      count = document.querySelector("#count");
-function like(){
-    
-    if(likeBtn==null){
-   
-    }else{
+let likeIcon = document.querySelector("#icon"),
+    count = document.querySelector("#count");
+function like() {
 
-      if (!clicked) {
-        clicked = true;
-        likeIcon.innerHTML = `<i class="fas fa-thumbs-up"></i>`;
-        
-       count.textContent= count.textContent++;
-        console.log(count.textContent);
-      } else {
-        clicked = false;
-        likeIcon.innerHTML = `<i class="far fa-thumbs-up"></i>`;
-        count.textContent--;
-      }
-    
+    if (likeBtn == null) {
+
+    } else {
+
+        if (!clicked) {
+            clicked = true;
+            likeIcon.innerHTML = `<i class="fas fa-thumbs-up"></i>`;
+
+            count.textContent = count.textContent++;
+            console.log(count.textContent);
+        } else {
+            clicked = false;
+            likeIcon.innerHTML = `<i class="far fa-thumbs-up"></i>`;
+            count.textContent--;
+        }
+
     }
 }
 // este comando funciona cuando ya estemos dentro de la seccion, asi si funciona
@@ -83,7 +84,7 @@ likeBtn.addEventListener("click", () => {
 }); 
 */
 
-function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, idPub }) {
+function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, contadorLike, idPub }) {
 
     const [show, setShow] = useState(false);
 
@@ -126,25 +127,25 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, idP
                         </div>
                     </div>
                 </Card.Text>
-
-                <div id="content">
-                    <div id="left">
-                    <button class="like__btn" onClick={like(this)}>
-   <span id="icon"><i class="far fa-thumbs-up"></i></span>
-   <span id="count">0</span> Like
-</button>
-                    </div>
-                    <div id="right">
-                        <button
-
-                            className="btn btn-success "
-                            //style="width: 104px;"
-                            onClick={handleShow}>
-                            Ver detalle
+                <div className="h-100 d-flex align-items-center justify-content-center mb-2">
+                    <div className="h-100 d-flex flex-column justify-content-center">
+                        <button class="btn btn-warning" onClick={like(this)}>
+                            <FontAwesomeIcon icon={faThumbsUp} style={{ color: "#fff" }} />
+                            <span className="textLikeButton" id="count">Me Gusta</span>
                         </button>
                     </div>
+                    <div className="h-100 d-flex flex-column justify-content-end">
+                        <button
+                            className="btn btn-success"
+                            onClick={handleShow}>
+                            Ver detalle
+                        </button>{ }
+                    </div>
                 </div>
-
+                <div className="h-100 d-flex align-items-center justify-content-center">
+                    {contadorLike != 0 ? <FontAwesomeIcon icon={faThumbsUp} style={{ color: "#0c4c8c" }} /> : ""}
+                    <span className="cardItmText"> <b>{contadorLike != 0 ? contadorLike : ""}</b> </span>
+                </div>
                 <Modal
                     className='mb-1'
                     show={show}
@@ -176,7 +177,7 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, idP
                         </Row>
                     </Modal.Body>
                     <Modal.Footer>
-                       
+
                         <button className="btn btn-primary" onClick={handleClose}>
                             Cerrar
                         </button>
@@ -195,6 +196,7 @@ CardPublicacion.propTypes = {
     fechaHora: PropTypes.string,
     descripcion: PropTypes.string,
     imagen: PropTypes.string,
+    contadorLike: PropTypes.string,
     idPub: PropTypes.string,
 };
 
