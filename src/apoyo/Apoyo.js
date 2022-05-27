@@ -1,30 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import TextTruncate from 'react-text-truncate';
 import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import './../apoyo/Apoyo.css';
-import avatar from '../imagenes/avatar.jpg';
-import voluntarioDef from './../imagenes/voluntarioDef.webp'
 import configData from "../config/config.json";
-import { Row, Col, Modal, Image } from 'react-bootstrap';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { Row, Col } from 'react-bootstrap';
+import CardVoluntario from './CardVoluntario';
 
 const Apoyo = ({ children }) => {
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
-
     const [selectedFile, setSelectedFile] = useState();
-    const [isSelected, setIsSelected] = useState();
-    const [isFilePicked, setIsFilePicked] = useState(false);
 
     const baseUrl = configData.VOLUNTEERS_API_URL;
     const postVoluntarioURL = configData.CREAR_VOLUNTARIO_API_URL;
@@ -331,86 +319,9 @@ const Apoyo = ({ children }) => {
             </div>
             <Container className="p-4 mb-4">
                 <Row xs={1} md={3} className="g-4">
-                    {Array.from(data).map(apoyo => (
+                    {Array.from(data).map(({ NOMBRE, APELLIDO, TIPOAPOYO, TELEFONOV, CIUDAD, DIASDISPONIBLES, DESCRIPCIONV, IMAGENV, IDVOL }) => (
                         <Col>
-                            <Card key={apoyo.TELEFONOV} className="cardSec text-center">
-                                <div className='cardImageSize'>
-                                    <Card.Img className="cardItemImage" src={apoyo.IMAGENV ? apoyo.IMAGENV : voluntarioDef} />
-                                </div>
-                                <Card.Body className="col-sm-12 d-flex flex-column align-items-center justify-content-center">
-                                    <Card.Text>
-                                        <div className="col-sm-12">
-                                            <div className='cardItmHeader'>
-                                                <TextTruncate
-                                                    className="cardItmTitle"
-                                                    line={3}
-                                                    element="h3"
-                                                    truncateText="…"
-                                                    text={apoyo.TIPOAPOYO}
-                                                />
-                                            </div>
-                                            <div className="d-flex justify-content-center align-items-center mb-3">
-                                                <div className="col-sm-5">
-                                                    <img src={avatar} className="rounded-circle" height="60" width="60"></img>
-                                                </div>
-                                                <div className="col-sm-7" >
-                                                    <h4 className="cardItmUserName"><b>{apoyo.NOMBRE} {apoyo.APELLIDO}</b></h4>
-                                                </div>
-                                            </div>
-                                            <div className='d-flex flex-row justify-content-center'>
-                                                <FontAwesomeIcon icon={faLocationDot} style={{ color: "#1464b4" }} />
-                                            </div>
-                                            <span className="cardItmText">{apoyo.CIUDAD}</span>
-                                        </div>
-                                    </Card.Text>
-                                    <button
-                                        class="btn btn-success"
-                                        onClick={handleShow}>
-                                        Ver detalle
-                                    </button>
-                                    <Modal
-                                        show={show}
-                                        onHide={handleClose}
-                                        size="lg"
-                                        aria-labelledby="contained-modal-title-vcenter"
-                                        centered >
-                                        <Modal.Header className="d-flex flex-row justify-content-center">
-                                            <Modal.Title className="textTitleForm">Detalle de Voluntario</Modal.Title>
-                                        </Modal.Header>
-                                        <Modal.Body>
-                                            <Row>
-                                                <Col xs={6} md={5}>
-                                                    <div className='h-100 d-flex justify-content-center align-items-center'>
-                                                        <Image
-                                                            src={apoyo.IMAGENV ? apoyo.IMAGENV : voluntarioDef}
-                                                            className='img-fluid rounded'
-                                                        />
-                                                    </div>
-                                                </Col>
-                                                <Col xs={12} md={7}>
-                                                    <h6 className="textLabel label">Nombre</h6>
-                                                    <span className="textInfoModal">{apoyo.NOMBRE} {apoyo.APELLIDO}</span>
-                                                    <h6 className="textLabel label">Ciudad</h6>
-                                                    <span className="textInfoModal"> {apoyo.CIUDAD}</span>
-                                                    <h6 className="textLabel">Teléfono</h6>
-                                                    <span className="textInfoModal">{apoyo.TELEFONOV}</span>
-                                                    <h6 className="textLabel">Días Disponibles</h6>
-                                                    <span className="textInfoModal">{apoyo.DIASDISPONIBLES}</span>
-                                                    <h6 className="textLabel">Tipo de Apoyo</h6>
-                                                    <span className="textInfoModal">{apoyo.TIPOAPOYO}</span>
-                                                    <h6 className="textLabel">Motivación: </h6>
-                                                    <span className="textInfoModal">{apoyo.DESCRIPCIONV}</span>
-                                                </Col>
-                                            </Row>
-                                        </Modal.Body>
-                                        <Modal.Footer>
-                                            <button className="btn btn-primary" onClick={handleClose}>
-                                                Cerrar
-                                            </button>
-                                        </Modal.Footer>
-                                    </Modal>
-                                </Card.Body>
-                            </Card>
+                            <CardVoluntario nombre={NOMBRE} apellido={APELLIDO} tipoDeApoyo={TIPOAPOYO} telefono={TELEFONOV} ciudad={CIUDAD} diasDisponibles={DIASDISPONIBLES} descripcion={DESCRIPCIONV} imagen={IMAGENV} idVol={IDVOL} />
                         </Col>
                     ))}
                 </Row>

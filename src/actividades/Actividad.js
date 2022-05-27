@@ -1,41 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
 import axios from 'axios';
-import { ButtonToolbar, Form, Image } from 'react-bootstrap';
+import { Container, Form, Row, Col } from 'react-bootstrap';
 import { useFormik, useField, useFormikContext } from "formik";
 import * as Yup from "yup";
-import dateFormat, { masks } from "dateformat";
-import TextTruncate from 'react-text-truncate';
 import './../actividades/Actividad.css';
-import avatar from './../imagenes/avatar.jpg'
-import actividadDef from './../imagenes/actividadDef.png'
 import configData from "../config/config.json";
-import { Row, Col, Button, Modal } from 'react-bootstrap';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
-import { faClock } from '@fortawesome/free-solid-svg-icons';
+import CardActividad from './CardActividad';
 
 const Actividad = ({ children }) => {
 
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => {
-        setShow(false);
-    }
-    const handleShow = () => {
-        setShow(true);
-        setData(data);
-    }
+    const [data, setData] = useState([]);
 
     const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
     const [selectedFile, setSelectedFile] = useState();
 
     const getActivitiesURL = configData.ACTIVITIES_API_URL;
     const postActivityURL = configData.CREAR_ACTIVIDAD_API_URL;
-
-    const [data, setData] = useState([]);
-
 
     // Configurando fecha minima valida
     var tzoffset = (new Date()).getTimezoneOffset() * 60000;
@@ -167,33 +147,6 @@ const Actividad = ({ children }) => {
         document.getElementsByName("dateTimeActivity")[0].min = localISOTime;
     }
 
-    const getMonth = (dateIn) => {
-        var date = new Date(dateIn);
-        var monthName = date.toLocaleString('es-es', { month: 'long' });
-        monthName = monthName.charAt(0).toUpperCase() + monthName.slice(1);
-        return monthName;
-    };
-
-    const getDayNumber = (dateIn) => {
-        var date = new Date(dateIn);
-        var dayNumber = date.toLocaleString('es-es', { day: 'numeric' });
-        dayNumber = dayNumber.charAt(0).toUpperCase() + dayNumber.slice(1);
-        return dayNumber;
-    };
-
-    const getDayName = (dateIn) => {
-        var date = new Date(dateIn);
-        var dayName = date.toLocaleString('es-es', { weekday: 'long' });
-        dayName = dayName.charAt(0).toUpperCase() + dayName.slice(1);
-        return dayName;
-    };
-
-    const getTimeAct = (dateIn) => {
-        var date = new Date(dateIn);
-        var timeAct = date.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
-        return timeAct;
-    };
-
     function borrar() {
         document.getElementById("file").value = "";
         return resetForm();
@@ -225,9 +178,9 @@ const Actividad = ({ children }) => {
                                     <h3 className="textTitleForm">Crear Actividad</h3>
                                 </div>
                                 <div className="modal-body tam p-3 modalColor">
-                                <div className="d-flex flex-row textForm mb-1">
-                                    <span >Los campos marcados * son obligatorios</span>
-                                </div>
+                                    <div className="d-flex flex-row textForm mb-1">
+                                        <span >Los campos marcados * son obligatorios</span>
+                                    </div>
                                     <Form id="createActivityForm" className="row g-3" noValidate onSubmit={handleSubmit}>
                                         <Form.Group className="col-md-12">
                                             <Form.Label className="form-label textLabel d-flex flex-row align-items-left">Nombre*</Form.Label>
@@ -331,7 +284,6 @@ const Actividad = ({ children }) => {
                                                         setFieldValue("file", file);
                                                     }
                                                 }}
-
                                             >
                                             </Form.Control>
                                             <Form.Text className="errorMessModal d-flex flex-row" muted>
@@ -376,100 +328,9 @@ const Actividad = ({ children }) => {
                 </div>
                 <Container className="p-4 mb-4">
                     <Row xs={1} md={3} className="g-4">
-                        {Array.from(data).map(actividad => (
+                        {Array.from(data).map(({ ACTIVIDAD, NOMBRE, APELLIDO, FECHAHORAA, UBICACIONA, DESCRIPCIONA, IMAGENA, IDACT }) => (
                             <Col>
-                                <Card key={actividad.FECHAHORAA} className="cardSec text-center">
-                                    <div className='cardImageSize mb-3'>
-                                        <Card.Img className="cardItemImage" src={actividad.IMAGENA ? actividad.IMAGENA : actividadDef} />
-                                    </div>
-                                    <Card.Body className="col-sm-12 d-flex flex-column align-items-center justify-content-center">
-                                        <Card.Text>
-                                            <div className="col-sm-12">
-                                                <div className='cardTitleSec'>
-                                                    <TextTruncate
-                                                        className="cardItmTitle"
-                                                        line={2}
-                                                        element="h3"
-                                                        truncateText="…"
-                                                        text={actividad.ACTIVIDAD}
-                                                    />
-                                                </div>
-                                                <div className="cardItmHeaderAct d-flex justify-content-center align-items-center">
-                                                    <div className="col-sm-3">
-                                                        <img src={avatar} className="rounded-circle" height="60" width="60"></img>
-                                                    </div>
-                                                    <div className="col-sm-6" >
-                                                        <h4 className="cardItmUserName"><b>{actividad.NOMBRE} {actividad.APELLIDO}</b></h4>
-                                                    </div>
-                                                    <div className="col-sm-4 cartItmDate mb-2" >
-                                                        <time class="icon mb-3">
-                                                            <em>{getDayName(actividad.FECHAHORAA)}</em>
-                                                            <strong>{getMonth(actividad.FECHAHORAA)}</strong>
-                                                            <span>{getDayNumber(actividad.FECHAHORAA)}</span>
-                                                        </time>
-                                                        <FontAwesomeIcon icon={faClock} style={{ color: "#1464b4" }} />
-                                                        <span className="cardItmText"><b> {getTimeAct(actividad.FECHAHORAA)}</b></span>
-                                                    </div>
-                                                </div>
-                                                <div className='d-flex flex-row justify-content-center'>
-                                                    <FontAwesomeIcon icon={faLocationDot} style={{ color: "#1464b4" }} />
-                                                </div>
-                                                <TextTruncate
-                                                    className="cardItmText"
-                                                    line={2}
-                                                    element="span"
-                                                    truncateText="…"
-                                                    text={actividad.UBICACIONA}
-                                                />
-                                            </div>
-                                        </Card.Text>
-                                        <button
-                                            class="btn btn-success"
-                                            onClick={handleShow}>
-                                            Ver detalle
-                                        </button>
-                                        <Modal
-                                            show={show}
-                                            onHide={handleClose}
-                                            size="lg"
-                                            aria-labelledby="contained-modal-title-vcenter"
-                                            centered >
-                                            <Modal.Header className="d-flex flex-row justify-content-center">
-                                                <Modal.Title className="textTitleForm">Detalle de Actividad</Modal.Title>
-                                            </Modal.Header>
-                                            <Modal.Body>
-                                                <Row>
-                                                    <Col xs={6} md={5}>
-                                                        <div className='h-100 d-flex justify-content-center align-items-center'>
-                                                            <Image
-                                                                src={actividad.IMAGENA ? actividad.IMAGENA : actividadDef}
-                                                                className='img-fluid rounded'
-                                                            />
-                                                        </div>
-                                                    </Col>
-                                                    <Col xs={12} md={7}>
-                                                        <h6 className="textLabel label">Nombre: </h6>
-                                                        <span className="textInfoModal"> {actividad.NOMBRE} {actividad.APELLIDO}</span>
-                                                        <h6 className="textLabel label">Actividad: </h6>
-                                                        <span className="textInfoModal"> {actividad.ACTIVIDAD}</span>
-                                                        <h6 className="textLabel">Fecha y hora: </h6>
-                                                        <span className="textInfoModal">{dateFormat(actividad.FECHAHORAA, "dd/mm/yyyy h:MM TT")}</span>
-                                                        <h6 className="textLabel">Ubicación: </h6>
-                                                        <span className="textInfoModal">{actividad.UBICACIONA}</span>
-                                                        <h6 className="textLabel">Descripción: </h6>
-                                                        <span className="textInfoModal">{actividad.DESCRIPCIONA}</span>
-                                                    </Col>
-                                                </Row>
-
-                                            </Modal.Body>
-                                            <Modal.Footer>
-                                                <button className="btn btn-primary" onClick={handleClose}>
-                                                    Cerrar
-                                                </button>
-                                            </Modal.Footer>
-                                        </Modal>
-                                    </Card.Body>
-                                </Card>
+                                <CardActividad actividad={ACTIVIDAD} nombre={NOMBRE} apellido={APELLIDO} fechaHora={FECHAHORAA} ubicacion={UBICACIONA} descripcion={DESCRIPCIONA} imagen={IMAGENA} idAct={IDACT} />
                             </Col>
                         ))}
                     </Row>
