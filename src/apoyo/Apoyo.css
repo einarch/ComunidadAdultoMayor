@@ -54,3 +54,40 @@ body {
 .formulario__mensaje-activo {
 	display: block;
 }
+
+.boton-contactar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  padding: 7px 5px;
+  background: #245d97;
+  color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+  position: relative;
+  cursor: pointer;
+ }
+ 
+ .boton-contactar .contactar {
+  display: flex;
+  padding: 7px;
+  position: absolute;
+  border-radius: 3rem;
+  bottom: 100%;
+  background-color: #E4E9FF;
+  margin-bottom: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(1rem);
+  transition: all ease-out 250ms;
+ }
+ .boton-contactar:focus .contactar,
+ .boton-contactar:hover .contactar {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+ }
+
+
+
