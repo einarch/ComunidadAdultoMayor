@@ -100,7 +100,7 @@
 }
 
 .textLikeButton {
-  font-size: 17px;
+  font-size: 16px;
   color: white;
 }
 
@@ -157,12 +157,12 @@
 
 .cardItmDes {
   width: auto;
-  height: 50px;
+  height: 80px;
 }
 
 .cardTitleSec {
   width: auto;
-  height: 45px;
+  height:110px;
 }
 
 .cardItmLocation {
@@ -177,7 +177,17 @@
 
 .cardItmHeaderAct {
   width: auto;
+  height: 120px;
+}
+
+.cardItmHeaderPubli {
+  width: auto;
   height: 150px;
+}
+
+.cardPubli {
+  width: auto;
+  height: 200px;
 }
 
 .textForm {
@@ -187,4 +197,14 @@
 
 .input-feedback {
   font-family: 'Roboto', sans-serif;
+}
+
+.cardButtonsSec{
+  width: auto;
+  height: 30px;
+}
+
+.cardFooterSec {
+  width: auto;
+  height: 10px;
 }

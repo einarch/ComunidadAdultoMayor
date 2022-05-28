@@ -52,10 +52,11 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
             <div className='cardImageSize mb-3'>
                 <Card.Img className="cardItemImage" src={imagen ? imagen : actividadDef} />
             </div>
-            <Card.Body className="col-sm-12 d-flex flex-column align-items-center justify-content-center">
+            <Card.Body className="cardBodySec col-sm-12 d-flex flex-column ">
+            
                 <Card.Text>
-                    <div className="col-sm-12">
-                        <div className='cardTitleSec'>
+                    <div className="col-sm-12 mb-3">
+                        <div className='cardTitleSec d-flex justify-content-center align-items-end'>
                             <TextTruncate
                                 className="cardItmTitle"
                                 line={2}
@@ -93,14 +94,14 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
                         />
                     </div>
                 </Card.Text>
-                <div className="h-100 d-flex align-items-center justify-content-center mb-2">
-                    <div className="h-100 d-flex flex-column justify-content-start">
+                <div className="cardButtonsSec h-100 d-flex justify-content-center align-items-center mb-2">
+                    <div className="badge">
                         <button class="btn btn-warning" >
                             <FontAwesomeIcon icon={faPen} style={{ color: "#fff" }} />
-                            <span className="textLikeButton" id="count"> Asistir </span>
+                            <span className="textLikeButton" id="count">Asistire</span>
                         </button>
                     </div>
-                    <div className="h-100 d-flex flex-column justify-content-end">
+                    <div className="badge">
                         <button
                             className="btn btn-success"
                             onClick={handleShow}>
@@ -108,7 +109,7 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
                         </button>{ }
                     </div>
                 </div>
-                <div className="h-100 d-flex align-items-center justify-content-center">
+                <div className="cardFooterSec d-flex align-items-center justify-content-center">
                     {asistentes != 0 ? <FontAwesomeIcon icon={faUsers} style={{ color: "#0c4c8c" }} /> : ""}
                     <span className="cardItmText"> <b>{asistentes != 0 ? asistentes : ""}</b> </span>
                 </div>
@@ -134,14 +135,27 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
                             <Col xs={12} md={7}>
                                 <h6 className="textLabel label">Nombre </h6>
                                 <span className="textInfoModal"> {nombre} {apellido}</span>
+                                <br></br><br></br>
                                 <h6 className="textLabel label">Actividad </h6>
                                 <span className="textInfoModal"> {actividad}</span>
+                                <br></br><br></br>
                                 <h6 className="textLabel">Fecha y hora </h6>
                                 <span className="textInfoModal">{dateFormat(fechaHora, "dd/mm/yyyy h:MM TT")}</span>
+                                <br></br><br></br>
                                 <h6 className="textLabel">Ubicación </h6>
                                 <span className="textInfoModal">{ubicacion}</span>
-                                { descripcion ? <h6 className="textLabel">Descripción </h6> : ""}
+                                {descripcion ? <h6 className="textLabel">Descripción </h6> : ""}
                                 <span className="textInfoModal">{descripcion}</span>
+                                <br></br>
+                                <br></br>
+                                <button class="btn btn-warning" >
+                                    <FontAwesomeIcon icon={faPen} style={{ color: "#fff" }} />
+                                    <span className="textLikeButton" id="count">Asistire</span>
+                                </button>
+                                <br></br>
+                                <br></br>
+                                {asistentes != 0 ? <FontAwesomeIcon icon={faUsers} style={{ color: "#0c4c8c" }} /> : ""}
+                                <span className="cardItmText"> <b>{asistentes != 0 ? asistentes : ""}</b> </span>
                             </Col>
                         </Row>
                     </Modal.Body>

@@ -74,11 +74,14 @@ function CardVoluntario({ nombre, apellido, tipoDeApoyo, telefono, ciudad, diasD
         </Card.Text>
 
         <br />
-        <button
-          class="btn btn-success"
-          onClick={handleShow}>
-          Ver detalle
-        </button>
+        <div className="cardButtonsSec">
+          <button
+            className="btn btn-success"
+            onClick={handleShow}>
+            Ver detalle
+          </button>
+        </div>
+
         <Modal
           show={show}
           onHide={handleClose}
@@ -101,14 +104,19 @@ function CardVoluntario({ nombre, apellido, tipoDeApoyo, telefono, ciudad, diasD
               <Col xs={12} md={7}>
                 <h6 className="textLabel label">Nombre</h6>
                 <span className="textInfoModal">{nombre} {apellido}</span>
+                <br></br><br></br>
                 <h6 className="textLabel label">Ciudad</h6>
                 <span className="textInfoModal"> {ciudad}</span>
+                <br></br><br></br>
                 <h6 className="textLabel">Teléfono</h6>
                 <span className="textInfoModal" id="cmd">{telefono}</span>
+                <br></br><br></br>
                 <h6 className="textLabel">Días Disponibles</h6>
                 <span className="textInfoModal">{diasDisponibles}</span>
+                <br></br><br></br>
                 <h6 className="textLabel">Tipo de Apoyo</h6>
                 <span className="textInfoModal">{tipoDeApoyo}</span>
+                <br></br><br></br>
                 {descripcion ? <h6 className="textLabel">Motivación </h6> : ""}
                 <span className="textInfoModal">{descripcion}</span>
                 <br></br>

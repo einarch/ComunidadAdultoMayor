@@ -41,35 +41,36 @@ const getTimePub = (dateIn) => {
 let clicked = false;
 var
     palabra = document.getElementById("count"),
-    count= document.getElementById("num");
-     
+    count = document.getElementById("num");
+
 function like() {
-    
+
     if (palabra == null) {
         palabra = document.getElementById("count");
-        count= document.getElementById("num");
+        count = document.getElementById("num");
         console.log(palabra);
         console.log(count);
         console.log("Es el inicio");
-        
+
     } else {
         console.log(palabra);
         console.log(count);
         console.log("Ya empezo");
         if (!clicked) {
             clicked = true;
-           palabra.textContent= "Me gusta";
-           console.log("me gusta");
-           count.textContent++;
-           console.log(count.textContent);
+            palabra.textContent = "Me gusta";
+            console.log("me gusta");
+            count.textContent++;
+            console.log(count.textContent);
         } else {
             clicked = false;
-            palabra.textContent= "Dar me gusta";
+            palabra.textContent = "Dar me gusta";
             console.log("Dar me gusta");
             count.textContent--;
             console.log(count.textContent);
+        }
     }
-}}
+}
 // este comando funciona cuando ya estemos dentro de la seccion, asi si funciona
 /* 
 const likeBtn = document.querySelector(".like__btn");
@@ -93,7 +94,7 @@ likeBtn.addEventListener("click", () => {
 */
 
 function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, contadorLike, idPub }) {
-    
+
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -105,9 +106,11 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, con
                 <Card.Img className="cardItemImage" src={imagen ? imagen : publicacionDef} />
             </div>
             <Card.Body className="col-sm-12 d-flex flex-column align-items-center justify-content-center">
+                <br></br>
+                <br></br>
                 <Card.Text>
                     <div className="col-sm-12">
-                        <div className="h-100 d-flex justify-content-center align-items-center" >
+                        <div className=" cardItmHeaderPubli d-flex justify-content-center align-items-center" >
                             <div className="col-sm-3">
                                 <img src={avatar} className="rounded-circle" height="60" width="60"></img>
                             </div>
@@ -124,7 +127,7 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, con
                                 <span className="cardItmText"><b> {getTimePub(fechaHora)}</b></span>
                             </div>
                         </div>
-                        <div className="col-sm-12 cardItmDes mb-4" >
+                        <div className="col-sm-12 cardItmDes d-flex justify-content-center align-items-start mb-4" >
                             <TextTruncate
                                 className="cardItmText"
                                 line={3}
@@ -135,23 +138,23 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, con
                         </div>
                     </div>
                 </Card.Text>
-                <div className="h-100 d-flex align-items-center justify-content-center mb-2">
-                    <div className="h-100 d-flex flex-column justify-content-center">
+                <div className="cardButtonsSec h-100 d-flex justify-content-center align-items-center mb-2">
+                    <div className="badge me-auto">
                         <button class="btn btn-warning" onClick={like}>
                             <FontAwesomeIcon icon={faThumbsUp} style={{ color: "#fff" }} />
                             <span className="textLikeButton" id="count">Dar me Gusta</span>
                             <script>like()</script>
                         </button>
                     </div>
-                    <div className="h-100 d-flex flex-column justify-content-end">
+                    <div className="badge me-auto">
                         <button
                             className="btn btn-success"
                             onClick={handleShow}>
                             Ver detalle
-                        </button>{ }
+                        </button>
                     </div>
                 </div>
-                <div className="h-100 d-flex align-items-center justify-content-center">
+                <div className="cardFooterSec d-flex align-items-center justify-content-center">
                     {contadorLike != 0 ? <FontAwesomeIcon icon={faThumbsUp} style={{ color: "#0c4c8c" }} /> : ""}
                     <span className="cardItmText" > <b id="num">{contadorLike != 0 ? contadorLike : ""}</b> </span>
                 </div>
@@ -178,15 +181,25 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, con
                             <Col xs={12} md={7}>
                                 <h6 className="textLabel label">Nombre</h6>
                                 <span className="textInfoModal"> {nombre} {apellido}</span>
+                                <br></br><br></br>
                                 <h6 className="textLabel">Fecha y hora</h6>
                                 <span className="textInfoModal">{dateFormat(fechaHora, "dd/mm/yyyy h:MM TT")}</span>
+                                <br></br><br></br>
                                 <h6 className="textLabel">Descripción</h6>
                                 <span className="textInfoModal">{descripcion}</span>
+                                <br></br><br></br>
+                                <button class="btn btn-warning" onClick={like}>
+                                    <FontAwesomeIcon icon={faThumbsUp} style={{ color: "#fff" }} />
+                                    <span className="textLikeButton" id="count">Dar me Gusta</span>
+                                    <script>like()</script>
+                                </button>
+                                <br></br><br></br>
+                                {contadorLike != 0 ? <FontAwesomeIcon icon={faThumbsUp} style={{ color: "#0c4c8c" }} /> : ""}
+                                <span className="cardItmText" > <b id="num">{contadorLike != 0 ? contadorLike : ""}</b> </span>
                             </Col>
                         </Row>
                     </Modal.Body>
                     <Modal.Footer>
-
                         <button className="btn btn-primary" onClick={handleClose}>
                             Cerrar
                         </button>
