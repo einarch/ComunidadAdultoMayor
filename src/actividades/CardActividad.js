@@ -9,6 +9,8 @@ import { Row, Col, Modal, Image, Card } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from '@fortawesome/free-solid-svg-icons';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
 
 // Calcular Fechas par Date Icon
 const getMonth = (dateIn) => {
@@ -38,7 +40,7 @@ const getTimeAct = (dateIn) => {
     return timeAct;
 };
 
-function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, descripcion, imagen, idAct }) {
+function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, descripcion, imagen, asistentes, idAct }) {
 
     const [show, setShow] = useState(false);
 
@@ -91,11 +93,25 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
                         />
                     </div>
                 </Card.Text>
-                <button
-                    class="btn btn-success"
-                    onClick={handleShow}>
-                    Ver detalle
-                </button>
+                <div className="h-100 d-flex align-items-center justify-content-center mb-2">
+                    <div className="h-100 d-flex flex-column justify-content-start">
+                        <button class="btn btn-warning" >
+                            <FontAwesomeIcon icon={faPen} style={{ color: "#fff" }} />
+                            <span className="textLikeButton" id="count"> Asistir </span>
+                        </button>
+                    </div>
+                    <div className="h-100 d-flex flex-column justify-content-end">
+                        <button
+                            className="btn btn-success"
+                            onClick={handleShow}>
+                            Ver detalle
+                        </button>{ }
+                    </div>
+                </div>
+                <div className="h-100 d-flex align-items-center justify-content-center">
+                    {asistentes != 0 ? <FontAwesomeIcon icon={faUsers} style={{ color: "#0c4c8c" }} /> : ""}
+                    <span className="cardItmText"> <b>{asistentes != 0 ? asistentes : ""}</b> </span>
+                </div>
                 <Modal
                     show={show}
                     onHide={handleClose}
@@ -116,15 +132,15 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
                                 </div>
                             </Col>
                             <Col xs={12} md={7}>
-                                <h6 className="textLabel label">Nombre: </h6>
+                                <h6 className="textLabel label">Nombre </h6>
                                 <span className="textInfoModal"> {nombre} {apellido}</span>
-                                <h6 className="textLabel label">Actividad: </h6>
+                                <h6 className="textLabel label">Actividad </h6>
                                 <span className="textInfoModal"> {actividad}</span>
-                                <h6 className="textLabel">Fecha y hora: </h6>
+                                <h6 className="textLabel">Fecha y hora </h6>
                                 <span className="textInfoModal">{dateFormat(fechaHora, "dd/mm/yyyy h:MM TT")}</span>
-                                <h6 className="textLabel">Ubicación: </h6>
+                                <h6 className="textLabel">Ubicación </h6>
                                 <span className="textInfoModal">{ubicacion}</span>
-                                <h6 className="textLabel">Descripción: </h6>
+                                { descripcion ? <h6 className="textLabel">Descripción </h6> : ""}
                                 <span className="textInfoModal">{descripcion}</span>
                             </Col>
                         </Row>
@@ -149,6 +165,7 @@ CardActividad.propTypes = {
     ubicacion: PropTypes.string,
     descripcion: PropTypes.string,
     imagen: PropTypes.string,
+    asistentes: PropTypes.string,
     idAct: PropTypes.string,
 };
 

@@ -87,6 +87,24 @@
   background-color: #0c4c8c !important;
 }
 
+.btn-warning {
+  background-color: #0c4c8c !important;
+  border-color: #fff !important;
+  color: #f8f9fa;
+}
+
+.btn-warning:hover,
+.btn-warning:active,
+.btn-warning:visited {
+  background-color: #0c242c !important;
+}
+
+.textLikeButton {
+  font-size: 17px;
+  color: white;
+}
+
+
 /*Texto de nombre usuario del card*/
 .cardItmUserName {
   font-size: 17px;

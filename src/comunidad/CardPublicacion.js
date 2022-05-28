@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Card, Form, Row, Col, Modal, Image } from 'react-bootstrap';
+import { Container, Card, Form, Row, Col, Modal, Image } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import dateFormat, { masks } from "dateformat";
 import TextTruncate from 'react-text-truncate';
@@ -8,6 +8,7 @@ import './../comunidad/Publicacion.css';
 import avatar from '../imagenes/avatar.jpg';
 import publicacionDef from '../imagenes/publicacionDef.webp'
 import { faClock } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 // Calcular Fechas par Date Icon
 const getMonth = (dateIn) => {
@@ -36,9 +37,54 @@ const getTimePub = (dateIn) => {
     var timePub = date.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
     return timePub;
 };
+// desde aqui comenten 
+let clicked = false;
+const likeBtn = document.querySelector(".like__btn");
+let likeIcon = document.querySelector("#icon"),
+    count = document.querySelector("#count");
+function like() {
+
+    if (likeBtn == null) {
+
+    } else {
+
+        if (!clicked) {
+            clicked = true;
+            likeIcon.innerHTML = `<i class="fas fa-thumbs-up"></i>`;
+
+            count.textContent = count.textContent++;
+            console.log(count.textContent);
+        } else {
+            clicked = false;
+            likeIcon.innerHTML = `<i class="far fa-thumbs-up"></i>`;
+            count.textContent--;
+        }
+
+    }
+}
+// este comando funciona cuando ya estemos dentro de la seccion, asi si funciona
+/* 
+const likeBtn = document.querySelector(".like__btn");
+let likeIcon = document.querySelector("#icon"),
+  count = document.querySelector("#count");
+
+let clicked = false;
 
 
-function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, idPub }) {
+likeBtn.addEventListener("click", () => {
+  if (!clicked) {
+    clicked = true;
+    likeIcon.innerHTML = `<i class="fas fa-thumbs-up"></i>`;
+    count.textContent++;
+  } else {
+    clicked = false;
+    likeIcon.innerHTML = `<i class="far fa-thumbs-up"></i>`;
+    count.textContent--;
+  }
+}); 
+*/
+
+function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, contadorLike, idPub }) {
 
     const [show, setShow] = useState(false);
 
@@ -81,56 +127,25 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, idP
                         </div>
                     </div>
                 </Card.Text>
-
-                <div id="content">
-                    <div id="left">
-                        <button type="button" class="boton-reacciones" >
-                            <span class="texto-boton">Reaccionar</span>
-                            <div class="reacciones">
-                                <div class="reaccion">
-                                    <i class="fas fa-thumbs-up"></i>
-                                    <span class="nombre-reccion" id='MeGusta'>
-
-                                    </span>
-                                </div>
-                                <div class="reaccion">
-                                    <i class="fas fa-heart"></i>
-                                    <span class="nombre-reccion" id='MeEncanta'>
-
-                                    </span>
-                                </div>
-                                <div class="reaccion">
-                                    <i class="far fa-sad-tear"></i>
-                                    <span class="nombre-reccion" id='MeEntristece'>
-
-                                    </span>
-                                </div>
-                                <div class="reaccion">
-                                    <i class="far fa-grin-squint-tears"></i>
-                                    <span class="nombre-reccion" id='MeDivierte'>
-
-                                    </span>
-                                </div>
-                                <div class="reaccion">
-                                    <i class="far fa-angry"></i>
-                                    <span class="nombre-reccion" id='MeEnoja'>
-
-                                    </span>
-                                </div>
-                            </div>
+                <div className="h-100 d-flex align-items-center justify-content-center mb-2">
+                    <div className="h-100 d-flex flex-column justify-content-center">
+                        <button class="btn btn-warning" onClick={like(this)}>
+                            <FontAwesomeIcon icon={faThumbsUp} style={{ color: "#fff" }} />
+                            <span className="textLikeButton" id="count">Me Gusta</span>
                         </button>
                     </div>
-                    <div id="right">
+                    <div className="h-100 d-flex flex-column justify-content-end">
                         <button
-
-                            className="btn btn-success "
-                            //style="width: 104px;"
+                            className="btn btn-success"
                             onClick={handleShow}>
                             Ver detalle
-                        </button>
+                        </button>{ }
                     </div>
                 </div>
-
+                <div className="h-100 d-flex align-items-center justify-content-center">
+                    {contadorLike != 0 ? <FontAwesomeIcon icon={faThumbsUp} style={{ color: "#0c4c8c" }} /> : ""}
+                    <span className="cardItmText"> <b>{contadorLike != 0 ? contadorLike : ""}</b> </span>
+                </div>
                 <Modal
                     className='mb-1'
                     show={show}
@@ -162,41 +177,7 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, idP
                         </Row>
                     </Modal.Body>
                     <Modal.Footer>
-                        <button type="button" class="boton-reaccionesM" >
-                            <span class="texto-boton">Reaccionar</span>
-                            <div class="reacciones">
-                                <div class="reaccion">
-                                    <i class="fas fa-thumbs-up"></i>
-                                    <span class="nombre-reccion">
-                                        Me gusta
-                                    </span>
-                                </div>
-                                <div class="reaccion">
-                                    <i class="fas fa-heart"></i>
-                                    <span class="nombre-reccion">
-                                        Me encanta
-                                    </span>
-                                </div>
-                                <div class="reaccion">
-                                    <i class="far fa-sad-tear"></i>
-                                    <span class="nombre-reccion">
-                                        Me entristece
-                                    </span>
-                                </div>
-                                <div class="reaccion">
-                                    <i class="far fa-grin-squint-tears"></i>
-                                    <span class="nombre-reccion">
-                                        Me divierte
-                                    </span>
-                                </div>
-                                <div class="reaccion">
-                                    <i class="far fa-angry"></i>
-                                    <span class="nombre-reccion">
-                                        Me enoja
-                                    </span>
-                                </div>
-                            </div>
-                        </button>
+
                         <button className="btn btn-primary" onClick={handleClose}>
                             Cerrar
                         </button>
@@ -208,12 +189,14 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, idP
     );
 }
 
+
 CardPublicacion.propTypes = {
     nombre: PropTypes.string.isRequired,
     apellido: PropTypes.string,
     fechaHora: PropTypes.string,
     descripcion: PropTypes.string,
     imagen: PropTypes.string,
+    contadorLike: PropTypes.string,
     idPub: PropTypes.string,
 };
 

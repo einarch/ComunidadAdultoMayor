@@ -330,7 +330,7 @@ const Actividad = ({ children }) => {
                     <Row xs={1} md={3} className="g-4">
                         {Array.from(data).map(({ ACTIVIDAD, NOMBRE, APELLIDO, FECHAHORAA, UBICACIONA, DESCRIPCIONA, IMAGENA, IDACT }) => (
                             <Col>
-                                <CardActividad actividad={ACTIVIDAD} nombre={NOMBRE} apellido={APELLIDO} fechaHora={FECHAHORAA} ubicacion={UBICACIONA} descripcion={DESCRIPCIONA} imagen={IMAGENA} idAct={IDACT} />
+                                <CardActividad actividad={ACTIVIDAD} nombre={NOMBRE} apellido={APELLIDO} fechaHora={FECHAHORAA} ubicacion={UBICACIONA} descripcion={DESCRIPCIONA} imagen={IMAGENA} asistentes={3} idAct={IDACT} />
                             </Col>
                         ))}
                     </Row>
