@@ -39,29 +39,37 @@ const getTimePub = (dateIn) => {
 };
 // desde aqui comenten 
 let clicked = false;
-const likeBtn = document.querySelector(".like__btn");
-let likeIcon = document.querySelector("#icon"),
-    count = document.querySelector("#count");
+var
+    palabra = document.getElementById("count"),
+    count= document.getElementById("num");
+     
 function like() {
-
-    if (likeBtn == null) {
-
+    
+    if (palabra == null) {
+        palabra = document.getElementById("count");
+        count= document.getElementById("num");
+        console.log(palabra);
+        console.log(count);
+        console.log("Es el inicio");
+        
     } else {
-
+        console.log(palabra);
+        console.log(count);
+        console.log("Ya empezo");
         if (!clicked) {
             clicked = true;
-            likeIcon.innerHTML = `<i class="fas fa-thumbs-up"></i>`;
-
-            count.textContent = count.textContent++;
-            console.log(count.textContent);
+           palabra.textContent= "Me gusta";
+           console.log("me gusta");
+           count.textContent++;
+           console.log(count.textContent);
         } else {
             clicked = false;
-            likeIcon.innerHTML = `<i class="far fa-thumbs-up"></i>`;
+            palabra.textContent= "Dar me gusta";
+            console.log("Dar me gusta");
             count.textContent--;
-        }
-
+            console.log(count.textContent);
     }
-}
+}}
 // este comando funciona cuando ya estemos dentro de la seccion, asi si funciona
 /* 
 const likeBtn = document.querySelector(".like__btn");
@@ -85,7 +93,7 @@ likeBtn.addEventListener("click", () => {
 */
 
 function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, contadorLike, idPub }) {
-
+    
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -129,9 +137,10 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, con
                 </Card.Text>
                 <div className="h-100 d-flex align-items-center justify-content-center mb-2">
                     <div className="h-100 d-flex flex-column justify-content-center">
-                        <button class="btn btn-warning" onClick={like(this)}>
+                        <button class="btn btn-warning" onClick={like}>
                             <FontAwesomeIcon icon={faThumbsUp} style={{ color: "#fff" }} />
-                            <span className="textLikeButton" id="count">Me Gusta</span>
+                            <span className="textLikeButton" id="count">Dar me Gusta</span>
+                            <script>like()</script>
                         </button>
                     </div>
                     <div className="h-100 d-flex flex-column justify-content-end">
@@ -144,7 +153,7 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, con
                 </div>
                 <div className="h-100 d-flex align-items-center justify-content-center">
                     {contadorLike != 0 ? <FontAwesomeIcon icon={faThumbsUp} style={{ color: "#0c4c8c" }} /> : ""}
-                    <span className="cardItmText"> <b>{contadorLike != 0 ? contadorLike : ""}</b> </span>
+                    <span className="cardItmText" > <b id="num">{contadorLike != 0 ? contadorLike : ""}</b> </span>
                 </div>
                 <Modal
                     className='mb-1'
