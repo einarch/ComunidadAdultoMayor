@@ -8,6 +8,7 @@ import Alert from "react-bootstrap/Alert";
 import "./Register.css";
 import * as Yup from "yup";
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
+import { Link } from 'react-router-dom'
 
 
 const URL_REGISTRAR = configData.REGISTRAR_API_URL;
@@ -79,9 +80,6 @@ const Register = ({ children }) => {
 
     const [state, setstate] = useState(false);
 
-    const paginaI = () => {
-        window.location.href = '/';
-    }
     const login = () => {
         window.location.href = "/login";
     }
@@ -363,12 +361,9 @@ const Register = ({ children }) => {
                         </Form.Group>
                     </Row>
                     <div className="d-flex flex-row align-items-center justify-content-center">
-                        <button
-                            className="btn btn-secondary col-4 m-1"
-                            onClick={paginaI}
-                            href="../components/PaginaInicio"
-                        >Cancelar
-                        </button>
+                        
+                        <Link to={"/"} type="button" className="btn btn-secondary col-4 m-1">Cancelar</Link>
+
                         <button
                             className="btn btn-success col-4 m-1"
                             type="submit"
