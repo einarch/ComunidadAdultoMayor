@@ -117,12 +117,11 @@ const Apoyo = ({ children }) => {
         },
 
         validationSchema: Yup.object().shape({
-            telefono: Yup.number()
-                .typeError("El Teléfono solo se admite números")
+            telefono: Yup.string()
                 .required("El Teléfono es requerido")
-                .min(6, "El Teléfono debe contener al menos 10 dígitos")
-                .max(15, "El Teléfono debe contener debe contener máximo 10 dígitos")
-                .positive(`Solo numeros positivos`),
+                .min(8, "El Teléfono debe contener al menos 8 dígitos")
+                .max(11, "El Teléfono debe contener debe contener máximo 11 dígitos")
+                .matches(/^[567][0-9]{7,11}$/, 'El Teléfono debe seguir el formato: 6XXXXXXX o 5916XXXXXXX'),
             dias: Yup.string()
                 .required("Los Días disponibles es requerido")
                 .min(4, "Los Días disponibles debe contener al menos 4 caracteres")

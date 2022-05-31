@@ -19,28 +19,20 @@ function CardVoluntario({ nombre, apellido, tipoDeApoyo, telefono, ciudad, diasD
   const handleShow = () => setShow(true);
 
   const enviarFormulario = () => {
-    var numero = corregirNumero();
-    console.log(numero);
-
-    var win = window.open(`https://wa.me/591${numero}?text=Hola%20podrias%20ayudarme%20a%20realizar`, '_blank');
-  }
-
-  function obtenerDatos() {
-    var x1 = document.getElementById("cmd").innerHTML;
-    var r = x1;
-    return r;
-  }
-
-  function corregirNumero() {
-    var numer = obtenerDatos();
-    var cantidad = numer.length;
-    if (cantidad > 8) {
-      var newNumero = numer.substring(3, numer.length);
-    } else {
-      var newNumero = numer;
+    var voluntarioTel = telefono;
+    voluntarioTel = voluntarioTel.replaceAll("\\s+", "")
+    if (voluntarioTel.startsWith("591")) {
+      voluntarioTel = voluntarioTel.substring(3, voluntarioTel.length);
     }
-    return newNumero;
+    console.log("Teléfono: " + voluntarioTel);
+
+    var win = window.open(`https://wa.me/591${voluntarioTel}?text=Hola%20podrias%20ayudarme%20a%20realizar`, '_blank');
   }
+
+  //tenemos el rol
+  let userROL = localStorage.getItem("id");
+  const IDROL = userROL;
+
   return (
     <Card key={idVol} className="cardSec text-center">
       <div className='cardImageSize'>
@@ -72,14 +64,25 @@ function CardVoluntario({ nombre, apellido, tipoDeApoyo, telefono, ciudad, diasD
             <span className="cardItmText">{ciudad}</span>
           </div>
         </Card.Text>
-
-        <br />
-        <div className="cardButtonsSec">
-          <button
-            className="btn btn-success"
-            onClick={handleShow}>
-            Ver detalle
-          </button>
+      
+        <div className="cardButtonsSec h-100 d-flex justify-content-center align-items-center">
+          {IDROL != 2 ?
+            <div className="badge">
+              <button
+                className="btn btn-warning"
+                onClick={enviarFormulario} >
+                <span class="texto-boton">Contactar </span>
+                <FontAwesomeIcon icon={faWhatsapp} style={{ color: "#fff" }} />
+              </button>
+            </div>
+            : ""}
+          <div className="badge">
+            <button
+              className="btn btn-success"
+              onClick={handleShow}>
+              Ver detalle
+            </button>
+          </div>
         </div>
 
         <Modal
@@ -109,7 +112,7 @@ function CardVoluntario({ nombre, apellido, tipoDeApoyo, telefono, ciudad, diasD
                 <span className="textInfoModal"> {ciudad}</span>
                 <br></br><br></br>
                 <h6 className="textLabel">Teléfono</h6>
-                <span className="textInfoModal" id="cmd">{telefono}</span>
+                <span className="textInfoModal">{telefono}</span>
                 <br></br><br></br>
                 <h6 className="textLabel">Días Disponibles</h6>
                 <span className="textInfoModal">{diasDisponibles}</span>
@@ -121,10 +124,11 @@ function CardVoluntario({ nombre, apellido, tipoDeApoyo, telefono, ciudad, diasD
                 <span className="textInfoModal">{descripcion}</span>
                 <br></br>
                 <br></br>
-                <button type="button" class="btn btn-warning" onClick={enviarFormulario} >
-                  <span class="texto-boton">Contactar </span>
-                  <FontAwesomeIcon icon={faWhatsapp} style={{ color: "#fff" }} />
-                </button>
+                {IDROL != 2 ?
+                  <button type="button" class="btn btn-warning" onClick={enviarFormulario} >
+                    <span class="texto-boton">Contactar </span>
+                    <FontAwesomeIcon icon={faWhatsapp} style={{ color: "#fff" }} />
+                  </button> : ""}
               </Col>
             </Row>
           </Modal.Body>
