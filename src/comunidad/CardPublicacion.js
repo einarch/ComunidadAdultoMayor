@@ -102,7 +102,7 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, con
 
     return (
         <Card key={idPub} className="cardSec text-center">
-            <div className='cardImageSize'>
+            <div >
                 <Card.Img className="cardItemImage" src={imagen ? imagen : publicacionDef} />
             </div>
             <Card.Body className="col-sm-12 d-flex flex-column align-items-center justify-content-center">

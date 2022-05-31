@@ -134,8 +134,6 @@
 }
 
 .cardItemImage {
-  transform: scale(1);
-  transition: all 0.2s ease-in-out;
   width: 200px;
   height: 200px;
 }

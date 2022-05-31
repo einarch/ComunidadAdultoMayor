@@ -66,16 +66,14 @@ export const Login = () => {
 
         validationSchema: Yup.object().shape({
             email: Yup.string()
-                .email("Correo no válido")
                 .min(6, "El Correo debe contener al menos 6 caracteres")
-                .max(30, "El Correo debe contener máximo 30 caracteres")
                 .required("El Correo es requerido")
-                .matches(/^[a-z0-9.\s]+@[a-z0-9\s]+\.[a-z0-9.\s]/, "Caracteres no permitidos"),
+                .matches(/^(?=.{2,}@)[0-9a-z]+(?:\.[0-9a-z]+)*@[a-z0-9]{2,}(?:\.[a-z]{2,})+$/, "El correo debe seguir el formato mínimo: us@bo.co"),
             password: Yup.string()
                 .required("La Contraseña es requerido")
                 .min(6, "La Contraseña debe contener al menos 6 caracteres")
                 .max(15, "La Contraseña debe contener máximo 15 caracteres")
-                .matches(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,15}$/, "Caracteres no permitidos")
+                .matches(/(?!.* )(?!.*[-_,.#$%&:;'?¡!"{}()¿°|[@^~+*¬<>])(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,15})/, "La contraseña debe tener al menos una letra Mayúscula y una letra minúscula"),
         })
 
     })
