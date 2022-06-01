@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import './../actividades/Actividad.css';
 import configData from "../config/config.json";
 import CardActividad from './CardActividad';
+import Footer from '../components/Footer';
 
 const Actividad = ({ children }) => {
 
@@ -335,6 +336,7 @@ const Actividad = ({ children }) => {
                         ))}
                     </Row>
                 </Container>
+                <Footer></Footer>
             </></>
     );
 }

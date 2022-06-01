@@ -8,6 +8,7 @@ import './../apoyo/Apoyo.css';
 import configData from "../config/config.json";
 import { Row, Col } from 'react-bootstrap';
 import CardVoluntario from './CardVoluntario';
+import Footer from '../components/Footer';
 
 const Apoyo = ({ children }) => {
 
@@ -325,6 +326,7 @@ const Apoyo = ({ children }) => {
                     ))}
                 </Row>
             </Container>
+            <Footer></Footer>
         </div>
     );
 
