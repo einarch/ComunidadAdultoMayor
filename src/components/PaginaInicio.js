@@ -5,15 +5,17 @@ import Cabezera from "./Cabezera.js";
 import ImagenFondo from "./ImagenFondo.js";
 
 import ParticleBackground from "../ParticleBackground";
+import Footer from './Footer';
 
 
 function PaginaInicio() {
   return (
     <div className="Applicacion">
       <ParticleBackground />
-      <Cabezera/>
-      <ImagenFondo/>
+      <Cabezera />
+      <ImagenFondo />
       <Cards />
+      <Footer></Footer>
     </div>
   );
 }

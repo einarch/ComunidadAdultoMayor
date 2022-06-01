@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import './../comunidad/Publicacion.css';
 import configData from "../config/config.json";
 import CardPublicacion from './CardPublicacion';
+import Footer from '../components/Footer';
 
 const URL_PUBLICAR = configData.PUBLICAR_API_URL;
 
@@ -266,6 +267,7 @@ const Publicacion = ({ children }) => {
                         ))}
                     </Row>
                 </Container>
+                <Footer></Footer>
             </></>
     );
 }

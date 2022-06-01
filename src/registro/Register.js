@@ -105,28 +105,26 @@ const Register = ({ children }) => {
                 .min(3, "El Nombre debe contener al menos 3 caracteres")
                 .max(30, "El Nombre debe contener máximo 30 caracteres")
                 .required("El Nombre es requerido")
-                .matches(/^[a-zA-Z]+$/, "Caracteres no permitidos"),
+                .matches(/^[a-zA-Z ]+$/, "Caracteres no permitidos"),
             apellido: Yup.string()
                 .min(3, "Apellidos debe contener al menos 3 caracteres")
                 .max(30, "Apellidos debe contener máximo 30 caracteres")
                 .required("Apellidos son requeridos")
                 .matches(/^[a-zA-Z ]+$/, "Caracteres no permitidos"),
             email: Yup.string()
-                .email("Correo no válido")
                 .min(6, "El Correo debe contener al menos 6 caracteres")
-                .max(30, "El Correo debe contener máximo 30 caracteres")
                 .required("El Correo es requerido")
-                .matches(/^[a-z0-9.\s]+@[a-z0-9\s]+\.[a-z0-9.\s]/, "Caracteres no permitidos"),
+                .matches(/^(?=.{2,}@)[0-9a-z]+(?:\.[0-9a-z]+)*@[a-z0-9]{2,}(?:\.[a-z]{2,})+$/, "El correo debe seguir el formato mínimo: us@bo.co"),
             password: Yup.string()
                 .required("La Contraseña es requerido")
                 .min(6, "La Contraseña debe contener al menos 6 caracteres")
                 .max(15, "La Contraseña debe contener máximo 15 caracteres")
-                .matches(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,15}$/, "Caracteres no permitidos"),
+                .matches(/(?!.* )(?!.*[-_,.#$%&:;'?¡!"{}()¿°|[@^~+*¬<>])(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,15})/, "La contraseña debe tener al menos una letra Mayúscula y una letra minúscula"),
             password2: Yup.string()
                 .required("Confirmar Contraseña es requerido")
                 .min(6, "Confirmar Contraseña debe contener al menos 6 caracteres")
                 .max(15, "Confirmar Contraseña debe contener máximo 15 caracteres")
-                .matches(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,15}$/, "Caracteres no permitidos")
+                .matches(/(?!.* )(?!.*[-_,.#$%&:;'?¡!"{}()¿°|[@^~+*¬<>])(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,15})/, "La contraseña debe tener al menos una letra Mayúscula y una letra minúscula")
                 .oneOf([Yup.ref('password')], 'Las contraseñas deben coincidir'),
             fechaNacimiento: Yup.string()
                 .required("La Fecha de Nacimiento es requerido"),
