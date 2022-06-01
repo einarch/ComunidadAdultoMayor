@@ -15,6 +15,14 @@ body {
   color: white;
 }
 
+.textColor1{
+  color: red;
+}
+
+.textColor2{
+  color: seagreen;
+}
+
 .uppercaseText {
   text-transform: uppercase;
 }

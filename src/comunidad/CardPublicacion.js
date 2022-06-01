@@ -95,6 +95,7 @@ likeBtn.addEventListener("click", () => {
 
 function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, contadorLike, idPub }) {
 
+    console.log(nombre);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);

@@ -8,5 +8,9 @@
     "CREAR_VOLUNTARIO_API_URL": "https://back-cam.herokuapp.com/serVoluntario.php",
     "REGISTRAR_API_URL" : "https://back-cam.herokuapp.com/registrarUs.php",
     "BUSCAR_API_URL" : "http://back-cam.herokuapp.com/buscarUs.php",
-    "ACTUALIZAR_API_URL" : "http://back-cam.herokuapp.com/actualizarCont.php"
+    "ACTUALIZAR_API_URL" : "http://back-cam.herokuapp.com/actualizarCont.php",
+    "BUSCARASISTIRE_API_URL" : "http://localhost/apiCam/buscarAsistire.php",
+    "ACASISTIRE_API_URL" : "http://localhost/apiCam/actualizarContAsistire.php",
+    "AGASISTIRE_API_URL" : "http://localhost/apiCam/agregarAsistire.php",
+    "QASISTIRE_API_URL" : "http://localhost/apiCam/quitarAsistire.php"
 }

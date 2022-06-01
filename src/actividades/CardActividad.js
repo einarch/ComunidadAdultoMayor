@@ -11,19 +11,53 @@ import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
+import configData from "../config/config.json";
+import { boolean } from "yup";
+
+
+const URL_BUSCARASISTIRE = configData.BUSCARASISTIRE_API_URL;
+const URL_ACASISTIRE = configData.ACASISTIRE_API_URL;
+const URL_AGASISTIRE = configData.AGASISTIRE_API_URL;
+const URL_QASISTIRE = configData.QASISTIRE_API_URL;
+
+
+let c = "";
+let exist= "";
+let cont=0;
+let usuario=0;
+
+
+
+
+
+function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, descripcion, imagen, asistentes, idAct, existe, idUsuario }) {
+//console.log(idUsuario);
+console.log(idAct);
+console.log(idUsuario);
+cont=asistentes;
+exist=existe;
+usuario=idUsuario;
+console.log(exist);
+console.log(cont);
+
 
 // Calcular Fechas par Date Icon
 const getMonth = (dateIn) => {
     var date = new Date(dateIn);
     var monthName = date.toLocaleString('es-es', { month: 'long' });
     monthName = monthName.charAt(0).toUpperCase() + monthName.slice(1);
+    console.log("hola,hola estoy aqui3");
+    //bAsistire();
     return monthName;
 };
+console.log("hola,hola estoy aqui");
 
 const getDayNumber = (dateIn) => {
     var date = new Date(dateIn);
     var dayNumber = date.toLocaleString('es-es', { day: 'numeric' });
     dayNumber = dayNumber.charAt(0).toUpperCase() + dayNumber.slice(1);
+    console.log("hola,hola estoy aqui2");
+    bAsistire();
     return dayNumber;
 };
 
@@ -40,12 +74,90 @@ const getTimeAct = (dateIn) => {
     return timeAct;
 };
 
-function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, descripcion, imagen, asistentes, idAct }) {
 
+    const enviarDatos = async (url, datos) => {
+        console.log(datos);
+        const resp = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(datos),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+
+        });
+        console.log(datos);
+        const rjson = await resp.json();
+        console.log(resp);
+        console.log(rjson);
+        return rjson;
+    }
+
+
+
+    const crearDatos =  () => {
+
+        const datos = {
+            "idUsuario": usuario,
+            "idActividad": idAct,
+            "asistire": cont,
+            "existe" : exist
+        };
+        //console.log(datos);
+        return datos;
+    }
+
+    const bAsistire = ()=> {
+        //console.log(crearDatos());
+        //const respuestaJson = await enviarDatos(URL_BUSCARASISTIRE, crearDatos());
+        //console.log(respuestaJson.Existe);
+        //existe = respuestaJson.Existe;
+        //console.log(existe);
+        if (exist==="true") {
+            c="red";
+        }else{
+            if (exist==="false")
+            c="green";
+        }
+    }
+
+    const cAsistire = async () =>{
+        if (exist === "true") {
+            cont = cont-1;
+            exist="false";
+            c= "green";
+            const respuesta1Json = await enviarDatos(URL_ACASISTIRE, crearDatos());
+            //const respuesta2Json = await enviarDatos(URL_QASISTIRE, crearDatos());
+            console.log(respuesta1Json);
+            console.log("me presionaron", c, exist);
+            bAsistire();
+        }else{
+            if(exist==="false"){
+            cont = cont+1;
+            exist="true";
+            c= "red";
+            const respuesta3Json = await enviarDatos(URL_ACASISTIRE, crearDatos());
+            //const respuesta4Json = await enviarDatos(URL_AGASISTIRE, crearDatos());
+            console.log(respuesta3Json);
+            console.log("me presionaron123", c, exist);
+            bAsistire();
+            }
+        }
+        
+    }
+    
+    let con=0;
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+       
+       cont =cont+1;
+        console.log("color", c);
+        c="red";
+        //cAsistire();
+        console.log("asis", asistentes);
+        console.log("me presionaron123", c, exist);
+        setShow(true);}
 
     return (
         <Card key={idAct} className="cardSec text-center">
@@ -96,9 +208,9 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
                 </Card.Text>
                 <div className="cardButtonsSec h-100 d-flex justify-content-center align-items-center mb-2">
                     <div className="badge">
-                        <button class="btn btn-warning" >
+                        <button class="btn btn-warning" onClick={cAsistire}>
                             <FontAwesomeIcon icon={faPen} style={{ color: "#fff" }} />
-                            <span className="textLikeButton" id="count">Asistire</span>
+                            <span className="textLikeButton" id="count" style={{color: c}}>Asistire</span>
                         </button>
                     </div>
                     <div className="badge">
@@ -148,14 +260,14 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
                                 <span className="textInfoModal">{descripcion}</span>
                                 <br></br>
                                 <br></br>
-                                <button class="btn btn-warning" >
+                                <button class="btn btn-warning" onClick={cAsistire}>
                                     <FontAwesomeIcon icon={faPen} style={{ color: "#fff" }} />
-                                    <span className="textLikeButton" id="count">Asistire</span>
+                                    <span className="textLikeButton" id="count" style={{color: c}}>Asistire</span>
                                 </button>
                                 <br></br>
                                 <br></br>
-                                {asistentes != 0 ? <FontAwesomeIcon icon={faUsers} style={{ color: "#0c4c8c" }} /> : ""}
-                                <span className="cardItmText"> <b>{asistentes != 0 ? asistentes : ""}</b> </span>
+                                {cont != 0 ? <FontAwesomeIcon icon={faUsers} style={{ color: "#0c4c8c" }} /> : ""}
+                                <span className="cardItmText"> <b>{cont != 0 ? cont : ""}</b> </span>
                             </Col>
                         </Row>
                     </Modal.Body>
@@ -181,6 +293,8 @@ CardActividad.propTypes = {
     imagen: PropTypes.string,
     asistentes: PropTypes.string,
     idAct: PropTypes.string,
+    existe: PropTypes.string,
+    idUsuario: PropTypes.string,
 };
 
 export default CardActividad;

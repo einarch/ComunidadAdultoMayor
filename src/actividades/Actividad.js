@@ -8,14 +8,18 @@ import configData from "../config/config.json";
 import CardActividad from './CardActividad';
 
 const Actividad = ({ children }) => {
-
+    let userID = localStorage.getItem("user");
     const [data, setData] = useState([]);
+
+    let acti=[];
+    let ac1="";
 
     const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
     const [selectedFile, setSelectedFile] = useState();
 
     const getActivitiesURL = configData.ACTIVITIES_API_URL;
     const postActivityURL = configData.CREAR_ACTIVIDAD_API_URL;
+    const URL_BUSCARASISTIRE = configData.BUSCARASISTIRE_API_URL;
 
     // Configurando fecha minima valida
     var tzoffset = (new Date()).getTimezoneOffset() * 60000;
@@ -99,10 +103,33 @@ const Actividad = ({ children }) => {
         await axios.get(getActivitiesURL)
             .then(response => {
                 setData(response.data);
+                acti=response.data;
             }).catch(error => {
                 console.log(error);
             })
+            /*for (var i=0; i<acti.length; i++) { 
+                const datos = {
+                    "idUsuario": userID,
+                    "idActividad": acti[i].IDACT,
+                };
+                const respuestaJson = await postActivity(URL_BUSCARASISTIRE, datos);
+                if(respuestaJson.Existe===true){
+                    ac1=JSON.stringify(acti[i]);
+                    ac1=ac1.replace("}", ",\"EXISTE\":\"true\"}");
+                    ac1=JSON.parse(ac1);
+                    acti[i]=ac1;
+                    console.log(acti);
+                }else{
+                    ac1=JSON.stringify(acti[i]);
+                    ac1=ac1.replace("}", ",\"EXISTE\":\"false\"}");
+                    ac1=JSON.parse(ac1);
+                    acti[i]=ac1;
+                    }
+                }
+      return acti;*/
     }
+
+
 
     // Hacer un POST al backend para crear una Actividad
     const postActivity = async (url, datos) => {
@@ -118,7 +145,7 @@ const Actividad = ({ children }) => {
     }
 
     // Construir una actividad con los datos introducidos
-    let userID = localStorage.getItem("user");
+    
     const createNewActivity = async () => {
         var imageURL = "";
         if (selectedFile && values.file) {
@@ -328,9 +355,9 @@ const Actividad = ({ children }) => {
                 </div>
                 <Container className="p-4 mb-4">
                     <Row xs={1} md={3} className="g-4">
-                        {Array.from(data).map(({ ACTIVIDAD, NOMBRE, APELLIDO, FECHAHORAA, UBICACIONA, DESCRIPCIONA, IMAGENA, CONTADORASISTIRE, IDACT }) => (
+                        {Array.from(data).map(({ ACTIVIDAD, NOMBRE, APELLIDO, FECHAHORAA, UBICACIONA, DESCRIPCIONA, IMAGENA, CONTADORASISTIRE, IDACT, EXISTE}) => (
                             <Col>
-                                <CardActividad actividad={ACTIVIDAD} nombre={NOMBRE} apellido={APELLIDO} fechaHora={FECHAHORAA} ubicacion={UBICACIONA} descripcion={DESCRIPCIONA} imagen={IMAGENA} asistentes={CONTADORASISTIRE} idAct={IDACT} />
+                                <CardActividad actividad={ACTIVIDAD} nombre={NOMBRE} apellido={APELLIDO} fechaHora={FECHAHORAA} ubicacion={UBICACIONA} descripcion={DESCRIPCIONA} imagen={IMAGENA} asistentes={CONTADORASISTIRE} idAct={IDACT} existe={EXISTE} idUsuario={userID}/>
                             </Col>
                         ))}
                     </Row>
