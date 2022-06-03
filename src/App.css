@@ -134,11 +134,11 @@
 }
 
 .cardItemImage {
-  width: 200px;
+  width: auto;
   height: 200px;
 }
 
-.cardImageSize {
+.cardImageSec {
   width: auto;
   height: 130px;
 }
@@ -205,4 +205,14 @@
 .cardFooterSec {
   width: auto;
   height: 10px;
+}
+
+.labelCard {
+  position: absolute;
+  font-size: 17px;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  background-color: #0c242c;
+  color: white;
+  padding: 0.1em;
 }

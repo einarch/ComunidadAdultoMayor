@@ -35,7 +35,10 @@ function CardVoluntario({ nombre, apellido, tipoDeApoyo, telefono, ciudad, diasD
 
   return (
     <Card key={idVol} className="cardSec text-center">
-      <div className='cardImageSize'>
+      <div class="labelCard">
+        Voluntario
+      </div>
+      <div className='cardImageSec mb-4'>
         <Card.Img className="cardItemImage" src={imagen ? imagen : voluntarioDef} />
       </div>
       <Card.Body className="col-sm-12 d-flex flex-column align-items-center justify-content-center">
@@ -64,7 +67,7 @@ function CardVoluntario({ nombre, apellido, tipoDeApoyo, telefono, ciudad, diasD
             <span className="cardItmText">{ciudad}</span>
           </div>
         </Card.Text>
-      
+
         <div className="cardButtonsSec h-100 d-flex justify-content-center align-items-center">
           {IDROL != 2 ?
             <div className="badge">

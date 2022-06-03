@@ -150,12 +150,6 @@ h2 {
   justify-content: center;
 }
 
-.center-block {
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
-}
-
 .errorMessg {
   display: block;
   margin-left: 70px;

@@ -1,8 +1,8 @@
 import React from "react";
 import "./navegacion.css";
 import Container from 'react-bootstrap/Container';
-import { Navbar, Nav, DropdownButton, Dropdown } from 'react-bootstrap';
-import {NavLink, useNavigate} from "react-router-dom";
+import { Navbar, Nav, DropdownButton, Dropdown, Row, Col } from 'react-bootstrap';
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from '../imagenes/logo-comunidad1.jpg';
 import user from '../imagenes/avatar.jpg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,8 +19,8 @@ const MenuUser = () => {
     <FontAwesomeIcon icon={faUserLarge} />
   </span>
 
-  let info= localStorage.getItem("user");
-  
+  let info = localStorage.getItem("user");
+
   const [usuario, setUsuario] = useState([])
   /*const obtenerDatos = async () => {
     const data = await fetch(Apiurl +"obtenUser.php?id="+id.id)
@@ -33,7 +33,7 @@ const MenuUser = () => {
     obtenerDatos()
   }, [])*/
   useEffect(() => {
-    fetch(Apiurl+"obtenUser.php?IDUSUARIO="+info)
+    fetch(Apiurl + "obtenUser.php?IDUSUARIO=" + info)
       .then((response) => {
         return response.json()
       })
@@ -44,11 +44,11 @@ const MenuUser = () => {
 
 
   const navigate = useNavigate();
-  
+
   //const {logout} = useAuth()
   const logout = () => {
     localStorage.removeItem('user')
-}
+  }
   const handleClick = () => {
     logout()
     navigate('/')
@@ -73,8 +73,9 @@ const MenuUser = () => {
           </div>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto center-block">
+        <Navbar.Collapse>
+
+          <Nav className="m-auto">
             <NavLink className={({ isActive }) => "nav-link btn-md" + (isActive ? "bg active" : "")}
               to={'/home/comunidad'}
             >COMUNIDAD</NavLink>

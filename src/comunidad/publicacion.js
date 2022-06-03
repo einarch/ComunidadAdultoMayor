@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Form, Row, Col } from 'react-bootstrap';
+import { Container, Form, Row, Col, Navbar } from 'react-bootstrap';
 import { useFormik, useField, useFormikContext } from "formik";
 import * as Yup from "yup";
 import './../comunidad/Publicacion.css';
@@ -126,34 +126,6 @@ const Publicacion = ({ children }) => {
         console.log("Publicacion Enviada: " + respuestaJson);
         window.location = window.location.href;
     }
-
-    // Calcular Fechas par Date Icon
-    const getMonth = (dateIn) => {
-        var date = new Date(dateIn);
-        var monthName = date.toLocaleString('es-es', { month: 'long' });
-        monthName = monthName.charAt(0).toUpperCase() + monthName.slice(1);
-        return monthName;
-    };
-
-    const getDayNumber = (dateIn) => {
-        var date = new Date(dateIn);
-        var dayNumber = date.toLocaleString('es-es', { day: 'numeric' });
-        dayNumber = dayNumber.charAt(0).toUpperCase() + dayNumber.slice(1);
-        return dayNumber;
-    };
-
-    const getDayName = (dateIn) => {
-        var date = new Date(dateIn);
-        var dayName = date.toLocaleString('es-es', { weekday: 'long' });
-        dayName = dayName.charAt(0).toUpperCase() + dayName.slice(1);
-        return dayName;
-    };
-
-    const getTimePub = (dateIn) => {
-        var date = new Date(dateIn);
-        var timePub = date.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
-        return timePub;
-    };
 
     function borrar() {
         document.getElementById("file").value = "";
