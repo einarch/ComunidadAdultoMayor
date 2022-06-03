@@ -193,7 +193,7 @@ const Actividad = ({ children }) => {
         </div><>
                 <br />
                 <br />
-                <h2 className="sectionTitle">Actividades y Eventos</h2>
+                <h2 className="sectionTitle">Actividades</h2>
                 <br />
                 <Container className="d-flex flex-row justify-content-end">
                     <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createActivity">Crear</button>

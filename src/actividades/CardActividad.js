@@ -4,7 +4,7 @@ import dateFormat, { masks } from "dateformat";
 import TextTruncate from 'react-text-truncate';
 import './../actividades/Actividad.css';
 import avatar from './../imagenes/avatar.jpg'
-import actividadDef from './../imagenes/actividadDef.png'
+import actividadDef from './../imagenes/actividadDef.jpg'
 import { Row, Col, Modal, Image, Card } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";

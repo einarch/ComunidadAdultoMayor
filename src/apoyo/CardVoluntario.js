@@ -4,7 +4,7 @@ import TextTruncate from 'react-text-truncate';
 import Card from 'react-bootstrap/Card';
 import './../apoyo/Apoyo.css';
 import avatar from '../imagenes/avatar.jpg';
-import voluntarioDef from './../imagenes/voluntarioDef.webp'
+import voluntarioDef from './../imagenes/voluntarioDef.jpg'
 import { Row, Col, Modal, Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";

@@ -6,7 +6,7 @@ import TextTruncate from 'react-text-truncate';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './../comunidad/Publicacion.css';
 import avatar from '../imagenes/avatar.jpg';
-import publicacionDef from '../imagenes/publicacionDef.webp'
+import publicacionDef from '../imagenes/publicacionDef.jpg'
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
