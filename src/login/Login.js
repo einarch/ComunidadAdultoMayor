@@ -92,12 +92,8 @@ export const Login = () => {
             "clave": values.password
         };
 
-        const respuestaJson = "";
-
-        if (values.email != "" && values.password != "") {
-            const respuestaJson = await enviarDatos(URL_LOGIN, datos);
-            err = respuestaJson.error
-        }
+        const respuestaJson = await enviarDatos(URL_LOGIN, datos);
+        err = values.email && values.password ? respuestaJson.error : "";
 
         if (respuestaJson.conectado == true) {
             setIsValid(false)
