@@ -218,7 +218,6 @@ const Publicacion = ({ children }) => {
                                         onClick={borrar}
                                     >Cancelar</button>
                                     <button
-                                        type="submit"
                                         as="Input"
                                         class="btn btn-success col-3 m-2"
                                         data-bs-dismiss={

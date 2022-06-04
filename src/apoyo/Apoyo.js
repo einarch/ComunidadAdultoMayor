@@ -303,7 +303,7 @@ const Apoyo = ({ children }) => {
                                     onClick={borrar}
                                 >Cancelar
                                 </button>
-                                <button type="submit"
+                                <button
                                     as="Input"
                                     class="btn btn-success col-3 m-2"
                                     data-bs-dismiss={touched.telefono && !errors.telefono

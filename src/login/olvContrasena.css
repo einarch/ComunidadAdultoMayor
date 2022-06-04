@@ -18,8 +18,8 @@ h2 {
 .OlvPage .OlvForm {
   margin: 50 100;
   padding: 20px 50px 10px;
-  max-width: 550px;
-  min-width: 400px;
+  max-width: 500px;
+  min-width: 350px;
   background: linear-gradient(rgb(251 251 251 / 80%), rgb(251 251 251 / 80%));
   border-radius: 10px;
   display: block;
@@ -28,10 +28,11 @@ h2 {
 }
 
 .OlvPage {
-  background: url("./../imagenes/imagenFondo.jpg") center center;
-  background-size: auto;
+  background: url("./../imagenes/imagenFondo.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
   min-height: 657px;
-  display: block;
 }
 
 .OlvPage .OlvForm form {
@@ -46,10 +47,10 @@ h2 {
 }
 
 .OlvForm form input {
-  min-width: 450px;
+  min-width: 250px;
   min-height: 35px;
   max-height: 35px;
-  padding: 10px;
+  padding: 4px;
   font-size: 17px;
   border: 1px solid #bbbbbb;
   border-radius: 5px;

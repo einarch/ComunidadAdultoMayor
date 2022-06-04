@@ -6,7 +6,7 @@ import swal from 'sweetalert';
 import "./Login.css";
 import logo from './../imagenes/logo-comunidad1.jpg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSignInAlt, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import configData from "../config/config.json";
@@ -80,9 +80,9 @@ export const Login = () => {
 
     const [isValid, setIsValid] = useState(false);
 
-    function ejecutaAlerta() {   
+    function ejecutaAlerta() {
 
-        setTimeout(function() {setIsValid(false)}, 4000)
+        setTimeout(function () { setIsValid(false) }, 4000)
     }
 
     const handleLogin = async () => {
@@ -91,8 +91,13 @@ export const Login = () => {
             "usuario": values.email,
             "clave": values.password
         };
-        const respuestaJson = await enviarDatos(URL_LOGIN, datos);
-        err = respuestaJson.error
+
+        const respuestaJson = "";
+
+        if (values.email != "" && values.password != "") {
+            const respuestaJson = await enviarDatos(URL_LOGIN, datos);
+            err = respuestaJson.error
+        }
 
         if (respuestaJson.conectado == true) {
             setIsValid(false)
@@ -102,18 +107,18 @@ export const Login = () => {
         } else {
             setIsValid(true)
             ejecutaAlerta();
-            if (respuestaJson.Existe===true){
+            if (respuestaJson.Existe === true) {
                 i = i + 1;
                 console.log(i);
             }
-            if (respuestaJson.Existe===false){
+            if (respuestaJson.Existe === false) {
                 j = j + 1;
                 console.log(j);
             }
             if (i > 3) {
                 window.location.href = '/Restablecer';
                 i = 0
-            }else{
+            } else {
                 if (j > 2) {
                     window.location.href = '*';
                     j = 0
@@ -124,18 +129,16 @@ export const Login = () => {
     return (
 
         <div className='loginPage'>
+            <br></br>
+            <br></br>
+            {err ?
+                <Alert className="container d-flex justify-content-center align-items-center" show={isValid} variant="danger">
+                    <Alert.Heading>
+                        <FontAwesomeIcon icon={faTriangleExclamation} style={{ color: "#842029" }} />
+                        {err}
+                    </Alert.Heading>
+                </Alert> : ""}
             <br />
-            <br />
-            <Alert show={isValid} variant="danger" style={{ width: "35rem" }}>
-                <Alert.Heading>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Danger:">
-                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                    </svg>
-                    {err}
-                </Alert.Heading>
-            </Alert>
-            <br />
-
             <Container className="loginForm d-flex flex-column justify-content-center align-items-center">
                 <div className='mb-4'>
                     <img src={logo} className="rounded-circle" height="120" width="120"></img>
@@ -195,14 +198,13 @@ export const Login = () => {
                         <button
                             className="btn btn-success col-4 m-1"
                             onClick={handleLogin}
-                            type="submit"
                         >
                             Ingresar
                         </button>
                     </div>
                 </Form>
                 <div className='color-de-olvide-contraseña'>
-                <a href="/restablecer">¿Olvidaste tu contraseña?</a>
+                    <a href="/restablecer">¿Olvidaste tu contraseña?</a>
                 </div>
             </Container >
             <br></br>

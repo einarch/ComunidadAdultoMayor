@@ -28,10 +28,11 @@ h2 {
 }
 
 .loginPage {
-  background: url("./../imagenes/imagenFondoLogin.jpg") center center;
+  background: url("./../imagenes/imagenFondoLogin.jpg");
   background-size: cover;
+  background-position: center;
+  width: 100%;
   min-height: 657px;
-  display: block;
 }
 
 .loginPage .loginForm form {
@@ -42,7 +43,7 @@ h2 {
 
 .loginForm form label {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .loginForm form input {

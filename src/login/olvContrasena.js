@@ -8,6 +8,8 @@ import Alert from "react-bootstrap/Alert";
 import "./olvContrasena.css";
 import * as Yup from "yup";
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 const URL_ACTUALIZAR = configData.ACTUALIZAR_API_URL;
 const URL_BUSCAR = configData.BUSCAR_API_URL;
@@ -152,16 +154,14 @@ const OlvContrasena = ({ children }) => {
     return (
         <div className='OlvPage' >
             <br />
-            <Alert show={isValid} variant={a1} style={{ width: "35rem" }}>
+            <Alert className="container d-flex justify-content-center align-items-center" show={isValid} variant={a1}>
                 <Alert.Heading>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label={a2}>
-                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                    </svg>
+                <FontAwesomeIcon icon={faTriangleExclamation} style={{ color: "#842029" }} />
                     {mensaje}
                 </Alert.Heading>
             </Alert>
             <Container className="OlvForm">
-                <h3 class="textTitleForm d-flex flex-column align-items-center"><i class="fa fa-user"></i> Restablecer Contraseña </h3>
+                <h3 class="textTitleForm d-flex flex-column align-items-center"> Restablecer Contraseña </h3>
                 <div className=" d-flex flex-row justify-content-left textForm mb-1">
                     <span >Los campos marcados * son obligatorios</span>
                 </div>
@@ -306,7 +306,6 @@ const OlvContrasena = ({ children }) => {
                         </button>
                         <button
                             className="btn btn-success col-4 m-1"
-                            type="submit"
                             as="Input"
                             onClick={Actualizar} >
                             Aceptar
