@@ -122,19 +122,17 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, con
                     />
                 </div>
             </Container>
-            <br></br>
-            <br></br>
             <Card.Body className="col-sm-12 d-flex flex-column align-items-center justify-content-center">
                 <Card.Text>
-                    <div className="col-sm-12">
+                    <div className="col-sm-12 mb-2">
                         <div className=" cardItmHeaderPubli d-flex justify-content-center align-items-center text-center" >
-                            <div className="col-sm-3">
+                            <div className="col-sm-3 mb-5">
                                 <img src={avatar} className="rounded-circle" height="60" width="60"></img>
                             </div>
-                            <div className="col-sm-6" >
+                            <div className="col-sm-6 mb-5" >
                                 <h4 className="cardItmUserName"><b>{nombre} {apellido}</b></h4>
                             </div>
-                            <div className="col-sm-4 cartItmDate mb-2" >
+                            <div className="col-sm-4 cartItmDate mb-4" >
                                 <time class="icon mb-3">
                                     <em>{getDayName(fechaHora)}</em>
                                     <strong>{getMonth(fechaHora)}</strong>
@@ -147,6 +145,7 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, con
 
                     </div>
                 </Card.Text>
+                <br></br>
                 <div className="cardButtonsSec h-100 d-flex justify-content-center align-items-center mb-2">
                     <div className="badge me-auto">
                         <button class="btn btn-warning" onClick={like}>

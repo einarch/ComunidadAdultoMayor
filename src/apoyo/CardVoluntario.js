@@ -35,7 +35,7 @@ function CardVoluntario({ nombre, apellido, tipoDeApoyo, telefono, ciudad, diasD
 
   return (
     <Card key={idVol} className="cardSec">
-      <div className='cardImageSec mb-4'>
+      <div className='cardImageSec mb-5'>
         <Card.Img className="cardItemImage" src={imagen ? imagen : voluntarioDef} />
       </div>
       <Container className="shadow bubble bubble-bottom">
@@ -53,17 +53,14 @@ function CardVoluntario({ nombre, apellido, tipoDeApoyo, telefono, ciudad, diasD
           />
         </div>
       </Container>
-      <br></br>
-      <br></br>
-      <br></br>
       <Card.Body className="col-sm-12 d-flex flex-column align-items-center justify-content-center text-center">
         <Card.Text>
-          <div className="row">
-            <div className="d-flex justify-content-center align-items-center mb-3">
-              <div className="col-sm-3">
+          <div className="col-sm-12 mb-2">
+            <div className="h-100 d-flex justify-content-center align-items-center mb-4">
+              <div className="col-sm-4">
                 <img src={avatar} className="rounded-circle" height="60" width="60"></img>
               </div>
-              <div className="col-sm-9 text-center">
+              <div className="col-sm-8 ">
                 <h4 className="cardItmUserName"><b>{nombre} {apellido}</b></h4>
               </div>
             </div>

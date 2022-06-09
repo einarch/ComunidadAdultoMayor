@@ -166,7 +166,7 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
 
     return (
         <Card key={idAct} className="cardSec">
-            <div className='cardImageSec mb-3'>
+            <div className='cardImageSec mb-5'>
                 <Card.Img className="cardItemImage" src={imagen ? imagen : actividadDef} />
             </div>
             <Container className="shadow bubble bubble-bottom">
@@ -184,9 +184,6 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
                     />
                 </div>
             </Container>
-            <br></br>
-            <br></br>
-            <br></br>
             <Card.Body className="cardBodySec col-sm-12 d-flex flex-column ">
                 <Card.Text>
                     <div className="col-sm-12">
@@ -198,7 +195,7 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
                             <div className="col-sm-6" >
                                 <h4 className="cardItmUserName"><b>{nombre} {apellido}</b></h4>
                             </div>
-                            <div className="col-sm-4 cartItmDateAct mb-1" >
+                            <div className="col-sm-4 cartItmDateAct mb-2" >
                                 <time class="icon mb-3">
                                     <em>{getDayName(fechaHora)}</em>
                                     <strong>{getMonth(fechaHora)}</strong>
@@ -208,21 +205,23 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
                                 <span className="cardItmText"><b> {getTimeAct(fechaHora)}</b></span>
                             </div>
                         </div>
-                        <div className='d-flex flex-row justify-content-center'>
-                            <FontAwesomeIcon icon={faLocationDot} style={{ color: "#1464b4" }} />
-                        </div>
-                        <div className="text-center">
-                            <TextTruncate
-                                className="cardItmText"
-                                line={2}
-                                element="span"
-                                truncateText="…"
-                                text={ubicacion}
-                            />
-                        </div>
+
 
                     </div>
                 </Card.Text>
+                <br></br>
+                <div className='d-flex flex-row justify-content-center mb-1'>
+                    <FontAwesomeIcon icon={faLocationDot} style={{ color: "#1464b4" }} />
+                </div>
+                <div className="text-center mb-4">
+                    <TextTruncate
+                        className="cardItmText"
+                        line={1}
+                        element="span"
+                        truncateText="…"
+                        text={ubicacion}
+                    />
+                </div>
                 <div className="cardButtonsSec h-100 d-flex justify-content-center align-items-center mb-2">
                     <div className="badge">
                         <button class="btn btn-warning" onClick={cAsistire}>

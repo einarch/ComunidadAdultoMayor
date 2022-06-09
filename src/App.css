@@ -110,6 +110,7 @@
   font-size: 17px;
   color: #0c242c;
   text-align: left;
+  padding-left: 10px;
 }
 
 /*Texto de titulo del card*/
@@ -178,17 +179,17 @@
 
 .cardItmHeaderAct {
   width: auto;
-  height: 180px;
+  height: 60px;
 }
 
 .cardItmHeaderPubli {
   width: auto;
-  height: 200px;
+  height: 120px;
 }
 
 .cardItmHeaderVol {
   width: auto;
-  height: 200px;
+  height: 100px;
 }
 
 .cardPubli {
@@ -234,18 +235,20 @@
 .bubble {
 	box-sizing: border-box;
   top: 185px;
-	position: absolute;
   width: 200px;
+  min-height: 100px;
 	background: #0c4c8c;
 	border-radius: 10px;
 	padding: 10px;
 }
 
+/*
 .bubble-bottom:after {
 	content: '';
 	position: absolute;
+  top: 275px;
 	width: 0;
-	height: 0;
+	height: 50px;
 	bottom: -35px;
 	right: 285px;
 	border-bottom: 15px solid transparent;
@@ -253,6 +256,7 @@
 	border-right: 20px solid transparent;
 	border-left: 20px solid transparent;
 }
+*/
 
 .bubble-text-title {
   font-size: 17px;
