@@ -102,17 +102,32 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, con
     const handleShow = () => setShow(true);
 
     return (
-        <Card key={idPub} className="cardSec text-center">
-            <div class="labelCard">
-                Publicación
-            </div>
+        <Card key={idPub} className="cardSec ">
             <div className='cardImageSec mb-5'>
                 <Card.Img className="cardItemImage" src={imagen ? imagen : publicacionDef} />
             </div>
+            <Container className=" shadow bubble bubble-bottom">
+
+                <div className="textPubl">
+                    <div className="bubble-text-title">
+                        <b>Publicación</b>
+                    </div>
+                    <TextTruncate
+                        className="bubble-text"
+                        color="#fff"
+                        line={2}
+                        element="span"
+                        truncateText="…"
+                        text={descripcion}
+                    />
+                </div>
+            </Container>
+            <br></br>
+            <br></br>
             <Card.Body className="col-sm-12 d-flex flex-column align-items-center justify-content-center">
                 <Card.Text>
                     <div className="col-sm-12">
-                        <div className=" cardItmHeaderPubli d-flex justify-content-center align-items-center" >
+                        <div className=" cardItmHeaderPubli d-flex justify-content-center align-items-center text-center" >
                             <div className="col-sm-3">
                                 <img src={avatar} className="rounded-circle" height="60" width="60"></img>
                             </div>
@@ -129,15 +144,7 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, con
                                 <span className="cardItmText"><b> {getTimePub(fechaHora)}</b></span>
                             </div>
                         </div>
-                        <div className="col-sm-12 cardItmDes d-flex justify-content-center align-items-start mb-4" >
-                            <TextTruncate
-                                className="cardItmText"
-                                line={3}
-                                element="span"
-                                truncateText="…"
-                                text={descripcion}
-                            />
-                        </div>
+
                     </div>
                 </Card.Text>
                 <div className="cardButtonsSec h-100 d-flex justify-content-center align-items-center mb-2">

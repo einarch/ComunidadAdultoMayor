@@ -5,7 +5,7 @@ import TextTruncate from 'react-text-truncate';
 import './../actividades/Actividad.css';
 import avatar from './../imagenes/avatar.jpg'
 import actividadDef from './../imagenes/actividadDef.jpg'
-import { Row, Col, Modal, Image, Card } from 'react-bootstrap';
+import { Row, Col, Modal, Image, Card, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from '@fortawesome/free-solid-svg-icons';
@@ -119,7 +119,7 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
         } else {
             if (exist === "false")
                 c = "green";
-                textButton = "Asistir";
+            textButton = "Asistir";
         }
     }
 
@@ -165,34 +165,40 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
     }
 
     return (
-        <Card key={idAct} className="cardSec text-center">
-            <div class="labelCard">
-                Actividad
-            </div>
+        <Card key={idAct} className="cardSec">
             <div className='cardImageSec mb-3'>
                 <Card.Img className="cardItemImage" src={imagen ? imagen : actividadDef} />
             </div>
+            <Container className="shadow bubble bubble-bottom">
+                <div className="textPubl">
+                    <div className="bubble-text-title">
+                        <b>Actividad</b>
+                    </div>
+                    <TextTruncate
+                        className="bubble-text"
+                        color="#fff"
+                        line={2}
+                        element="h3"
+                        truncateText="…"
+                        text={actividad}
+                    />
+                </div>
+            </Container>
+            <br></br>
+            <br></br>
+            <br></br>
             <Card.Body className="cardBodySec col-sm-12 d-flex flex-column ">
-
                 <Card.Text>
-                    <div className="col-sm-12 mb-3">
-                        <div className='cardTitleSec d-flex justify-content-center align-items-end'>
-                            <TextTruncate
-                                className="cardItmTitle"
-                                line={2}
-                                element="h3"
-                                truncateText="…"
-                                text={actividad}
-                            />
-                        </div>
-                        <div className="cardItmHeaderAct d-flex justify-content-center align-items-center">
+                    <div className="col-sm-12">
+
+                        <div className="cardItmHeaderAct d-flex justify-content-center align-items-center text-center">
                             <div className="col-sm-3">
                                 <img src={avatar} className="rounded-circle" height="60" width="60"></img>
                             </div>
                             <div className="col-sm-6" >
                                 <h4 className="cardItmUserName"><b>{nombre} {apellido}</b></h4>
                             </div>
-                            <div className="col-sm-4 cartItmDate mb-2" >
+                            <div className="col-sm-4 cartItmDateAct mb-1" >
                                 <time class="icon mb-3">
                                     <em>{getDayName(fechaHora)}</em>
                                     <strong>{getMonth(fechaHora)}</strong>
@@ -205,13 +211,16 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
                         <div className='d-flex flex-row justify-content-center'>
                             <FontAwesomeIcon icon={faLocationDot} style={{ color: "#1464b4" }} />
                         </div>
-                        <TextTruncate
-                            className="cardItmText"
-                            line={2}
-                            element="span"
-                            truncateText="…"
-                            text={ubicacion}
-                        />
+                        <div className="text-center">
+                            <TextTruncate
+                                className="cardItmText"
+                                line={2}
+                                element="span"
+                                truncateText="…"
+                                text={ubicacion}
+                            />
+                        </div>
+
                     </div>
                 </Card.Text>
                 <div className="cardButtonsSec h-100 d-flex justify-content-center align-items-center mb-2">
@@ -270,7 +279,7 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
                                 <br></br>
                                 <button class="btn btn-warning" onClick={cAsistire}>
                                     <FontAwesomeIcon icon={faPen} style={{ color: "#fff" }} />
-                                    <span className="textLikeButton" id="count" style={{ color: c }}>Asistire</span>
+                                    <span className="textLikeButton" id="count" >{textButton}</span>
                                 </button>
                                 <br></br>
                                 <br></br>

@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import './../apoyo/Apoyo.css';
 import avatar from '../imagenes/avatar.jpg';
 import voluntarioDef from './../imagenes/voluntarioDef.jpg'
-import { Row, Col, Modal, Image } from 'react-bootstrap';
+import { Row, Col, Modal, Image, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
@@ -34,34 +34,40 @@ function CardVoluntario({ nombre, apellido, tipoDeApoyo, telefono, ciudad, diasD
   const IDROL = userROL;
 
   return (
-    <Card key={idVol} className="cardSec text-center">
-      <div class="labelCard">
-        Voluntario
-      </div>
+    <Card key={idVol} className="cardSec">
       <div className='cardImageSec mb-4'>
         <Card.Img className="cardItemImage" src={imagen ? imagen : voluntarioDef} />
       </div>
-      <Card.Body className="col-sm-12 d-flex flex-column align-items-center justify-content-center">
+      <Container className="shadow bubble bubble-bottom">
+        <div className="textPubl">
+          <div className="bubble-text-title">
+            <b>Voluntario</b>
+          </div>
+          <TextTruncate
+            className="bubble-text"
+            color="#fff"
+            line={2}
+            element="h3"
+            truncateText="…"
+            text={tipoDeApoyo}
+          />
+        </div>
+      </Container>
+      <br></br>
+      <br></br>
+      <br></br>
+      <Card.Body className="col-sm-12 d-flex flex-column align-items-center justify-content-center text-center">
         <Card.Text>
-          <div className="col-sm-12">
-            <div className='cardItmHeader'>
-              <TextTruncate
-                className="cardItmTitle"
-                line={3}
-                element="h3"
-                truncateText="…"
-                text={tipoDeApoyo}
-              />
-            </div>
+          <div className="row">
             <div className="d-flex justify-content-center align-items-center mb-3">
-              <div className="col-sm-5">
+              <div className="col-sm-3">
                 <img src={avatar} className="rounded-circle" height="60" width="60"></img>
               </div>
-              <div className="col-sm-7" >
+              <div className="col-sm-9 text-center">
                 <h4 className="cardItmUserName"><b>{nombre} {apellido}</b></h4>
               </div>
             </div>
-            <div className='d-flex flex-row justify-content-center'>
+            <div className='d-flex flex-row justify-content-center mb-2'>
               <FontAwesomeIcon icon={faLocationDot} style={{ color: "#1464b4" }} />
             </div>
             <span className="cardItmText">{ciudad}</span>

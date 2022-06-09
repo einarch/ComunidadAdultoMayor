@@ -151,6 +151,10 @@
   width: auto;
   height: 160px;
 }
+.cartItmDateAct {
+  width: auto;
+  height: 120px;
+}
 
 .cardItmDes {
   width: auto;
@@ -174,12 +178,17 @@
 
 .cardItmHeaderAct {
   width: auto;
-  height: 120px;
+  height: 180px;
 }
 
 .cardItmHeaderPubli {
   width: auto;
-  height: 150px;
+  height: 200px;
+}
+
+.cardItmHeaderVol {
+  width: auto;
+  height: 200px;
 }
 
 .cardPubli {
@@ -214,4 +223,43 @@
   background-color: #0c242c;
   color: white;
   padding: 0.1em;
+}
+
+.textPubl {
+  border-left: 4px solid white;
+  padding-left: 10px;
+}
+
+
+.bubble {
+	box-sizing: border-box;
+  top: 185px;
+	position: absolute;
+  width: 200px;
+	background: #0c4c8c;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.bubble-bottom:after {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+	bottom: -35px;
+	right: 285px;
+	border-bottom: 15px solid transparent;
+	border-top: 25px solid #0c4c8c;
+	border-right: 20px solid transparent;
+	border-left: 20px solid transparent;
+}
+
+.bubble-text-title {
+  font-size: 17px;
+  color: #0c242c;
+}
+
+.bubble-text {
+  font-size: 17px;
+  color: white;
 }
