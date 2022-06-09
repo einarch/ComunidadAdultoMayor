@@ -235,7 +235,7 @@
 .bubble {
 	box-sizing: border-box;
   top: 185px;
-  width: 200px;
+  width: 320px;
   min-height: 100px;
 	background: #0c4c8c;
 	border-radius: 10px;
