@@ -12,5 +12,9 @@
     "BUSCARASISTIRE_API_URL" : "https://back-cam.herokuapp.com/buscarAsistire.php",
     "ACASISTIRE_API_URL" : "https://back-cam.herokuapp.com/actualizarContAsistire.php",
     "AGASISTIRE_API_URL" : "https://back-cam.herokuapp.com/agregarAsistire.php",
-    "QASISTIRE_API_URL" : "https://back-cam.herokuapp.com/quitarAsistire.php"
+    "QASISTIRE_API_URL" : "https://back-cam.herokuapp.com/quitarAsistire.php",
+    "BUSCARLIKE_API_URL" : "https://back-cam.herokuapp.com/buscarLike.php",
+    "ACLIKE_API_URL" : "https://back-cam.herokuapp.com/actualizarContLikes.php",
+    "AGLIKE_API_URL" : "https://back-cam.herokuapp.com/agregarLike.php",
+    "QLIKE_API_URL" : "https://back-cam.herokuapp.com/quitarLike.php"
 }

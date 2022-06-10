@@ -26,10 +26,7 @@ let exist = "";
 let cont = 0;
 let usuario = 0;
 let textButton = ""
-
-
-
-
+let bot= "";
 
 function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, descripcion, imagen, asistentes, idAct, existe, idUsuario }) {
     //console.log(idUsuario);
@@ -107,62 +104,65 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
         return datos;
     }
 
-    const bAsistire = () => {
+    const bAsistire = ()=> {
         //console.log(crearDatos());
         //const respuestaJson = await enviarDatos(URL_BUSCARASISTIRE, crearDatos());
         //console.log(respuestaJson.Existe);
         //existe = respuestaJson.Existe;
         //console.log(existe);
-        if (exist === "true") {
-            c = "red";
-            textButton = "Asistire";
-        } else {
-            if (exist === "false")
-                c = "green";
-            textButton = "Asistir";
+        if (exist==="true") {
+            c="#4fbec9";
+            bot="Asistire";
+        }else{
+            if (exist==="false")
+            c="#fff";
+            bot="Asistir";
         }
     }
 
-    const cAsistire = async () => {
+    const cAsistire = async () =>{
+        textButton = document.getElementById("count");
+        const count = document.getElementById("num");
+        const icono = document.getElementById("icon");
+        exist=existe;
+        console.log(existe);
+        console.log(exist);
         if (exist === "true") {
-            cont = cont - 1;
-            exist = "false";
-            c = "green";
-            textButton = "Asistire"
+            textButton.setAttribute("style", "color: #fff");
+            icono.setAttribute("style", "color: #fff");
+            bot = "Asistir";
+            textButton.textContent = bot;
+            count.textContent--;
+            cont= asistentes;
+            cont= cont-1;
+            exist="false";
+            existe="false";
             const respuesta1Json = await enviarDatos(URL_ACASISTIRE, crearDatos());
             //const respuesta2Json = await enviarDatos(URL_QASISTIRE, crearDatos());
-            console.log(respuesta1Json);
-            console.log("me presionaron", c, exist);
-            bAsistire();
-        } else {
-            if (exist === "false") {
-                cont = cont + 1;
-                exist = "true";
-                c = "red";
+            console.log(respuesta1Json);;
+        }else{
+            if(exist==="false"){
+                bot="Asistire";
+                textButton.setAttribute("style", "color: #4fbec9");
+                icono.setAttribute("style", "color: #4fbec9");
+                textButton.textContent=bot;
+                count.textContent++;
+                cont= asistentes;
+                cont=cont+1;
+                exist="true";
+                existe="true";
                 const respuesta3Json = await enviarDatos(URL_ACASISTIRE, crearDatos());
                 //const respuesta4Json = await enviarDatos(URL_AGASISTIRE, crearDatos());
                 console.log(respuesta3Json);
-                console.log("me presionaron123", c, exist);
-                bAsistire();
             }
-        }
-
+        } 
     }
 
-    let con = 0;
+
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => {
-
-        cont = cont + 1;
-        console.log("color", c);
-        c = "red";
-        //cAsistire();
-        console.log("asis", asistentes);
-        console.log("me presionaron123", c, exist);
-        setShow(true);
-    }
+    const handleShow = () => setShow(true);
 
     return (
         <Card key={idAct} className="cardSec">
@@ -225,8 +225,8 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
                 <div className="cardButtonsSec h-100 d-flex justify-content-center align-items-center mb-2">
                     <div className="badge">
                         <button class="btn btn-warning" onClick={cAsistire}>
-                            <FontAwesomeIcon icon={faPen} style={{ color: "#fff" }} />
-                            <span className="textLikeButton" id="count" >{textButton}</span>
+                            <FontAwesomeIcon icon={faPen} id="icon" style={{color: c}} />
+                            <span className="textLikeButton" id="count" style={{color: c}}>{bot}</span>
                         </button>
                     </div>
                     <div className="badge">
@@ -239,7 +239,7 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
                 </div>
                 <div className="cardFooterSec d-flex align-items-center justify-content-center">
                     {asistentes != 0 ? <FontAwesomeIcon icon={faUsers} style={{ color: "#0c4c8c" }} /> : ""}
-                    <span className="cardItmText"> <b>{asistentes != 0 ? asistentes : ""}</b> </span>
+                    <span className="cardItmText"> <b id="num">{asistentes != 0 ? asistentes : ""}</b> </span>
                 </div>
                 <Modal
                     show={show}
@@ -277,8 +277,8 @@ function CardActividad({ actividad, nombre, apellido, fechaHora, ubicacion, desc
                                 <br></br>
                                 <br></br>
                                 <button class="btn btn-warning" onClick={cAsistire}>
-                                    <FontAwesomeIcon icon={faPen} style={{ color: "#fff" }} />
-                                    <span className="textLikeButton" id="count" >{textButton}</span>
+                                    <FontAwesomeIcon icon={faPen} style={{color: c}} />
+                                    <span className="textLikeButton" id="count" style={{color: c}}>{bot}</span>
                                 </button>
                                 <br></br>
                                 <br></br>

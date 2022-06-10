@@ -231,9 +231,9 @@ const Publicacion = ({ children }) => {
                 </div>
                 <Container className="p-4 mb-4">
                     <Row xs={1} md={3} className="g-4">
-                        {Array.from(data).map(({ NOMBRE, APELLIDO, FECHAHORAP, DESCRIPCIONP, IMAGENP, CONTADORLIKE, IDPUB }) => (
+                        {Array.from(data).map(({ NOMBRE, APELLIDO, FECHAHORAP, DESCRIPCIONP, IMAGENP, CONTADORLIKE, IDPUB, EXISTE }) => (
                             <Col>
-                                <CardPublicacion nombre={NOMBRE} apellido={APELLIDO} fechaHora={FECHAHORAP} descripcion={DESCRIPCIONP} imagen={IMAGENP} contadorLike={CONTADORLIKE} idPub={IDPUB} />
+                                <CardPublicacion nombre={NOMBRE} apellido={APELLIDO} fechaHora={FECHAHORAP} descripcion={DESCRIPCIONP} imagen={IMAGENP} contadorLike={CONTADORLIKE} idPub={IDPUB} existe={EXISTE} idUsuario={us} />
                             </Col>
                         ))}
                     </Row>

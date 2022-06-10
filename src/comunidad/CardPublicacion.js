@@ -7,70 +7,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './../comunidad/Publicacion.css';
 import avatar from '../imagenes/avatar.jpg';
 import publicacionDef from '../imagenes/publicacionDef.jpg'
+import configData from "../config/config.json";
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
-// Calcular Fechas par Date Icon
-const getMonth = (dateIn) => {
-    var date = new Date(dateIn);
-    var monthName = date.toLocaleString('es-es', { month: 'long' });
-    monthName = monthName.charAt(0).toUpperCase() + monthName.slice(1);
-    return monthName;
-};
 
-const getDayNumber = (dateIn) => {
-    var date = new Date(dateIn);
-    var dayNumber = date.toLocaleString('es-es', { day: 'numeric' });
-    dayNumber = dayNumber.charAt(0).toUpperCase() + dayNumber.slice(1);
-    return dayNumber;
-};
+const URL_BUSCARLIKE = configData.BUSCLIKE_API_URL;
+const URL_ACLIKE = configData.ACLIKE_API_URL;
+const URL_AGLIKE = configData.AGLIKE_API_URL;
+const URL_QLIKE = configData.QLIKE_API_URL;
 
-const getDayName = (dateIn) => {
-    var date = new Date(dateIn);
-    var dayName = date.toLocaleString('es-es', { weekday: 'long' });
-    dayName = dayName.charAt(0).toUpperCase() + dayName.slice(1);
-    return dayName;
-};
 
-const getTimePub = (dateIn) => {
-    var date = new Date(dateIn);
-    var timePub = date.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
-    return timePub;
-};
-// desde aqui comenten 
-let clicked = false;
-var
-    palabra = document.getElementById("count"),
-    count = document.getElementById("num");
-
-function like() {
-
-    if (palabra == null) {
-        palabra = document.getElementById("count");
-        count = document.getElementById("num");
-        console.log(palabra);
-        console.log(count);
-        console.log("Es el inicio");
-
-    } else {
-        console.log(palabra);
-        console.log(count);
-        console.log("Ya empezo");
-        if (!clicked) {
-            clicked = true;
-            palabra.textContent = "Me gusta";
-            console.log("me gusta");
-            count.textContent++;
-            console.log(count.textContent);
-        } else {
-            clicked = false;
-            palabra.textContent = "Dar me gusta";
-            console.log("Dar me gusta");
-            count.textContent--;
-            console.log(count.textContent);
-        }
-    }
-}
 // este comando funciona cuando ya estemos dentro de la seccion, asi si funciona
 /* 
 const likeBtn = document.querySelector(".like__btn");
@@ -93,7 +40,136 @@ likeBtn.addEventListener("click", () => {
 }); 
 */
 
-function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, contadorLike, idPub }) {
+let c = "";
+let exist = "";
+let cont = 0;
+let usuario = 0;
+let bot= "";
+let clicked = false;
+
+function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, contadorLike, idPub, existe, idUsuario  }) {
+
+    console.log(idPub);
+    console.log(idUsuario);
+    cont = contadorLike;
+    exist = existe;
+    usuario = idUsuario;
+    console.log(exist);
+    console.log(cont);
+
+    // Calcular Fechas par Date Icon
+    const getMonth = (dateIn) => {
+        var date = new Date(dateIn);
+        var monthName = date.toLocaleString('es-es', { month: 'long' });
+        monthName = monthName.charAt(0).toUpperCase() + monthName.slice(1);
+        return monthName;
+    };
+
+    const getDayNumber = (dateIn) => {
+        var date = new Date(dateIn);
+        var dayNumber = date.toLocaleString('es-es', { day: 'numeric' });
+        dayNumber = dayNumber.charAt(0).toUpperCase() + dayNumber.slice(1);
+        bLike();
+        return dayNumber;
+    };
+
+    const getDayName = (dateIn) => {
+        var date = new Date(dateIn);
+        var dayName = date.toLocaleString('es-es', { weekday: 'long' });
+        dayName = dayName.charAt(0).toUpperCase() + dayName.slice(1);
+        return dayName;
+    };
+
+    const getTimePub = (dateIn) => {
+        var date = new Date(dateIn);
+        var timePub = date.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+        return timePub;
+    };
+
+    const enviarDatos = async (url, datos) => {
+        console.log(datos);
+        const resp = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(datos),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+
+        });
+        console.log(datos);
+        const rjson = await resp.json();
+        console.log(resp);
+        console.log(rjson);
+        return rjson;
+    }
+
+    const crearDatos = () => {
+
+        const datos = {
+            "idUsuario": usuario,
+            "idPublicacion": idPub,
+            "meGusta": cont,
+            "existe": exist
+        };
+        //console.log(datos);
+        return datos;
+    }
+
+    const bLike = ()=> {
+        //console.log(crearDatos());
+        //const respuestaJson = await enviarDatos(URL_BUSCARLIKE, crearDatos());
+        //console.log(respuestaJson.Existe);
+        //existe = respuestaJson.Existe;
+        //console.log(existe);
+        if (exist==="true") {
+            c="#4fbec9";
+            bot="Me Gusta";
+        }else{
+            if (exist==="false")
+            c="#fff";
+            bot="Dar Me Gusta";
+        }
+    }
+    // desde aqui comenten 
+    
+    const like = async () =>{ 
+        const palabra = document.getElementById("count");
+        const count = document.getElementById("num");
+        if (existe==="true"){
+            clicked= true;
+        }else{
+            clicked= false;
+        }
+            if (!clicked) {
+                clicked = true;
+                palabra.textContent = "Me gusta";
+                palabra.setAttribute("style", "color: #4fbec9");
+                console.log("me gusta");
+                count.textContent++;
+                console.log(count.textContent);
+                cont= contadorLike;
+                cont=cont+1;
+                exist="true";
+                existe="true";
+                const respuesta3Json = await enviarDatos(URL_ACLIKE, crearDatos());
+                //const respuesta4Json = await enviarDatos(URL_AGLIKE, crearDatos());
+                console.log(respuesta3Json);
+            } else {
+                clicked = false;
+                palabra.textContent = "Dar me gusta";
+                console.log("Dar me gusta");
+                count.textContent--;
+                console.log(count.textContent);
+                cont= contadorLike;
+                cont= cont-1;
+                exist="false";
+                existe="false";
+                //const respuesta1Json = await enviarDatos(URL_ACLIKE, crearDatos());
+                //const respuesta2Json = await enviarDatos(URL_QLIKE, crearDatos());
+                //console.log(respuesta1Json);;
+            }
+    }
+
 
     console.log(nombre);
     const [show, setShow] = useState(false);
@@ -150,7 +226,7 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, con
                     <div className="badge me-auto">
                         <button class="btn btn-warning" onClick={like}>
                             <FontAwesomeIcon icon={faThumbsUp} style={{ color: "#fff" }} />
-                            <span className="textLikeButton" id="count">Dar me Gusta</span>
+                            <span className="textLikeButton" id="count" style={{color: c}}>Dar Me Gusta</span>
                             <script>like()</script>
                         </button>
                     </div>
@@ -198,7 +274,7 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, con
                                 <br></br><br></br>
                                 <button class="btn btn-warning" onClick={like}>
                                     <FontAwesomeIcon icon={faThumbsUp} style={{ color: "#fff" }} />
-                                    <span className="textLikeButton" id="count">Dar me Gusta</span>
+                                    <span className="textLikeButton" id="count" style={{color: c}}>Dar Me Gusta</span>
                                     <script>like()</script>
                                 </button>
                                 <br></br><br></br>
@@ -228,6 +304,8 @@ CardPublicacion.propTypes = {
     imagen: PropTypes.string,
     contadorLike: PropTypes.string,
     idPub: PropTypes.string,
+    existe: PropTypes.string,
+    idUsuario: PropTypes.string,
 };
 
 export default CardPublicacion;
