@@ -104,7 +104,7 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, con
     }
 
     const crearDatos = () => {
-
+        console.log(idPub);
         const datos = {
             "idUsuario": usuario,
             "idPublicacion": idPub,
@@ -135,6 +135,7 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, con
     const like = async () =>{ 
         const palabra = document.getElementById("count");
         const count = document.getElementById("num");
+        console.log(idPub);
         if (existe==="true"){
             clicked= true;
         }else{
@@ -164,9 +165,9 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, con
                 cont= cont-1;
                 exist="false";
                 existe="false";
-                //const respuesta1Json = await enviarDatos(URL_ACLIKE, crearDatos());
+                const respuesta1Json = await enviarDatos(URL_ACLIKE, crearDatos());
                 //const respuesta2Json = await enviarDatos(URL_QLIKE, crearDatos());
-                //console.log(respuesta1Json);;
+                console.log(respuesta1Json);;
             }
     }
 
@@ -226,7 +227,7 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, con
                     <div className="badge me-auto">
                         <button class="btn btn-warning" onClick={like}>
                             <FontAwesomeIcon icon={faThumbsUp} style={{ color: "#fff" }} />
-                            <span className="textLikeButton" id="count" style={{color: c}}>Dar Me Gusta</span>
+                            <span className="textLikeButton" id="count" style={{color: c}}>{bot}</span>
                             <script>like()</script>
                         </button>
                     </div>
@@ -274,7 +275,7 @@ function CardPublicacion({ nombre, apellido, fechaHora, descripcion, imagen, con
                                 <br></br><br></br>
                                 <button class="btn btn-warning" onClick={like}>
                                     <FontAwesomeIcon icon={faThumbsUp} style={{ color: "#fff" }} />
-                                    <span className="textLikeButton" id="count" style={{color: c}}>Dar Me Gusta</span>
+                                    <span className="textLikeButton" id="count" style={{color: c}}>{bot}</span>
                                     <script>like()</script>
                                 </button>
                                 <br></br><br></br>
